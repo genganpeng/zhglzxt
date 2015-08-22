@@ -30,14 +30,14 @@
         {
             this.btn_reset = new DevExpress.XtraEditors.SimpleButton();
             this.btn_login = new DevExpress.XtraEditors.SimpleButton();
-            this.pictureBox1 = new System.Windows.Forms.PictureBox();
+            this.pictureBox_checkCode = new System.Windows.Forms.PictureBox();
             this.txt_verificationCode = new DevExpress.XtraEditors.TextEdit();
             this.labelControl3 = new DevExpress.XtraEditors.LabelControl();
             this.txt_passwd = new DevExpress.XtraEditors.TextEdit();
             this.labelControl2 = new DevExpress.XtraEditors.LabelControl();
             this.txt_user = new DevExpress.XtraEditors.TextEdit();
             this.labelControl1 = new DevExpress.XtraEditors.LabelControl();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox_checkCode)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.txt_verificationCode.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.txt_passwd.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.txt_user.Properties)).BeginInit();
@@ -61,14 +61,15 @@
             this.btn_login.Text = "登　录";
             this.btn_login.Click += new System.EventHandler(this.btn_login_Click);
             // 
-            // pictureBox1
+            // pictureBox_checkCode
             // 
-            this.pictureBox1.BackColor = System.Drawing.Color.Maroon;
-            this.pictureBox1.Location = new System.Drawing.Point(375, 212);
-            this.pictureBox1.Name = "pictureBox1";
-            this.pictureBox1.Size = new System.Drawing.Size(50, 20);
-            this.pictureBox1.TabIndex = 24;
-            this.pictureBox1.TabStop = false;
+            this.pictureBox_checkCode.BackColor = System.Drawing.Color.Maroon;
+            this.pictureBox_checkCode.Location = new System.Drawing.Point(375, 212);
+            this.pictureBox_checkCode.Name = "pictureBox_checkCode";
+            this.pictureBox_checkCode.Size = new System.Drawing.Size(50, 20);
+            this.pictureBox_checkCode.TabIndex = 24;
+            this.pictureBox_checkCode.TabStop = false;
+            this.pictureBox_checkCode.Click += new System.EventHandler(this.pictureBox_checkCode_Click);
             // 
             // txt_verificationCode
             // 
@@ -127,7 +128,7 @@
             this.ClientSize = new System.Drawing.Size(640, 480);
             this.Controls.Add(this.btn_reset);
             this.Controls.Add(this.btn_login);
-            this.Controls.Add(this.pictureBox1);
+            this.Controls.Add(this.pictureBox_checkCode);
             this.Controls.Add(this.txt_verificationCode);
             this.Controls.Add(this.labelControl3);
             this.Controls.Add(this.txt_passwd);
@@ -141,7 +142,7 @@
             this.ShowIcon = false;
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "LoginForm";
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox_checkCode)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.txt_verificationCode.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.txt_passwd.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.txt_user.Properties)).EndInit();
@@ -154,7 +155,7 @@
 
         private DevExpress.XtraEditors.SimpleButton btn_reset;
         private DevExpress.XtraEditors.SimpleButton btn_login;
-        private System.Windows.Forms.PictureBox pictureBox1;
+        private System.Windows.Forms.PictureBox pictureBox_checkCode;
         private DevExpress.XtraEditors.TextEdit txt_verificationCode;
         private DevExpress.XtraEditors.LabelControl labelControl3;
         private DevExpress.XtraEditors.TextEdit txt_passwd;

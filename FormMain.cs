@@ -43,7 +43,7 @@ namespace zhuhai
 
         private void barButtonItem1_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
         {
-            gzgc gzgc_form = new gzgc();
+            Gzgc gzgc_form = new Gzgc();
            
             gzgc_form.ShowDialog(this);
         }

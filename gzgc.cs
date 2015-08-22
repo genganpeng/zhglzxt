@@ -10,9 +10,9 @@ using DevExpress.XtraEditors;
 
 namespace zhuhai
 {
-    public partial class gzgc : DevExpress.XtraEditors.XtraForm
+    public partial class Gzgc : DevExpress.XtraEditors.XtraForm
     {
-        public gzgc()
+        public Gzgc()
         {
             InitializeComponent();
         }
