@@ -26,18 +26,20 @@ namespace zhuhai
             //RichTextEditorForm richTextEditorForm = new RichTextEditorForm();
             //richTextEditorForm.ShowDialog();
 
-            //新建Login窗口
-            LoginForm login = new LoginForm();
+            SystemManageForm smForm = new SystemManageForm();
+            smForm.ShowDialog();
+            ////新建Login窗口
+            //LoginForm login = new LoginForm();
 
-            //使用模式对话框方法显示FLogin
-            login.ShowDialog();
+            ////使用模式对话框方法显示FLogin
+            //login.ShowDialog();
 
-            //DialogResult用来判断是否登录成功
-            if (login.DialogResult == DialogResult.OK)
-            {
-                //在线程中打开主窗体
-                Application.Run(new FormMain());
-            }           
+            ////DialogResult用来判断是否登录成功
+            //if (login.DialogResult == DialogResult.OK)
+            //{
+            //    //在线程中打开主窗体
+            //    Application.Run(new FormMain());
+            //}           
         }
     }
 }

@@ -58,6 +58,7 @@
     <Reference Include="DevExpress.Sparkline.v14.1.Core" />
     <Reference Include="DevExpress.XtraBars.v14.1, Version=14.1.4.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL" />
     <Reference Include="DevExpress.XtraEditors.v14.1" />
+    <Reference Include="DevExpress.XtraGrid.v14.1, Version=14.1.4.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL" />
     <Reference Include="DevExpress.XtraLayout.v14.1, Version=14.1.4.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL" />
     <Reference Include="DevExpress.XtraNavBar.v14.1, Version=14.1.4.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL" />
     <Reference Include="DevExpress.XtraPrinting.v14.1, Version=14.1.4.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a" />
@@ -75,6 +76,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="DictionaryItem.cs" />
     <Compile Include="FormMain.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -87,11 +89,18 @@
     <Compile Include="Gzgc.Designer.cs">
       <DependentUpon>Gzgc.cs</DependentUpon>
     </Compile>
+    <Compile Include="IQueryService.cs" />
     <Compile Include="LoginForm.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="LoginForm.Designer.cs">
       <DependentUpon>LoginForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="PageUpControl.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="PageUpControl.Designer.cs">
+      <DependentUpon>PageUpControl.cs</DependentUpon>
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -102,6 +111,20 @@
     <Compile Include="RichTextEditorForm.Designer.cs">
       <DependentUpon>RichTextEditorForm.cs</DependentUpon>
     </Compile>
+    <Compile Include="SystemManage.cs" />
+    <Compile Include="SystemManageEditForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="SystemManageEditForm.Designer.cs">
+      <DependentUpon>SystemManageEditForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="SystemManageForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="SystemManageForm.Designer.cs">
+      <DependentUpon>SystemManageForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="SystemManageService.cs" />
     <EmbeddedResource Include="FormMain.resx">
       <DependentUpon>FormMain.cs</DependentUpon>
     </EmbeddedResource>
@@ -124,6 +147,12 @@
     </Compile>
     <EmbeddedResource Include="RichTextEditorForm.resx">
       <DependentUpon>RichTextEditorForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="SystemManageEditForm.resx">
+      <DependentUpon>SystemManageEditForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="SystemManageForm.resx">
+      <DependentUpon>SystemManageForm.cs</DependentUpon>
     </EmbeddedResource>
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
