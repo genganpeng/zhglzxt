@@ -10,6 +10,10 @@ namespace zhuhai.service
     {
         int GetRecordCount();
 
-        DataTable GetListByPage(int startIndex, int endIndex);
+        DataTable GetListByPage(string strWhere, int startIndex, int endIndex);
+
+
     }
+
+
 }

@@ -30,32 +30,25 @@ namespace zhuhai
             pageUpControl.MyControl = gridControl;
             pageUpControl.QueryService = smService;
 
-            initData("1=1");
+            initData(formatWhere());
         }
 
-        public void initData(string strWhere)
-        {
-            smService.StrWhere = strWhere;
-
-            //初始化实现的service，每页数量，开始页码
-            pageUpControl.PageIndex = 1;
-            pageUpControl.Pagesize = 10;
-            pageUpControl.GetDataTable();
-        }
-
-        private void simpleButton_query_Click(object sender, EventArgs e)
-        {
+        /// <summary>
+        /// 格式化查询条件
+        /// </summary>
+        /// <returns></returns>
+        public string formatWhere() {
             string username = textEdit_userName.Text;
             string name = textEdit_name.Text;
             string idCard = textEdit_IDCard.Text;
-             string type = "";
+            string type = "";
             if (comboBoxEdit_type.SelectedIndex != -1)
                 type = comboBoxEdit_type.SelectedIndex.ToString();
 
             string strWhere = "1=1";
             if (!String.IsNullOrEmpty(username))
             {
-                strWhere += " and " + SystemManage.USERNAME_COLUMN+ " like '%" + username + "%'";
+                strWhere += " and " + SystemManage.USERNAME_COLUMN + " like '%" + username + "%'";
             }
             if (!String.IsNullOrEmpty(name))
             {
@@ -67,10 +60,23 @@ namespace zhuhai
             }
             if (type != "0" && type != "")
             {
-                strWhere += " and " +SystemManage.TYPE_COLUMN + " = " + type;
+                strWhere += " and " + SystemManage.TYPE_COLUMN + " = " + type;
             }
+            return strWhere;
+        }
 
-            initData(strWhere);
+        public void initData(string strWhere)
+        {
+            //初始化实现的service，每页数量，开始页码
+            pageUpControl.PageIndex = 1;
+            pageUpControl.Pagesize = 10;
+            pageUpControl.StrWhere = strWhere;
+            pageUpControl.GetDataTable();
+        }
+
+        private void simpleButton_query_Click(object sender, EventArgs e)
+        {
+            initData(formatWhere());
         }
 
         private void simpleButton_reset_Click(object sender, EventArgs e)
@@ -79,14 +85,14 @@ namespace zhuhai
             textEdit_name.Text = "";
             textEdit_IDCard.Text = "";
 
-            initData("1=1");
+            initData(formatWhere());
         }
 
         private void simpleButton_add_Click(object sender, EventArgs e)
         {
             SystemManageEditForm systemManageEditForm = new SystemManageEditForm();
             systemManageEditForm.ShowDialog();
-            initData("1=1");
+            initData(formatWhere());
         }
 
         private void simpleButton_modify_Click(object sender, EventArgs e)
@@ -99,9 +105,9 @@ namespace zhuhai
             //获取选中的行的行号
             int[] rowNums = gridView.GetSelectedRows();
             DataTable dt = (DataTable)gridControl.DataSource;
-            SystemManageEditForm systemManageEditForm = new SystemManageEditForm(dt.Rows[rowNums[0]][SystemManage.ID_COLUMN].ToString());
+            SystemManageEditForm systemManageEditForm = new SystemManageEditForm(Int32.Parse(dt.Rows[rowNums[0]][SystemManage.ID_COLUMN].ToString()));
             systemManageEditForm.ShowDialog();
-            initData("1=1");
+            pageUpControl.GetDataTable();
         }
 
         private void simpleButton_delete_Click(object sender, EventArgs e)
@@ -120,9 +126,9 @@ namespace zhuhai
             {
                 //要删除的id
                 string deleteId = dt.Rows[rowNum][SystemManage.ID_COLUMN].ToString();
-                smService.deleteRow(deleteId);
+                smService.deleteRow(Int32.Parse(deleteId));
             }
-            initData("1=1");
+            initData(formatWhere());
              
         }
 

@@ -10,32 +10,25 @@ namespace zhuhai.service
 {
     class SystemManageService : IQueryService
     {
-        private DataTable dt = new DataTable();
+        private List<SystemManage> sms = new List<SystemManage>();
         private static SystemManageService systemManageService = null;
 
         private SystemManageService()
         {
-            dt.Columns.Add(SystemManage.ID_COLUMN, typeof(int));
-            dt.Columns.Add(SystemManage.USERNAME_COLUMN, typeof(string));
-            dt.Columns.Add(SystemManage.PASSWORD_COLUMN, typeof(string));
-            dt.Columns.Add(SystemManage.TYPE_COLUMN, typeof(string));
-            dt.Columns.Add("typeName", typeof(string));
-            dt.Columns.Add(SystemManage.NAME_COLUMN, typeof(string));
-            dt.Columns.Add(SystemManage.IDCARD_COLUMN, typeof(string));
-            dt.Rows.Add(new object[] { 1, "张三", "123", "1", "系统管理员", "张老三", "12343445" });
-            dt.Rows.Add(new object[] { 2, "张三1", "123", "2", "口岸系统管理员", "张老三1", "12343446" });
-            dt.Rows.Add(new object[] { 3, "张三", "123", "3", "口岸监控员", "张老三", "12343445" });
-            dt.Rows.Add(new object[] { 4, "张三1", "123", "1", "系统管理员", "张老三1", "12343445" });
-            dt.Rows.Add(new object[] { 5, "张三", "123", "2", "口岸系统管理员", "张老三", "12343445" });
-            dt.Rows.Add(new object[] { 6, "张三1", "123", "3", "口岸监控员", "张老三1", "12343445" });
-            dt.Rows.Add(new object[] { 7, "张三", "123", "1", "系统管理员", "张老三", "12343445" });
-            dt.Rows.Add(new object[] { 8, "张三1", "123", "2", "口岸系统管理员", "张老三1", "12343445" });
-            dt.Rows.Add(new object[] { 9, "张三", "123", "3", "口岸监控员", "张老三", "12343445" });
-            dt.Rows.Add(new object[] { 10, "张三1", "123", "1", "系统管理员", "张老三1", "12343445" });
-            dt.Rows.Add(new object[] { 11, "张三", "123", "2", "口岸系统管理员", "张老三", "12343445" });
-            dt.Rows.Add(new object[] { 12, "张三", "123", "3", "口岸监控员", "张老三", "12343445" });
-            dt.Rows.Add(new object[] { 13, "张三1", "123", "1", "系统管理员", "张老三1", "12343445" });
-            dt.Rows.Add(new object[] { 14, "张三1", "123", "2", "口岸系统管理员", "张老三1", "12343445" });
+            sms.Add(new SystemManage( 1, "张三", "123", 1, "系统管理员", "张老三", "12343445" ));
+            sms.Add(new SystemManage( 2, "张三1", "123", 2, "口岸系统管理员", "张老三1", "12343446"));
+            sms.Add(new SystemManage( 3, "张三", "123", 3, "口岸监控员", "张老三", "12343445"));
+            sms.Add(new SystemManage( 4, "张三1", "123", 1, "系统管理员", "张老三1", "12343445"));
+            sms.Add(new SystemManage( 5, "张三", "123", 2, "口岸系统管理员", "张老三", "12343445"));
+            sms.Add(new SystemManage( 6, "张三1", "123", 3, "口岸监控员", "张老三1", "12343445"));
+            sms.Add(new SystemManage( 7, "张三", "123", 1, "系统管理员", "张老三", "12343445"));
+            sms.Add(new SystemManage( 8, "张三1", "123", 2, "口岸系统管理员", "张老三1", "12343445"));
+            sms.Add(new SystemManage( 9, "张三", "123", 3, "口岸监控员", "张老三", "12343445"));
+            sms.Add(new SystemManage( 10, "张三1", "123", 1, "系统管理员", "张老三1", "12343445"));
+            sms.Add(new SystemManage( 11, "张三", "123", 2, "口岸系统管理员", "张老三", "12343445"));
+            sms.Add(new SystemManage( 12, "张三", "123", 3, "口岸监控员", "张老三", "12343445"));
+            sms.Add(new SystemManage( 13, "张三1", "123", 1, "系统管理员", "张老三1", "12343445"));
+            sms.Add(new SystemManage( 14, "张三1", "123", 2, "口岸系统管理员", "张老三1", "12343445"));
         }
 
         public static SystemManageService getInstance()
@@ -46,13 +39,6 @@ namespace zhuhai.service
             }
 
             return systemManageService;
-        }
-
-        private string strWhere;
-        public string StrWhere
-        {
-            get { return strWhere; }
-            set { strWhere = value; }
         }
 
         /// <summary>
@@ -75,46 +61,44 @@ namespace zhuhai.service
             return TotalNum;
         }
 
-        public DataTable InitDt()
+        public List<SystemManage> InitDt(string strWhere, int startIndex, int endIndex)
         {
-            return dt;
+            //实现分页查询的方法， 使用strWhere,startIndex,endIndex, 同时需要返回Pager
+            //记录总数量
+            TotalNum = sms.Count;
+
+            startIndex = startIndex - 1;
+            endIndex = endIndex - 1;
+            //当前页需要显示的记录
+            int count = endIndex < (TotalNum - 1) ? endIndex : (TotalNum - 1);
+            List<SystemManage> retLists = new List<SystemManage>();
+            for (int i = startIndex; i <= count; i++)
+            {
+                retLists.Add(sms[i]);
+            }
+            return retLists;
         }
 
         /// <summary>
         /// 根据数据库查询，并返回数据，strWhere是条件
         /// </summary>
+        /// <param name="strWhere">查询条件</param>
         /// <param name="startIndex">从1开始</param>
         /// <param name="endIndex">到这为止</param>
         /// <returns></returns>
-        public DataTable GetListByPage(int startIndex, int endIndex)
+        public DataTable GetListByPage(string strWhere, int startIndex, int endIndex)
         {
-            //实现分页查询的方法， 使用strWhere, 同时需要返回记录总数
-            DataTable dt = InitDt();
-            DataRow[] rows = dt.Select(StrWhere);
-            //记录总数量
-            TotalNum = rows.Length;
-
-            startIndex = startIndex - 1;
-            endIndex = endIndex - 1;
-
-            DataTable NewTable = dt.Clone();
-            //当前页需要显示的记录
-            int count = endIndex < (rows.Length - 1) ? endIndex : (rows.Length - 1);
-            for (int i = startIndex; i <= count; i++)
-            {
-                NewTable.ImportRow((DataRow)rows[i]);
-            }
-
-            return NewTable;
+            DataTable dt = new ModelHandler<SystemManage>().FillDataTable(InitDt(strWhere, startIndex, endIndex));
+            return dt;
         }
 
-        public Boolean deleteRow(string id)
+        public Boolean deleteRow(int id)
         {
-            foreach (DataRow row in dt.Rows)
+            foreach (SystemManage sm in sms)
             {
-                if (row[SystemManage.ID_COLUMN].ToString() == id)
+                if (sm.Id == id)
                 {
-                    dt.Rows.Remove(row);
+                    sms.Remove(sm);
                     return true;
                 }
             }
@@ -124,49 +108,63 @@ namespace zhuhai.service
 
         public Boolean addRow(SystemManage systemManage)
         {
-            dt.Rows.Add(new object[] { 15, systemManage.UserName, systemManage.Password, systemManage.Type, systemManage.Type, systemManage.Name, systemManage.IdCard });
+            systemManage.Id = 15;
+            sms.Add(systemManage);
             return true;
         }
 
         public Boolean modifyRow(SystemManage systemManage)
         {
-            foreach (DataRow row in dt.Rows)
+            for (int i = 0; i < sms.Count; i++)
             {
-                if (row[SystemManage.ID_COLUMN].ToString() == systemManage.Id)
+                if (sms[i].Id == systemManage.Id)
                 {
-                    row[SystemManage.USERNAME_COLUMN] = systemManage.UserName;
-                    row[SystemManage.PASSWORD_COLUMN] = systemManage.Password;
-                    row[SystemManage.TYPE_COLUMN] = systemManage.Type;
-                    row[SystemManage.NAME_COLUMN] = systemManage.Name;
-                    row[SystemManage.IDCARD_COLUMN] = systemManage.IdCard;
+                    sms[i] = systemManage;
                     return true;
                 }
+                    
             }
-            return true;
+            return false;
         }
 
-        public SystemManage getRow(string id)
+        public SystemManage getRow(int id)
         {
-            foreach (DataRow row in dt.Rows)
+            foreach (SystemManage sm in sms)
             {
-                if (row[SystemManage.ID_COLUMN].ToString() == id)
+                if (sm.Id == id)
                 {
-                    SystemManage sm = new SystemManage(row[SystemManage.ID_COLUMN].ToString(),
-                        row[SystemManage.USERNAME_COLUMN].ToString(), row[SystemManage.PASSWORD_COLUMN].ToString(),
-                        row[SystemManage.TYPE_COLUMN].ToString(), row[SystemManage.NAME_COLUMN].ToString(),
-                        row[SystemManage.IDCARD_COLUMN].ToString());
                     return sm;
                 }
             }
             return null;
         }
 
-        public List<DictionaryItem<string>> getTypes() {
-            List<DictionaryItem<string>> dicList = new List<DictionaryItem<string>>();
-            dicList.Add(new DictionaryItem<string>("0", "请选择"));
-            dicList.Add(new DictionaryItem<string>("1", "系统管理员"));
-            dicList.Add(new DictionaryItem<string>("2", "口岸系统管理员"));
-            dicList.Add(new DictionaryItem<string>("3", "口岸监控员"));    
+        /// <summary>
+        /// 根据id和用户名查询符合条件的记录
+        /// </summary>
+        /// <param name="id">id</param>
+        /// <param name="name">用户名</param>
+        /// <returns></returns>
+        public Boolean findRowByIdAndName(int id, string userName)
+        {
+            //根据id和姓名查询数据库，全匹配
+            foreach (SystemManage sm in sms)
+            {
+                if (sm.UserName == userName && sm.Id != id)
+                {
+                    return true;
+                }
+            }
+
+            return false;
+        }
+
+        public List<DictionaryItem<int>> getTypes() {
+            List<DictionaryItem<int>> dicList = new List<DictionaryItem<int>>();
+            dicList.Add(new DictionaryItem<int>(0, "请选择"));
+            dicList.Add(new DictionaryItem<int>(1, "系统管理员"));
+            dicList.Add(new DictionaryItem<int>(2, "口岸系统管理员"));
+            dicList.Add(new DictionaryItem<int>(3, "口岸监控员"));    
 
             return dicList;
         }

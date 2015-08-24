@@ -25,6 +25,8 @@ namespace zhuhai.Component
     ///  pageUpControl.PageIndex = 1;
     ///  每页的条数
     ///  pageUpControl.Pagesize = 10;
+    ///  查询条件
+    ///  pageUpControl.strWhere = "";
     ///  获取数据
     ///  pageUpControl.GetDataTable();
     /// </summary>
@@ -97,6 +99,12 @@ namespace zhuhai.Component
         private int startIndex;
         private int endIndex;
 
+        private string strWhere;
+        public string StrWhere {
+            get { return strWhere; }
+            set { strWhere = value; } 
+        }
+
         public void GetDataTable()
         {
             BindPageGridList();
@@ -166,7 +174,7 @@ namespace zhuhai.Component
             endIndex = PageIndex * Pagesize;
 
             //获取查询的列表
-            MyControl.DataSource = queryService.GetListByPage(startIndex, endIndex);
+            MyControl.DataSource = queryService.GetListByPage(strWhere, startIndex, endIndex);
             //总页数
             PageRow = queryService.GetRecordCount();
 

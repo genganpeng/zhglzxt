@@ -7,16 +7,22 @@ namespace zhuhai.vo
 {
     public class SystemManage
     {
-        private string id;
+        /// <summary>
+        /// id
+        /// </summary>
+        private int id;
 
         public static string ID_COLUMN="id";
 
-        public string Id
+        public int Id
         {
             get { return id; }
             set { id = value; }
         }
 
+        /// <summary>
+        /// 用户名
+        /// </summary>
         private string userName;
         public static string USERNAME_COLUMN = "userName";
 
@@ -25,6 +31,10 @@ namespace zhuhai.vo
             get { return userName; }
             set { userName = value; }
         }
+
+        /// <summary>
+        /// 密码
+        /// </summary>
         private string password;
         public static string PASSWORD_COLUMN = "password";
 
@@ -33,21 +43,34 @@ namespace zhuhai.vo
             get { return password; }
             set { password = value; }
         }
-        private string type;
+
+        /// <summary>
+        /// 类型
+        /// </summary>
+        private int type;
         public static string TYPE_COLUMN = "type";
 
-        public string Type
+        public int Type
         {
             get { return type; }
             set { type = value; }
         }
+
+        /// <summary>
+        /// 类型名称
+        /// </summary>
         private string typeName;
+        public static string TYPENAME_COLUMN = "typeName";
 
         public string TypeName
         {
             get { return typeName; }
             set { typeName = value; }
         }
+
+        /// <summary>
+        /// 姓名
+        /// </summary>
         private string name;
         public static string NAME_COLUMN = "name";
 
@@ -56,6 +79,10 @@ namespace zhuhai.vo
             get { return name; }
             set { name = value; }
         }
+
+        /// <summary>
+        /// 证件号
+        /// </summary>
         private string idCard;
         public static string IDCARD_COLUMN = "idCard";
 
@@ -69,12 +96,13 @@ namespace zhuhai.vo
         {
         }
 
-        public SystemManage(string id, string userName, string password, string type, string name, string idCard)
+        public SystemManage(int id, string userName, string password, int type, string typeName, string name, string idCard)
         {
             Id = id;
             UserName = userName;
             Password = password;
             Type = type;
+            TypeName = typeName;
             Name = name;
             IdCard = idCard;
         }

@@ -15,8 +15,8 @@ namespace zhuhai
 {
     public partial class SystemManageEditForm : DevExpress.XtraEditors.XtraForm
     {
-        private string id;
-        public string Id {
+        private int id = 0;
+        public int Id {
             get {return id;}
             set {id = value;}
         }
@@ -27,7 +27,7 @@ namespace zhuhai
             init();
         }
 
-        public SystemManageEditForm(string id)
+        public SystemManageEditForm(int id)
         {
             InitializeComponent();
             init();
@@ -38,7 +38,7 @@ namespace zhuhai
              textEdit_password.Text = sm.Password ;
              textEdit_name.Text = sm.Name;
              textEdit_IDCard.Text = sm.IdCard;
-             comboBoxEdit_type.SelectedIndex = Int32.Parse(sm.Type);
+             comboBoxEdit_type.SelectedIndex = sm.Type;
         }
 
         public void init()
@@ -63,6 +63,13 @@ namespace zhuhai
                 MessageBox.Show("用户名不能为空！", "提示");
                 return;
             }
+
+            if (smService.findRowByIdAndName(id, sm.UserName))
+            {
+                MessageBox.Show("用户名已重复！", "提示");
+                return;
+            }
+
             if (String.IsNullOrEmpty(sm.Password))
             {
                 MessageBox.Show("密码不能为空！", "提示");
@@ -73,6 +80,9 @@ namespace zhuhai
                 MessageBox.Show("姓名不能为空！", "提示");
                 return;
             }
+
+            
+
             if (String.IsNullOrEmpty(sm.IdCard))
             {
                 MessageBox.Show("证件号不能为空！", "提示");
@@ -85,17 +95,17 @@ namespace zhuhai
                 return;
             }
 
-            sm.Type = comboBoxEdit_type.SelectedIndex.ToString();
+            sm.Type = comboBoxEdit_type.SelectedIndex;
             sm.Id = Id;
 
             //保存
-            if (Id == null && smService.addRow(sm) == true)
+            if (Id == 0 && smService.addRow(sm) == true)
             {
                 MessageBox.Show("保存成功！", "提示");
                 this.Close();
             }
             //编辑
-            else if (Id != null && smService.modifyRow(sm) == true)
+            else if (Id != 0 && smService.modifyRow(sm) == true)
             {
                 MessageBox.Show("保存成功！", "提示");
                 this.Close();

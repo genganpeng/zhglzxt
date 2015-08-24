@@ -45,11 +45,11 @@
             this.pageUpControl = new zhuhai.Component.PageUpControl();
             this.gridControl = new DevExpress.XtraGrid.GridControl();
             this.gridView = new DevExpress.XtraGrid.Views.Grid.GridView();
-            this.userName = new DevExpress.XtraGrid.Columns.GridColumn();
-            this.password = new DevExpress.XtraGrid.Columns.GridColumn();
-            this.type = new DevExpress.XtraGrid.Columns.GridColumn();
-            this.name = new DevExpress.XtraGrid.Columns.GridColumn();
-            this.idCard = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.UserName = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.Password = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.Type = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.PeopleName = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.IdCard = new DevExpress.XtraGrid.Columns.GridColumn();
             ((System.ComponentModel.ISupportInitialize)(this.groupControl)).BeginInit();
             this.groupControl.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.comboBoxEdit_type.Properties)).BeginInit();
@@ -200,6 +200,7 @@
             this.pageUpControl.Pagesize = 0;
             this.pageUpControl.QueryService = null;
             this.pageUpControl.Size = new System.Drawing.Size(979, 36);
+            this.pageUpControl.StrWhere = null;
             this.pageUpControl.TabIndex = 1;
             // 
             // gridControl
@@ -217,60 +218,60 @@
             // gridView
             // 
             this.gridView.Columns.AddRange(new DevExpress.XtraGrid.Columns.GridColumn[] {
-            this.userName,
-            this.password,
-            this.type,
-            this.name,
-            this.idCard});
+            this.UserName,
+            this.Password,
+            this.Type,
+            this.PeopleName,
+            this.IdCard});
             this.gridView.GridControl = this.gridControl;
             this.gridView.Name = "gridView";
             this.gridView.OptionsSelection.MultiSelect = true;
             this.gridView.OptionsView.ShowGroupPanel = false;
             // 
-            // userName
+            // UserName
             // 
-            this.userName.Caption = "用户名";
-            this.userName.FieldName = "userName";
-            this.userName.Name = "userName";
-            this.userName.OptionsColumn.AllowEdit = false;
-            this.userName.Visible = true;
-            this.userName.VisibleIndex = 0;
+            this.UserName.Caption = "用户名";
+            this.UserName.FieldName = "UserName";
+            this.UserName.Name = "UserName";
+            this.UserName.OptionsColumn.AllowEdit = false;
+            this.UserName.Visible = true;
+            this.UserName.VisibleIndex = 0;
             // 
-            // password
+            // Password
             // 
-            this.password.Caption = "密码";
-            this.password.FieldName = "password";
-            this.password.Name = "password";
-            this.password.OptionsColumn.AllowEdit = false;
-            this.password.Visible = true;
-            this.password.VisibleIndex = 1;
+            this.Password.Caption = "密码";
+            this.Password.FieldName = "Password";
+            this.Password.Name = "Password";
+            this.Password.OptionsColumn.AllowEdit = false;
+            this.Password.Visible = true;
+            this.Password.VisibleIndex = 1;
             // 
-            // type
+            // Type
             // 
-            this.type.Caption = "类型";
-            this.type.FieldName = "typeName";
-            this.type.Name = "type";
-            this.type.OptionsColumn.AllowEdit = false;
-            this.type.Visible = true;
-            this.type.VisibleIndex = 2;
+            this.Type.Caption = "类型";
+            this.Type.FieldName = "TypeName";
+            this.Type.Name = "Type";
+            this.Type.OptionsColumn.AllowEdit = false;
+            this.Type.Visible = true;
+            this.Type.VisibleIndex = 2;
             // 
-            // name
+            // PeopleName
             // 
-            this.name.Caption = "姓名";
-            this.name.FieldName = "name";
-            this.name.Name = "name";
-            this.name.OptionsColumn.AllowEdit = false;
-            this.name.Visible = true;
-            this.name.VisibleIndex = 3;
+            this.PeopleName.Caption = "姓名";
+            this.PeopleName.FieldName = "Name";
+            this.PeopleName.Name = "PeopleName";
+            this.PeopleName.OptionsColumn.AllowEdit = false;
+            this.PeopleName.Visible = true;
+            this.PeopleName.VisibleIndex = 3;
             // 
-            // idCard
+            // IdCard
             // 
-            this.idCard.Caption = "证件号";
-            this.idCard.FieldName = "idCard";
-            this.idCard.Name = "idCard";
-            this.idCard.OptionsColumn.AllowEdit = false;
-            this.idCard.Visible = true;
-            this.idCard.VisibleIndex = 4;
+            this.IdCard.Caption = "证件号";
+            this.IdCard.FieldName = "IdCard";
+            this.IdCard.Name = "IdCard";
+            this.IdCard.OptionsColumn.AllowEdit = false;
+            this.IdCard.Visible = true;
+            this.IdCard.VisibleIndex = 4;
             // 
             // SystemManageForm
             // 
@@ -311,11 +312,11 @@
         private DevExpress.XtraEditors.ComboBoxEdit comboBoxEdit_type;
         private DevExpress.XtraEditors.SimpleButton simpleButton_query;
         private DevExpress.XtraEditors.SimpleButton simpleButton_reset;
-        private DevExpress.XtraGrid.Columns.GridColumn userName;
-        private DevExpress.XtraGrid.Columns.GridColumn password;
-        private DevExpress.XtraGrid.Columns.GridColumn type;
-        private DevExpress.XtraGrid.Columns.GridColumn name;
-        private DevExpress.XtraGrid.Columns.GridColumn idCard;
+        private DevExpress.XtraGrid.Columns.GridColumn UserName;
+        private DevExpress.XtraGrid.Columns.GridColumn Password;
+        private DevExpress.XtraGrid.Columns.GridColumn Type;
+        private DevExpress.XtraGrid.Columns.GridColumn PeopleName;
+        private DevExpress.XtraGrid.Columns.GridColumn IdCard;
         private DevExpress.XtraEditors.SimpleButton simpleButton_delete;
         private DevExpress.XtraEditors.SimpleButton simpleButton_modify;
         private DevExpress.XtraEditors.SimpleButton simpleButton_add;

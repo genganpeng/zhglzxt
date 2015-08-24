@@ -96,6 +96,8 @@
     <Compile Include="LoginForm.Designer.cs">
       <DependentUpon>LoginForm.cs</DependentUpon>
     </Compile>
+    <Compile Include="ModelHandler.cs" />
+    <Compile Include="Pager.cs" />
     <Compile Include="PageUpControl.cs">
       <SubType>UserControl</SubType>
     </Compile>
