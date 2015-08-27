@@ -7,14 +7,37 @@ using System.Text;
 using System.Linq;
 using System.Windows.Forms;
 using DevExpress.XtraEditors;
+using DevExpress.XtraRichEdit;
+using zhuhai.service;
+using zhuhai.model;
 
 namespace zhuhai
 {
     public partial class RichTextEditorForm : DevExpress.XtraEditors.XtraForm
     {
-        public RichTextEditorForm()
+        private int id = 0;
+        public int Id
+        {
+            get { return id; }
+            set { id = value; }
+        }
+
+        private IOperateService<CommonText> operateService;
+
+        public RichTextEditorForm(IOperateService<CommonText> operateService)
         {
             InitializeComponent();
+            this.operateService = operateService;
+            //richEditControl_context.Document.LoadDocument("D:/1.doc", DocumentFormat.Doc);
+        }
+
+        public RichTextEditorForm(int id, IOperateService<CommonText> operateService)
+        {
+            InitializeComponent();
+            this.operateService = operateService;
+            Id = id;
+            CommonText ct = operateService.getRow(id);
+            textEdit_title.Text = ct.Title;
         }
 
         private void simpleButton_cancel_Click(object sender, EventArgs e)
@@ -27,10 +50,38 @@ namespace zhuhai
 
         private void simpleButton_save_Click(object sender, EventArgs e)
         {
-            MessageBox.Show(richEditControl_context.WordMLText);
-            MessageBox.Show(textEdit_title.Text);
-            MessageBox.Show("保存成功！", "提示");
-            this.Close();
+            //richEditControl_context.Document.SaveDocument("D:/1.doc", DocumentFormat.Doc);
+            if (String.IsNullOrEmpty(textEdit_title.Text))
+            {
+                MessageBox.Show("标题不能为空！", "提示");
+                return;
+            }
+            if (operateService.findRowByIdAndTitle(id, textEdit_title.Text))
+            {
+                MessageBox.Show("标题不能重复！", "提示");
+                return;
+            }
+            CommonText ct = new CommonText();
+            ct.Title = textEdit_title.Text;
+            ct.Id = Id;
+            //保存
+            if (id == 0 && true == operateService.addRow(ct))
+            {
+                MessageBox.Show("保存成功！", "提示");
+                this.Close();
+                return ;
+            }
+            else if (id != 0 && true == operateService.modifyRow(ct))
+            {
+                MessageBox.Show("保存成功！", "提示");
+                this.Close();
+            }
+            else
+            {
+                MessageBox.Show("保存失败！", "提示");
+            }
+
+           
         }
     }
 }

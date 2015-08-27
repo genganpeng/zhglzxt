@@ -23,11 +23,15 @@ namespace zhuhai
             SkinManager.EnableFormSkins();
             UserLookAndFeel.Default.SetSkinStyle("DevExpress Style");
 
+            WorkRuleManageForm workRuleManageForm = new WorkRuleManageForm();
+            workRuleManageForm.ShowDialog();
+
             //RichTextEditorForm richTextEditorForm = new RichTextEditorForm();
             //richTextEditorForm.ShowDialog();
 
-            SystemManageForm smForm = new SystemManageForm();
-            smForm.ShowDialog();
+            //SystemManageForm smForm = new SystemManageForm();
+            //smForm.ShowDialog();
+            
             ////新建Login窗口
             //LoginForm login = new LoginForm();
 

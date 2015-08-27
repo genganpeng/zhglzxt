@@ -7,7 +7,7 @@ using System.Text;
 using System.Linq;
 using System.Windows.Forms;
 using DevExpress.XtraEditors;
-using zhuhai.vo;
+using zhuhai.model;
 using zhuhai.service;
 using DevExpress.XtraEditors.Controls;
 

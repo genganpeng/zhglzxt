@@ -14,21 +14,17 @@ using zhuhai.model;
 
 namespace zhuhai
 {
-    public partial class SystemManageForm : DevExpress.XtraEditors.XtraForm
+    public partial class WorkRuleManageForm : DevExpress.XtraEditors.XtraForm
     {
-        private SystemManageService smService;
-        public SystemManageForm()
+        private WorkRuleService workRuleService;
+        public WorkRuleManageForm()
         {
             InitializeComponent();
 
-            smService = SystemManageService.getInstance();
-            comboBoxEdit_type.Properties.Items.AddRange(smService.getTypes().ToArray());
-            //设置ComboBoxEdit下拉不可编辑
-            comboBoxEdit_type.Properties.TextEditStyle = TextEditStyles.DisableTextEditor;
-
+            workRuleService = WorkRuleService.getInstance();
             
             pageUpControl.MyControl = gridControl;
-            pageUpControl.QueryService = smService;
+            pageUpControl.QueryService = workRuleService;
 
             initData(formatWhere());
         }
@@ -38,29 +34,12 @@ namespace zhuhai
         /// </summary>
         /// <returns></returns>
         public string formatWhere() {
-            string username = textEdit_userName.Text;
-            string name = textEdit_name.Text;
-            string idCard = textEdit_IDCard.Text;
-            string type = "";
-            if (comboBoxEdit_type.SelectedIndex != -1)
-                type = comboBoxEdit_type.SelectedIndex.ToString();
+            string title = textEdit_title.Text;
 
             string strWhere = "1=1";
-            if (!String.IsNullOrEmpty(username))
+            if (!String.IsNullOrEmpty(title))
             {
-                strWhere += " and " + SystemManage.USERNAME_COLUMN + " like '%" + username + "%'";
-            }
-            if (!String.IsNullOrEmpty(name))
-            {
-                strWhere += " and " + SystemManage.NAME_COLUMN + " like '%" + name + "%'";
-            }
-            if (!String.IsNullOrEmpty(idCard))
-            {
-                strWhere += " and " + SystemManage.IDCARD_COLUMN + " like '%" + idCard + "%'";
-            }
-            if (type != "0" && type != "")
-            {
-                strWhere += " and " + SystemManage.TYPE_COLUMN + " = " + type;
+                strWhere += " and " + WorkRule.TITLE_COLOMUN + " like '%" + title + "%'";
             }
             return strWhere;
         }
@@ -81,17 +60,15 @@ namespace zhuhai
 
         private void simpleButton_reset_Click(object sender, EventArgs e)
         {
-            textEdit_userName.Text = "";
-            textEdit_name.Text = "";
-            textEdit_IDCard.Text = "";
+            textEdit_title.Text = "";
 
             initData(formatWhere());
         }
 
         private void simpleButton_add_Click(object sender, EventArgs e)
         {
-            SystemManageEditForm systemManageEditForm = new SystemManageEditForm();
-            systemManageEditForm.ShowDialog();
+            RichTextEditorForm richTextEditorForm = new RichTextEditorForm(workRuleService);
+            richTextEditorForm.ShowDialog();
             initData(formatWhere());
         }
 
@@ -105,8 +82,8 @@ namespace zhuhai
             //获取选中的行的行号
             int[] rowNums = gridView.GetSelectedRows();
             DataTable dt = (DataTable)gridControl.DataSource;
-            SystemManageEditForm systemManageEditForm = new SystemManageEditForm(Int32.Parse(dt.Rows[rowNums[0]][SystemManage.ID_COLUMN].ToString()));
-            systemManageEditForm.ShowDialog();
+            RichTextEditorForm richTextEditorForm = new RichTextEditorForm(Int32.Parse(dt.Rows[rowNums[0]][WorkRule.ID_COLUMN].ToString()), workRuleService);
+            richTextEditorForm.ShowDialog();
             pageUpControl.GetDataTable();
         }
 
@@ -126,7 +103,7 @@ namespace zhuhai
             {
                 //要删除的id
                 string deleteId = dt.Rows[rowNum][SystemManage.ID_COLUMN].ToString();
-                smService.deleteRow(Int32.Parse(deleteId));
+                workRuleService.deleteRow(Int32.Parse(deleteId));
             }
             initData(formatWhere());
              
