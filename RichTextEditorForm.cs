@@ -37,9 +37,11 @@ namespace zhuhai
             InitializeComponent();
             this.operateService = operateService;
             Id = id;
+            //根据id获取内容
             CommonText ct = operateService.getRow(id);
             textEdit_title.Text = ct.Title;
-            richEditControl_context.Document.LoadDocument(StreamByteTransfer.BytesToStream(operateService.getRow(id).Bytes), DocumentFormat.Doc);
+            //加载内容
+            richEditControl_context.Document.LoadDocument(StreamByteTransfer.BytesToStream(operateService.getRow(id).Bytes), DocumentFormat.Rtf);
         }
 
         private void simpleButton_cancel_Click(object sender, EventArgs e)
@@ -66,10 +68,12 @@ namespace zhuhai
             }
             CommonText ct = new CommonText();
             ct.Title = textEdit_title.Text;
-            //richEditControl_context.Document.SaveDocument("D:/1.doc", DocumentFormat.Doc);
-            Stream stream = new MemoryStream();
-            richEditControl_context.Document.SaveDocument(stream, DocumentFormat.Doc);
-            ct.Bytes = StreamByteTransfer.StreamToBytes(stream);
+            MessageBox.Show(System.IO.Path.GetTempPath());
+            //保存到一个临时文件中,AppData\Local\Temp
+            string filePath = System.IO.Path.GetTempPath() + "/zxt.rtf";
+            richEditControl_context.Document.SaveDocument(filePath, DocumentFormat.Rtf);
+            ct.Bytes = StreamByteTransfer.FileToBytes(filePath);
+
 
             ct.Id = Id;
             //保存

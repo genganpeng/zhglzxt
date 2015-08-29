@@ -71,5 +71,22 @@ namespace zhuhai.util
             Stream stream = new MemoryStream(bytes);
             return stream;
         }
+
+        /// <summary>
+        /// 从文件读取 bytes
+        /// </summary>
+        /// <param name="fileName">文件名</param>
+        /// <returns></returns>
+        public static byte[] FileToBytes(string fileName)
+        {
+            FileStream fs = new FileStream(fileName, FileMode.Open);
+            //获取文件大小
+            long size = fs.Length;
+            byte[] array = new byte[size];
+            //将文件读到byte数组中
+            fs.Read(array, 0, array.Length);
+            fs.Close();
+            return array;
+        }
     }
 }

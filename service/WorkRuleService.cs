@@ -112,8 +112,9 @@ namespace zhuhai.service
             WorkRule wr = new WorkRule(15, commonText.Title);
             wrs.Add(wr);
 
+            //以下删掉
             //实例化一个文件流--->与写入文件相关联  
-            FileStream fo = new FileStream("D:/tmp/tmp.doc", FileMode.Create);
+            FileStream fo = new FileStream("D:/tmp/tmp.rtf", FileMode.Create);
             //实例化BinaryWriter
             BinaryWriter bw = new BinaryWriter(fo);
             bw.Write(commonText.Bytes);
@@ -135,8 +136,9 @@ namespace zhuhai.service
                     WorkRule wr = new WorkRule(commonText.Id, commonText.Title);
                     wrs[i] = wr;
 
+                    //以下删掉
                     //实例化一个文件流--->与写入文件相关联  
-                    FileStream fo = new FileStream("D:/tmp/tmp.doc", FileMode.Create);
+                    FileStream fo = new FileStream("D:/tmp/tmp.rtf", FileMode.Create);
                     //实例化BinaryWriter
                     BinaryWriter bw = new BinaryWriter(fo);
                     bw.Write(commonText.Bytes);
@@ -145,6 +147,7 @@ namespace zhuhai.service
                     //关闭流  
                     bw.Close();
                     fo.Close(); 
+
                     return true;
                 }
 
@@ -158,15 +161,7 @@ namespace zhuhai.service
             {
                 if (wr.Id == id)
                 {
-                    FileStream fs = new FileStream("1.zip", FileMode.Open);
-                    //获取文件大小
-                    long size = fs.Length;
-                    byte[] array = new byte[size];
-                    //将文件读到byte数组中
-                    fs.Read(array, 0, array.Length);
-                    fs.Close();
-                    wr.Bytes = array;
-
+                    wr.Bytes = StreamByteTransfer.FileToBytes("D:/tmp/tmp.rtf");
                     return wr;
                 }
             }
