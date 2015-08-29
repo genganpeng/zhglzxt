@@ -10,6 +10,8 @@ using DevExpress.XtraEditors;
 using DevExpress.XtraRichEdit;
 using zhuhai.service;
 using zhuhai.model;
+using System.IO;
+using zhuhai.util;
 
 namespace zhuhai
 {
@@ -28,7 +30,6 @@ namespace zhuhai
         {
             InitializeComponent();
             this.operateService = operateService;
-            //richEditControl_context.Document.LoadDocument("D:/1.doc", DocumentFormat.Doc);
         }
 
         public RichTextEditorForm(int id, IOperateService<CommonText> operateService)
@@ -38,6 +39,7 @@ namespace zhuhai
             Id = id;
             CommonText ct = operateService.getRow(id);
             textEdit_title.Text = ct.Title;
+            richEditControl_context.Document.LoadDocument(StreamByteTransfer.BytesToStream(operateService.getRow(id).Bytes), DocumentFormat.Doc);
         }
 
         private void simpleButton_cancel_Click(object sender, EventArgs e)
@@ -50,7 +52,8 @@ namespace zhuhai
 
         private void simpleButton_save_Click(object sender, EventArgs e)
         {
-            //richEditControl_context.Document.SaveDocument("D:/1.doc", DocumentFormat.Doc);
+            
+
             if (String.IsNullOrEmpty(textEdit_title.Text))
             {
                 MessageBox.Show("标题不能为空！", "提示");
@@ -63,6 +66,11 @@ namespace zhuhai
             }
             CommonText ct = new CommonText();
             ct.Title = textEdit_title.Text;
+            //richEditControl_context.Document.SaveDocument("D:/1.doc", DocumentFormat.Doc);
+            Stream stream = new MemoryStream();
+            richEditControl_context.Document.SaveDocument(stream, DocumentFormat.Doc);
+            ct.Bytes = StreamByteTransfer.StreamToBytes(stream);
+
             ct.Id = Id;
             //保存
             if (id == 0 && true == operateService.addRow(ct))

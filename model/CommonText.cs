@@ -31,6 +31,12 @@ namespace zhuhai.model
             set { title = value; }
         }
 
+        /// <summary>
+        /// 内容
+        /// </summary>
+        private byte[] bytes;
+        public byte[] Bytes { get; set; }
+
         public CommonText()
         {
         }
@@ -40,5 +46,9 @@ namespace zhuhai.model
             Id = id;
             Title = title;
         }
+
+
+        
+
     }
 }

@@ -11,7 +11,8 @@
     <RootNamespace>zhuhai</RootNamespace>
     <AssemblyName>zhuhai</AssemblyName>
     <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
-    <TargetFrameworkProfile>Client</TargetFrameworkProfile>
+    <TargetFrameworkProfile>
+    </TargetFrameworkProfile>
     <FileAlignment>512</FileAlignment>
     <PublishUrl>publish\</PublishUrl>
     <Install>true</Install>
@@ -34,7 +35,7 @@
     <DebugSymbols>true</DebugSymbols>
     <DebugType>full</DebugType>
     <Optimize>false</Optimize>
-    <OutputPath>bin\Debug\</OutputPath>
+    <OutputPath>bin\</OutputPath>
     <DefineConstants>DEBUG;TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
@@ -48,7 +49,13 @@
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
+  <PropertyGroup>
+    <StartupObject />
+  </PropertyGroup>
   <ItemGroup>
+    <Reference Include="CookComputing.XmlRpcV2">
+      <HintPath>.\CookComputing.XmlRpcV2.dll</HintPath>
+    </Reference>
     <Reference Include="DevExpress.BonusSkins.v14.1" />
     <Reference Include="DevExpress.Data.v14.1" />
     <Reference Include="DevExpress.Office.v14.1.Core, Version=14.1.4.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a" />
@@ -131,12 +138,14 @@
       <DependentUpon>SystemManageForm.cs</DependentUpon>
     </Compile>
     <Compile Include="service\SystemManageService.cs" />
+    <Compile Include="util\StreamByteTransfer.cs" />
     <Compile Include="WorkRuleManageForm.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="WorkRuleManageForm.Designer.cs">
       <DependentUpon>WorkRuleManageForm.cs</DependentUpon>
     </Compile>
+    <Compile Include="xmlrpc\ITestRPC.cs" />
     <EmbeddedResource Include="FormMain.resx">
       <DependentUpon>FormMain.cs</DependentUpon>
     </EmbeddedResource>
@@ -285,6 +294,7 @@
       <Install>true</Install>
     </BootstrapperPackage>
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it.
        Other similar extension points exist, see Microsoft.Common.targets.
