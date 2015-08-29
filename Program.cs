@@ -23,8 +23,17 @@ namespace zhuhai
             SkinManager.EnableFormSkins();
             UserLookAndFeel.Default.SetSkinStyle("DevExpress Style");
 
-            WorkRuleManageForm workRuleManageForm = new WorkRuleManageForm();
-            workRuleManageForm.ShowDialog();
+            //WorkRuleManageForm workRuleManageForm = new WorkRuleManageForm();
+            //workRuleManageForm.ShowDialog();
+
+            //JobGuideBookManageForm jobGuideBookManageForm = new JobGuideBookManageForm();
+            //jobGuideBookManageForm.ShowDialog();
+            
+            //EpidemicInfoManageForm epidemicInfoManageForm = new EpidemicInfoManageForm();
+            //epidemicInfoManageForm.ShowDialog();
+
+            DisposePlanManageForm disposePlanManageForm = new DisposePlanManageForm();
+            disposePlanManageForm.ShowDialog();
 
             //RichTextEditorForm richTextEditorForm = new RichTextEditorForm();
             //richTextEditorForm.ShowDialog();

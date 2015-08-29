@@ -35,7 +35,11 @@ namespace zhuhai.model
         /// 内容
         /// </summary>
         private byte[] bytes;
-        public byte[] Bytes { get; set; }
+        public byte[] Bytes 
+        {
+            get { return bytes; }
+            set { bytes = value; }
+        }
 
         public CommonText()
         {

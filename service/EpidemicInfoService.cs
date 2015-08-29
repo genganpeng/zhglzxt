@@ -10,39 +10,39 @@ using System.IO;
 namespace zhuhai.service
 {
     /// <summary>
-    /// 工作规程service
+    /// 疫情service
     /// </summary>
-    class WorkRuleService : IQueryService,IOperateService<CommonText>
+    class EpidemicInfoService : IQueryService,IOperateService<CommonText>
     {
-        private List<WorkRule> wrs = new List<WorkRule>();
-        private static WorkRuleService workRuleService = null;
+        private List<EpidemicInfo> epidemicInfos = new List<EpidemicInfo>();
+        private static EpidemicInfoService epidemicInfoService = null;
 
-        private WorkRuleService()
+        private EpidemicInfoService()
         {
-            wrs.Add(new WorkRule(1, "张三"));
-            wrs.Add(new WorkRule(2, "张三1"));
-            wrs.Add(new WorkRule(3, "张三"));
-            wrs.Add(new WorkRule(4, "张三1"));
-            wrs.Add(new WorkRule(5, "张三"));
-            wrs.Add(new WorkRule(6, "张三1"));
-            wrs.Add(new WorkRule(7, "张三"));
-            wrs.Add(new WorkRule(8, "张三1"));
-            wrs.Add(new WorkRule(9, "张三"));
-            wrs.Add(new WorkRule(10, "张三1"));
-            wrs.Add(new WorkRule(11, "张三"));
-            wrs.Add(new WorkRule(12, "张三"));
-            wrs.Add(new WorkRule(13, "张三1"));
-            wrs.Add(new WorkRule(14, "张三1"));
+            epidemicInfos.Add(new EpidemicInfo(1, "疫情"));
+            epidemicInfos.Add(new EpidemicInfo(2, "疫情1"));
+            epidemicInfos.Add(new EpidemicInfo(3, "疫情"));
+            epidemicInfos.Add(new EpidemicInfo(4, "疫情1"));
+            epidemicInfos.Add(new EpidemicInfo(5, "疫情"));
+            epidemicInfos.Add(new EpidemicInfo(6, "疫情1"));
+            epidemicInfos.Add(new EpidemicInfo(7, "疫情"));
+            epidemicInfos.Add(new EpidemicInfo(8, "疫情1"));
+            epidemicInfos.Add(new EpidemicInfo(9, "疫情"));
+            epidemicInfos.Add(new EpidemicInfo(10, "疫情1"));
+            epidemicInfos.Add(new EpidemicInfo(11, "疫情"));
+            epidemicInfos.Add(new EpidemicInfo(12, "疫情"));
+            epidemicInfos.Add(new EpidemicInfo(13, "疫情1"));
+            epidemicInfos.Add(new EpidemicInfo(14, "疫情1"));
         }
 
-        public static WorkRuleService getInstance()
+        public static EpidemicInfoService getInstance()
         {
-            if (workRuleService == null)
+            if (epidemicInfoService == null)
             {
-                workRuleService = new WorkRuleService();
+                epidemicInfoService = new EpidemicInfoService();
             }
 
-            return workRuleService;
+            return epidemicInfoService;
         }
 
         /// <summary>
@@ -65,20 +65,20 @@ namespace zhuhai.service
             return TotalNum;
         }
 
-        public List<WorkRule> InitDt(string strWhere, int startIndex, int endIndex)
+        public List<EpidemicInfo> InitDt(string strWhere, int startIndex, int endIndex)
         {
             //实现分页查询的方法， 使用strWhere,startIndex,endIndex, 同时需要返回Pager
             //记录总数量
-            TotalNum = wrs.Count;
+            TotalNum = epidemicInfos.Count;
 
             startIndex = startIndex - 1;
             endIndex = endIndex - 1;
             //当前页需要显示的记录
             int count = endIndex < (TotalNum - 1) ? endIndex : (TotalNum - 1);
-            List<WorkRule> retLists = new List<WorkRule>();
+            List<EpidemicInfo> retLists = new List<EpidemicInfo>();
             for (int i = startIndex; i <= count; i++)
             {
-                retLists.Add(wrs[i]);
+                retLists.Add(epidemicInfos[i]);
             }
             return retLists;
         }
@@ -92,17 +92,17 @@ namespace zhuhai.service
         /// <returns></returns>
         public DataTable GetListByPage(string strWhere, int startIndex, int endIndex)
         {
-            DataTable dt = new ModelHandler<WorkRule>().FillDataTable(InitDt(strWhere, startIndex, endIndex));
+            DataTable dt = new ModelHandler<EpidemicInfo>().FillDataTable(InitDt(strWhere, startIndex, endIndex));
             return dt;
         }
 
         public Boolean deleteRow(int id)
         {
-            foreach (WorkRule wr in wrs)
+            foreach (EpidemicInfo epidemicInfo in epidemicInfos)
             {
-                if (wr.Id == id)
+                if (epidemicInfo.Id == id)
                 {
-                    wrs.Remove(wr);
+                    epidemicInfos.Remove(epidemicInfo);
                     return true;
                 }
             }
@@ -112,8 +112,8 @@ namespace zhuhai.service
 
         public Boolean addRow(CommonText commonText)
         {
-            WorkRule wr = new WorkRule(15, commonText.Title);
-            wrs.Add(wr);
+            EpidemicInfo epidemicInfo = new EpidemicInfo(15, commonText.Title);
+            epidemicInfos.Add(epidemicInfo);
 
             //以下删掉
             //实例化一个文件流--->与写入文件相关联  
@@ -132,12 +132,12 @@ namespace zhuhai.service
 
         public Boolean modifyRow(CommonText commonText)
         {
-            for (int i = 0; i < wrs.Count; i++)
+            for (int i = 0; i < epidemicInfos.Count; i++)
             {
-                if (wrs[i].Id == commonText.Id)
+                if (epidemicInfos[i].Id == commonText.Id)
                 {
-                    WorkRule wr = new WorkRule(commonText.Id, commonText.Title);
-                    wrs[i] = wr;
+                    EpidemicInfo epidemicInfo = new EpidemicInfo(commonText.Id, commonText.Title);
+                    epidemicInfos[i] = epidemicInfo;
 
                     //以下删掉
                     //实例化一个文件流--->与写入文件相关联  
@@ -160,12 +160,12 @@ namespace zhuhai.service
 
         public CommonText getRow(int id)
         {
-            foreach (WorkRule wr in wrs)
+            foreach (EpidemicInfo epidemicInfo in epidemicInfos)
             {
-                if (wr.Id == id)
+                if (epidemicInfo.Id == id)
                 {
-                    wr.Bytes = StreamByteTransfer.FileToBytes("D:/tmp/tmp.rtf");
-                    return wr;
+                    epidemicInfo.Bytes = StreamByteTransfer.FileToBytes("D:/tmp/tmp.rtf");
+                    return epidemicInfo;
                 }
             }
             return null;
@@ -180,9 +180,9 @@ namespace zhuhai.service
         public Boolean findRowByIdAndTitle(int id, string title)
         {
             //根据id和标题查询数据库，全匹配
-            foreach (WorkRule wr in wrs)
+            foreach (EpidemicInfo epidemicInfo in epidemicInfos)
             {
-                if (wr.Title == title && wr.Id != id)
+                if (epidemicInfo.Title == title && epidemicInfo.Id != id)
                 {
                     return true;
                 }

@@ -6,17 +6,18 @@ using System.Text;
 namespace zhuhai.model
 {
     /// <summary>
-    /// 工作规程
+    /// 处置预案
     /// </summary>
-    public class WorkRule : CommonText
+    public class DisposePlan : CommonText
     {
 
-        public WorkRule()
+        public DisposePlan()
         {
             
         }
 
-        public WorkRule(int id, string title) : base(id, title)
+        public DisposePlan(int id, string title)
+            : base(id, title)
         {
         }
     }

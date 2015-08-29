@@ -85,8 +85,14 @@
   <ItemGroup>
     <Compile Include="model\WorkRule.cs" />
     <Compile Include="model\CommonText.cs" />
+    <Compile Include="model\JobGuideBook.cs" />
+    <Compile Include="model\EpidemicInfo.cs" />
+    <Compile Include="model\DisposePlan.cs" />
     <Compile Include="service\IOperateService.cs" />
     <Compile Include="service\WorkRuleService.cs" />
+    <Compile Include="service\JobGuideBookService.cs" />
+    <Compile Include="service\EpidemicInfoService.cs" />
+    <Compile Include="service\DisposePlanService.cs" />
     <Compile Include="util\DictionaryItem.cs" />
     <Compile Include="FormMain.cs">
       <SubType>Form</SubType>
@@ -146,6 +152,24 @@
       <DependentUpon>WorkRuleManageForm.cs</DependentUpon>
     </Compile>
     <Compile Include="xmlrpc\ITestRPC.cs" />
+    <Compile Include="JobGuideBookManageForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="JobGuideBookManageForm.Designer.cs">
+      <DependentUpon>JobGuideBookManageForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="EpidemicInfoManageForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="EpidemicInfoManageForm.Designer.cs">
+      <DependentUpon>EpidemicInfoManageForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="DisposePlanManageForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="DisposePlanManageForm.Designer.cs">
+      <DependentUpon>DisposePlanManageForm.cs</DependentUpon>
+    </Compile>
     <EmbeddedResource Include="FormMain.resx">
       <DependentUpon>FormMain.cs</DependentUpon>
     </EmbeddedResource>
@@ -177,6 +201,15 @@
     </EmbeddedResource>
     <EmbeddedResource Include="WorkRuleManageForm.resx">
       <DependentUpon>WorkRuleManageForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="JobGuideBookManageForm.resx">
+      <DependentUpon>JobGuideBookManageForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="EpidemicInfoManageForm.resx">
+      <DependentUpon>EpidemicInfoManageForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="DisposePlanManageForm.resx">
+      <DependentUpon>DisposePlanManageForm.cs</DependentUpon>
     </EmbeddedResource>
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>

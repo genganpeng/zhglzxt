@@ -6,17 +6,18 @@ using System.Text;
 namespace zhuhai.model
 {
     /// <summary>
-    /// 工作规程
+    /// 作业指导书
     /// </summary>
-    public class WorkRule : CommonText
+    public class JobGuideBook : CommonText
     {
 
-        public WorkRule()
+        public JobGuideBook()
         {
             
         }
 
-        public WorkRule(int id, string title) : base(id, title)
+        public JobGuideBook(int id, string title)
+            : base(id, title)
         {
         }
     }

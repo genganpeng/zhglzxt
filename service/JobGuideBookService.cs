@@ -10,39 +10,39 @@ using System.IO;
 namespace zhuhai.service
 {
     /// <summary>
-    /// 工作规程service
+    /// 作业指导书service
     /// </summary>
-    class WorkRuleService : IQueryService,IOperateService<CommonText>
+    class JobGuideBookService : IQueryService,IOperateService<CommonText>
     {
-        private List<WorkRule> wrs = new List<WorkRule>();
-        private static WorkRuleService workRuleService = null;
+        private List<JobGuideBook> jobGuideBooks = new List<JobGuideBook>();
+        private static JobGuideBookService jobGuideBookService = null;
 
-        private WorkRuleService()
+        private JobGuideBookService()
         {
-            wrs.Add(new WorkRule(1, "张三"));
-            wrs.Add(new WorkRule(2, "张三1"));
-            wrs.Add(new WorkRule(3, "张三"));
-            wrs.Add(new WorkRule(4, "张三1"));
-            wrs.Add(new WorkRule(5, "张三"));
-            wrs.Add(new WorkRule(6, "张三1"));
-            wrs.Add(new WorkRule(7, "张三"));
-            wrs.Add(new WorkRule(8, "张三1"));
-            wrs.Add(new WorkRule(9, "张三"));
-            wrs.Add(new WorkRule(10, "张三1"));
-            wrs.Add(new WorkRule(11, "张三"));
-            wrs.Add(new WorkRule(12, "张三"));
-            wrs.Add(new WorkRule(13, "张三1"));
-            wrs.Add(new WorkRule(14, "张三1"));
+            jobGuideBooks.Add(new JobGuideBook(1, "作业指导书"));
+            jobGuideBooks.Add(new JobGuideBook(2, "作业指导书1"));
+            jobGuideBooks.Add(new JobGuideBook(3, "作业指导书"));
+            jobGuideBooks.Add(new JobGuideBook(4, "作业指导书1"));
+            jobGuideBooks.Add(new JobGuideBook(5, "作业指导书"));
+            jobGuideBooks.Add(new JobGuideBook(6, "作业指导书1"));
+            jobGuideBooks.Add(new JobGuideBook(7, "作业指导书"));
+            jobGuideBooks.Add(new JobGuideBook(8, "作业指导书1"));
+            jobGuideBooks.Add(new JobGuideBook(9, "作业指导书"));
+            jobGuideBooks.Add(new JobGuideBook(10, "作业指导书1"));
+            jobGuideBooks.Add(new JobGuideBook(11, "作业指导书"));
+            jobGuideBooks.Add(new JobGuideBook(12, "作业指导书"));
+            jobGuideBooks.Add(new JobGuideBook(13, "作业指导书1"));
+            jobGuideBooks.Add(new JobGuideBook(14, "作业指导书1"));
         }
 
-        public static WorkRuleService getInstance()
+        public static JobGuideBookService getInstance()
         {
-            if (workRuleService == null)
+            if (jobGuideBookService == null)
             {
-                workRuleService = new WorkRuleService();
+                jobGuideBookService = new JobGuideBookService();
             }
 
-            return workRuleService;
+            return jobGuideBookService;
         }
 
         /// <summary>
@@ -65,20 +65,20 @@ namespace zhuhai.service
             return TotalNum;
         }
 
-        public List<WorkRule> InitDt(string strWhere, int startIndex, int endIndex)
+        public List<JobGuideBook> InitDt(string strWhere, int startIndex, int endIndex)
         {
             //实现分页查询的方法， 使用strWhere,startIndex,endIndex, 同时需要返回Pager
             //记录总数量
-            TotalNum = wrs.Count;
+            TotalNum = jobGuideBooks.Count;
 
             startIndex = startIndex - 1;
             endIndex = endIndex - 1;
             //当前页需要显示的记录
             int count = endIndex < (TotalNum - 1) ? endIndex : (TotalNum - 1);
-            List<WorkRule> retLists = new List<WorkRule>();
+            List<JobGuideBook> retLists = new List<JobGuideBook>();
             for (int i = startIndex; i <= count; i++)
             {
-                retLists.Add(wrs[i]);
+                retLists.Add(jobGuideBooks[i]);
             }
             return retLists;
         }
@@ -92,17 +92,17 @@ namespace zhuhai.service
         /// <returns></returns>
         public DataTable GetListByPage(string strWhere, int startIndex, int endIndex)
         {
-            DataTable dt = new ModelHandler<WorkRule>().FillDataTable(InitDt(strWhere, startIndex, endIndex));
+            DataTable dt = new ModelHandler<JobGuideBook>().FillDataTable(InitDt(strWhere, startIndex, endIndex));
             return dt;
         }
 
         public Boolean deleteRow(int id)
         {
-            foreach (WorkRule wr in wrs)
+            foreach (JobGuideBook jobGuideBook in jobGuideBooks)
             {
-                if (wr.Id == id)
+                if (jobGuideBook.Id == id)
                 {
-                    wrs.Remove(wr);
+                    jobGuideBooks.Remove(jobGuideBook);
                     return true;
                 }
             }
@@ -112,8 +112,8 @@ namespace zhuhai.service
 
         public Boolean addRow(CommonText commonText)
         {
-            WorkRule wr = new WorkRule(15, commonText.Title);
-            wrs.Add(wr);
+            JobGuideBook jobGuideBook = new JobGuideBook(15, commonText.Title);
+            jobGuideBooks.Add(jobGuideBook);
 
             //以下删掉
             //实例化一个文件流--->与写入文件相关联  
@@ -132,12 +132,12 @@ namespace zhuhai.service
 
         public Boolean modifyRow(CommonText commonText)
         {
-            for (int i = 0; i < wrs.Count; i++)
+            for (int i = 0; i < jobGuideBooks.Count; i++)
             {
-                if (wrs[i].Id == commonText.Id)
+                if (jobGuideBooks[i].Id == commonText.Id)
                 {
-                    WorkRule wr = new WorkRule(commonText.Id, commonText.Title);
-                    wrs[i] = wr;
+                    JobGuideBook jobGuideBook = new JobGuideBook(commonText.Id, commonText.Title);
+                    jobGuideBooks[i] = jobGuideBook;
 
                     //以下删掉
                     //实例化一个文件流--->与写入文件相关联  
@@ -160,12 +160,12 @@ namespace zhuhai.service
 
         public CommonText getRow(int id)
         {
-            foreach (WorkRule wr in wrs)
+            foreach (JobGuideBook jobGuideBook in jobGuideBooks)
             {
-                if (wr.Id == id)
+                if (jobGuideBook.Id == id)
                 {
-                    wr.Bytes = StreamByteTransfer.FileToBytes("D:/tmp/tmp.rtf");
-                    return wr;
+                    jobGuideBook.Bytes = StreamByteTransfer.FileToBytes("D:/tmp/tmp.rtf");
+                    return jobGuideBook;
                 }
             }
             return null;
@@ -180,9 +180,9 @@ namespace zhuhai.service
         public Boolean findRowByIdAndTitle(int id, string title)
         {
             //根据id和标题查询数据库，全匹配
-            foreach (WorkRule wr in wrs)
+            foreach (JobGuideBook jobGuideBook in jobGuideBooks)
             {
-                if (wr.Title == title && wr.Id != id)
+                if (jobGuideBook.Title == title && jobGuideBook.Id != id)
                 {
                     return true;
                 }

@@ -10,39 +10,39 @@ using System.IO;
 namespace zhuhai.service
 {
     /// <summary>
-    /// 工作规程service
+    /// 处置预案service
     /// </summary>
-    class WorkRuleService : IQueryService,IOperateService<CommonText>
+    class DisposePlanService : IQueryService,IOperateService<CommonText>
     {
-        private List<WorkRule> wrs = new List<WorkRule>();
-        private static WorkRuleService workRuleService = null;
+        private List<DisposePlan> disposePlans = new List<DisposePlan>();
+        private static DisposePlanService disposePlanService = null;
 
-        private WorkRuleService()
+        private DisposePlanService()
         {
-            wrs.Add(new WorkRule(1, "张三"));
-            wrs.Add(new WorkRule(2, "张三1"));
-            wrs.Add(new WorkRule(3, "张三"));
-            wrs.Add(new WorkRule(4, "张三1"));
-            wrs.Add(new WorkRule(5, "张三"));
-            wrs.Add(new WorkRule(6, "张三1"));
-            wrs.Add(new WorkRule(7, "张三"));
-            wrs.Add(new WorkRule(8, "张三1"));
-            wrs.Add(new WorkRule(9, "张三"));
-            wrs.Add(new WorkRule(10, "张三1"));
-            wrs.Add(new WorkRule(11, "张三"));
-            wrs.Add(new WorkRule(12, "张三"));
-            wrs.Add(new WorkRule(13, "张三1"));
-            wrs.Add(new WorkRule(14, "张三1"));
+            disposePlans.Add(new DisposePlan(1, "处置预案"));
+            disposePlans.Add(new DisposePlan(2, "处置预案1"));
+            disposePlans.Add(new DisposePlan(3, "处置预案"));
+            disposePlans.Add(new DisposePlan(4, "处置预案1"));
+            disposePlans.Add(new DisposePlan(5, "处置预案"));
+            disposePlans.Add(new DisposePlan(6, "处置预案1"));
+            disposePlans.Add(new DisposePlan(7, "处置预案"));
+            disposePlans.Add(new DisposePlan(8, "处置预案1"));
+            disposePlans.Add(new DisposePlan(9, "处置预案"));
+            disposePlans.Add(new DisposePlan(10, "处置预案1"));
+            disposePlans.Add(new DisposePlan(11, "处置预案"));
+            disposePlans.Add(new DisposePlan(12, "处置预案"));
+            disposePlans.Add(new DisposePlan(13, "处置预案1"));
+            disposePlans.Add(new DisposePlan(14, "处置预案1"));
         }
 
-        public static WorkRuleService getInstance()
+        public static DisposePlanService getInstance()
         {
-            if (workRuleService == null)
+            if (disposePlanService == null)
             {
-                workRuleService = new WorkRuleService();
+                disposePlanService = new DisposePlanService();
             }
 
-            return workRuleService;
+            return disposePlanService;
         }
 
         /// <summary>
@@ -65,20 +65,20 @@ namespace zhuhai.service
             return TotalNum;
         }
 
-        public List<WorkRule> InitDt(string strWhere, int startIndex, int endIndex)
+        public List<DisposePlan> InitDt(string strWhere, int startIndex, int endIndex)
         {
             //实现分页查询的方法， 使用strWhere,startIndex,endIndex, 同时需要返回Pager
             //记录总数量
-            TotalNum = wrs.Count;
+            TotalNum = disposePlans.Count;
 
             startIndex = startIndex - 1;
             endIndex = endIndex - 1;
             //当前页需要显示的记录
             int count = endIndex < (TotalNum - 1) ? endIndex : (TotalNum - 1);
-            List<WorkRule> retLists = new List<WorkRule>();
+            List<DisposePlan> retLists = new List<DisposePlan>();
             for (int i = startIndex; i <= count; i++)
             {
-                retLists.Add(wrs[i]);
+                retLists.Add(disposePlans[i]);
             }
             return retLists;
         }
@@ -92,17 +92,17 @@ namespace zhuhai.service
         /// <returns></returns>
         public DataTable GetListByPage(string strWhere, int startIndex, int endIndex)
         {
-            DataTable dt = new ModelHandler<WorkRule>().FillDataTable(InitDt(strWhere, startIndex, endIndex));
+            DataTable dt = new ModelHandler<DisposePlan>().FillDataTable(InitDt(strWhere, startIndex, endIndex));
             return dt;
         }
 
         public Boolean deleteRow(int id)
         {
-            foreach (WorkRule wr in wrs)
+            foreach (DisposePlan disposePlan in disposePlans)
             {
-                if (wr.Id == id)
+                if (disposePlan.Id == id)
                 {
-                    wrs.Remove(wr);
+                    disposePlans.Remove(disposePlan);
                     return true;
                 }
             }
@@ -112,8 +112,8 @@ namespace zhuhai.service
 
         public Boolean addRow(CommonText commonText)
         {
-            WorkRule wr = new WorkRule(15, commonText.Title);
-            wrs.Add(wr);
+            DisposePlan disposePlan = new DisposePlan(15, commonText.Title);
+            disposePlans.Add(disposePlan);
 
             //以下删掉
             //实例化一个文件流--->与写入文件相关联  
@@ -132,12 +132,12 @@ namespace zhuhai.service
 
         public Boolean modifyRow(CommonText commonText)
         {
-            for (int i = 0; i < wrs.Count; i++)
+            for (int i = 0; i < disposePlans.Count; i++)
             {
-                if (wrs[i].Id == commonText.Id)
+                if (disposePlans[i].Id == commonText.Id)
                 {
-                    WorkRule wr = new WorkRule(commonText.Id, commonText.Title);
-                    wrs[i] = wr;
+                    DisposePlan disposePlan = new DisposePlan(commonText.Id, commonText.Title);
+                    disposePlans[i] = disposePlan;
 
                     //以下删掉
                     //实例化一个文件流--->与写入文件相关联  
@@ -160,12 +160,12 @@ namespace zhuhai.service
 
         public CommonText getRow(int id)
         {
-            foreach (WorkRule wr in wrs)
+            foreach (DisposePlan disposePlan in disposePlans)
             {
-                if (wr.Id == id)
+                if (disposePlan.Id == id)
                 {
-                    wr.Bytes = StreamByteTransfer.FileToBytes("D:/tmp/tmp.rtf");
-                    return wr;
+                    disposePlan.Bytes = StreamByteTransfer.FileToBytes("D:/tmp/tmp.rtf");
+                    return disposePlan;
                 }
             }
             return null;
@@ -180,9 +180,9 @@ namespace zhuhai.service
         public Boolean findRowByIdAndTitle(int id, string title)
         {
             //根据id和标题查询数据库，全匹配
-            foreach (WorkRule wr in wrs)
+            foreach (DisposePlan disposePlan in disposePlans)
             {
-                if (wr.Title == title && wr.Id != id)
+                if (disposePlan.Title == title && disposePlan.Id != id)
                 {
                     return true;
                 }
