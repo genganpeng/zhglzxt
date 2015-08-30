@@ -176,7 +176,7 @@
             this.Controls.Add(this.pageUpControl);
             this.Controls.Add(this.groupControl);
             this.Name = "WorkRuleManageForm";
-            this.Text = "作业指导书";
+            this.Text = "工作规程";
             ((System.ComponentModel.ISupportInitialize)(this.groupControl)).EndInit();
             this.groupControl.ResumeLayout(false);
             this.groupControl.PerformLayout();

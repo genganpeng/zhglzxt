@@ -32,27 +32,27 @@ namespace zhuhai
             //EpidemicInfoManageForm epidemicInfoManageForm = new EpidemicInfoManageForm();
             //epidemicInfoManageForm.ShowDialog();
 
-            DisposePlanManageForm disposePlanManageForm = new DisposePlanManageForm();
-            disposePlanManageForm.ShowDialog();
+            //DisposePlanManageForm disposePlanManageForm = new DisposePlanManageForm();
+            //disposePlanManageForm.ShowDialog();
 
             //RichTextEditorForm richTextEditorForm = new RichTextEditorForm();
             //richTextEditorForm.ShowDialog();
 
             //SystemManageForm smForm = new SystemManageForm();
             //smForm.ShowDialog();
-            
-            ////新建Login窗口
-            //LoginForm login = new LoginForm();
 
-            ////使用模式对话框方法显示FLogin
-            //login.ShowDialog();
+            //新建Login窗口
+            LoginForm login = new LoginForm();
 
-            ////DialogResult用来判断是否登录成功
-            //if (login.DialogResult == DialogResult.OK)
-            //{
-            //    //在线程中打开主窗体
-            //    Application.Run(new FormMain());
-            //}           
+            //使用模式对话框方法显示FLogin
+            login.ShowDialog();
+
+            //DialogResult用来判断是否登录成功
+            if (login.DialogResult == DialogResult.OK)
+            {
+                //在线程中打开主窗体
+                Application.Run(new FormMain());
+            }           
         }
     }
 }

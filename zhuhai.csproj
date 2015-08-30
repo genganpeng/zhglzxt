@@ -71,7 +71,12 @@
     <Reference Include="DevExpress.XtraPrinting.v14.1, Version=14.1.4.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a" />
     <Reference Include="DevExpress.XtraRichEdit.v14.1, Version=14.1.4.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL" />
     <Reference Include="DevExpress.XtraRichEdit.v14.1.Extensions, Version=14.1.4.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL" />
+    <Reference Include="Newtonsoft.Json, Version=7.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>.\Newtonsoft.Json.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
+    <Reference Include="System.configuration" />
     <Reference Include="System.Core" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
@@ -93,18 +98,13 @@
     <Compile Include="service\JobGuideBookService.cs" />
     <Compile Include="service\EpidemicInfoService.cs" />
     <Compile Include="service\DisposePlanService.cs" />
+    <Compile Include="util\AppConfig.cs" />
     <Compile Include="util\DictionaryItem.cs" />
     <Compile Include="FormMain.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="FormMain.Designer.cs">
       <DependentUpon>FormMain.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Gzgc.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="Gzgc.Designer.cs">
-      <DependentUpon>Gzgc.cs</DependentUpon>
     </Compile>
     <Compile Include="service\IQueryService.cs" />
     <Compile Include="LoginForm.cs">
@@ -145,6 +145,8 @@
     </Compile>
     <Compile Include="service\SystemManageService.cs" />
     <Compile Include="util\StreamByteTransfer.cs" />
+    <Compile Include="web\JSONObject.cs" />
+    <Compile Include="web\Shwxqhxy.cs" />
     <Compile Include="WorkRuleManageForm.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -172,9 +174,6 @@
     </Compile>
     <EmbeddedResource Include="FormMain.resx">
       <DependentUpon>FormMain.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Gzgc.resx">
-      <DependentUpon>Gzgc.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="LoginForm.resx">
       <DependentUpon>LoginForm.cs</DependentUpon>
@@ -211,6 +210,7 @@
     <EmbeddedResource Include="DisposePlanManageForm.resx">
       <DependentUpon>DisposePlanManageForm.cs</DependentUpon>
     </EmbeddedResource>
+    <None Include="App.config" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>

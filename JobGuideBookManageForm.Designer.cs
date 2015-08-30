@@ -167,7 +167,7 @@
             this.Title.Visible = true;
             this.Title.VisibleIndex = 0;
             // 
-            // RuleManageForm
+            // JobGuideBookManageForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 14F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
@@ -175,8 +175,8 @@
             this.Controls.Add(this.gridControl);
             this.Controls.Add(this.pageUpControl);
             this.Controls.Add(this.groupControl);
-            this.Name = "RuleManageForm";
-            this.Text = "工作规程";
+            this.Name = "JobGuideBookManageForm";
+            this.Text = "作业指导书";
             ((System.ComponentModel.ISupportInitialize)(this.groupControl)).EndInit();
             this.groupControl.ResumeLayout(false);
             this.groupControl.PerformLayout();
