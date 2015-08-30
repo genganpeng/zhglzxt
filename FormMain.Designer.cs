@@ -42,9 +42,7 @@
             this.barButtonItem9 = new DevExpress.XtraBars.BarButtonItem();
             this.barButtonItem10 = new DevExpress.XtraBars.BarButtonItem();
             this.barButtonItem11 = new DevExpress.XtraBars.BarButtonItem();
-            this.barStaticItem1 = new DevExpress.XtraBars.BarStaticItem();
             this.barStaticItem2 = new DevExpress.XtraBars.BarStaticItem();
-            this.barButtonItem12 = new DevExpress.XtraBars.BarButtonItem();
             this.barButtonItem_exitSystem = new DevExpress.XtraBars.BarButtonItem();
             this.barStaticItem_systemTime = new DevExpress.XtraBars.BarStaticItem();
             this.ribbonPage1 = new DevExpress.XtraBars.Ribbon.RibbonPage();
@@ -100,9 +98,7 @@
             this.barButtonItem9,
             this.barButtonItem10,
             this.barButtonItem11,
-            this.barStaticItem1,
             this.barStaticItem2,
-            this.barButtonItem12,
             this.barButtonItem_exitSystem,
             this.barStaticItem_systemTime});
             this.ribbonControl1.Location = new System.Drawing.Point(0, 0);
@@ -213,27 +209,12 @@
             this.barButtonItem11.Name = "barButtonItem11";
             this.barButtonItem11.RibbonStyle = DevExpress.XtraBars.Ribbon.RibbonItemStyles.Large;
             // 
-            // barStaticItem1
-            // 
-            this.barStaticItem1.Caption = "系统时间";
-            this.barStaticItem1.Id = 18;
-            this.barStaticItem1.Name = "barStaticItem1";
-            this.barStaticItem1.TextAlignment = System.Drawing.StringAlignment.Near;
-            // 
             // barStaticItem2
             // 
             this.barStaticItem2.Caption = "当前用户";
             this.barStaticItem2.Id = 19;
             this.barStaticItem2.Name = "barStaticItem2";
             this.barStaticItem2.TextAlignment = System.Drawing.StringAlignment.Near;
-            // 
-            // barButtonItem12
-            // 
-            this.barButtonItem12.Alignment = DevExpress.XtraBars.BarItemLinkAlignment.Right;
-            this.barButtonItem12.Caption = "退出系统";
-            this.barButtonItem12.Glyph = global::zhuhai.Properties.Resources.close_32x32;
-            this.barButtonItem12.Id = 20;
-            this.barButtonItem12.Name = "barButtonItem12";
             // 
             // barButtonItem_exitSystem
             // 
@@ -522,10 +503,8 @@
         private DevExpress.XtraBars.Ribbon.RibbonPageGroup ribbonPageGroup6;
         private DevExpress.XtraBars.BarButtonItem barButtonItem10;
         private DevExpress.XtraBars.BarButtonItem barButtonItem11;
-        private DevExpress.XtraBars.BarStaticItem barStaticItem1;
         private DevExpress.XtraNavBar.NavBarItem navBarItem4;
         private DevExpress.XtraBars.BarStaticItem barStaticItem2;
-        private DevExpress.XtraBars.BarButtonItem barButtonItem12;
         private DevExpress.XtraBars.BarButtonItem barButtonItem_exitSystem;
         private DevExpress.XtraBars.BarStaticItem barStaticItem_systemTime;
         private DevExpress.XtraBars.Ribbon.RibbonStatusBar ribbonStatusBar1;
