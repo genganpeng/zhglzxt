@@ -9,6 +9,7 @@ using System.Windows.Forms;
 using System.Globalization;
 using zhuhai.web;
 using zhuhai.service;
+using System.Threading;
 
 namespace zhuhai
 {
@@ -94,6 +95,8 @@ namespace zhuhai
 
             updateSHWXQH();
         }
+        
+        
 
         private void timer_updateSHWXQH_Tick(object sender, EventArgs e)
         {

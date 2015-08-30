@@ -69,7 +69,7 @@ namespace zhuhai.web
                 request.Method = "POST";
                 request.ContentType = "text/xml;charset=UTF-8";
                 //声明一个HttpWebRequest请求
-                request.Timeout = 9000;
+                request.Timeout = 5000;
                 //设置连接超时时间
                 request.Headers.Set("Pragma", "no-cache");
 
