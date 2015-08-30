@@ -8,6 +8,7 @@ using System.Linq;
 using System.Windows.Forms;
 using DevExpress.XtraEditors;
 using zhuhai.util;
+using zhuhai.service;
 
 namespace zhuhai
 {
@@ -28,10 +29,15 @@ namespace zhuhai
                 return;
             }
 
-            if ((txt_user.Text == "123") && (txt_passwd.Text=="123"))
+            //从数据库取，然后验证
+            if (SystemManageService.getInstance().validateUserNameAndPassword(txt_user.Text, txt_passwd.Text))
             {
                 this.DialogResult = System.Windows.Forms.DialogResult.OK;
                 this.Close();
+            }
+            else
+            {
+                MessageBox.Show("用户名或者密码错误！","提示");
             }
         }
 

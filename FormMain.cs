@@ -8,6 +8,7 @@ using System.Text;
 using System.Windows.Forms;
 using System.Globalization;
 using zhuhai.web;
+using zhuhai.service;
 
 namespace zhuhai
 {
@@ -16,6 +17,7 @@ namespace zhuhai
         public FormMain()
         {
             InitializeComponent();
+            this.barStaticItem_currentUser.Caption = "当前用户：" + SystemManageService.currentUser.UserName;
         }
 
         private void barButtonItem_disposePlan_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)

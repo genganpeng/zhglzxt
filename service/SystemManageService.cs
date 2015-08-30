@@ -8,14 +8,39 @@ using zhuhai.util;
 
 namespace zhuhai.service
 {
-    class SystemManageService : IQueryService
+    public class CurrentUser
+    {
+        
+        private string userName;
+        /// <summary>
+        /// 用户名
+        /// </summary>
+        public string UserName
+        {
+            get { return userName; }
+            set { userName = value; }
+        }
+
+        private List<string> permissions;
+        /// <summary>
+        /// 权限列表
+        /// </summary>
+        public List<string> Permissions {
+            get { return permissions; }
+            set { permissions = value;}
+        }
+    }
+
+
+    public class SystemManageService : IQueryService
     {
         private List<SystemManage> sms = new List<SystemManage>();
         private static SystemManageService systemManageService = null;
+        public static CurrentUser currentUser = new CurrentUser();
 
         private SystemManageService()
         {
-            sms.Add(new SystemManage( 1, "张三", "123", 1, "系统管理员", "张老三", "12343445" ));
+            sms.Add(new SystemManage( 1, "123", "123", 1, "系统管理员", "张老三", "12343445" ));
             sms.Add(new SystemManage( 2, "张三1", "123", 2, "口岸系统管理员", "张老三1", "12343446"));
             sms.Add(new SystemManage( 3, "张三", "123", 3, "口岸监控员", "张老三", "12343445"));
             sms.Add(new SystemManage( 4, "张三1", "123", 1, "系统管理员", "张老三1", "12343445"));
@@ -167,6 +192,28 @@ namespace zhuhai.service
             dicList.Add(new DictionaryItem<int>(3, "口岸监控员"));    
 
             return dicList;
+        }
+
+        /// <summary>
+        /// 验证用户名和密码
+        /// </summary>
+        /// <param name="username">用户名</param>
+        /// <param name="password">密码</param>
+        /// <returns>验证是否正确</returns>
+        public Boolean validateUserNameAndPassword(string username, string password)
+        {
+            //赋值当前的用户
+            foreach (SystemManage sm in sms)
+            {
+                if (sm.UserName == username && sm.Password == password)
+                {
+
+                    currentUser.UserName = username;
+                    currentUser.Permissions = new List<String>() { "abc" };
+                    return true;
+                }
+            }
+            return false;
         }
     }
 }

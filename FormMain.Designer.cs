@@ -42,9 +42,9 @@
             this.barButtonItem9 = new DevExpress.XtraBars.BarButtonItem();
             this.barButtonItem10 = new DevExpress.XtraBars.BarButtonItem();
             this.barButtonItem11 = new DevExpress.XtraBars.BarButtonItem();
-            this.barStaticItem2 = new DevExpress.XtraBars.BarStaticItem();
             this.barButtonItem_exitSystem = new DevExpress.XtraBars.BarButtonItem();
             this.barStaticItem_systemTime = new DevExpress.XtraBars.BarStaticItem();
+            this.barStaticItem_currentUser = new DevExpress.XtraBars.BarStaticItem();
             this.ribbonPage1 = new DevExpress.XtraBars.Ribbon.RibbonPage();
             this.ribbonPageGroup1 = new DevExpress.XtraBars.Ribbon.RibbonPageGroup();
             this.ribbonPageGroup2 = new DevExpress.XtraBars.Ribbon.RibbonPageGroup();
@@ -98,11 +98,11 @@
             this.barButtonItem9,
             this.barButtonItem10,
             this.barButtonItem11,
-            this.barStaticItem2,
             this.barButtonItem_exitSystem,
-            this.barStaticItem_systemTime});
+            this.barStaticItem_systemTime,
+            this.barStaticItem_currentUser});
             this.ribbonControl1.Location = new System.Drawing.Point(0, 0);
-            this.ribbonControl1.MaxItemId = 26;
+            this.ribbonControl1.MaxItemId = 28;
             this.ribbonControl1.Name = "ribbonControl1";
             this.ribbonControl1.Pages.AddRange(new DevExpress.XtraBars.Ribbon.RibbonPage[] {
             this.ribbonPage1,
@@ -209,13 +209,6 @@
             this.barButtonItem11.Name = "barButtonItem11";
             this.barButtonItem11.RibbonStyle = DevExpress.XtraBars.Ribbon.RibbonItemStyles.Large;
             // 
-            // barStaticItem2
-            // 
-            this.barStaticItem2.Caption = "当前用户";
-            this.barStaticItem2.Id = 19;
-            this.barStaticItem2.Name = "barStaticItem2";
-            this.barStaticItem2.TextAlignment = System.Drawing.StringAlignment.Near;
-            // 
             // barButtonItem_exitSystem
             // 
             this.barButtonItem_exitSystem.Alignment = DevExpress.XtraBars.BarItemLinkAlignment.Right;
@@ -232,6 +225,14 @@
             this.barStaticItem_systemTime.Name = "barStaticItem_systemTime";
             this.barStaticItem_systemTime.TextAlignment = System.Drawing.StringAlignment.Near;
             this.barStaticItem_systemTime.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.barStaticItem3_ItemClick);
+            // 
+            // barStaticItem_currentUser
+            // 
+            this.barStaticItem_currentUser.Caption = "当前用户";
+            this.barStaticItem_currentUser.CategoryGuid = new System.Guid("6ffddb2b-9015-4d97-a4c1-91613e0ef537");
+            this.barStaticItem_currentUser.Id = 27;
+            this.barStaticItem_currentUser.Name = "barStaticItem_currentUser";
+            this.barStaticItem_currentUser.TextAlignment = System.Drawing.StringAlignment.Near;
             // 
             // ribbonPage1
             // 
@@ -310,6 +311,7 @@
             // ribbonStatusBar1
             // 
             this.ribbonStatusBar1.ItemLinks.Add(this.barButtonItem_exitSystem);
+            this.ribbonStatusBar1.ItemLinks.Add(this.barStaticItem_currentUser);
             this.ribbonStatusBar1.ItemLinks.Add(this.barStaticItem_systemTime);
             this.ribbonStatusBar1.Location = new System.Drawing.Point(0, 535);
             this.ribbonStatusBar1.Name = "ribbonStatusBar1";
@@ -504,7 +506,6 @@
         private DevExpress.XtraBars.BarButtonItem barButtonItem10;
         private DevExpress.XtraBars.BarButtonItem barButtonItem11;
         private DevExpress.XtraNavBar.NavBarItem navBarItem4;
-        private DevExpress.XtraBars.BarStaticItem barStaticItem2;
         private DevExpress.XtraBars.BarButtonItem barButtonItem_exitSystem;
         private DevExpress.XtraBars.BarStaticItem barStaticItem_systemTime;
         private DevExpress.XtraBars.Ribbon.RibbonStatusBar ribbonStatusBar1;
@@ -523,6 +524,7 @@
         private DevExpress.XtraNavBar.NavBarItem navBarItem_huaxue;
         private System.Windows.Forms.Timer timer_updateTime;
         private System.Windows.Forms.Timer timer_updateSHWXQH;
+        private DevExpress.XtraBars.BarStaticItem barStaticItem_currentUser;
 
     }
 }
