@@ -88,34 +88,56 @@ namespace zhuhai
             this.timer_updateTime.Tick += new System.EventHandler(this.timer_updateTime_Tick);
             this.timer_updateTime.Start();
 
-            //更新生化微小气候信息
+            //更新生化微小气候信息,每10秒更新一次
             this.timer_updateSHWXQH.Interval = 10000;
             this.timer_updateSHWXQH.Tick += new System.EventHandler(this.timer_updateSHWXQH_Tick);
             this.timer_updateSHWXQH.Start();
 
-            updateSHWXQH();
+            timer_updateSHWXQH_Tick(sender, e);
+
         }
-        
-        
 
         private void timer_updateSHWXQH_Tick(object sender, EventArgs e)
         {
-            updateSHWXQH();
+            //开启一个新的线程执行耗时操作
+            Thread objThread = new Thread(new ThreadStart(delegate
+            {
+                shwxqhRequest();
+            }));
+            objThread.Start();
+            
         }
 
-        private void updateSHWXQH()
+        /// <summary>
+        /// 请求生化微小气候，比较耗时
+        /// </summary>
+        private void shwxqhRequest()
         {
             ChemicalToxic chemicalToxic = Shwxqhxy.getchemdata();
+            Bioaerosol bioaerosol = Shwxqhxy.getbiodata();
+            Microclimate microlimate = Shwxqhxy.getendata();
+
+            //使用异步UI线程更新
+            this.BeginInvoke((MethodInvoker)delegate()
+            {
+                updateSHWXQH(chemicalToxic, bioaerosol, microlimate);
+            });
+           
+        }
+
+        private void updateSHWXQH(ChemicalToxic chemicalToxic, Bioaerosol bioaerosol, Microclimate microlimate)
+        {
+            
             if (chemicalToxic != null)
             {
                 this.navBarItem_huaxue.Caption = chemicalToxic.gastype + "：" + chemicalToxic.reading;
             }
-            else 
+            else
             {
                 this.navBarItem_huaxue.Caption = "化学毒剂在线监测系统无法连接，请检查！";
             }
 
-            Bioaerosol bioaerosol = Shwxqhxy.getbiodata();
+            
             if (bioaerosol != null)
             {
                 //超标
@@ -130,7 +152,7 @@ namespace zhuhai
                 this.navBarItem_shengwu.Caption = "生物气溶胶在线监测系统无法连接，请检查！";
             }
 
-            Microclimate microlimate = Shwxqhxy.getendata();
+            
             if (microlimate != null)
             {
                 this.navBarItem_weixiaoqihou.Caption =
