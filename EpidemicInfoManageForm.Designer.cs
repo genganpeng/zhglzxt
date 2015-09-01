@@ -40,6 +40,7 @@
             this.gridControl = new DevExpress.XtraGrid.GridControl();
             this.gridView = new DevExpress.XtraGrid.Views.Grid.GridView();
             this.Title = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.simpleButton_view = new DevExpress.XtraEditors.SimpleButton();
             ((System.ComponentModel.ISupportInitialize)(this.groupControl)).BeginInit();
             this.groupControl.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.textEdit_title.Properties)).BeginInit();
@@ -49,6 +50,7 @@
             // 
             // groupControl
             // 
+            this.groupControl.Controls.Add(this.simpleButton_view);
             this.groupControl.Controls.Add(this.simpleButton_delete);
             this.groupControl.Controls.Add(this.simpleButton_modify);
             this.groupControl.Controls.Add(this.simpleButton_add);
@@ -167,6 +169,15 @@
             this.Title.Visible = true;
             this.Title.VisibleIndex = 0;
             // 
+            // simpleButton_view
+            // 
+            this.simpleButton_view.Location = new System.Drawing.Point(443, 58);
+            this.simpleButton_view.Name = "simpleButton_view";
+            this.simpleButton_view.Size = new System.Drawing.Size(83, 23);
+            this.simpleButton_view.TabIndex = 13;
+            this.simpleButton_view.Text = "查   看";
+            this.simpleButton_view.Click += new System.EventHandler(this.simpleButton_view_Click);
+            // 
             // EpidemicInfoManageForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 14F);
@@ -201,6 +212,7 @@
         private DevExpress.XtraEditors.SimpleButton simpleButton_delete;
         private DevExpress.XtraEditors.SimpleButton simpleButton_modify;
         private DevExpress.XtraEditors.SimpleButton simpleButton_add;
+        private DevExpress.XtraEditors.SimpleButton simpleButton_view;
 
 
 

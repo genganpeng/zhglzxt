@@ -85,7 +85,7 @@ namespace zhuhai
             //获取选中的行的行号
             int[] rowNums = gridView.GetSelectedRows();
             DataTable dt = (DataTable)gridControl.DataSource;
-            RichTextEditorForm richTextEditorForm = new RichTextEditorForm(Int32.Parse(dt.Rows[rowNums[0]][WorkRule.ID_COLUMN].ToString()), jobGuideBookService);
+            RichTextEditorForm richTextEditorForm = new RichTextEditorForm(Int32.Parse(dt.Rows[rowNums[0]][CommonText.ID_COLUMN].ToString()), jobGuideBookService);
             richTextEditorForm.ShowDialog();
             pageUpControl.GetDataTable();
         }
@@ -105,11 +105,25 @@ namespace zhuhai
             foreach (int rowNum in rowNums)
             {
                 //要删除的id
-                string deleteId = dt.Rows[rowNum][SystemManage.ID_COLUMN].ToString();
+                string deleteId = dt.Rows[rowNum][CommonText.ID_COLUMN].ToString();
                 jobGuideBookService.deleteRow(Int32.Parse(deleteId));
             }
             initData(formatWhere());
              
+        }
+
+        private void simpleButton_view_Click(object sender, EventArgs e)
+        {
+            if (gridView.SelectedRowsCount != 1)
+            {
+                MessageBox.Show("请选择一条记录！", "警告");
+                return;
+            }
+            //获取选中的行的行号
+            int[] rowNums = gridView.GetSelectedRows();
+            DataTable dt = (DataTable)gridControl.DataSource;
+            RichTextEditorForm richTextEditorForm = new RichTextEditorForm(Int32.Parse(dt.Rows[rowNums[0]][CommonText.ID_COLUMN].ToString()), jobGuideBookService, true);
+            richTextEditorForm.ShowDialog();
         }
 
     }

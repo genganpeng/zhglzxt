@@ -24,6 +24,8 @@ namespace zhuhai
             set { id = value; }
         }
 
+        private Boolean isReadOnly = false;
+
         private IOperateService<CommonText> operateService;
 
         public RichTextEditorForm(IOperateService<CommonText> operateService)
@@ -32,13 +34,29 @@ namespace zhuhai
             this.operateService = operateService;
         }
 
-        public RichTextEditorForm(int id, IOperateService<CommonText> operateService)
+        /// <summary>
+        /// 修改或者查看
+        /// </summary>
+        /// <param name="id"></param>
+        /// <param name="operateService"></param>
+        /// <param name="isReadOnly">true表示查看，默认是修改</param>
+        public RichTextEditorForm(int id, IOperateService<CommonText> operateService, Boolean isReadOnly = false)
         {
             InitializeComponent();
             this.operateService = operateService;
             Id = id;
             //根据id获取内容
             CommonText ct = operateService.getRow(id);
+            //如果是查看
+            if (isReadOnly == true)
+            {
+                richEditControl_context.ReadOnly = true;
+                textEdit_title.Properties.ReadOnly = true;
+                this.Text = "查看";
+                this.simpleButton_save.Hide();
+                this.isReadOnly = isReadOnly;
+                this.simpleButton_cancel.Text = "关闭";
+            }
             textEdit_title.Text = ct.Title;
             //加载内容
             richEditControl_context.Document.LoadDocument(StreamByteTransfer.BytesToStream(operateService.getRow(id).Bytes), DocumentFormat.Rtf);
@@ -46,7 +64,16 @@ namespace zhuhai
 
         private void simpleButton_cancel_Click(object sender, EventArgs e)
         {
-            if (MessageBox.Show("确定要退出吗？你还没有保存标题和内容呢？", "退出系统", MessageBoxButtons.OKCancel) == DialogResult.OK)
+            //编辑或者新增的时候
+            if (isReadOnly == false)
+            {
+                if (MessageBox.Show("确定要退出吗？你还没有保存标题和内容呢？", "退出系统", MessageBoxButtons.OKCancel) == DialogResult.OK)
+                {
+                    this.Close();
+                }
+            }
+            //查看
+            else
             {
                 this.Close();
             }

@@ -34,11 +34,13 @@ namespace zhuhai
             Id = id;
             SystemManage sm = smService.getRow(Id);
             //编辑，根据id取出原来的数据，显示出来
-             textEdit_userName.Text = sm.UserName;
-             textEdit_password.Text = sm.Password ;
-             textEdit_name.Text = sm.Name;
-             textEdit_IDCard.Text = sm.IdCard;
-             comboBoxEdit_type.SelectedIndex = sm.Type;
+            textEdit_userName.Text = sm.UserName;
+            textEdit_password.Text = sm.Password ;
+            textEdit_name.Text = sm.Name;
+            textEdit_IDCard.Text = sm.IdCard;
+            comboBoxEdit_type.SelectedIndex = sm.Type;
+            //不可修改用户名
+            textEdit_userName.Properties.ReadOnly = true;
         }
 
         public void init()

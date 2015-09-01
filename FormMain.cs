@@ -117,11 +117,15 @@ namespace zhuhai
             Bioaerosol bioaerosol = Shwxqhxy.getbiodata();
             Microclimate microlimate = Shwxqhxy.getendata();
 
-            //使用异步UI线程更新
-            this.BeginInvoke((MethodInvoker)delegate()
+            if (!this.IsDisposed)
             {
-                updateSHWXQH(chemicalToxic, bioaerosol, microlimate);
-            });
+                //使用异步UI线程更新
+                this.BeginInvoke((MethodInvoker)delegate()
+                {
+                    updateSHWXQH(chemicalToxic, bioaerosol, microlimate);
+                });
+            }
+            
            
         }
 
