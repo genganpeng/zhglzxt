@@ -5,6 +5,8 @@ using System.Windows.Forms;
 using DevExpress.UserSkins;
 using DevExpress.Skins;
 using DevExpress.LookAndFeel;
+using zhuhai.xmlrpc;
+using CookComputing.XmlRpc;
 
 namespace zhuhai
 {
@@ -28,7 +30,7 @@ namespace zhuhai
 
             //JobGuideBookManageForm jobGuideBookManageForm = new JobGuideBookManageForm();
             //jobGuideBookManageForm.ShowDialog();
-            
+
             //EpidemicInfoManageForm epidemicInfoManageForm = new EpidemicInfoManageForm();
             //epidemicInfoManageForm.ShowDialog();
 
@@ -41,6 +43,10 @@ namespace zhuhai
             //SystemManageForm smForm = new SystemManageForm();
             //smForm.ShowDialog();
 
+            //ICustomsCMS server = XmlRpcProxyGen.Create<ICustomsCMS>();
+            //GateThresholdUpdateForm gateThresholdUpdateForm = new GateThresholdUpdateForm(server, 100);
+            //gateThresholdUpdateForm.ShowDialog();
+
             //新建Login窗口
             LoginForm login = new LoginForm();
 
@@ -52,7 +58,7 @@ namespace zhuhai
             {
                 //在线程中打开主窗体
                 Application.Run(new FormMain());
-            }           
+            }
         }
     }
 }

@@ -39,12 +39,14 @@
             this.barButtonItem6 = new DevExpress.XtraBars.BarButtonItem();
             this.barButtonItem7 = new DevExpress.XtraBars.BarButtonItem();
             this.barButtonItem_systemManage = new DevExpress.XtraBars.BarButtonItem();
-            this.barButtonItem9 = new DevExpress.XtraBars.BarButtonItem();
-            this.barButtonItem10 = new DevExpress.XtraBars.BarButtonItem();
+            this.barButtonItem_publishMessage = new DevExpress.XtraBars.BarButtonItem();
+            this.barButtonItem_gateThreshold = new DevExpress.XtraBars.BarButtonItem();
             this.barButtonItem11 = new DevExpress.XtraBars.BarButtonItem();
             this.barButtonItem_exitSystem = new DevExpress.XtraBars.BarButtonItem();
             this.barStaticItem_systemTime = new DevExpress.XtraBars.BarStaticItem();
             this.barStaticItem_currentUser = new DevExpress.XtraBars.BarStaticItem();
+            this.barButtonItem_hxswqhThreshold = new DevExpress.XtraBars.BarButtonItem();
+            this.ribbonPageCategory1 = new DevExpress.XtraBars.Ribbon.RibbonPageCategory();
             this.ribbonPage1 = new DevExpress.XtraBars.Ribbon.RibbonPage();
             this.ribbonPageGroup1 = new DevExpress.XtraBars.Ribbon.RibbonPageGroup();
             this.ribbonPageGroup2 = new DevExpress.XtraBars.Ribbon.RibbonPageGroup();
@@ -95,15 +97,18 @@
             this.barButtonItem6,
             this.barButtonItem7,
             this.barButtonItem_systemManage,
-            this.barButtonItem9,
-            this.barButtonItem10,
+            this.barButtonItem_publishMessage,
+            this.barButtonItem_gateThreshold,
             this.barButtonItem11,
             this.barButtonItem_exitSystem,
             this.barStaticItem_systemTime,
-            this.barStaticItem_currentUser});
+            this.barStaticItem_currentUser,
+            this.barButtonItem_hxswqhThreshold});
             this.ribbonControl1.Location = new System.Drawing.Point(0, 0);
-            this.ribbonControl1.MaxItemId = 28;
+            this.ribbonControl1.MaxItemId = 2;
             this.ribbonControl1.Name = "ribbonControl1";
+            this.ribbonControl1.PageCategories.AddRange(new DevExpress.XtraBars.Ribbon.RibbonPageCategory[] {
+            this.ribbonPageCategory1});
             this.ribbonControl1.Pages.AddRange(new DevExpress.XtraBars.Ribbon.RibbonPage[] {
             this.ribbonPage1,
             this.ribbonPage2,
@@ -182,23 +187,25 @@
             this.barButtonItem_systemManage.RibbonStyle = DevExpress.XtraBars.Ribbon.RibbonItemStyles.Large;
             this.barButtonItem_systemManage.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.barButtonItem_systemManage_ItemClick);
             // 
-            // barButtonItem9
+            // barButtonItem_publishMessage
             // 
-            this.barButtonItem9.Caption = "消息推送";
-            this.barButtonItem9.Glyph = global::zhuhai.Properties.Resources.sendfile_16x16;
-            this.barButtonItem9.Id = 15;
-            this.barButtonItem9.LargeGlyph = global::zhuhai.Properties.Resources.sendfile_32x32;
-            this.barButtonItem9.Name = "barButtonItem9";
-            this.barButtonItem9.RibbonStyle = DevExpress.XtraBars.Ribbon.RibbonItemStyles.Large;
+            this.barButtonItem_publishMessage.Caption = "消息推送";
+            this.barButtonItem_publishMessage.Glyph = global::zhuhai.Properties.Resources.sendfile_16x16;
+            this.barButtonItem_publishMessage.Id = 15;
+            this.barButtonItem_publishMessage.LargeGlyph = global::zhuhai.Properties.Resources.sendfile_32x32;
+            this.barButtonItem_publishMessage.Name = "barButtonItem_publishMessage";
+            this.barButtonItem_publishMessage.RibbonStyle = DevExpress.XtraBars.Ribbon.RibbonItemStyles.Large;
+            this.barButtonItem_publishMessage.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.barButtonItem_publishMessage_ItemClick);
             // 
-            // barButtonItem10
+            // barButtonItem_gateThreshold
             // 
-            this.barButtonItem10.Caption = "阀值设置";
-            this.barButtonItem10.Glyph = global::zhuhai.Properties.Resources.timelineview_16x16;
-            this.barButtonItem10.Id = 16;
-            this.barButtonItem10.LargeGlyph = global::zhuhai.Properties.Resources.timelineview_32x32;
-            this.barButtonItem10.Name = "barButtonItem10";
-            this.barButtonItem10.RibbonStyle = DevExpress.XtraBars.Ribbon.RibbonItemStyles.Large;
+            this.barButtonItem_gateThreshold.Caption = "闸机阀值设置";
+            this.barButtonItem_gateThreshold.Glyph = global::zhuhai.Properties.Resources.timelineview_16x16;
+            this.barButtonItem_gateThreshold.Id = 16;
+            this.barButtonItem_gateThreshold.LargeGlyph = global::zhuhai.Properties.Resources.timelineview_32x32;
+            this.barButtonItem_gateThreshold.Name = "barButtonItem_gateThreshold";
+            this.barButtonItem_gateThreshold.RibbonStyle = DevExpress.XtraBars.Ribbon.RibbonItemStyles.Large;
+            this.barButtonItem_gateThreshold.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.barButtonItem_gateThreshold_ItemClick);
             // 
             // barButtonItem11
             // 
@@ -233,6 +240,21 @@
             this.barStaticItem_currentUser.Id = 27;
             this.barStaticItem_currentUser.Name = "barStaticItem_currentUser";
             this.barStaticItem_currentUser.TextAlignment = System.Drawing.StringAlignment.Near;
+            // 
+            // barButtonItem_hxswqhThreshold
+            // 
+            this.barButtonItem_hxswqhThreshold.Caption = "口岸阈值设置";
+            this.barButtonItem_hxswqhThreshold.Glyph = global::zhuhai.Properties.Resources.timelineview_16x16;
+            this.barButtonItem_hxswqhThreshold.Id = 1;
+            this.barButtonItem_hxswqhThreshold.LargeGlyph = global::zhuhai.Properties.Resources.timelineview_32x32;
+            this.barButtonItem_hxswqhThreshold.Name = "barButtonItem_hxswqhThreshold";
+            this.barButtonItem_hxswqhThreshold.RibbonStyle = DevExpress.XtraBars.Ribbon.RibbonItemStyles.Large;
+            this.barButtonItem_hxswqhThreshold.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.barButtonItem_hxswqhThreshold_ItemClick);
+            // 
+            // ribbonPageCategory1
+            // 
+            this.ribbonPageCategory1.Name = "ribbonPageCategory1";
+            this.ribbonPageCategory1.Text = "ribbonPageCategory1";
             // 
             // ribbonPage1
             // 
@@ -295,7 +317,7 @@
             // ribbonPageGroup5
             // 
             this.ribbonPageGroup5.ItemLinks.Add(this.barButtonItem_systemManage);
-            this.ribbonPageGroup5.ItemLinks.Add(this.barButtonItem9);
+            this.ribbonPageGroup5.ItemLinks.Add(this.barButtonItem_publishMessage);
             this.ribbonPageGroup5.Name = "ribbonPageGroup5";
             this.ribbonPageGroup5.ShowCaptionButton = false;
             this.ribbonPageGroup5.Text = "基础信息";
@@ -303,7 +325,8 @@
             // ribbonPageGroup6
             // 
             this.ribbonPageGroup6.ItemLinks.Add(this.barButtonItem11);
-            this.ribbonPageGroup6.ItemLinks.Add(this.barButtonItem10);
+            this.ribbonPageGroup6.ItemLinks.Add(this.barButtonItem_gateThreshold);
+            this.ribbonPageGroup6.ItemLinks.Add(this.barButtonItem_hxswqhThreshold);
             this.ribbonPageGroup6.Name = "ribbonPageGroup6";
             this.ribbonPageGroup6.ShowCaptionButton = false;
             this.ribbonPageGroup6.Text = "系统参数";
@@ -500,10 +523,10 @@
         private DevExpress.XtraBars.BarButtonItem barButtonItem6;
         private DevExpress.XtraBars.BarButtonItem barButtonItem7;
         private DevExpress.XtraBars.BarButtonItem barButtonItem_systemManage;
-        private DevExpress.XtraBars.BarButtonItem barButtonItem9;
+        private DevExpress.XtraBars.BarButtonItem barButtonItem_publishMessage;
         private DevExpress.XtraBars.Ribbon.RibbonPageGroup ribbonPageGroup5;
         private DevExpress.XtraBars.Ribbon.RibbonPageGroup ribbonPageGroup6;
-        private DevExpress.XtraBars.BarButtonItem barButtonItem10;
+        private DevExpress.XtraBars.BarButtonItem barButtonItem_gateThreshold;
         private DevExpress.XtraBars.BarButtonItem barButtonItem11;
         private DevExpress.XtraNavBar.NavBarItem navBarItem4;
         private DevExpress.XtraBars.BarButtonItem barButtonItem_exitSystem;
@@ -525,6 +548,8 @@
         private System.Windows.Forms.Timer timer_updateTime;
         private System.Windows.Forms.Timer timer_updateSHWXQH;
         private DevExpress.XtraBars.BarStaticItem barStaticItem_currentUser;
+        private DevExpress.XtraBars.Ribbon.RibbonPageCategory ribbonPageCategory1;
+        private DevExpress.XtraBars.BarButtonItem barButtonItem_hxswqhThreshold;
 
     }
 }

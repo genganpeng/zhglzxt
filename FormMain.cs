@@ -10,21 +10,55 @@ using System.Globalization;
 using zhuhai.web;
 using zhuhai.service;
 using System.Threading;
+using CookComputing.XmlRpc;
+using zhuhai.xmlrpc;
+using zhuhai.util;
 
 namespace zhuhai
 {
     public partial class FormMain : DevExpress.XtraEditors.XtraForm
     {
+        private ICustomsCMS server = null;
+        private int gateTotal = 100;
+
         public FormMain()
         {
+            init();
             InitializeComponent();
             this.barStaticItem_currentUser.Caption = "当前用户：" + SystemManageService.currentUser.UserName;
         }
 
+        /// <summary>
+        /// 初始化总通道数
+        /// </summary>
+        public void init()
+        {
+            try
+            {
+                server = XmlRpcProxyGen.Create<ICustomsCMS>();
+                XmlRpcClientProtocol protocol;
+                protocol = (XmlRpcClientProtocol)server;
+                protocol.Url = "http://" + AppConfig.cmsServer + "/apixmlrpc";
+                GatesNumResponse gatesNumResponse = server.getGatesNumber(AppConfig.gateSensor);
+                if (gatesNumResponse.error_code != 0)
+                {
+                    MessageBox.Show("连接服务器错误：" + gatesNumResponse.error_msg);
+                }
+                gateTotal = gatesNumResponse.all_num;
+            }
+            catch (Exception ex)
+            {
+                if (MessageBox.Show(ex.Message + "\n是否退出系统？", "错误", MessageBoxButtons.YesNo) == DialogResult.Yes)
+                {
+                    System.Environment.Exit(0);
+                }
+            }
+            
+
+        }
         private void barButtonItem_disposePlan_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
         {
            DisposePlanManageForm disposePlanManageForm = new DisposePlanManageForm();
-
             disposePlanManageForm.ShowDialog(this);
         }
 
@@ -170,6 +204,24 @@ namespace zhuhai
             {
                 this.navBarItem_weixiaoqihou.Caption = "微小气候在线监测系统无法连接，请检查！";
             }
+        }
+
+        private void barButtonItem_publishMessage_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
+        {
+            PublishNoticeForm publishNoticeForm = new PublishNoticeForm(server, gateTotal);
+            publishNoticeForm.ShowDialog(this);
+        }
+
+        private void barButtonItem_gateThreshold_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
+        {
+            GateThresholdUpdateForm gateThresholdUpdateForm = new GateThresholdUpdateForm(server, 100);
+            gateThresholdUpdateForm.ShowDialog(this);
+        }
+
+        private void barButtonItem_hxswqhThreshold_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
+        {
+            HxswqhThresholdUpdateForm hxswqhThresholdUpdateForm = new HxswqhThresholdUpdateForm(server);
+            hxswqhThresholdUpdateForm.ShowDialog(this);
         }
     }
 }

@@ -29,6 +29,7 @@
         private void InitializeComponent()
         {
             this.groupControl = new DevExpress.XtraEditors.GroupControl();
+            this.simpleButton_view = new DevExpress.XtraEditors.SimpleButton();
             this.simpleButton_delete = new DevExpress.XtraEditors.SimpleButton();
             this.simpleButton_modify = new DevExpress.XtraEditors.SimpleButton();
             this.simpleButton_add = new DevExpress.XtraEditors.SimpleButton();
@@ -40,7 +41,6 @@
             this.gridControl = new DevExpress.XtraGrid.GridControl();
             this.gridView = new DevExpress.XtraGrid.Views.Grid.GridView();
             this.Title = new DevExpress.XtraGrid.Columns.GridColumn();
-            this.simpleButton_view = new DevExpress.XtraEditors.SimpleButton();
             ((System.ComponentModel.ISupportInitialize)(this.groupControl)).BeginInit();
             this.groupControl.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.textEdit_title.Properties)).BeginInit();
@@ -64,6 +64,15 @@
             this.groupControl.Size = new System.Drawing.Size(979, 87);
             this.groupControl.TabIndex = 0;
             this.groupControl.Text = "查询条件";
+            // 
+            // simpleButton_view
+            // 
+            this.simpleButton_view.Location = new System.Drawing.Point(443, 58);
+            this.simpleButton_view.Name = "simpleButton_view";
+            this.simpleButton_view.Size = new System.Drawing.Size(83, 23);
+            this.simpleButton_view.TabIndex = 13;
+            this.simpleButton_view.Text = "查   看";
+            this.simpleButton_view.Click += new System.EventHandler(this.simpleButton_view_Click);
             // 
             // simpleButton_delete
             // 
@@ -169,15 +178,6 @@
             this.Title.Visible = true;
             this.Title.VisibleIndex = 0;
             // 
-            // simpleButton_view
-            // 
-            this.simpleButton_view.Location = new System.Drawing.Point(443, 58);
-            this.simpleButton_view.Name = "simpleButton_view";
-            this.simpleButton_view.Size = new System.Drawing.Size(83, 23);
-            this.simpleButton_view.TabIndex = 13;
-            this.simpleButton_view.Text = "查   看";
-            this.simpleButton_view.Click += new System.EventHandler(this.simpleButton_view_Click);
-            // 
             // WorkRuleManageForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 14F);
@@ -187,6 +187,7 @@
             this.Controls.Add(this.pageUpControl);
             this.Controls.Add(this.groupControl);
             this.Name = "WorkRuleManageForm";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
             this.Text = "工作规程";
             ((System.ComponentModel.ISupportInitialize)(this.groupControl)).EndInit();
             this.groupControl.ResumeLayout(false);

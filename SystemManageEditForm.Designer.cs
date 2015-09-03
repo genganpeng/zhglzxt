@@ -160,6 +160,7 @@
             this.Controls.Add(this.labelControl_type);
             this.Controls.Add(this.labelControl1);
             this.Name = "SystemManageEditForm";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
             this.Text = "系统管理编辑";
             ((System.ComponentModel.ISupportInitialize)(this.comboBoxEdit_type.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.textEdit_IDCard.Properties)).EndInit();

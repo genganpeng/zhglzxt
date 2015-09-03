@@ -282,6 +282,7 @@
             this.Controls.Add(this.pageUpControl);
             this.Controls.Add(this.groupControl);
             this.Name = "SystemManageForm";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
             this.Text = "系统管理";
             ((System.ComponentModel.ISupportInitialize)(this.groupControl)).EndInit();
             this.groupControl.ResumeLayout(false);

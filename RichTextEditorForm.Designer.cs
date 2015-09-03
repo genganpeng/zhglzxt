@@ -48,13 +48,7 @@
             this.toggleFontSubscriptItem1 = new DevExpress.XtraRichEdit.UI.ToggleFontSubscriptItem();
             this.changeFontColorItem1 = new DevExpress.XtraRichEdit.UI.ChangeFontColorItem();
             this.changeFontBackColorItem1 = new DevExpress.XtraRichEdit.UI.ChangeFontBackColorItem();
-            this.changeTextCaseItem1 = new DevExpress.XtraRichEdit.UI.ChangeTextCaseItem();
-            this.makeTextUpperCaseItem1 = new DevExpress.XtraRichEdit.UI.MakeTextUpperCaseItem();
-            this.makeTextLowerCaseItem1 = new DevExpress.XtraRichEdit.UI.MakeTextLowerCaseItem();
-            this.capitalizeEachWordCaseItem1 = new DevExpress.XtraRichEdit.UI.CapitalizeEachWordCaseItem();
-            this.toggleTextCaseItem1 = new DevExpress.XtraRichEdit.UI.ToggleTextCaseItem();
             this.clearFormattingItem1 = new DevExpress.XtraRichEdit.UI.ClearFormattingItem();
-            this.showFontFormItem1 = new DevExpress.XtraRichEdit.UI.ShowFontFormItem();
             this.paragraphBar1 = new DevExpress.XtraRichEdit.UI.ParagraphBar();
             this.toggleBulletedListItem1 = new DevExpress.XtraRichEdit.UI.ToggleBulletedListItem();
             this.toggleNumberingListItem1 = new DevExpress.XtraRichEdit.UI.ToggleNumberingListItem();
@@ -66,7 +60,6 @@
             this.toggleParagraphAlignmentRightItem1 = new DevExpress.XtraRichEdit.UI.ToggleParagraphAlignmentRightItem();
             this.toggleParagraphAlignmentJustifyItem1 = new DevExpress.XtraRichEdit.UI.ToggleParagraphAlignmentJustifyItem();
             this.changeParagraphBackColorItem1 = new DevExpress.XtraRichEdit.UI.ChangeParagraphBackColorItem();
-            this.showParagraphFormItem1 = new DevExpress.XtraRichEdit.UI.ShowParagraphFormItem();
             this.tablesBar1 = new DevExpress.XtraRichEdit.UI.TablesBar();
             this.insertTableItem1 = new DevExpress.XtraRichEdit.UI.InsertTableItem();
             this.illustrationsBar1 = new DevExpress.XtraRichEdit.UI.IllustrationsBar();
@@ -80,6 +73,12 @@
             this.cutItem1 = new DevExpress.XtraRichEdit.UI.CutItem();
             this.copyItem1 = new DevExpress.XtraRichEdit.UI.CopyItem();
             this.pasteSpecialItem1 = new DevExpress.XtraRichEdit.UI.PasteSpecialItem();
+            this.changeTextCaseItem1 = new DevExpress.XtraRichEdit.UI.ChangeTextCaseItem();
+            this.makeTextUpperCaseItem1 = new DevExpress.XtraRichEdit.UI.MakeTextUpperCaseItem();
+            this.makeTextLowerCaseItem1 = new DevExpress.XtraRichEdit.UI.MakeTextLowerCaseItem();
+            this.capitalizeEachWordCaseItem1 = new DevExpress.XtraRichEdit.UI.CapitalizeEachWordCaseItem();
+            this.toggleTextCaseItem1 = new DevExpress.XtraRichEdit.UI.ToggleTextCaseItem();
+            this.showFontFormItem1 = new DevExpress.XtraRichEdit.UI.ShowFontFormItem();
             this.toggleShowWhitespaceItem1 = new DevExpress.XtraRichEdit.UI.ToggleShowWhitespaceItem();
             this.changeParagraphLineSpacingItem1 = new DevExpress.XtraRichEdit.UI.ChangeParagraphLineSpacingItem();
             this.setSingleParagraphSpacingItem1 = new DevExpress.XtraRichEdit.UI.SetSingleParagraphSpacingItem();
@@ -90,6 +89,7 @@
             this.removeSpacingBeforeParagraphItem1 = new DevExpress.XtraRichEdit.UI.RemoveSpacingBeforeParagraphItem();
             this.addSpacingAfterParagraphItem1 = new DevExpress.XtraRichEdit.UI.AddSpacingAfterParagraphItem();
             this.removeSpacingAfterParagraphItem1 = new DevExpress.XtraRichEdit.UI.RemoveSpacingAfterParagraphItem();
+            this.showParagraphFormItem1 = new DevExpress.XtraRichEdit.UI.ShowParagraphFormItem();
             this.changeStyleItem1 = new DevExpress.XtraRichEdit.UI.ChangeStyleItem();
             this.repositoryItemRichEditStyleEdit1 = new DevExpress.XtraRichEdit.Design.RepositoryItemRichEditStyleEdit();
             this.showEditStyleFormItem1 = new DevExpress.XtraRichEdit.UI.ShowEditStyleFormItem();
@@ -322,45 +322,10 @@
             this.changeFontBackColorItem1.Id = 17;
             this.changeFontBackColorItem1.Name = "changeFontBackColorItem1";
             // 
-            // changeTextCaseItem1
-            // 
-            this.changeTextCaseItem1.Id = 18;
-            this.changeTextCaseItem1.LinksPersistInfo.AddRange(new DevExpress.XtraBars.LinkPersistInfo[] {
-            new DevExpress.XtraBars.LinkPersistInfo(this.makeTextUpperCaseItem1),
-            new DevExpress.XtraBars.LinkPersistInfo(this.makeTextLowerCaseItem1),
-            new DevExpress.XtraBars.LinkPersistInfo(this.capitalizeEachWordCaseItem1),
-            new DevExpress.XtraBars.LinkPersistInfo(this.toggleTextCaseItem1)});
-            this.changeTextCaseItem1.Name = "changeTextCaseItem1";
-            // 
-            // makeTextUpperCaseItem1
-            // 
-            this.makeTextUpperCaseItem1.Id = 19;
-            this.makeTextUpperCaseItem1.Name = "makeTextUpperCaseItem1";
-            // 
-            // makeTextLowerCaseItem1
-            // 
-            this.makeTextLowerCaseItem1.Id = 20;
-            this.makeTextLowerCaseItem1.Name = "makeTextLowerCaseItem1";
-            // 
-            // capitalizeEachWordCaseItem1
-            // 
-            this.capitalizeEachWordCaseItem1.Id = 21;
-            this.capitalizeEachWordCaseItem1.Name = "capitalizeEachWordCaseItem1";
-            // 
-            // toggleTextCaseItem1
-            // 
-            this.toggleTextCaseItem1.Id = 22;
-            this.toggleTextCaseItem1.Name = "toggleTextCaseItem1";
-            // 
             // clearFormattingItem1
             // 
             this.clearFormattingItem1.Id = 23;
             this.clearFormattingItem1.Name = "clearFormattingItem1";
-            // 
-            // showFontFormItem1
-            // 
-            this.showFontFormItem1.Id = 24;
-            this.showFontFormItem1.Name = "showFontFormItem1";
             // 
             // paragraphBar1
             // 
@@ -429,11 +394,6 @@
             // 
             this.changeParagraphBackColorItem1.Id = 44;
             this.changeParagraphBackColorItem1.Name = "changeParagraphBackColorItem1";
-            // 
-            // showParagraphFormItem1
-            // 
-            this.showParagraphFormItem1.Id = 45;
-            this.showParagraphFormItem1.Name = "showParagraphFormItem1";
             // 
             // tablesBar1
             // 
@@ -517,6 +477,41 @@
             this.pasteSpecialItem1.Id = 3;
             this.pasteSpecialItem1.Name = "pasteSpecialItem1";
             // 
+            // changeTextCaseItem1
+            // 
+            this.changeTextCaseItem1.Id = 18;
+            this.changeTextCaseItem1.LinksPersistInfo.AddRange(new DevExpress.XtraBars.LinkPersistInfo[] {
+            new DevExpress.XtraBars.LinkPersistInfo(this.makeTextUpperCaseItem1),
+            new DevExpress.XtraBars.LinkPersistInfo(this.makeTextLowerCaseItem1),
+            new DevExpress.XtraBars.LinkPersistInfo(this.capitalizeEachWordCaseItem1),
+            new DevExpress.XtraBars.LinkPersistInfo(this.toggleTextCaseItem1)});
+            this.changeTextCaseItem1.Name = "changeTextCaseItem1";
+            // 
+            // makeTextUpperCaseItem1
+            // 
+            this.makeTextUpperCaseItem1.Id = 19;
+            this.makeTextUpperCaseItem1.Name = "makeTextUpperCaseItem1";
+            // 
+            // makeTextLowerCaseItem1
+            // 
+            this.makeTextLowerCaseItem1.Id = 20;
+            this.makeTextLowerCaseItem1.Name = "makeTextLowerCaseItem1";
+            // 
+            // capitalizeEachWordCaseItem1
+            // 
+            this.capitalizeEachWordCaseItem1.Id = 21;
+            this.capitalizeEachWordCaseItem1.Name = "capitalizeEachWordCaseItem1";
+            // 
+            // toggleTextCaseItem1
+            // 
+            this.toggleTextCaseItem1.Id = 22;
+            this.toggleTextCaseItem1.Name = "toggleTextCaseItem1";
+            // 
+            // showFontFormItem1
+            // 
+            this.showFontFormItem1.Id = 24;
+            this.showFontFormItem1.Name = "showFontFormItem1";
+            // 
             // toggleShowWhitespaceItem1
             // 
             this.toggleShowWhitespaceItem1.Id = 34;
@@ -575,6 +570,11 @@
             // 
             this.removeSpacingAfterParagraphItem1.Id = 43;
             this.removeSpacingAfterParagraphItem1.Name = "removeSpacingAfterParagraphItem1";
+            // 
+            // showParagraphFormItem1
+            // 
+            this.showParagraphFormItem1.Id = 45;
+            this.showParagraphFormItem1.Name = "showParagraphFormItem1";
             // 
             // changeStyleItem1
             // 
@@ -765,6 +765,7 @@
             this.Controls.Add(this.barDockControlBottom);
             this.Controls.Add(this.barDockControlTop);
             this.Name = "RichTextEditorForm";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
             this.Text = "编辑";
             ((System.ComponentModel.ISupportInitialize)(this.barManager1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.repositoryItemFontEdit1)).EndInit();
