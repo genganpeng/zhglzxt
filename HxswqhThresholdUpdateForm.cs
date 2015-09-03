@@ -8,40 +8,28 @@ using System.Text;
 using System.Windows.Forms;
 using zhuhai.xmlrpc;
 using zhuhai.util;
+using zhuhai.service;
 
 namespace zhuhai
 {
     public partial class HxswqhThresholdUpdateForm : Form
     {
-        private ICustomsCMS server = null;
-
         private double biology = 38;
         private double chem = 10;
 
-        public HxswqhThresholdUpdateForm(ICustomsCMS server)
+        public HxswqhThresholdUpdateForm()
         {
             InitializeComponent();
-            this.server = server;
 
-            //以下是获取原来的阈值，并显示出来
-            SysTask task = new SysTask();
-            task.target_gates = new int[] {AppConfig.hxswqhnum};
-            try
+            HxswqhThresholdValue hxswqhThresholdValue = GateService.getInstance().getHxswqhThreshold();
+            if (hxswqhThresholdValue != null)
             {
-                TaskRPCResponse taskRPCResponse = server.getCurrentThreshold(AppConfig.hxswqhsensor, task);
-                if (taskRPCResponse.error_code == 0)
-                {
-                    double biology = taskRPCResponse.task.biology;
-                    double chem = taskRPCResponse.task.chem;
-                    textEdit_biology.Text = biology.ToString();
-                    textEdit_chem.Text = chem.ToString();
-                }
-                else
-                {
-                    MessageBox.Show("连接服务器错误：" + taskRPCResponse.error_msg);
-                }
+                double biology = hxswqhThresholdValue.biology;
+                double chem = hxswqhThresholdValue.chem;
+                textEdit_biology.Text = biology.ToString();
+                textEdit_chem.Text = chem.ToString();
             }
-            catch
+            else//为空时显示默认值
             {
                 textEdit_biology.Text = biology.ToString();
                 textEdit_chem.Text = chem.ToString();
@@ -89,27 +77,16 @@ namespace zhuhai
                 }
             }
 
-            SysTask task = new SysTask();
-            task.type = (int)TaskType.UpdateThreshold;
-            task.target_gates = new int[AppConfig.hxswqhnum];
-            task.biology = biology;
-            task.chem = chem;
             try
             {
-                RPCResponse response = this.server.publishTask(AppConfig.hxswqhsensor, task);
-                if (response.error_code == 0)
-                {
-                    this.Close();
-                }
-                else
-                {
-                    MessageBox.Show("修改阀值错误：" + response.error_msg);
-                }
+                UpdateThresholdService.getInstance().updateHxswqhThreshold(biology, chem);
+                MessageBox.Show("修改口岸阈值成功！");
             }
             catch (Exception ex)
             {
                 MessageBox.Show(ex.Message, "错误");
             }
+            
         }
 
         private void simpleButton_close_Click(object sender, EventArgs e)

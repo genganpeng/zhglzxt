@@ -8,16 +8,15 @@ using System.Text;
 using System.Windows.Forms;
 using zhuhai.xmlrpc;
 using zhuhai.util;
+using zhuhai.service;
 
 namespace zhuhai
 {
     public partial class PublishNoticeForm : Form
     {
-        private ICustomsCMS server = null;
-
         private int gateTotal = 10;
 
-        public PublishNoticeForm(ICustomsCMS server, int gateTotal)
+        public PublishNoticeForm(int gateTotal)
         {
             InitializeComponent();
             this.gateTotal = gateTotal;
@@ -28,7 +27,6 @@ namespace zhuhai
             }
             this.checkedListBoxControl_gate.Items.Clear();
             this.checkedListBoxControl_gate.Items.AddRange(checkListItems);
-            this.server = server;
         }
 
         private void simpleButton_allChecked_Click(object sender, EventArgs e)
@@ -70,28 +68,17 @@ namespace zhuhai
                 object obj = this.checkedListBoxControl_gate.CheckedItems[i];
                 gateIds[i] = (int)obj;
             }
-            SysTask task = new SysTask();
-            task.type = (int)TaskType.PublishNotice;
-            task.notice = this.textBox_message.Text.Trim();
-            task.target_gates = gateIds;
+            PublishNoticeService service = PublishNoticeService.getInstance();
             try
             {
-                RPCResponse response = server.publishTask(AppConfig.gateSensor, task);
-                if (response.error_code == 0)
-                {
-                    MessageBox.Show("发布消息成功！");
-                    this.Close();
-                }
-                else
-                {
-                    MessageBox.Show("发布消息错误：" + response.error_msg);
-                }
+                service.publishTask(this.textBox_message.Text.Trim(), gateIds);
+                MessageBox.Show("发布消息成功！");
             }
-            catch(Exception ex)
+            catch (Exception ex)
             {
                 MessageBox.Show(ex.Message, "错误");
             }
-            
+
         }
 
         private void simpleButton_close_Click(object sender, EventArgs e)

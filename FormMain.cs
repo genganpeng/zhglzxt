@@ -18,7 +18,6 @@ namespace zhuhai
 {
     public partial class FormMain : DevExpress.XtraEditors.XtraForm
     {
-        private ICustomsCMS server = null;
         private int gateTotal = 100;
 
         public FormMain()
@@ -35,16 +34,7 @@ namespace zhuhai
         {
             try
             {
-                server = XmlRpcProxyGen.Create<ICustomsCMS>();
-                XmlRpcClientProtocol protocol;
-                protocol = (XmlRpcClientProtocol)server;
-                protocol.Url = "http://" + AppConfig.cmsServer + "/apixmlrpc";
-                GatesNumResponse gatesNumResponse = server.getGatesNumber(AppConfig.gateSensor);
-                if (gatesNumResponse.error_code != 0)
-                {
-                    MessageBox.Show("连接服务器错误：" + gatesNumResponse.error_msg);
-                }
-                gateTotal = gatesNumResponse.all_num;
+                gateTotal = GateService.getInstance().getGateTotal();
             }
             catch (Exception ex)
             {
@@ -53,9 +43,8 @@ namespace zhuhai
                     System.Environment.Exit(0);
                 }
             }
-            
-
         }
+
         private void barButtonItem_disposePlan_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
         {
            DisposePlanManageForm disposePlanManageForm = new DisposePlanManageForm();
@@ -208,19 +197,19 @@ namespace zhuhai
 
         private void barButtonItem_publishMessage_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
         {
-            PublishNoticeForm publishNoticeForm = new PublishNoticeForm(server, gateTotal);
+            PublishNoticeForm publishNoticeForm = new PublishNoticeForm(gateTotal);
             publishNoticeForm.ShowDialog(this);
         }
 
         private void barButtonItem_gateThreshold_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
         {
-            GateThresholdUpdateForm gateThresholdUpdateForm = new GateThresholdUpdateForm(server, 100);
+            GateThresholdUpdateForm gateThresholdUpdateForm = new GateThresholdUpdateForm(gateTotal);
             gateThresholdUpdateForm.ShowDialog(this);
         }
 
         private void barButtonItem_hxswqhThreshold_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
         {
-            HxswqhThresholdUpdateForm hxswqhThresholdUpdateForm = new HxswqhThresholdUpdateForm(server);
+            HxswqhThresholdUpdateForm hxswqhThresholdUpdateForm = new HxswqhThresholdUpdateForm();
             hxswqhThresholdUpdateForm.ShowDialog(this);
         }
     }

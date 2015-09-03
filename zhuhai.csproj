@@ -99,11 +99,14 @@
     <Compile Include="PublishNoticeForm.Designer.cs">
       <DependentUpon>PublishNoticeForm.cs</DependentUpon>
     </Compile>
+    <Compile Include="service\GateService.cs" />
     <Compile Include="service\IOperateService.cs" />
+    <Compile Include="service\PublishNoticeService.cs" />
     <Compile Include="service\WorkRuleService.cs" />
     <Compile Include="service\JobGuideBookService.cs" />
     <Compile Include="service\EpidemicInfoService.cs" />
     <Compile Include="service\DisposePlanService.cs" />
+    <Compile Include="service\UpdateThresholdService.cs" />
     <Compile Include="util\AppConfig.cs" />
     <Compile Include="util\DictionaryItem.cs" />
     <Compile Include="FormMain.cs">
@@ -191,6 +194,7 @@
     <Compile Include="HxswqhThresholdUpdateForm.Designer.cs">
       <DependentUpon>HxswqhThresholdUpdateForm.cs</DependentUpon>
     </Compile>
+    <Compile Include="service\XmlRpcInstance.cs" />
     <EmbeddedResource Include="FormMain.resx">
       <DependentUpon>FormMain.cs</DependentUpon>
     </EmbeddedResource>

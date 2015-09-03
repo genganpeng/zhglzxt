@@ -8,14 +8,13 @@ using System.Text;
 using System.Windows.Forms;
 using zhuhai.xmlrpc;
 using zhuhai.util;
+using zhuhai.service;
 
 namespace zhuhai
 {
     public partial class GateThresholdUpdateForm : Form
     {
-        private ICustomsCMS server = null;
-
-        private int gateTotal = 10;
+        private int gateTotal = 100;
         private double temperature = 38;
         private double nuclear = 10;
         /// <summary>
@@ -23,7 +22,7 @@ namespace zhuhai
         /// </summary>
         private Boolean selectedAllButton = false;
 
-        public GateThresholdUpdateForm(ICustomsCMS server, int gateTotal)
+        public GateThresholdUpdateForm(int gateTotal)
         {
             InitializeComponent();
             this.gateTotal = gateTotal;
@@ -34,7 +33,6 @@ namespace zhuhai
             }
             this.checkedListBoxControl_gate.Items.Clear();
             this.checkedListBoxControl_gate.Items.AddRange(checkListItems);
-            this.server = server;
         }
 
         private void simpleButton_allChecked_Click(object sender, EventArgs e)
@@ -52,12 +50,12 @@ namespace zhuhai
         {
             for (int i = 0; i < this.checkedListBoxControl_gate.Items.Count; i++)
             {
-                this.checkedListBoxControl_gate.SetItemChecked(i, check);
                 //点击全选按钮后，选中最后一个重置标示
                 if (i == checkedListBoxControl_gate.Items.Count - 1)
                 {
                     selectedAllButton = false;
                 }
+                this.checkedListBoxControl_gate.SetItemChecked(i, check);
             }
 
         }
@@ -116,27 +114,16 @@ namespace zhuhai
                 gateIds[i] = (int)obj;
             }
 
-            SysTask task = new SysTask();
-            task.type = (int)TaskType.UpdateThreshold;
-            task.target_gates = gateIds;
-            task.thr_temperature = temperature;
-            task.thr_nuclear = nuclear;
             try
             {
-                RPCResponse response = this.server.publishTask(AppConfig.gateSensor, task);
-                if (response.error_code == 0)
-                {
-                    this.Close();
-                }
-                else
-                {
-                    MessageBox.Show("修改阀值错误：" + response.error_msg);
-                }
+                UpdateThresholdService.getInstance().updateGateThreshold(temperature, nuclear, gateIds);
+                MessageBox.Show("修改闸机阈值成功！");
             }
             catch (Exception ex)
             {
                 MessageBox.Show(ex.Message, "错误");
             }
+            
         }
 
         private void simpleButton_close_Click(object sender, EventArgs e)
@@ -156,29 +143,18 @@ namespace zhuhai
             //如果是当前项被选中，则获取该闸机的阈值显示出来
             if (selectedAllButton == false && checkState == CheckState.Checked)
             {
-                SysTask task = new SysTask();
-                task.target_gates = new int[]{index + 1};
-                try
-                {
-                    TaskRPCResponse taskRPCResponse = server.getCurrentThreshold(AppConfig.gateSensor, task);
-                    if (taskRPCResponse.error_code == 0)
-                    {
-                        double temperature = taskRPCResponse.task.thr_temperature;
-                        double nuclear = taskRPCResponse.task.thr_nuclear;
-                        textEdit_nuclear.Text = nuclear.ToString();
-                        textEdit_temperature.Text = temperature.ToString();
-                    }
-                    else
-                    {
-                        MessageBox.Show("连接服务器错误：" + taskRPCResponse.error_msg);
-                    }
-                }
-                catch
+                GateThresholdValue gateThresholdValue = GateService.getInstance().getGateThreshold(index + 1);
+                //为空就是默认值
+                if (gateThresholdValue == null)
                 {
                     textEdit_nuclear.Text = nuclear.ToString();
                     textEdit_temperature.Text = temperature.ToString();
                 }
-                
+                else
+                {
+                    textEdit_nuclear.Text = gateThresholdValue.nuclear.ToString();
+                    textEdit_temperature.Text = gateThresholdValue.temperature.ToString();
+                }
             }
 
         }
