@@ -41,7 +41,7 @@
             this.barButtonItem_systemManage = new DevExpress.XtraBars.BarButtonItem();
             this.barButtonItem_publishMessage = new DevExpress.XtraBars.BarButtonItem();
             this.barButtonItem_gateThreshold = new DevExpress.XtraBars.BarButtonItem();
-            this.barButtonItem11 = new DevExpress.XtraBars.BarButtonItem();
+            this.barButtonItem_gateThresholdErrorUpdate = new DevExpress.XtraBars.BarButtonItem();
             this.barButtonItem_exitSystem = new DevExpress.XtraBars.BarButtonItem();
             this.barStaticItem_systemTime = new DevExpress.XtraBars.BarStaticItem();
             this.barStaticItem_currentUser = new DevExpress.XtraBars.BarStaticItem();
@@ -99,7 +99,7 @@
             this.barButtonItem_systemManage,
             this.barButtonItem_publishMessage,
             this.barButtonItem_gateThreshold,
-            this.barButtonItem11,
+            this.barButtonItem_gateThresholdErrorUpdate,
             this.barButtonItem_exitSystem,
             this.barStaticItem_systemTime,
             this.barStaticItem_currentUser,
@@ -207,14 +207,15 @@
             this.barButtonItem_gateThreshold.RibbonStyle = DevExpress.XtraBars.Ribbon.RibbonItemStyles.Large;
             this.barButtonItem_gateThreshold.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.barButtonItem_gateThreshold_ItemClick);
             // 
-            // barButtonItem11
+            // barButtonItem_gateThresholdErrorUpdate
             // 
-            this.barButtonItem11.Caption = "误差调节";
-            this.barButtonItem11.Glyph = global::zhuhai.Properties.Resources.rulervertical_16x16;
-            this.barButtonItem11.Id = 17;
-            this.barButtonItem11.LargeGlyph = global::zhuhai.Properties.Resources.rulervertical_32x32;
-            this.barButtonItem11.Name = "barButtonItem11";
-            this.barButtonItem11.RibbonStyle = DevExpress.XtraBars.Ribbon.RibbonItemStyles.Large;
+            this.barButtonItem_gateThresholdErrorUpdate.Caption = "误差调节";
+            this.barButtonItem_gateThresholdErrorUpdate.Glyph = global::zhuhai.Properties.Resources.rulervertical_16x16;
+            this.barButtonItem_gateThresholdErrorUpdate.Id = 17;
+            this.barButtonItem_gateThresholdErrorUpdate.LargeGlyph = global::zhuhai.Properties.Resources.rulervertical_32x32;
+            this.barButtonItem_gateThresholdErrorUpdate.Name = "barButtonItem_gateThresholdErrorUpdate";
+            this.barButtonItem_gateThresholdErrorUpdate.RibbonStyle = DevExpress.XtraBars.Ribbon.RibbonItemStyles.Large;
+            this.barButtonItem_gateThresholdErrorUpdate.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.barButtonItem_gateThresholdErrorUpdate_ItemClick);
             // 
             // barButtonItem_exitSystem
             // 
@@ -324,7 +325,7 @@
             // 
             // ribbonPageGroup6
             // 
-            this.ribbonPageGroup6.ItemLinks.Add(this.barButtonItem11);
+            this.ribbonPageGroup6.ItemLinks.Add(this.barButtonItem_gateThresholdErrorUpdate);
             this.ribbonPageGroup6.ItemLinks.Add(this.barButtonItem_gateThreshold);
             this.ribbonPageGroup6.ItemLinks.Add(this.barButtonItem_hxswqhThreshold);
             this.ribbonPageGroup6.Name = "ribbonPageGroup6";
@@ -527,7 +528,7 @@
         private DevExpress.XtraBars.Ribbon.RibbonPageGroup ribbonPageGroup5;
         private DevExpress.XtraBars.Ribbon.RibbonPageGroup ribbonPageGroup6;
         private DevExpress.XtraBars.BarButtonItem barButtonItem_gateThreshold;
-        private DevExpress.XtraBars.BarButtonItem barButtonItem11;
+        private DevExpress.XtraBars.BarButtonItem barButtonItem_gateThresholdErrorUpdate;
         private DevExpress.XtraNavBar.NavBarItem navBarItem4;
         private DevExpress.XtraBars.BarButtonItem barButtonItem_exitSystem;
         private DevExpress.XtraBars.BarStaticItem barStaticItem_systemTime;

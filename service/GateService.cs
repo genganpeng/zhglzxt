@@ -100,10 +100,41 @@ namespace zhuhai.service
             }
         }
 
+        /// <summary>
+        /// 获取闸机阈值误差
+        /// </summary>
+        /// <param name="gateNo">闸机号</param>
+        /// <returns></returns>
+        public GateThresholdErrorValue getGateThresholdError(int gateNo)
+        {
+            SysTask task = new SysTask();
+            task.target_gates = new int[] { gateNo };
+            try
+            {
+                ICustomsCMS server = XmlRpcInstance.getInstance();
+                TaskRPCResponse taskRPCResponse = server.getCurrentThreshold(AppConfig.gateSensor, task);
+                if (taskRPCResponse.error_code == 0)
+                {
+                    return new GateThresholdErrorValue(taskRPCResponse.task.thr_temperature, taskRPCResponse.task.thr_nuclear);
+                }
+                else
+                {
+                    Console.WriteLine("连接服务器错误：" + taskRPCResponse.error_msg);
+                    return null;
+                }
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine("错误：" + ex.Message);
+                return null;
+            }
+        }
 
     }
 
-    
+    /// <summary>
+    /// 闸机阈值
+    /// </summary>
     public class GateThresholdValue
     {
         public double temperature { get; set; }
@@ -116,6 +147,9 @@ namespace zhuhai.service
         }
     }
 
+    /// <summary>
+    /// 化学生物阈值
+    /// </summary>
     public class HxswqhThresholdValue
     {
         public double biology { get; set; }
@@ -125,6 +159,21 @@ namespace zhuhai.service
         {
             this.biology = biology;
             this.chem = chem;
+        }
+    }
+
+    /// <summary>
+    /// 闸机阈值误差
+    /// </summary>
+    public class GateThresholdErrorValue
+    {
+        public double temperature_error { get; set; }
+        public double nuclear_error { get; set; }
+
+        public GateThresholdErrorValue(double temperature_error, double nuclear_error)
+        {
+            this.nuclear_error = nuclear_error;
+            this.temperature_error = temperature_error;
         }
     }
 }

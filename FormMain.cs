@@ -212,5 +212,12 @@ namespace zhuhai
             HxswqhThresholdUpdateForm hxswqhThresholdUpdateForm = new HxswqhThresholdUpdateForm();
             hxswqhThresholdUpdateForm.ShowDialog(this);
         }
+
+        private void barButtonItem_gateThresholdErrorUpdate_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
+        {
+            GateThresholdErrorUpdateForm gateThresholdErrorUpdateForm = new GateThresholdErrorUpdateForm(gateTotal);
+            gateThresholdErrorUpdateForm.ShowDialog(this);
+            
+        }
     }
 }

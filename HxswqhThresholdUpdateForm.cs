@@ -16,6 +16,8 @@ namespace zhuhai
     {
         private double biology = 38;
         private double chem = 10;
+        private double biology_default = 38;
+        private double chem_default = 10;
 
         public HxswqhThresholdUpdateForm()
         {
@@ -31,8 +33,8 @@ namespace zhuhai
             }
             else//为空时显示默认值
             {
-                textEdit_biology.Text = biology.ToString();
-                textEdit_chem.Text = chem.ToString();
+                textEdit_biology.Text = biology_default.ToString();
+                textEdit_chem.Text = chem_default.ToString();
             }
         }
 

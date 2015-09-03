@@ -195,6 +195,12 @@
       <DependentUpon>HxswqhThresholdUpdateForm.cs</DependentUpon>
     </Compile>
     <Compile Include="service\XmlRpcInstance.cs" />
+    <Compile Include="GateThresholdErrorUpdateForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="GateThresholdErrorUpdateForm.Designer.cs">
+      <DependentUpon>GateThresholdErrorUpdateForm.cs</DependentUpon>
+    </Compile>
     <EmbeddedResource Include="FormMain.resx">
       <DependentUpon>FormMain.cs</DependentUpon>
     </EmbeddedResource>
@@ -241,6 +247,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="HxswqhThresholdUpdateForm.resx">
       <DependentUpon>HxswqhThresholdUpdateForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="GateThresholdErrorUpdateForm.resx">
+      <DependentUpon>GateThresholdErrorUpdateForm.cs</DependentUpon>
     </EmbeddedResource>
     <None Include="App.config" />
     <None Include="Properties\Settings.settings">

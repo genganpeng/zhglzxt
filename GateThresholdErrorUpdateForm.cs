@@ -12,19 +12,19 @@ using zhuhai.service;
 
 namespace zhuhai
 {
-    public partial class GateThresholdUpdateForm : Form
+    public partial class GateThresholdErrorUpdateForm : Form
     {
         private int gateTotal = 100;
-        private double temperature_default = 38;
-        private double nuclear_default = 10;
-        private double temperature = 38;
-        private double nuclear = 10;
+        private double temperature_error = 0;
+        private double nuclear_error = 0;
+        private double temperature_error_default = 0;
+        private double nuclear_error_default = 0;
         /// <summary>
         /// 用于表示是否由于点击全选按钮而导致的按钮选中
         /// </summary>
         private Boolean selectedAllButton = false;
 
-        public GateThresholdUpdateForm(int gateTotal)
+        public GateThresholdErrorUpdateForm(int gateTotal)
         {
             InitializeComponent();
             this.gateTotal = gateTotal;
@@ -70,41 +70,41 @@ namespace zhuhai
                 return;
             }
 
-            if (this.textEdit_temperature.Text == "" || this.textEdit_temperature.Text.Trim() == "")
+            if (this.textEdit_temperatureError.Text == "" || this.textEdit_temperatureError.Text.Trim() == "")
             {
-                MessageBox.Show("请输入温度阀值！");
-                this.textEdit_temperature.Focus();
+                MessageBox.Show("请输入温度误差值（比如+0.1,-0.1）！");
+                this.textEdit_temperatureError.Focus();
                 return;
             }
             else
             {
                 try
                 {
-                    temperature=double.Parse(this.textEdit_temperature.Text.Trim());
+                    temperature_error = double.Parse(this.textEdit_temperatureError.Text.Trim());
                 }
                 catch
                 {
-                    MessageBox.Show("请输入有效温度值(整数)！");
-                    this.textEdit_temperature.Focus();
+                    MessageBox.Show("请输入有效温度误差值（比如+0.1,-0.1）！");
+                    this.textEdit_temperatureError.Focus();
                     return;
                 }
             }
-            if (this.textEdit_nuclear.Text == "" || this.textEdit_nuclear.Text.Trim() == "")
+            if (this.textEdit_nuclearError.Text == "" || this.textEdit_nuclearError.Text.Trim() == "")
             {
-                MessageBox.Show("请输入核素阀值！");
-                this.textEdit_nuclear.Focus();
+                MessageBox.Show("请输入核素误差值（比如+0.1,-0.1）！");
+                this.textEdit_nuclearError.Focus();
                 return;
             }
             else
             {
                 try
                 {
-                    nuclear = double.Parse(this.textEdit_nuclear.Text.Trim());
+                    nuclear_error = double.Parse(this.textEdit_nuclearError.Text.Trim());
                 }
                 catch
                 {
-                    MessageBox.Show("请输入有效核素值(小数)！");
-                    this.textEdit_nuclear.Focus();
+                    MessageBox.Show("请输入有效核素误差值（比如+0.1,-0.1）！");
+                    this.textEdit_nuclearError.Focus();
                     return;
                 }
             }
@@ -118,13 +118,12 @@ namespace zhuhai
 
             try
             {
-                UpdateThresholdService.getInstance().updateGateThreshold(temperature, nuclear, gateIds);
-                MessageBox.Show("修改闸机阈值成功！");
+                UpdateThresholdService.getInstance().updateGateThreshold(temperature_error, nuclear_error, gateIds);
+                MessageBox.Show("修改闸机误差值成功！");
             }
             catch (Exception ex)
             {
                 MessageBox.Show(ex.Message, "错误");
-
             }
             
         }
@@ -135,7 +134,7 @@ namespace zhuhai
         }
 
         /// <summary>
-        /// 手动选中每个值后，查找对应的闸机的阈值并显示
+        /// 手动选中每个值后，查找对应的闸机的阈值误差并显示
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
@@ -146,20 +145,19 @@ namespace zhuhai
             //如果是当前项被选中，则获取该闸机的阈值显示出来
             if (selectedAllButton == false && checkState == CheckState.Checked)
             {
-                GateThresholdValue gateThresholdValue = GateService.getInstance().getGateThreshold(index + 1);
+                GateThresholdErrorValue gateThresholdErrorValue = GateService.getInstance().getGateThresholdError(index + 1);
                 //为空就是默认值
-                if (gateThresholdValue == null)
+                if (gateThresholdErrorValue == null)
                 {
-                    textEdit_nuclear.Text = nuclear_default.ToString();
-                    textEdit_temperature.Text = temperature_default.ToString();
+                    textEdit_nuclearError.Text = nuclear_error_default.ToString();
+                    textEdit_temperatureError.Text = temperature_error_default.ToString();
                 }
                 else
                 {
-                    textEdit_nuclear.Text = gateThresholdValue.nuclear.ToString();
-                    textEdit_temperature.Text = gateThresholdValue.temperature.ToString();
+                    textEdit_nuclearError.Text = gateThresholdErrorValue.nuclear_error.ToString();
+                    textEdit_temperatureError.Text = gateThresholdErrorValue.temperature_error.ToString();
                 }
             }
-
         }
     }
 }
