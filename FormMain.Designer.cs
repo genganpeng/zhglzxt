@@ -46,6 +46,7 @@
             this.barStaticItem_systemTime = new DevExpress.XtraBars.BarStaticItem();
             this.barStaticItem_currentUser = new DevExpress.XtraBars.BarStaticItem();
             this.barButtonItem_hxswqhThreshold = new DevExpress.XtraBars.BarButtonItem();
+            this.barButtonItem_modeset = new DevExpress.XtraBars.BarButtonItem();
             this.ribbonPageCategory1 = new DevExpress.XtraBars.Ribbon.RibbonPageCategory();
             this.ribbonPage1 = new DevExpress.XtraBars.Ribbon.RibbonPage();
             this.ribbonPageGroup1 = new DevExpress.XtraBars.Ribbon.RibbonPageGroup();
@@ -61,7 +62,7 @@
             this.navBarItem4 = new DevExpress.XtraNavBar.NavBarItem();
             this.splitContainerControl1 = new DevExpress.XtraEditors.SplitContainerControl();
             this.xtraTabControl1 = new DevExpress.XtraTab.XtraTabControl();
-            this.xtraTabPage1 = new DevExpress.XtraTab.XtraTabPage();
+            this.xtraTabPage_tongguanMonitor = new DevExpress.XtraTab.XtraTabPage();
             this.xtraTabPage2 = new DevExpress.XtraTab.XtraTabPage();
             this.xtraTabPage3 = new DevExpress.XtraTab.XtraTabPage();
             this.navBarControl1 = new DevExpress.XtraNavBar.NavBarControl();
@@ -103,9 +104,10 @@
             this.barButtonItem_exitSystem,
             this.barStaticItem_systemTime,
             this.barStaticItem_currentUser,
-            this.barButtonItem_hxswqhThreshold});
+            this.barButtonItem_hxswqhThreshold,
+            this.barButtonItem_modeset});
             this.ribbonControl1.Location = new System.Drawing.Point(0, 0);
-            this.ribbonControl1.MaxItemId = 2;
+            this.ribbonControl1.MaxItemId = 3;
             this.ribbonControl1.Name = "ribbonControl1";
             this.ribbonControl1.PageCategories.AddRange(new DevExpress.XtraBars.Ribbon.RibbonPageCategory[] {
             this.ribbonPageCategory1});
@@ -252,6 +254,16 @@
             this.barButtonItem_hxswqhThreshold.RibbonStyle = DevExpress.XtraBars.Ribbon.RibbonItemStyles.Large;
             this.barButtonItem_hxswqhThreshold.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.barButtonItem_hxswqhThreshold_ItemClick);
             // 
+            // barButtonItem_modeset
+            // 
+            this.barButtonItem_modeset.Caption = "模式状态设置";
+            this.barButtonItem_modeset.Glyph = global::zhuhai.Properties.Resources.timelineview_16x16;
+            this.barButtonItem_modeset.Id = 2;
+            this.barButtonItem_modeset.LargeGlyph = global::zhuhai.Properties.Resources.timelineview_32x32;
+            this.barButtonItem_modeset.Name = "barButtonItem_modeset";
+            this.barButtonItem_modeset.RibbonStyle = DevExpress.XtraBars.Ribbon.RibbonItemStyles.Large;
+            this.barButtonItem_modeset.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.barButtonItem_modeset_ItemClick);
+            // 
             // ribbonPageCategory1
             // 
             this.ribbonPageCategory1.Name = "ribbonPageCategory1";
@@ -328,6 +340,7 @@
             this.ribbonPageGroup6.ItemLinks.Add(this.barButtonItem_gateThresholdErrorUpdate);
             this.ribbonPageGroup6.ItemLinks.Add(this.barButtonItem_gateThreshold);
             this.ribbonPageGroup6.ItemLinks.Add(this.barButtonItem_hxswqhThreshold);
+            this.ribbonPageGroup6.ItemLinks.Add(this.barButtonItem_modeset);
             this.ribbonPageGroup6.Name = "ribbonPageGroup6";
             this.ribbonPageGroup6.ShowCaptionButton = false;
             this.ribbonPageGroup6.Text = "系统参数";
@@ -377,19 +390,19 @@
             this.xtraTabControl1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.xtraTabControl1.Location = new System.Drawing.Point(0, 0);
             this.xtraTabControl1.Name = "xtraTabControl1";
-            this.xtraTabControl1.SelectedTabPage = this.xtraTabPage1;
+            this.xtraTabControl1.SelectedTabPage = this.xtraTabPage_tongguanMonitor;
             this.xtraTabControl1.Size = new System.Drawing.Size(1000, 403);
             this.xtraTabControl1.TabIndex = 0;
             this.xtraTabControl1.TabPages.AddRange(new DevExpress.XtraTab.XtraTabPage[] {
-            this.xtraTabPage1,
+            this.xtraTabPage_tongguanMonitor,
             this.xtraTabPage2,
             this.xtraTabPage3});
             // 
-            // xtraTabPage1
+            // xtraTabPage_tongguanMonitor
             // 
-            this.xtraTabPage1.Name = "xtraTabPage1";
-            this.xtraTabPage1.Size = new System.Drawing.Size(994, 374);
-            this.xtraTabPage1.Text = "通关监控";
+            this.xtraTabPage_tongguanMonitor.Name = "xtraTabPage_tongguanMonitor";
+            this.xtraTabPage_tongguanMonitor.Size = new System.Drawing.Size(994, 374);
+            this.xtraTabPage_tongguanMonitor.Text = "通关监控";
             // 
             // xtraTabPage2
             // 
@@ -535,7 +548,7 @@
         private DevExpress.XtraBars.Ribbon.RibbonStatusBar ribbonStatusBar1;
         private DevExpress.XtraEditors.SplitContainerControl splitContainerControl1;
         private DevExpress.XtraTab.XtraTabControl xtraTabControl1;
-        private DevExpress.XtraTab.XtraTabPage xtraTabPage1;
+        private DevExpress.XtraTab.XtraTabPage xtraTabPage_tongguanMonitor;
         private DevExpress.XtraTab.XtraTabPage xtraTabPage2;
         private DevExpress.XtraTab.XtraTabPage xtraTabPage3;
         private DevExpress.XtraNavBar.NavBarControl navBarControl1;
@@ -551,6 +564,7 @@
         private DevExpress.XtraBars.BarStaticItem barStaticItem_currentUser;
         private DevExpress.XtraBars.Ribbon.RibbonPageCategory ribbonPageCategory1;
         private DevExpress.XtraBars.BarButtonItem barButtonItem_hxswqhThreshold;
+        private DevExpress.XtraBars.BarButtonItem barButtonItem_modeset;
 
     }
 }

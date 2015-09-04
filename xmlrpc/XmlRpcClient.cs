@@ -55,9 +55,63 @@ namespace zhuhai.xmlrpc
     public enum TaskType
     {
         Empty = 0,
+        /// <summary>
+        /// 更新阈值
+        /// </summary>
         UpdateThreshold = 1,
+        /// <summary>
+        /// 改变闸机运行模式
+        /// </summary>
         ChangeMode = 2,
-        PublishNotice = 3
+        /// <summary>
+        /// 发布消息
+        /// </summary>
+        PublishNotice = 3,
+        /// <summary>
+        /// 改变状态
+        /// </summary>
+        ChangeState = 4
+    }
+
+    public enum WorkMode
+    {
+        /// <summary>
+        /// 自助通关
+        /// </summary>
+        Zizhu = 0,	
+        /// <summary>
+        /// 刷卡通关
+        /// </summary>
+        Shuaka = 1,
+        /// <summary>
+        /// 申报通关
+        /// </summary>
+        Shenbao = 2,
+        /// <summary>
+        /// 通关封闭
+        /// </summary>
+        Fengbi = 3
+    }
+
+
+    public enum WorkState
+    {
+        /// <summary>
+        /// 闸机休眠
+        /// </summary>
+        Sleep = 0,
+        /// <summary>
+        /// 闸机重启
+        /// </summary>
+        Restart = 1,
+        /// <summary>
+        /// 闸机锁定
+        /// </summary>
+        Lock = 2,
+        /// <summary>
+        /// 闸机解锁
+        /// </summary>
+        Unlock = 3
     }
 
     /// <summary>

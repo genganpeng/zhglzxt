@@ -219,5 +219,13 @@ namespace zhuhai
             gateThresholdErrorUpdateForm.ShowDialog(this);
             
         }
+
+        private void barButtonItem_modeset_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
+        {
+            ModeStateSetForm modeStateSetForm = new ModeStateSetForm(gateTotal);
+            modeStateSetForm.ShowDialog(this);
+            //改变闸机运行模式和状态后更新对应的通关监控页面
+            this.xtraTabPage_tongguanMonitor.Refresh();
+        }
     }
 }

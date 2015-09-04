@@ -101,6 +101,7 @@
     </Compile>
     <Compile Include="service\GateService.cs" />
     <Compile Include="service\IOperateService.cs" />
+    <Compile Include="service\ModeStateSetService.cs" />
     <Compile Include="service\PublishNoticeService.cs" />
     <Compile Include="service\WorkRuleService.cs" />
     <Compile Include="service\JobGuideBookService.cs" />
@@ -201,6 +202,12 @@
     <Compile Include="GateThresholdErrorUpdateForm.Designer.cs">
       <DependentUpon>GateThresholdErrorUpdateForm.cs</DependentUpon>
     </Compile>
+    <Compile Include="ModeStateSetForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="ModeStateSetForm.Designer.cs">
+      <DependentUpon>ModeStateSetForm.cs</DependentUpon>
+    </Compile>
     <EmbeddedResource Include="FormMain.resx">
       <DependentUpon>FormMain.cs</DependentUpon>
     </EmbeddedResource>
@@ -250,6 +257,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="GateThresholdErrorUpdateForm.resx">
       <DependentUpon>GateThresholdErrorUpdateForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ModeStateSetForm.resx">
+      <DependentUpon>ModeStateSetForm.cs</DependentUpon>
     </EmbeddedResource>
     <None Include="App.config" />
     <None Include="Properties\Settings.settings">
