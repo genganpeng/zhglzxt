@@ -47,6 +47,9 @@ namespace zhuhai
             //GateThresholdUpdateForm gateThresholdUpdateForm = new GateThresholdUpdateForm(server, 100);
             //gateThresholdUpdateForm.ShowDialog();
 
+
+
+
             //新建Login窗口
             LoginForm login = new LoginForm();
 

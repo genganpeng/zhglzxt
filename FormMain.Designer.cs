@@ -37,7 +37,7 @@
             this.barButtonItem_epidemicInfo = new DevExpress.XtraBars.BarButtonItem();
             this.barButtonItem5 = new DevExpress.XtraBars.BarButtonItem();
             this.barButtonItem6 = new DevExpress.XtraBars.BarButtonItem();
-            this.barButtonItem7 = new DevExpress.XtraBars.BarButtonItem();
+            this.barButtonItem_ClearanceStatistics = new DevExpress.XtraBars.BarButtonItem();
             this.barButtonItem_systemManage = new DevExpress.XtraBars.BarButtonItem();
             this.barButtonItem_publishMessage = new DevExpress.XtraBars.BarButtonItem();
             this.barButtonItem_gateThreshold = new DevExpress.XtraBars.BarButtonItem();
@@ -96,7 +96,7 @@
             this.barButtonItem_epidemicInfo,
             this.barButtonItem5,
             this.barButtonItem6,
-            this.barButtonItem7,
+            this.barButtonItem_ClearanceStatistics,
             this.barButtonItem_systemManage,
             this.barButtonItem_publishMessage,
             this.barButtonItem_gateThreshold,
@@ -172,13 +172,14 @@
             this.barButtonItem6.LargeGlyph = global::zhuhai.Properties.Resources.show_32x32;
             this.barButtonItem6.Name = "barButtonItem6";
             // 
-            // barButtonItem7
+            // barButtonItem_ClearanceStatistics
             // 
-            this.barButtonItem7.Caption = "通关人数统计";
-            this.barButtonItem7.Glyph = global::zhuhai.Properties.Resources.autofit_window_16x16;
-            this.barButtonItem7.Id = 12;
-            this.barButtonItem7.LargeGlyph = global::zhuhai.Properties.Resources.autofit_window_32x32;
-            this.barButtonItem7.Name = "barButtonItem7";
+            this.barButtonItem_ClearanceStatistics.Caption = "通关人数统计";
+            this.barButtonItem_ClearanceStatistics.Glyph = global::zhuhai.Properties.Resources.autofit_window_16x16;
+            this.barButtonItem_ClearanceStatistics.Id = 12;
+            this.barButtonItem_ClearanceStatistics.LargeGlyph = global::zhuhai.Properties.Resources.autofit_window_32x32;
+            this.barButtonItem_ClearanceStatistics.Name = "barButtonItem_ClearanceStatistics";
+            this.barButtonItem_ClearanceStatistics.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.barButtonItem_ClearanceStatistics_ItemClick);
             // 
             // barButtonItem_systemManage
             // 
@@ -313,7 +314,7 @@
             // 
             // ribbonPageGroup4
             // 
-            this.ribbonPageGroup4.ItemLinks.Add(this.barButtonItem7);
+            this.ribbonPageGroup4.ItemLinks.Add(this.barButtonItem_ClearanceStatistics);
             this.ribbonPageGroup4.Name = "ribbonPageGroup4";
             this.ribbonPageGroup4.ShowCaptionButton = false;
             this.ribbonPageGroup4.Text = "数据统计";
@@ -535,7 +536,7 @@
         private DevExpress.XtraBars.Ribbon.RibbonPageGroup ribbonPageGroup3;
         private DevExpress.XtraBars.Ribbon.RibbonPageGroup ribbonPageGroup4;
         private DevExpress.XtraBars.BarButtonItem barButtonItem6;
-        private DevExpress.XtraBars.BarButtonItem barButtonItem7;
+        private DevExpress.XtraBars.BarButtonItem barButtonItem_ClearanceStatistics;
         private DevExpress.XtraBars.BarButtonItem barButtonItem_systemManage;
         private DevExpress.XtraBars.BarButtonItem barButtonItem_publishMessage;
         private DevExpress.XtraBars.Ribbon.RibbonPageGroup ribbonPageGroup5;

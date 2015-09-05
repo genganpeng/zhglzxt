@@ -88,6 +88,12 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="ClearanceStatisticsForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="ClearanceStatisticsForm.Designer.cs">
+      <DependentUpon>ClearanceStatisticsForm.cs</DependentUpon>
+    </Compile>
     <Compile Include="model\WorkRule.cs" />
     <Compile Include="model\CommonText.cs" />
     <Compile Include="model\JobGuideBook.cs" />
@@ -108,6 +114,7 @@
     <Compile Include="service\EpidemicInfoService.cs" />
     <Compile Include="service\DisposePlanService.cs" />
     <Compile Include="service\UpdateThresholdService.cs" />
+    <Compile Include="util\AbnormalType.cs" />
     <Compile Include="util\AppConfig.cs" />
     <Compile Include="util\DictionaryItem.cs" />
     <Compile Include="FormMain.cs">
@@ -208,6 +215,15 @@
     <Compile Include="ModeStateSetForm.Designer.cs">
       <DependentUpon>ModeStateSetForm.cs</DependentUpon>
     </Compile>
+    <Compile Include="ClearanceRecordForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="ClearanceRecordForm.Designer.cs">
+      <DependentUpon>ClearanceRecordForm.cs</DependentUpon>
+    </Compile>
+    <EmbeddedResource Include="ClearanceStatisticsForm.resx">
+      <DependentUpon>ClearanceStatisticsForm.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="FormMain.resx">
       <DependentUpon>FormMain.cs</DependentUpon>
     </EmbeddedResource>
@@ -260,6 +276,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="ModeStateSetForm.resx">
       <DependentUpon>ModeStateSetForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ClearanceRecordForm.resx">
+      <DependentUpon>ClearanceRecordForm.cs</DependentUpon>
     </EmbeddedResource>
     <None Include="App.config" />
     <None Include="Properties\Settings.settings">

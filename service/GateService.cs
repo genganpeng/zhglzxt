@@ -130,6 +130,42 @@ namespace zhuhai.service
             }
         }
 
+        /// <summary>
+        /// 根据条件查询通关记录人数
+        /// </summary>
+        /// <param name="name">姓名</param>
+        /// <param name="country">国籍</param>
+        /// <param name="sex">性别</param>
+        /// <param name="startTime">开始时间</param>
+        /// <param name="endTime">结束时间</param>
+        /// <param name="abonormalType">异常类型（查询全部为-1）</param>
+        /// <param name="gateNo">闸机号（查询全部为0）</param>
+        /// <returns></returns>
+        public string getGateRecordsNum(string name, string country, string sex, DateTime startTime, DateTime endTime, int abonormalType, int gateNo)
+        {
+            try
+            {
+                ICustomsCMS server = XmlRpcInstance.getInstance();
+                GateRecordsNumResponse gateRecordsNumResponse = server.getGateRecordsNum(AppConfig.gateSensor, gateNo,
+                startTime, endTime);
+
+                if (gateRecordsNumResponse.error_code == 0)
+                {
+                    return "过关总人数：" + gateRecordsNumResponse.all_num +
+                        "！正常过关人数：" + gateRecordsNumResponse.healthy_num + "！异常过关人数：" + gateRecordsNumResponse.unhealthy_num;
+                }
+                else
+                {
+                    throw new Exception("错误：" + gateRecordsNumResponse.error_msg);
+                }
+            }
+            catch (Exception ex)
+            {
+                throw new Exception("错误：" + ex.Message);
+            }
+            
+        }
+
     }
 
     /// <summary>

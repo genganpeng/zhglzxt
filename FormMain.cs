@@ -227,5 +227,11 @@ namespace zhuhai
             //改变闸机运行模式和状态后更新对应的通关监控页面
             this.xtraTabPage_tongguanMonitor.Refresh();
         }
+
+        private void barButtonItem_ClearanceStatistics_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
+        {
+            ClearanceStatisticsForm clearanceStatisticsForm = new ClearanceStatisticsForm(gateTotal);
+            clearanceStatisticsForm.ShowDialog(this);
+        }
     }
 }

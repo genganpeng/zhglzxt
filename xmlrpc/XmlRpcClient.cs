@@ -43,6 +43,11 @@ namespace zhuhai.xmlrpc
         /// <returns></returns>
         [XmlRpcMethod("getCurrentThreshold")]
         TaskRPCResponse getCurrentThreshold(int controller_id, SysTask task);
+
+        // 获取一个闸机在一段时间内的通关人数，若 gate_id 为0，则返回所有闸机的通关总数
+        [XmlRpcMethod("getGateRecordsNum")]
+        GateRecordsNumResponse getGateRecordsNum(int controller_id, int gate_id,
+            DateTime time_from, DateTime time_to);
     }
 
     /**
@@ -114,6 +119,30 @@ namespace zhuhai.xmlrpc
         Unlock = 3
     }
 
+    public enum AbnormalType
+    {
+        /// <summary>
+        /// 无异常
+        /// </summary>
+        No = 0,
+        /// <summary>
+        /// 体温异常
+        /// </summary>
+        Temperatare =1,
+        /// <summary>
+        /// 核素异常
+        /// </summary>
+        Nuclear = 2,
+        /// <summary>
+        /// 生物异常
+        /// </summary>
+        Biology = 3,
+        /// <summary>
+        /// 化学异常
+        /// </summary>
+        Chem = 4
+    }
+
     /// <summary>
     /// 系统任务，根据任务类型的不同，对应的字段的有效性与类型保持一致。
     /// </summary>
@@ -175,6 +204,20 @@ namespace zhuhai.xmlrpc
         public override string ToString()
         {
             return this.task.ToString();
+        }
+    }
+
+    public class GateRecordsNumResponse : RPCResponse
+    {
+        public int all_num;
+        public int healthy_num;
+        public int unhealthy_num;
+
+        public override string ToString()
+        {
+            return String.Format(
+                "all= {0}, healthy= {1}, unhealthy= {2}",
+                this.all_num, this.healthy_num, this.unhealthy_num);
         }
     }
 }
