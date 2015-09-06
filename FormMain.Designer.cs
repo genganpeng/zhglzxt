@@ -61,10 +61,10 @@
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.navBarItem4 = new DevExpress.XtraNavBar.NavBarItem();
             this.splitContainerControl1 = new DevExpress.XtraEditors.SplitContainerControl();
-            this.xtraTabControl1 = new DevExpress.XtraTab.XtraTabControl();
+            this.xtraTabControl = new DevExpress.XtraTab.XtraTabControl();
             this.xtraTabPage_tongguanMonitor = new DevExpress.XtraTab.XtraTabPage();
-            this.xtraTabPage2 = new DevExpress.XtraTab.XtraTabPage();
-            this.xtraTabPage3 = new DevExpress.XtraTab.XtraTabPage();
+            this.xtraTabPage_zhajiMonitor = new DevExpress.XtraTab.XtraTabPage();
+            this.xtraTabPage_shipinMonitor = new DevExpress.XtraTab.XtraTabPage();
             this.navBarControl1 = new DevExpress.XtraNavBar.NavBarControl();
             this.navBarGroup1 = new DevExpress.XtraNavBar.NavBarGroup();
             this.navBarItem_weixiaoqihou = new DevExpress.XtraNavBar.NavBarItem();
@@ -79,8 +79,8 @@
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainerControl1)).BeginInit();
             this.splitContainerControl1.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.xtraTabControl1)).BeginInit();
-            this.xtraTabControl1.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.xtraTabControl)).BeginInit();
+            this.xtraTabControl.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.navBarControl1)).BeginInit();
             this.SuspendLayout();
             // 
@@ -352,7 +352,7 @@
             this.ribbonStatusBar1.ItemLinks.Add(this.barButtonItem_exitSystem);
             this.ribbonStatusBar1.ItemLinks.Add(this.barStaticItem_currentUser);
             this.ribbonStatusBar1.ItemLinks.Add(this.barStaticItem_systemTime);
-            this.ribbonStatusBar1.Location = new System.Drawing.Point(0, 535);
+            this.ribbonStatusBar1.Location = new System.Drawing.Point(0, 694);
             this.ribbonStatusBar1.Name = "ribbonStatusBar1";
             this.ribbonStatusBar1.Ribbon = this.ribbonControl1;
             this.ribbonStatusBar1.Size = new System.Drawing.Size(1350, 27);
@@ -377,51 +377,51 @@
             this.splitContainerControl1.Location = new System.Drawing.Point(0, 122);
             this.splitContainerControl1.Name = "splitContainerControl1";
             this.splitContainerControl1.Padding = new System.Windows.Forms.Padding(5);
-            this.splitContainerControl1.Panel1.Controls.Add(this.xtraTabControl1);
+            this.splitContainerControl1.Panel1.Controls.Add(this.xtraTabControl);
             this.splitContainerControl1.Panel1.MinSize = 1000;
             this.splitContainerControl1.Panel1.Text = "Panel1";
             this.splitContainerControl1.Panel2.Controls.Add(this.navBarControl1);
             this.splitContainerControl1.Panel2.MinSize = 336;
             this.splitContainerControl1.Panel2.Text = "Panel2";
-            this.splitContainerControl1.Size = new System.Drawing.Size(1350, 413);
+            this.splitContainerControl1.Size = new System.Drawing.Size(1350, 572);
             this.splitContainerControl1.TabIndex = 17;
             this.splitContainerControl1.Text = "splitContainerControl1";
             // 
-            // xtraTabControl1
+            // xtraTabControl
             // 
-            this.xtraTabControl1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.xtraTabControl1.Location = new System.Drawing.Point(0, 0);
-            this.xtraTabControl1.Name = "xtraTabControl1";
-            this.xtraTabControl1.SelectedTabPage = this.xtraTabPage_tongguanMonitor;
-            this.xtraTabControl1.Size = new System.Drawing.Size(1000, 403);
-            this.xtraTabControl1.TabIndex = 0;
-            this.xtraTabControl1.TabPages.AddRange(new DevExpress.XtraTab.XtraTabPage[] {
+            this.xtraTabControl.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.xtraTabControl.Location = new System.Drawing.Point(0, 0);
+            this.xtraTabControl.Name = "xtraTabControl";
+            this.xtraTabControl.SelectedTabPage = this.xtraTabPage_tongguanMonitor;
+            this.xtraTabControl.Size = new System.Drawing.Size(1000, 562);
+            this.xtraTabControl.TabIndex = 0;
+            this.xtraTabControl.TabPages.AddRange(new DevExpress.XtraTab.XtraTabPage[] {
             this.xtraTabPage_tongguanMonitor,
-            this.xtraTabPage2,
-            this.xtraTabPage3});
+            this.xtraTabPage_zhajiMonitor,
+            this.xtraTabPage_shipinMonitor});
             // 
             // xtraTabPage_tongguanMonitor
             // 
             this.xtraTabPage_tongguanMonitor.Name = "xtraTabPage_tongguanMonitor";
-            this.xtraTabPage_tongguanMonitor.Size = new System.Drawing.Size(994, 374);
+            this.xtraTabPage_tongguanMonitor.Size = new System.Drawing.Size(994, 533);
             this.xtraTabPage_tongguanMonitor.Text = "通关监控";
             // 
-            // xtraTabPage2
+            // xtraTabPage_zhajiMonitor
             // 
-            this.xtraTabPage2.Name = "xtraTabPage2";
-            this.xtraTabPage2.Size = new System.Drawing.Size(994, 374);
-            this.xtraTabPage2.Text = "闸机监控";
+            this.xtraTabPage_zhajiMonitor.Name = "xtraTabPage_zhajiMonitor";
+            this.xtraTabPage_zhajiMonitor.Size = new System.Drawing.Size(994, 533);
+            this.xtraTabPage_zhajiMonitor.Text = "闸机监控";
             // 
-            // xtraTabPage3
+            // xtraTabPage_shipinMonitor
             // 
-            this.xtraTabPage3.Name = "xtraTabPage3";
-            this.xtraTabPage3.Size = new System.Drawing.Size(994, 374);
-            this.xtraTabPage3.Text = "视频监控";
+            this.xtraTabPage_shipinMonitor.Name = "xtraTabPage_shipinMonitor";
+            this.xtraTabPage_shipinMonitor.Size = new System.Drawing.Size(994, 533);
+            this.xtraTabPage_shipinMonitor.Text = "视频监控";
             // 
             // navBarControl1
             // 
             this.navBarControl1.ActiveGroup = this.navBarGroup1;
-            this.navBarControl1.Dock = System.Windows.Forms.DockStyle.Bottom;
+            this.navBarControl1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.navBarControl1.Groups.AddRange(new DevExpress.XtraNavBar.NavBarGroup[] {
             this.navBarGroup1,
             this.navBarGroup3,
@@ -431,10 +431,10 @@
             this.navBarItem2,
             this.navBarItem_shengwu,
             this.navBarItem_huaxue});
-            this.navBarControl1.Location = new System.Drawing.Point(0, 24);
+            this.navBarControl1.Location = new System.Drawing.Point(0, 0);
             this.navBarControl1.Name = "navBarControl1";
             this.navBarControl1.OptionsNavPane.ExpandedWidth = 335;
-            this.navBarControl1.Size = new System.Drawing.Size(335, 379);
+            this.navBarControl1.Size = new System.Drawing.Size(335, 562);
             this.navBarControl1.TabIndex = 0;
             this.navBarControl1.Text = "navBarControl1";
             // 
@@ -494,14 +494,13 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 14F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1350, 562);
+            this.ClientSize = new System.Drawing.Size(1350, 721);
             this.Controls.Add(this.splitContainerControl1);
             this.Controls.Add(this.ribbonStatusBar1);
             this.Controls.Add(this.pictureBox1);
             this.Controls.Add(this.ribbonControl1);
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.IsMdiContainer = true;
-            this.MaximumSize = new System.Drawing.Size(1366, 600);
             this.MinimizeBox = false;
             this.MinimumSize = new System.Drawing.Size(1302, 600);
             this.Name = "FormMain";
@@ -512,8 +511,8 @@
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainerControl1)).EndInit();
             this.splitContainerControl1.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.xtraTabControl1)).EndInit();
-            this.xtraTabControl1.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.xtraTabControl)).EndInit();
+            this.xtraTabControl.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.navBarControl1)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
@@ -549,10 +548,10 @@
         private DevExpress.XtraBars.BarStaticItem barStaticItem_systemTime;
         private DevExpress.XtraBars.Ribbon.RibbonStatusBar ribbonStatusBar1;
         private DevExpress.XtraEditors.SplitContainerControl splitContainerControl1;
-        private DevExpress.XtraTab.XtraTabControl xtraTabControl1;
+        private DevExpress.XtraTab.XtraTabControl xtraTabControl;
         private DevExpress.XtraTab.XtraTabPage xtraTabPage_tongguanMonitor;
-        private DevExpress.XtraTab.XtraTabPage xtraTabPage2;
-        private DevExpress.XtraTab.XtraTabPage xtraTabPage3;
+        private DevExpress.XtraTab.XtraTabPage xtraTabPage_zhajiMonitor;
+        private DevExpress.XtraTab.XtraTabPage xtraTabPage_shipinMonitor;
         private DevExpress.XtraNavBar.NavBarControl navBarControl1;
         private DevExpress.XtraNavBar.NavBarGroup navBarGroup1;
         private DevExpress.XtraNavBar.NavBarItem navBarItem_weixiaoqihou;

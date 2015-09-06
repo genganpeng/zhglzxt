@@ -151,6 +151,13 @@ namespace zhuhai.Properties {
             }
         }
         
+        internal static System.Drawing.Bitmap exception {
+            get {
+                object obj = ResourceManager.GetObject("exception", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
         internal static System.Drawing.Bitmap gured {
             get {
                 object obj = ResourceManager.GetObject("gured", resourceCulture);

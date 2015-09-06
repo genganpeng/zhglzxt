@@ -6,6 +6,7 @@ using System.Data;
 using zhuhai.model;
 using zhuhai.util;
 using zhuhai.xmlrpc;
+using CookComputing.XmlRpc;
 
 namespace zhuhai.service
 {
@@ -53,33 +54,32 @@ namespace zhuhai.service
             //记录总数量
             TotalNum = 100;
 
-            startIndex = startIndex - 1;
-            endIndex = endIndex - 1;
-            //当前页需要显示的记录
-            int count = endIndex < (TotalNum - 1) ? endIndex : (TotalNum - 1);
-            List<GateRecord> gateRecords = new List<GateRecord>();
+            ICustomsCMS server = XmlRpcInstance.getInstance();
 
-            for (int i = startIndex; i <= count; i++)
+            try
             {
-                GateRecord gateRecord = new GateRecord();
-                gateRecord.name = "测试" + i;
-                gateRecord.gate_id = i;
-                gateRecord.nvr_begintime = new DateTime();
-                gateRecord.temperature = 30 + i;
-                gateRecord.nuclear = 20 + i;
-                gateRecord.nuclear_detail = "铱";
-                gateRecord.nationality = "中国";
-                gateRecord.sex = "男";
-                gateRecord.birth_date = new DateTime(1988, 11,15);
-                gateRecord.id_type = 1;
-                gateRecord.id_code = "12121212121212";
-                gateRecord.issue_date = new DateTime();
-                gateRecord.expire_date = new DateTime();
-                gateRecord.id_photo_id = i;
-                gateRecords.Add(gateRecord);
-
+                GateRecordsResponse res = server.searchPassenger(AppConfig.gateSensor, strWhere[ClearanceRecord.NAME_COLUMN].ToString(), new XmlRpcStruct());
+                TotalNum = res.records_num;
+                if (res.error_code == 0)
+                {
+                    startIndex = startIndex - 1;
+                    endIndex = endIndex - 1;
+                    //当前页需要显示的记录
+                    int count = endIndex < (TotalNum - 1) ? endIndex : (TotalNum - 1);
+                    List<GateRecord> gateRecords = new List<GateRecord>(res.records);
+                    return gateRecords;
+                }
+                else
+                {
+                    Console.WriteLine("ClearanceRecordService - InitDt" + res.error_msg);
+                }
             }
-            return gateRecords;
+            catch(Exception ex) {
+                Console.WriteLine("ClearanceRecordService - InitDt" + ex.Message);
+            }
+
+            return null;
+           
         }
 
         /// <summary>

@@ -57,7 +57,7 @@ namespace zhuhai
             string sex = comboBox_sex.Text;
             if (sex == "全部")
             {
-                sex = null;
+                sex = "";
             }
             strWhere.Add(ClearanceRecord.SEX_COLUMN, sex);
 
