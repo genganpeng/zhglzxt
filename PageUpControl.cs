@@ -99,8 +99,9 @@ namespace zhuhai.Component
         private int startIndex;
         private int endIndex;
 
-        private string strWhere;
-        public string StrWhere {
+        private IDictionary<string, object> strWhere;
+        public IDictionary<string, object> StrWhere
+        {
             get { return strWhere; }
             set { strWhere = value; } 
         }

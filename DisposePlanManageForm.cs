@@ -36,18 +36,20 @@ namespace zhuhai
         /// 格式化查询条件
         /// </summary>
         /// <returns></returns>
-        public string formatWhere() {
+        public IDictionary<string, object> formatWhere()
+        {
             string title = textEdit_title.Text;
 
-            string strWhere = "1=1";
+            IDictionary<string, object> strWhere = new Dictionary<string, object>();
             if (!String.IsNullOrEmpty(title))
             {
-                strWhere += " and " + WorkRule.TITLE_COLOMUN + " like '%" + title + "%'";
+                strWhere.Add(DisposePlan.TITLE_COLOMUN, " like '%" + title + "%'");
             }
             return strWhere;
+
         }
 
-        public void initData(string strWhere)
+        public void initData(IDictionary<string, object> strWhere)
         {
             //初始化实现的service，每页数量，开始页码
             pageUpControl.PageIndex = 1;

@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Data;
+using System.Collections;
 
 namespace zhuhai.service
 {
@@ -10,7 +11,7 @@ namespace zhuhai.service
     {
         int GetRecordCount();
 
-        DataTable GetListByPage(string strWhere, int startIndex, int endIndex);
+        DataTable GetListByPage(IDictionary<string, object> strWhere, int startIndex, int endIndex);
 
 
     }

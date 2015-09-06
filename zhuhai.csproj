@@ -94,6 +94,7 @@
     <Compile Include="ClearanceStatisticsForm.Designer.cs">
       <DependentUpon>ClearanceStatisticsForm.cs</DependentUpon>
     </Compile>
+    <Compile Include="model\ClearanceRecord.cs" />
     <Compile Include="model\WorkRule.cs" />
     <Compile Include="model\CommonText.cs" />
     <Compile Include="model\JobGuideBook.cs" />
@@ -114,6 +115,13 @@
     <Compile Include="service\EpidemicInfoService.cs" />
     <Compile Include="service\DisposePlanService.cs" />
     <Compile Include="service\UpdateThresholdService.cs" />
+    <Compile Include="service\ClearanceRecordService.cs" />
+    <Compile Include="ShowClearanceInfoForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="ShowClearanceInfoForm.Designer.cs">
+      <DependentUpon>ShowClearanceInfoForm.cs</DependentUpon>
+    </Compile>
     <Compile Include="util\AbnormalType.cs" />
     <Compile Include="util\AppConfig.cs" />
     <Compile Include="util\DictionaryItem.cs" />
@@ -246,6 +254,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="RichTextEditorForm.resx">
       <DependentUpon>RichTextEditorForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ShowClearanceInfoForm.resx">
+      <DependentUpon>ShowClearanceInfoForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="SystemManageEditForm.resx">
       <DependentUpon>SystemManageEditForm.cs</DependentUpon>
@@ -397,7 +408,39 @@
       <Install>true</Install>
     </BootstrapperPackage>
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <None Include="Resources\nuclear\gured.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\nuclear\guwhite.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\nuclear\jiared.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\nuclear\jiawhite.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\nuclear\sered.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\nuclear\sewhite.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\nuclear\tured.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\nuclear\tuwhite.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\nuclear\yired.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\nuclear\yiwhite.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\people.png" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it.
        Other similar extension points exist, see Microsoft.Common.targets.

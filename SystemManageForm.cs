@@ -37,35 +37,38 @@ namespace zhuhai
         /// 格式化查询条件
         /// </summary>
         /// <returns></returns>
-        public string formatWhere() {
+        public IDictionary<string, object> formatWhere()
+        {
             string username = textEdit_userName.Text;
             string name = textEdit_name.Text;
             string idCard = textEdit_IDCard.Text;
             string type = "";
+
+            IDictionary<string, object> strWhere = new Dictionary<string, object>();
+
             if (comboBoxEdit_type.SelectedIndex != -1)
                 type = comboBoxEdit_type.SelectedIndex.ToString();
 
-            string strWhere = "1=1";
             if (!String.IsNullOrEmpty(username))
             {
-                strWhere += " and " + SystemManage.USERNAME_COLUMN + " like '%" + username + "%'";
+                strWhere.Add(SystemManage.USERNAME_COLUMN, " like '%" + username + "%'");
             }
             if (!String.IsNullOrEmpty(name))
             {
-                strWhere += " and " + SystemManage.NAME_COLUMN + " like '%" + name + "%'";
+                strWhere.Add(SystemManage.NAME_COLUMN, " like '%" + name + "%'");
             }
             if (!String.IsNullOrEmpty(idCard))
             {
-                strWhere += " and " + SystemManage.IDCARD_COLUMN + " like '%" + idCard + "%'";
+                strWhere.Add(SystemManage.IDCARD_COLUMN, " like '%" + idCard + "%'");
             }
             if (type != "0" && type != "")
             {
-                strWhere += " and " + SystemManage.TYPE_COLUMN + " = " + type;
+                strWhere.Add(SystemManage.TYPE_COLUMN, " = " + type);
             }
             return strWhere;
         }
 
-        public void initData(string strWhere)
+        public void initData(IDictionary<string, object> strWhere)
         {
             //初始化实现的service，每页数量，开始页码
             pageUpControl.PageIndex = 1;

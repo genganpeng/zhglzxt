@@ -18,6 +18,7 @@ using CookComputing.XmlRpc;
  **/
 namespace zhuhai.xmlrpc
 {
+
     public interface ICustomsCMS : IXmlRpcProxy
     {
         /// <summary>
@@ -48,6 +49,14 @@ namespace zhuhai.xmlrpc
         [XmlRpcMethod("getGateRecordsNum")]
         GateRecordsNumResponse getGateRecordsNum(int controller_id, int gate_id,
             DateTime time_from, DateTime time_to);
+
+        //查询乘客异常信息，可根据姓名、通关时间、性别、出生日期等信息对历史通关的乘客进行查询，返回查询结果。
+        [XmlRpcMethod("searchPassenger")]
+        GateRecordsResponse searchPassenger(int controller_id, string passenger_name,
+                                            XmlRpcStruct other_conditions);
+
+        [XmlRpcMethod("getPassengerPhoto")]
+        IDPhotoResponse getPassengerPhoto(int controller_id, int photo_id);
     }
 
     /**
@@ -143,6 +152,13 @@ namespace zhuhai.xmlrpc
         Chem = 4
     }
 
+    public enum IDType
+    {
+        IDCard = 0,		// 目前用作回乡证
+        Passport = 1,	// 护照
+        HKMOPermits = 2	// 港澳通行证
+    }
+
     /// <summary>
     /// 系统任务，根据任务类型的不同，对应的字段的有效性与类型保持一致。
     /// </summary>
@@ -219,5 +235,75 @@ namespace zhuhai.xmlrpc
                 "all= {0}, healthy= {1}, unhealthy= {2}",
                 this.all_num, this.healthy_num, this.unhealthy_num);
         }
+    }
+
+    public class GateRecordsResponse : RPCResponse
+    {
+        public string query;  // 搜索的条件
+        public int unique_passengers;  // 命中的不同的旅客的数量(每个人可能对应多条通关记录)
+        public int records_num;  // 总的通关记录的数量
+        public GateRecord[] records;  // the id_photo in it is empty but id_photo_id is valid
+
+        public override string ToString()
+        {
+            return String.Format(
+                "query= {0}, unique_passengers= {1}, records_num= {2}",
+                this.query, this.unique_passengers, this.records_num);
+        }
+    }
+
+    /**
+	 * 通过海关闸机的记录，包含旅客个人信息以及过关时检疫检查结果
+	 */
+    public class GateRecord
+    {
+        // ID related infos
+        public string name { get; set; }
+        public string sex { get; set; }
+        public int id_type { get; set; }
+        public string id_code { get; set; }
+        public string nationality { get; set; }
+        public DateTime birth_date { get; set; }
+        public string birth_place { get; set; }
+        public string issue_place { get; set; }
+        public DateTime issue_date { get; set; }
+        public DateTime expire_date { get; set; }
+        public string mrz_code { get; set; }
+        public string mrz2_code { get; set; }
+
+        [XmlRpcMissingMapping(MappingAction.Ignore)]
+        public byte[] id_photo { get; set; }  // ID 证件照文件的内容，发送时为必选项，接收时为可选项
+        public string id_photo_ext { get; set; }	// 图片文件的后缀名，可以为 jpg / png / ico 等
+        public int id_photo_id { get; set; }  // 证件照在数据库中的id，发送时忽略之，接收时总是有效的
+
+        // Healthy check
+        public double temperature { get; set; }
+        public double nuclear { get; set; }
+        public string nuclear_detail { get; set; }	// 检出的核素，以'|'分隔（分隔符数量固定），例如"铀|氡|||钋"
+        public bool is_healthy { get; set; }
+        public bool question_answer { get; set; }	//自助申报时的问题结果
+
+        // Gate related
+        public int gate_id { get; set; }
+        public int gate_mode { get; set; }  //闸机的当前工作模式
+        public DateTime nvr_begintime { get; set; }	// 该旅客触发闸机进行处理的时刻
+        public DateTime nvr_endtime { get; set; }	// 填充为发送时的时刻，server会进一步修正
+        [XmlRpcMissingMapping(MappingAction.Ignore)]
+        public string discharged_by { get; set; }	// 放行的工作人员，闸机不发送此信息，保持为空即可
+
+        public override string ToString()
+        {
+            return String.Format(
+                "name= {0}, id= {1}, id_type= {2}, temp= {3}, nuclear= {4}, healthy= {5}, photo_id= {6}",
+                this.name, this.id_code, (IDType)this.id_type, this.temperature, this.nuclear,
+                this.is_healthy, this.id_photo_id);
+        }
+    }
+
+    public class IDPhotoResponse : RPCResponse
+    {
+        public int photo_id;
+        public string filename;
+        public byte[] content;
     }
 }

@@ -233,5 +233,12 @@ namespace zhuhai
             ClearanceStatisticsForm clearanceStatisticsForm = new ClearanceStatisticsForm(gateTotal);
             clearanceStatisticsForm.ShowDialog(this);
         }
+
+        private void barButtonItem_clearanceRecord_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
+        {
+            ClearanceRecordForm clearanceRecordForm = new ClearanceRecordForm(gateTotal);
+            clearanceRecordForm.ShowDialog(this);
+            
+        }
     }
 }

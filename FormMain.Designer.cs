@@ -35,7 +35,7 @@
             this.barButtonItem_jobGuideBook = new DevExpress.XtraBars.BarButtonItem();
             this.barButtonItem_disposePlan = new DevExpress.XtraBars.BarButtonItem();
             this.barButtonItem_epidemicInfo = new DevExpress.XtraBars.BarButtonItem();
-            this.barButtonItem5 = new DevExpress.XtraBars.BarButtonItem();
+            this.barButtonItem_clearanceRecord = new DevExpress.XtraBars.BarButtonItem();
             this.barButtonItem6 = new DevExpress.XtraBars.BarButtonItem();
             this.barButtonItem_ClearanceStatistics = new DevExpress.XtraBars.BarButtonItem();
             this.barButtonItem_systemManage = new DevExpress.XtraBars.BarButtonItem();
@@ -94,7 +94,7 @@
             this.barButtonItem_jobGuideBook,
             this.barButtonItem_disposePlan,
             this.barButtonItem_epidemicInfo,
-            this.barButtonItem5,
+            this.barButtonItem_clearanceRecord,
             this.barButtonItem6,
             this.barButtonItem_ClearanceStatistics,
             this.barButtonItem_systemManage,
@@ -155,14 +155,15 @@
             this.barButtonItem_epidemicInfo.RibbonStyle = DevExpress.XtraBars.Ribbon.RibbonItemStyles.Large;
             this.barButtonItem_epidemicInfo.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.barButtonItem_epidemicInfo_ItemClick);
             // 
-            // barButtonItem5
+            // barButtonItem_clearanceRecord
             // 
-            this.barButtonItem5.Caption = "通关记录";
-            this.barButtonItem5.Glyph = global::zhuhai.Properties.Resources.paste_16x16;
-            this.barButtonItem5.Id = 10;
-            this.barButtonItem5.LargeGlyph = global::zhuhai.Properties.Resources.paste_32x32;
-            this.barButtonItem5.Name = "barButtonItem5";
-            this.barButtonItem5.RibbonStyle = DevExpress.XtraBars.Ribbon.RibbonItemStyles.Large;
+            this.barButtonItem_clearanceRecord.Caption = "通关记录";
+            this.barButtonItem_clearanceRecord.Glyph = global::zhuhai.Properties.Resources.paste_16x16;
+            this.barButtonItem_clearanceRecord.Id = 10;
+            this.barButtonItem_clearanceRecord.LargeGlyph = global::zhuhai.Properties.Resources.paste_32x32;
+            this.barButtonItem_clearanceRecord.Name = "barButtonItem_clearanceRecord";
+            this.barButtonItem_clearanceRecord.RibbonStyle = DevExpress.XtraBars.Ribbon.RibbonItemStyles.Large;
+            this.barButtonItem_clearanceRecord.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.barButtonItem_clearanceRecord_ItemClick);
             // 
             // barButtonItem6
             // 
@@ -306,7 +307,7 @@
             // 
             // ribbonPageGroup3
             // 
-            this.ribbonPageGroup3.ItemLinks.Add(this.barButtonItem5);
+            this.ribbonPageGroup3.ItemLinks.Add(this.barButtonItem_clearanceRecord);
             this.ribbonPageGroup3.ItemLinks.Add(this.barButtonItem6);
             this.ribbonPageGroup3.Name = "ribbonPageGroup3";
             this.ribbonPageGroup3.ShowCaptionButton = false;
@@ -531,7 +532,7 @@
         private DevExpress.XtraBars.BarButtonItem barButtonItem_jobGuideBook;
         private DevExpress.XtraBars.BarButtonItem barButtonItem_disposePlan;
         private DevExpress.XtraBars.BarButtonItem barButtonItem_epidemicInfo;
-        private DevExpress.XtraBars.BarButtonItem barButtonItem5;
+        private DevExpress.XtraBars.BarButtonItem barButtonItem_clearanceRecord;
         private DevExpress.XtraBars.Ribbon.RibbonPageGroup ribbonPageGroup2;
         private DevExpress.XtraBars.Ribbon.RibbonPageGroup ribbonPageGroup3;
         private DevExpress.XtraBars.Ribbon.RibbonPageGroup ribbonPageGroup4;

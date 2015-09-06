@@ -151,6 +151,34 @@ namespace zhuhai.Properties {
             }
         }
         
+        internal static System.Drawing.Bitmap gured {
+            get {
+                object obj = ResourceManager.GetObject("gured", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        internal static System.Drawing.Bitmap guwhite {
+            get {
+                object obj = ResourceManager.GetObject("guwhite", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        internal static System.Drawing.Bitmap jiared {
+            get {
+                object obj = ResourceManager.GetObject("jiared", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        internal static System.Drawing.Bitmap jiawhite {
+            get {
+                object obj = ResourceManager.GetObject("jiawhite", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
         internal static System.Drawing.Bitmap login_bg {
             get {
                 object obj = ResourceManager.GetObject("login_bg", resourceCulture);
@@ -168,6 +196,13 @@ namespace zhuhai.Properties {
         internal static System.Drawing.Bitmap paste_32x32 {
             get {
                 object obj = ResourceManager.GetObject("paste_32x32", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        internal static System.Drawing.Bitmap people {
+            get {
+                object obj = ResourceManager.GetObject("people", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
@@ -214,6 +249,20 @@ namespace zhuhai.Properties {
             }
         }
         
+        internal static System.Drawing.Bitmap sered {
+            get {
+                object obj = ResourceManager.GetObject("sered", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        internal static System.Drawing.Bitmap sewhite {
+            get {
+                object obj = ResourceManager.GetObject("sewhite", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
         internal static System.Drawing.Bitmap show_16x16 {
             get {
                 object obj = ResourceManager.GetObject("show_16x16", resourceCulture);
@@ -242,9 +291,37 @@ namespace zhuhai.Properties {
             }
         }
         
+        internal static System.Drawing.Bitmap tured {
+            get {
+                object obj = ResourceManager.GetObject("tured", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        internal static System.Drawing.Bitmap tuwhite {
+            get {
+                object obj = ResourceManager.GetObject("tuwhite", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
         internal static System.Drawing.Bitmap users {
             get {
                 object obj = ResourceManager.GetObject("users", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        internal static System.Drawing.Bitmap yired {
+            get {
+                object obj = ResourceManager.GetObject("yired", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        internal static System.Drawing.Bitmap yiwhite {
+            get {
+                object obj = ResourceManager.GetObject("yiwhite", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }

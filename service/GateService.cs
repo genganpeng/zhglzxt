@@ -166,6 +166,33 @@ namespace zhuhai.service
             
         }
 
+        /// <summary>
+        /// 根据Id获取照片
+        /// </summary>
+        /// <param name="photo_id">照片id</param>
+        /// <returns></returns>
+        public byte[] getPassengerPhoto(int photo_id)
+        {
+            try
+            {
+                ICustomsCMS server = XmlRpcInstance.getInstance();
+                IDPhotoResponse photoResponse = server.getPassengerPhoto(AppConfig.gateSensor, photo_id);
+
+                if (photoResponse.error_code == 0)
+                {
+                    return photoResponse.content;
+                }
+                else
+                {
+                    throw new Exception("错误：" + photoResponse.error_msg);
+                }
+            }
+            catch (Exception ex)
+            {
+                throw new Exception("错误：" + ex.Message);
+            }
+        }
+
     }
 
     /// <summary>

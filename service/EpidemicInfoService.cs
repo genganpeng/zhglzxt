@@ -6,6 +6,7 @@ using System.Data;
 using zhuhai.model;
 using zhuhai.util;
 using System.IO;
+using System.Collections;
 
 namespace zhuhai.service
 {
@@ -65,7 +66,7 @@ namespace zhuhai.service
             return TotalNum;
         }
 
-        public List<EpidemicInfo> InitDt(string strWhere, int startIndex, int endIndex)
+        public List<EpidemicInfo> InitDt(IDictionary<string, object> strWhere, int startIndex, int endIndex)
         {
             //实现分页查询的方法， 使用strWhere,startIndex,endIndex, 同时需要返回Pager
             //记录总数量
@@ -90,7 +91,7 @@ namespace zhuhai.service
         /// <param name="startIndex">从1开始</param>
         /// <param name="endIndex">到这为止</param>
         /// <returns></returns>
-        public DataTable GetListByPage(string strWhere, int startIndex, int endIndex)
+        public DataTable GetListByPage(IDictionary<string, object> strWhere, int startIndex, int endIndex)
         {
             DataTable dt = new ModelHandler<EpidemicInfo>().FillDataTable(InitDt(strWhere, startIndex, endIndex));
             return dt;

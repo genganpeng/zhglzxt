@@ -202,4 +202,37 @@
   <data name="users" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\users.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
+  <data name="gured" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\nuclear\gured.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="guwhite" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\nuclear\guwhite.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="jiared" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\nuclear\jiared.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="jiawhite" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\nuclear\jiawhite.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="sered" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\nuclear\sered.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="sewhite" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\nuclear\sewhite.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="tured" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\nuclear\tured.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="tuwhite" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\nuclear\tuwhite.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="yired" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\nuclear\yired.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="yiwhite" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\nuclear\yiwhite.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="people" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\people.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
 </root>
