@@ -6,6 +6,7 @@ using System.Data;
 using zhuhai.model;
 using zhuhai.util;
 using System.IO;
+using zhuhai.xmlrpc;
 
 namespace zhuhai.service
 {
@@ -14,25 +15,10 @@ namespace zhuhai.service
     /// </summary>
     class JobGuideBookService : IQueryService,IOperateService<CommonText>
     {
-        private List<JobGuideBook> jobGuideBooks = new List<JobGuideBook>();
         private static JobGuideBookService jobGuideBookService = null;
 
         private JobGuideBookService()
         {
-            jobGuideBooks.Add(new JobGuideBook(1, "作业指导书"));
-            jobGuideBooks.Add(new JobGuideBook(2, "作业指导书1"));
-            jobGuideBooks.Add(new JobGuideBook(3, "作业指导书"));
-            jobGuideBooks.Add(new JobGuideBook(4, "作业指导书1"));
-            jobGuideBooks.Add(new JobGuideBook(5, "作业指导书"));
-            jobGuideBooks.Add(new JobGuideBook(6, "作业指导书1"));
-            jobGuideBooks.Add(new JobGuideBook(7, "作业指导书"));
-            jobGuideBooks.Add(new JobGuideBook(8, "作业指导书1"));
-            jobGuideBooks.Add(new JobGuideBook(9, "作业指导书"));
-            jobGuideBooks.Add(new JobGuideBook(10, "作业指导书1"));
-            jobGuideBooks.Add(new JobGuideBook(11, "作业指导书"));
-            jobGuideBooks.Add(new JobGuideBook(12, "作业指导书"));
-            jobGuideBooks.Add(new JobGuideBook(13, "作业指导书1"));
-            jobGuideBooks.Add(new JobGuideBook(14, "作业指导书1"));
         }
 
         public static JobGuideBookService getInstance()
@@ -67,28 +53,37 @@ namespace zhuhai.service
 
         public List<JobGuideBook> InitDt(IDictionary<string, object> strWhere, int startIndex, int endIndex)
         {
-            //实现分页查询的方法， 使用strWhere,startIndex,endIndex, 同时需要返回Pager
-            //记录总数量
-            TotalNum = jobGuideBooks.Count;
-
-            startIndex = startIndex - 1;
-            endIndex = endIndex - 1;
-            //当前页需要显示的记录
-            int count = endIndex < (TotalNum - 1) ? endIndex : (TotalNum - 1);
-            List<JobGuideBook> retLists = new List<JobGuideBook>();
-            for (int i = startIndex; i <= count; i++)
+            try
             {
-                retLists.Add(jobGuideBooks[i]);
+                ICustomsCMS server = XmlRpcInstance.getInstance();
+                TitleNumResponse titleNumResponse = server.findJobInstructCount(strWhere[CommonText.TITLE_COLOMUN].ToString(), DateTime.Parse("0001-01-01"), DateTime.Parse("9999-12-30"));
+                if (titleNumResponse.error_code != 0)
+                {
+                    throw new Exception("连接服务器错误：" + titleNumResponse.error_msg);
+                }
+                TotalNum = titleNumResponse.titlenum;
+
+                Title_Response title_Response = server.findJobInstructTitleList(strWhere[CommonText.TITLE_COLOMUN].ToString(), DateTime.Parse("0001-01-01"), DateTime.Parse("9999-12-30"), startIndex, endIndex);
+                TitleInfo[] titlelist = title_Response.titlelist;
+                List<JobGuideBook> jgbs = new List<JobGuideBook>();
+                for (int i = 0; i < titlelist.Length; i++)
+                {
+                    jgbs.Add(new JobGuideBook(titlelist[i].id, titlelist[i].title));
+                }
+                return jgbs;
             }
-            return retLists;
+            catch (Exception ex)
+            {
+                throw new Exception("错误：" + ex.Message);
+            }
         }
 
         /// <summary>
         /// 根据数据库查询，并返回数据，strWhere是条件
         /// </summary>
         /// <param name="strWhere">查询条件</param>
-        /// <param name="startIndex">从1开始</param>
-        /// <param name="endIndex">到这为止</param>
+        /// <param name="startIndex">从1开始，页码</param>
+        /// <param name="endIndex">每页的数量</param>
         /// <returns></returns>
         public DataTable GetListByPage(IDictionary<string, object> strWhere, int startIndex, int endIndex)
         {
@@ -98,77 +93,74 @@ namespace zhuhai.service
 
         public Boolean deleteRow(int id)
         {
-            foreach (JobGuideBook jobGuideBook in jobGuideBooks)
+            try
             {
-                if (jobGuideBook.Id == id)
+                ICustomsCMS server = XmlRpcInstance.getInstance();
+                DBRPCResponse dBRPCResponse = server.deleteJobInstruct(id);
+                if (dBRPCResponse.error_code != 0)
                 {
-                    jobGuideBooks.Remove(jobGuideBook);
-                    return true;
+                    throw new Exception("连接服务器错误：" + dBRPCResponse.error_msg);
                 }
+                return true;
             }
-
-            return false;
+            catch (Exception ex)
+            {
+                throw new Exception("错误：" + ex.Message);
+            }
         }
 
         public Boolean addRow(CommonText commonText)
         {
-            JobGuideBook jobGuideBook = new JobGuideBook(15, commonText.Title);
-            jobGuideBooks.Add(jobGuideBook);
-
-            //以下删掉
-            //实例化一个文件流--->与写入文件相关联  
-            FileStream fo = new FileStream("D:/tmp/tmp.rtf", FileMode.Create);
-            //实例化BinaryWriter
-            BinaryWriter bw = new BinaryWriter(fo);
-            bw.Write(commonText.Bytes);
-            //清空缓冲区  
-            bw.Flush();
-            //关闭流  
-            bw.Close();
-            fo.Close(); 
-
-            return true;
+            try
+            {
+                ICustomsCMS server = XmlRpcInstance.getInstance();
+                ImageTextInfo imageTextInfo = new ImageTextInfo();
+                imageTextInfo.title = commonText.Title;
+                imageTextInfo.content = commonText.Bytes;
+                imageTextInfo.authod = SystemManageService.currentUser.UserName;
+                DBRPCResponse dBRPCResponse = server.putJobInstruct(imageTextInfo);
+                return true;
+            }
+            catch (Exception ex)
+            {
+                throw new Exception("错误：" + ex.Message);
+            }
         }
 
         public Boolean modifyRow(CommonText commonText)
         {
-            for (int i = 0; i < jobGuideBooks.Count; i++)
+            try
             {
-                if (jobGuideBooks[i].Id == commonText.Id)
-                {
-                    JobGuideBook jobGuideBook = new JobGuideBook(commonText.Id, commonText.Title);
-                    jobGuideBooks[i] = jobGuideBook;
-
-                    //以下删掉
-                    //实例化一个文件流--->与写入文件相关联  
-                    FileStream fo = new FileStream("D:/tmp/tmp.rtf", FileMode.Create);
-                    //实例化BinaryWriter
-                    BinaryWriter bw = new BinaryWriter(fo);
-                    bw.Write(commonText.Bytes);
-                    //清空缓冲区  
-                    bw.Flush();
-                    //关闭流  
-                    bw.Close();
-                    fo.Close(); 
-
-                    return true;
-                }
-
+                ICustomsCMS server = XmlRpcInstance.getInstance();
+                ImageTextInfo imageTextInfo = new ImageTextInfo();
+                imageTextInfo.id = commonText.Id;
+                imageTextInfo.title = commonText.Title;
+                imageTextInfo.content = commonText.Bytes;
+                imageTextInfo.authod = SystemManageService.currentUser.UserName;
+                DBRPCResponse dBRPCResponse = server.modifyJobInstruct(imageTextInfo);
+                return true;
             }
-            return false;
+            catch (Exception ex)
+            {
+                throw new Exception("错误：" + ex.Message);
+            }
+
         }
 
-        public CommonText getRow(int id)
+        public CommonText getRow(int id, string title)
         {
-            foreach (JobGuideBook jobGuideBook in jobGuideBooks)
+            try
             {
-                if (jobGuideBook.Id == id)
-                {
-                    jobGuideBook.Bytes = StreamByteTransfer.FileToBytes("D:/tmp/tmp.rtf");
-                    return jobGuideBook;
-                }
+                ICustomsCMS server = XmlRpcInstance.getInstance();
+                ImageTextInfo imageTextInfo = server.findJobInstructbytitle(title);
+                CommonText commonText = new CommonText(imageTextInfo.id, imageTextInfo.title);
+                commonText.Bytes = imageTextInfo.content;
+                return commonText;
             }
-            return null;
+            catch (Exception ex)
+            {
+                throw new Exception("错误：" + ex.Message);
+            }
         }
 
         /// <summary>
@@ -179,16 +171,21 @@ namespace zhuhai.service
         /// <returns></returns>
         public Boolean findRowByIdAndTitle(int id, string title)
         {
-            //根据id和标题查询数据库，全匹配
-            foreach (JobGuideBook jobGuideBook in jobGuideBooks)
+            try
             {
-                if (jobGuideBook.Title == title && jobGuideBook.Id != id)
+                ICustomsCMS server = XmlRpcInstance.getInstance();
+                ImageTextInfo imageTextInfo = server.findJobInstructbytitle(title);
+                //查询出结果，同时id不和本身相同
+                if (imageTextInfo.id != 0 && imageTextInfo.id != id)
                 {
                     return true;
                 }
+                return false;
             }
-
-            return false;
+            catch (Exception ex)
+            {
+                throw new Exception("错误：" + ex.Message);
+            }
         }
     }
 }

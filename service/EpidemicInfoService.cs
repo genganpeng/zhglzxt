@@ -7,6 +7,7 @@ using zhuhai.model;
 using zhuhai.util;
 using System.IO;
 using System.Collections;
+using zhuhai.xmlrpc;
 
 namespace zhuhai.service
 {
@@ -15,25 +16,10 @@ namespace zhuhai.service
     /// </summary>
     class EpidemicInfoService : IQueryService,IOperateService<CommonText>
     {
-        private List<EpidemicInfo> epidemicInfos = new List<EpidemicInfo>();
         private static EpidemicInfoService epidemicInfoService = null;
 
         private EpidemicInfoService()
         {
-            epidemicInfos.Add(new EpidemicInfo(1, "疫情"));
-            epidemicInfos.Add(new EpidemicInfo(2, "疫情1"));
-            epidemicInfos.Add(new EpidemicInfo(3, "疫情"));
-            epidemicInfos.Add(new EpidemicInfo(4, "疫情1"));
-            epidemicInfos.Add(new EpidemicInfo(5, "疫情"));
-            epidemicInfos.Add(new EpidemicInfo(6, "疫情1"));
-            epidemicInfos.Add(new EpidemicInfo(7, "疫情"));
-            epidemicInfos.Add(new EpidemicInfo(8, "疫情1"));
-            epidemicInfos.Add(new EpidemicInfo(9, "疫情"));
-            epidemicInfos.Add(new EpidemicInfo(10, "疫情1"));
-            epidemicInfos.Add(new EpidemicInfo(11, "疫情"));
-            epidemicInfos.Add(new EpidemicInfo(12, "疫情"));
-            epidemicInfos.Add(new EpidemicInfo(13, "疫情1"));
-            epidemicInfos.Add(new EpidemicInfo(14, "疫情1"));
         }
 
         public static EpidemicInfoService getInstance()
@@ -68,28 +54,37 @@ namespace zhuhai.service
 
         public List<EpidemicInfo> InitDt(IDictionary<string, object> strWhere, int startIndex, int endIndex)
         {
-            //实现分页查询的方法， 使用strWhere,startIndex,endIndex, 同时需要返回Pager
-            //记录总数量
-            TotalNum = epidemicInfos.Count;
-
-            startIndex = startIndex - 1;
-            endIndex = endIndex - 1;
-            //当前页需要显示的记录
-            int count = endIndex < (TotalNum - 1) ? endIndex : (TotalNum - 1);
-            List<EpidemicInfo> retLists = new List<EpidemicInfo>();
-            for (int i = startIndex; i <= count; i++)
+            try
             {
-                retLists.Add(epidemicInfos[i]);
+                ICustomsCMS server = XmlRpcInstance.getInstance();
+                TitleNumResponse titleNumResponse = server.findEpideInfoCount(strWhere[CommonText.TITLE_COLOMUN].ToString(), DateTime.Parse("0001-01-01"), DateTime.Parse("9999-12-30"));
+                if (titleNumResponse.error_code != 0)
+                {
+                    throw new Exception("连接服务器错误：" + titleNumResponse.error_msg);
+                }
+                TotalNum = titleNumResponse.titlenum;
+
+                Title_Response title_Response = server.findEpideInfoTitleList(strWhere[CommonText.TITLE_COLOMUN].ToString(), DateTime.Parse("0001-01-01"), DateTime.Parse("9999-12-30"), startIndex, endIndex);
+                TitleInfo[] titlelist = title_Response.titlelist;
+                List<EpidemicInfo> es = new List<EpidemicInfo>();
+                for (int i = 0; i < titlelist.Length; i++)
+                {
+                    es.Add(new EpidemicInfo(titlelist[i].id, titlelist[i].title));
+                }
+                return es;
             }
-            return retLists;
+            catch (Exception ex)
+            {
+                throw new Exception("错误：" + ex.Message);
+            }
         }
 
         /// <summary>
         /// 根据数据库查询，并返回数据，strWhere是条件
         /// </summary>
         /// <param name="strWhere">查询条件</param>
-        /// <param name="startIndex">从1开始</param>
-        /// <param name="endIndex">到这为止</param>
+        /// <param name="startIndex">从1开始，页码</param>
+        /// <param name="endIndex">每页的数量</param>
         /// <returns></returns>
         public DataTable GetListByPage(IDictionary<string, object> strWhere, int startIndex, int endIndex)
         {
@@ -99,77 +94,73 @@ namespace zhuhai.service
 
         public Boolean deleteRow(int id)
         {
-            foreach (EpidemicInfo epidemicInfo in epidemicInfos)
+            try
             {
-                if (epidemicInfo.Id == id)
+                ICustomsCMS server = XmlRpcInstance.getInstance();
+                DBRPCResponse dBRPCResponse = server.deleteEpideInfo(id);
+                if (dBRPCResponse.error_code != 0)
                 {
-                    epidemicInfos.Remove(epidemicInfo);
-                    return true;
+                    throw new Exception("连接服务器错误：" + dBRPCResponse.error_msg);
                 }
+                return true;
             }
-
-            return false;
+            catch (Exception ex)
+            {
+                throw new Exception("错误：" + ex.Message);
+            }
         }
 
         public Boolean addRow(CommonText commonText)
         {
-            EpidemicInfo epidemicInfo = new EpidemicInfo(15, commonText.Title);
-            epidemicInfos.Add(epidemicInfo);
-
-            //以下删掉
-            //实例化一个文件流--->与写入文件相关联  
-            FileStream fo = new FileStream("D:/tmp/tmp.rtf", FileMode.Create);
-            //实例化BinaryWriter
-            BinaryWriter bw = new BinaryWriter(fo);
-            bw.Write(commonText.Bytes);
-            //清空缓冲区  
-            bw.Flush();
-            //关闭流  
-            bw.Close();
-            fo.Close(); 
-
-            return true;
+            try
+            {
+                ICustomsCMS server = XmlRpcInstance.getInstance();
+                ImageTextInfo imageTextInfo = new ImageTextInfo();
+                imageTextInfo.title = commonText.Title;
+                imageTextInfo.content = commonText.Bytes;
+                imageTextInfo.authod = SystemManageService.currentUser.UserName;
+                DBRPCResponse dBRPCResponse = server.putEpideInfo(imageTextInfo);
+                return true;
+            }
+            catch (Exception ex)
+            {
+                throw new Exception("错误：" + ex.Message);
+            }
         }
 
         public Boolean modifyRow(CommonText commonText)
         {
-            for (int i = 0; i < epidemicInfos.Count; i++)
+            try
             {
-                if (epidemicInfos[i].Id == commonText.Id)
-                {
-                    EpidemicInfo epidemicInfo = new EpidemicInfo(commonText.Id, commonText.Title);
-                    epidemicInfos[i] = epidemicInfo;
-
-                    //以下删掉
-                    //实例化一个文件流--->与写入文件相关联  
-                    FileStream fo = new FileStream("D:/tmp/tmp.rtf", FileMode.Create);
-                    //实例化BinaryWriter
-                    BinaryWriter bw = new BinaryWriter(fo);
-                    bw.Write(commonText.Bytes);
-                    //清空缓冲区  
-                    bw.Flush();
-                    //关闭流  
-                    bw.Close();
-                    fo.Close(); 
-
-                    return true;
-                }
-
+                ICustomsCMS server = XmlRpcInstance.getInstance();
+                ImageTextInfo imageTextInfo = new ImageTextInfo();
+                imageTextInfo.id = commonText.Id;
+                imageTextInfo.title = commonText.Title;
+                imageTextInfo.content = commonText.Bytes;
+                imageTextInfo.authod = SystemManageService.currentUser.UserName;
+                DBRPCResponse dBRPCResponse = server.modifyEpideInfo(imageTextInfo);
+                return true;
             }
-            return false;
+            catch (Exception ex)
+            {
+                throw new Exception("错误：" + ex.Message);
+            }
         }
 
-        public CommonText getRow(int id)
+        public CommonText getRow(int id, string title)
         {
-            foreach (EpidemicInfo epidemicInfo in epidemicInfos)
+            try
             {
-                if (epidemicInfo.Id == id)
-                {
-                    epidemicInfo.Bytes = StreamByteTransfer.FileToBytes("D:/tmp/tmp.rtf");
-                    return epidemicInfo;
-                }
+                ICustomsCMS server = XmlRpcInstance.getInstance();
+                ImageTextInfo imageTextInfo = server.findEpideInfobytitle(title);
+                CommonText commonText = new CommonText(imageTextInfo.id, imageTextInfo.title);
+                commonText.Bytes = imageTextInfo.content;
+                return commonText;
             }
-            return null;
+            catch (Exception ex)
+            {
+                throw new Exception("错误：" + ex.Message);
+            }
         }
 
         /// <summary>
@@ -180,16 +171,21 @@ namespace zhuhai.service
         /// <returns></returns>
         public Boolean findRowByIdAndTitle(int id, string title)
         {
-            //根据id和标题查询数据库，全匹配
-            foreach (EpidemicInfo epidemicInfo in epidemicInfos)
+            try
             {
-                if (epidemicInfo.Title == title && epidemicInfo.Id != id)
+                ICustomsCMS server = XmlRpcInstance.getInstance();
+                ImageTextInfo imageTextInfo = server.findEpideInfobytitle(title);
+                //查询出结果，同时id不和本身相同
+                if (imageTextInfo.id != 0 && imageTextInfo.id != id)
                 {
                     return true;
                 }
+                return false;
             }
-
-            return false;
+            catch (Exception ex)
+            {
+                throw new Exception("错误：" + ex.Message);
+            }
         }
     }
 }

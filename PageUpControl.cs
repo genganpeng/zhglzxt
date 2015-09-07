@@ -175,7 +175,7 @@ namespace zhuhai.Component
             endIndex = PageIndex * Pagesize;
 
             //获取查询的列表
-            MyControl.DataSource = queryService.GetListByPage(strWhere, startIndex, endIndex);
+            MyControl.DataSource = queryService.GetListByPage(strWhere, PageIndex, Pagesize);
             //总页数
             PageRow = queryService.GetRecordCount();
 

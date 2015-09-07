@@ -28,7 +28,6 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FormMain));
             this.ribbonControl1 = new DevExpress.XtraBars.Ribbon.RibbonControl();
             this.barButtonItem_workRule = new DevExpress.XtraBars.BarButtonItem();
@@ -65,6 +64,7 @@
             this.xtraTabPage_tongguanMonitor = new DevExpress.XtraTab.XtraTabPage();
             this.xtraTabPage_zhajiMonitor = new DevExpress.XtraTab.XtraTabPage();
             this.xtraTabPage_shipinMonitor = new DevExpress.XtraTab.XtraTabPage();
+            this.videoPlayWnd = new System.Windows.Forms.PictureBox();
             this.navBarControl1 = new DevExpress.XtraNavBar.NavBarControl();
             this.navBarGroup1 = new DevExpress.XtraNavBar.NavBarGroup();
             this.navBarItem_weixiaoqihou = new DevExpress.XtraNavBar.NavBarItem();
@@ -76,19 +76,22 @@
             this.button_right = new System.Windows.Forms.Button();
             this.button_left = new System.Windows.Forms.Button();
             this.channelPanel = new System.Windows.Forms.Panel();
-            this.timer_updateTime = new System.Windows.Forms.Timer(this.components);
-            this.timer_updateSHWXQH = new System.Windows.Forms.Timer(this.components);
-            this.videoPlayWnd = new System.Windows.Forms.PictureBox();
+            this.timer_updateTime = new System.Windows.Forms.Timer();
+            this.timer_updateSHWXQH = new System.Windows.Forms.Timer();
+            this.toolStripStatusLabel = new System.Windows.Forms.ToolStripStatusLabel();
+            this.monitorInfo = new System.Windows.Forms.Panel();
+            this.personinfoPanel = new System.Windows.Forms.Panel();
+            this.groupBox5 = new System.Windows.Forms.GroupBox();
             ((System.ComponentModel.ISupportInitialize)(this.ribbonControl1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainerControl1)).BeginInit();
             this.splitContainerControl1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.xtraTabControl)).BeginInit();
             this.xtraTabControl.SuspendLayout();
+            this.xtraTabPage_zhajiMonitor.SuspendLayout();
             this.xtraTabPage_shipinMonitor.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.navBarControl1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.videoPlayWnd)).BeginInit();
-            this.toolStripStatusLabel = new System.Windows.Forms.ToolStripStatusLabel();
+            ((System.ComponentModel.ISupportInitialize)(this.navBarControl1)).BeginInit();
             this.SuspendLayout();
             // 
             // ribbonControl1
@@ -416,6 +419,9 @@
             // 
             // xtraTabPage_zhajiMonitor
             // 
+            this.xtraTabPage_zhajiMonitor.Controls.Add(this.groupBox5);
+            this.xtraTabPage_zhajiMonitor.Controls.Add(this.personinfoPanel);
+            this.xtraTabPage_zhajiMonitor.Controls.Add(this.monitorInfo);
             this.xtraTabPage_zhajiMonitor.Name = "xtraTabPage_zhajiMonitor";
             this.xtraTabPage_zhajiMonitor.Size = new System.Drawing.Size(994, 398);
             this.xtraTabPage_zhajiMonitor.Text = "闸机监控";
@@ -428,6 +434,15 @@
             this.xtraTabPage_shipinMonitor.Size = new System.Drawing.Size(994, 398);
             this.xtraTabPage_shipinMonitor.Text = "视频监控";
             this.xtraTabPage_shipinMonitor.VisibleChanged += new System.EventHandler(this.xtraTabPage_shipinMonitor_VisibleChanged);
+            // 
+            // videoPlayWnd
+            // 
+            this.videoPlayWnd.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.videoPlayWnd.Location = new System.Drawing.Point(0, 0);
+            this.videoPlayWnd.Name = "videoPlayWnd";
+            this.videoPlayWnd.Size = new System.Drawing.Size(994, 398);
+            this.videoPlayWnd.TabIndex = 0;
+            this.videoPlayWnd.TabStop = false;
             // 
             // navBarControl1
             // 
@@ -533,20 +548,37 @@
             // 
             this.timer_updateSHWXQH.Tick += new System.EventHandler(this.timer_updateSHWXQH_Tick);
             // 
-            // videoPlayWnd
-            // 
-            this.videoPlayWnd.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.videoPlayWnd.Location = new System.Drawing.Point(0, 0);
-            this.videoPlayWnd.Name = "videoPlayWnd";
-            this.videoPlayWnd.Size = new System.Drawing.Size(994, 398);
-            this.videoPlayWnd.TabIndex = 0;
-            this.videoPlayWnd.TabStop = false;
-            // 
             // toolStripStatusLabel
             // 
             this.toolStripStatusLabel.Name = "toolStripStatusLabel";
             this.toolStripStatusLabel.Size = new System.Drawing.Size(29, 36);
             this.toolStripStatusLabel.Text = "就绪";
+            // 
+            // monitorInfo
+            // 
+            this.monitorInfo.Dock = System.Windows.Forms.DockStyle.Left;
+            this.monitorInfo.Location = new System.Drawing.Point(0, 0);
+            this.monitorInfo.Name = "monitorInfo";
+            this.monitorInfo.Size = new System.Drawing.Size(252, 398);
+            this.monitorInfo.TabIndex = 0;
+            // 
+            // personinfoPanel
+            // 
+            this.personinfoPanel.Dock = System.Windows.Forms.DockStyle.Left;
+            this.personinfoPanel.Location = new System.Drawing.Point(252, 0);
+            this.personinfoPanel.Name = "personinfoPanel";
+            this.personinfoPanel.Size = new System.Drawing.Size(269, 398);
+            this.personinfoPanel.TabIndex = 1;
+            // 
+            // groupBox5
+            // 
+            this.groupBox5.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.groupBox5.Location = new System.Drawing.Point(521, 0);
+            this.groupBox5.Name = "groupBox5";
+            this.groupBox5.Size = new System.Drawing.Size(473, 398);
+            this.groupBox5.TabIndex = 2;
+            this.groupBox5.TabStop = false;
+            this.groupBox5.Text = "视频";
             // 
             // FormMain
             // 
@@ -574,9 +606,10 @@
             this.splitContainerControl1.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.xtraTabControl)).EndInit();
             this.xtraTabControl.ResumeLayout(false);
+            this.xtraTabPage_zhajiMonitor.ResumeLayout(false);
             this.xtraTabPage_shipinMonitor.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.navBarControl1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.videoPlayWnd)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.navBarControl1)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -634,6 +667,9 @@
         private System.Windows.Forms.Button button_right;
         private System.Windows.Forms.PictureBox videoPlayWnd;
         private System.Windows.Forms.ToolStripStatusLabel toolStripStatusLabel;
+        private System.Windows.Forms.Panel monitorInfo;
+        private System.Windows.Forms.Panel personinfoPanel;
+        private System.Windows.Forms.GroupBox groupBox5;
         
        
 

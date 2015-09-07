@@ -41,10 +41,7 @@ namespace zhuhai
             string title = textEdit_title.Text;
 
             IDictionary<string, object> strWhere = new Dictionary<string, object>();
-            if (!String.IsNullOrEmpty(title))
-            {
-                strWhere.Add(DisposePlan.TITLE_COLOMUN, " like '%" + title + "%'");
-            }
+            strWhere.Add(DisposePlan.TITLE_COLOMUN, title);
             return strWhere;
 
         }
@@ -87,7 +84,7 @@ namespace zhuhai
             //获取选中的行的行号
             int[] rowNums = gridView.GetSelectedRows();
             DataTable dt = (DataTable)gridControl.DataSource;
-            RichTextEditorForm richTextEditorForm = new RichTextEditorForm(Int32.Parse(dt.Rows[rowNums[0]][CommonText.ID_COLUMN].ToString()), disposePlanService);
+            RichTextEditorForm richTextEditorForm = new RichTextEditorForm(Int32.Parse(dt.Rows[rowNums[0]][CommonText.ID_COLUMN].ToString()), dt.Rows[rowNums[0]][CommonText.TITLE_COLOMUN].ToString(), disposePlanService);
             richTextEditorForm.ShowDialog();
             pageUpControl.GetDataTable();
         }
@@ -124,7 +121,7 @@ namespace zhuhai
             //获取选中的行的行号
             int[] rowNums = gridView.GetSelectedRows();
             DataTable dt = (DataTable)gridControl.DataSource;
-            RichTextEditorForm richTextEditorForm = new RichTextEditorForm(Int32.Parse(dt.Rows[rowNums[0]][CommonText.ID_COLUMN].ToString()), disposePlanService, true);
+            RichTextEditorForm richTextEditorForm = new RichTextEditorForm(Int32.Parse(dt.Rows[rowNums[0]][CommonText.ID_COLUMN].ToString()), dt.Rows[rowNums[0]][CommonText.TITLE_COLOMUN].ToString(), disposePlanService, true);
             richTextEditorForm.ShowDialog();
         }
 

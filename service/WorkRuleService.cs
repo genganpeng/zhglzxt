@@ -6,6 +6,7 @@ using System.Data;
 using zhuhai.model;
 using zhuhai.util;
 using System.IO;
+using zhuhai.xmlrpc;
 
 namespace zhuhai.service
 {
@@ -14,25 +15,10 @@ namespace zhuhai.service
     /// </summary>
     class WorkRuleService : IQueryService,IOperateService<CommonText>
     {
-        private List<WorkRule> wrs = new List<WorkRule>();
         private static WorkRuleService workRuleService = null;
 
         private WorkRuleService()
         {
-            wrs.Add(new WorkRule(1, "张三"));
-            wrs.Add(new WorkRule(2, "张三1"));
-            wrs.Add(new WorkRule(3, "张三"));
-            wrs.Add(new WorkRule(4, "张三1"));
-            wrs.Add(new WorkRule(5, "张三"));
-            wrs.Add(new WorkRule(6, "张三1"));
-            wrs.Add(new WorkRule(7, "张三"));
-            wrs.Add(new WorkRule(8, "张三1"));
-            wrs.Add(new WorkRule(9, "张三"));
-            wrs.Add(new WorkRule(10, "张三1"));
-            wrs.Add(new WorkRule(11, "张三"));
-            wrs.Add(new WorkRule(12, "张三"));
-            wrs.Add(new WorkRule(13, "张三1"));
-            wrs.Add(new WorkRule(14, "张三1"));
         }
 
         public static WorkRuleService getInstance()
@@ -67,28 +53,37 @@ namespace zhuhai.service
 
         public List<WorkRule> InitDt(IDictionary<string, object> strWhere, int startIndex, int endIndex)
         {
-            //实现分页查询的方法， 使用strWhere,startIndex,endIndex, 同时需要返回Pager
-            //记录总数量
-            TotalNum = wrs.Count;
-
-            startIndex = startIndex - 1;
-            endIndex = endIndex - 1;
-            //当前页需要显示的记录
-            int count = endIndex < (TotalNum - 1) ? endIndex : (TotalNum - 1);
-            List<WorkRule> retLists = new List<WorkRule>();
-            for (int i = startIndex; i <= count; i++)
+            try
             {
-                retLists.Add(wrs[i]);
+                ICustomsCMS server = XmlRpcInstance.getInstance();
+                TitleNumResponse titleNumResponse = server.findWorkRuleCount(strWhere[WorkRule.TITLE_COLOMUN].ToString(), DateTime.Parse("0001-01-01"), DateTime.Parse("9999-12-30"));
+                if (titleNumResponse.error_code != 0)
+                {
+                    throw new Exception("连接服务器错误：" + titleNumResponse.error_msg);
+                }
+                TotalNum = titleNumResponse.titlenum;
+
+                Title_Response title_Response = server.findWorkRuleTitleList(strWhere[WorkRule.TITLE_COLOMUN].ToString(), DateTime.Parse("0001-01-01"), DateTime.Parse("9999-12-30"), startIndex, endIndex);
+                TitleInfo[] titlelist = title_Response.titlelist;
+                List<WorkRule> wrs = new List<WorkRule>();
+                for (int i = 0; i < titlelist.Length; i++ )
+                {
+                    wrs.Add(new WorkRule(titlelist[i].id, titlelist[i].title));
+                }
+                return wrs;
             }
-            return retLists;
+            catch (Exception ex)
+            {
+                throw new Exception("错误：" + ex.Message);
+            }
         }
 
         /// <summary>
         /// 根据数据库查询，并返回数据，strWhere是条件
         /// </summary>
         /// <param name="strWhere">查询条件</param>
-        /// <param name="startIndex">从1开始</param>
-        /// <param name="endIndex">到这为止</param>
+        /// <param name="startIndex">从1开始，页码</param>
+        /// <param name="endIndex">每页的数量</param>
         /// <returns></returns>
         public DataTable GetListByPage(IDictionary<string, object> strWhere, int startIndex, int endIndex)
         {
@@ -98,77 +93,88 @@ namespace zhuhai.service
 
         public Boolean deleteRow(int id)
         {
-            foreach (WorkRule wr in wrs)
+            try
             {
-                if (wr.Id == id)
+                ICustomsCMS server = XmlRpcInstance.getInstance();
+                DBRPCResponse dBRPCResponse = server.deleteWorkRule(id);
+                if (dBRPCResponse.error_code != 0)
                 {
-                    wrs.Remove(wr);
-                    return true;
+                    throw new Exception("连接服务器错误：" + dBRPCResponse.error_msg);
                 }
+                return true;
+            }
+            catch (Exception ex)
+            {
+                throw new Exception("错误：" + ex.Message);
             }
 
-            return false;
         }
 
         public Boolean addRow(CommonText commonText)
         {
-            WorkRule wr = new WorkRule(15, commonText.Title);
-            wrs.Add(wr);
+            ////以下删掉
+            ////实例化一个文件流--->与写入文件相关联  
+            //FileStream fo = new FileStream("D:/tmp/tmp.rtf", FileMode.Create);
+            ////实例化BinaryWriter
+            //BinaryWriter bw = new BinaryWriter(fo);
+            //bw.Write(commonText.Bytes);
+            ////清空缓冲区  
+            //bw.Flush();
+            ////关闭流  
+            //bw.Close();
+            //fo.Close(); 
 
-            //以下删掉
-            //实例化一个文件流--->与写入文件相关联  
-            FileStream fo = new FileStream("D:/tmp/tmp.rtf", FileMode.Create);
-            //实例化BinaryWriter
-            BinaryWriter bw = new BinaryWriter(fo);
-            bw.Write(commonText.Bytes);
-            //清空缓冲区  
-            bw.Flush();
-            //关闭流  
-            bw.Close();
-            fo.Close(); 
-
-            return true;
+            try
+            {
+                ICustomsCMS server = XmlRpcInstance.getInstance();
+                ImageTextInfo imageTextInfo = new ImageTextInfo();
+                imageTextInfo.title = commonText.Title;
+                imageTextInfo.content = commonText.Bytes;
+                imageTextInfo.authod = SystemManageService.currentUser.UserName;
+                DBRPCResponse dBRPCResponse = server.putWorkRule(imageTextInfo);
+                return true;
+            }
+            catch (Exception ex)
+            {
+                throw new Exception("错误：" + ex.Message);
+            }
+            
         }
 
         public Boolean modifyRow(CommonText commonText)
         {
-            for (int i = 0; i < wrs.Count; i++)
+            try
             {
-                if (wrs[i].Id == commonText.Id)
-                {
-                    WorkRule wr = new WorkRule(commonText.Id, commonText.Title);
-                    wrs[i] = wr;
-
-                    //以下删掉
-                    //实例化一个文件流--->与写入文件相关联  
-                    FileStream fo = new FileStream("D:/tmp/tmp.rtf", FileMode.Create);
-                    //实例化BinaryWriter
-                    BinaryWriter bw = new BinaryWriter(fo);
-                    bw.Write(commonText.Bytes);
-                    //清空缓冲区  
-                    bw.Flush();
-                    //关闭流  
-                    bw.Close();
-                    fo.Close(); 
-
-                    return true;
-                }
-
+                ICustomsCMS server = XmlRpcInstance.getInstance();
+                ImageTextInfo imageTextInfo = new ImageTextInfo();
+                imageTextInfo.id = commonText.Id;
+                imageTextInfo.title = commonText.Title;
+                imageTextInfo.content = commonText.Bytes;
+                imageTextInfo.authod = SystemManageService.currentUser.UserName;
+                DBRPCResponse dBRPCResponse = server.modifyWorkRule(imageTextInfo);
+                return true;
             }
-            return false;
+            catch (Exception ex)
+            {
+                throw new Exception("错误：" + ex.Message);
+            }
+
         }
 
-        public CommonText getRow(int id)
+        public CommonText getRow(int id, string title)
         {
-            foreach (WorkRule wr in wrs)
+            try
             {
-                if (wr.Id == id)
-                {
-                    wr.Bytes = StreamByteTransfer.FileToBytes("D:/tmp/tmp.rtf");
-                    return wr;
-                }
+                ICustomsCMS server = XmlRpcInstance.getInstance();
+                ImageTextInfo imageTextInfo = server.findWorkRulebytitle(title);
+                CommonText commonText = new CommonText(imageTextInfo.id, imageTextInfo.title);
+                commonText.Bytes = imageTextInfo.content;
+                return commonText;
             }
-            return null;
+            catch (Exception ex)
+            {
+                throw new Exception("错误：" + ex.Message);
+            }
         }
 
         /// <summary>
@@ -179,16 +185,21 @@ namespace zhuhai.service
         /// <returns></returns>
         public Boolean findRowByIdAndTitle(int id, string title)
         {
-            //根据id和标题查询数据库，全匹配
-            foreach (WorkRule wr in wrs)
+            try
             {
-                if (wr.Title == title && wr.Id != id)
+                ICustomsCMS server = XmlRpcInstance.getInstance();
+                ImageTextInfo imageTextInfo = server.findWorkRulebytitle(title);
+                //查询出结果，同时id不和本身相同
+                if (imageTextInfo.id != 0 && imageTextInfo.id != id)
                 {
                     return true;
                 }
+                return false;
             }
-
-            return false;
+            catch (Exception ex)
+            {
+                throw new Exception("错误：" + ex.Message);
+            }
         }
     }
 }

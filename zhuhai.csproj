@@ -206,6 +206,7 @@
     <Compile Include="DisposePlanManageForm.Designer.cs">
       <DependentUpon>DisposePlanManageForm.cs</DependentUpon>
     </Compile>
+    <Compile Include="xmlrpc\XmlDataModule.cs" />
     <Compile Include="xmlrpc\XmlRpcClient.cs" />
     <Compile Include="GateThresholdUpdateForm.cs">
       <SubType>Form</SubType>

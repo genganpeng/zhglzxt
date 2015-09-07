@@ -38,15 +38,16 @@ namespace zhuhai
         /// 修改或者查看
         /// </summary>
         /// <param name="id"></param>
+        /// <param name="title"></param>
         /// <param name="operateService"></param>
         /// <param name="isReadOnly">true表示查看，默认是修改</param>
-        public RichTextEditorForm(int id, IOperateService<CommonText> operateService, Boolean isReadOnly = false)
+        public RichTextEditorForm(int id,string title, IOperateService<CommonText> operateService, Boolean isReadOnly = false)
         {
             InitializeComponent();
             this.operateService = operateService;
             Id = id;
             //根据id获取内容
-            CommonText ct = operateService.getRow(id);
+            CommonText ct = operateService.getRow(id, title);
             //如果是查看
             if (isReadOnly == true)
             {
@@ -59,7 +60,7 @@ namespace zhuhai
             }
             textEdit_title.Text = ct.Title;
             //加载内容
-            richEditControl_context.Document.LoadDocument(StreamByteTransfer.BytesToStream(operateService.getRow(id).Bytes), DocumentFormat.Rtf);
+            richEditControl_context.Document.LoadDocument(StreamByteTransfer.BytesToStream(operateService.getRow(id, title).Bytes), DocumentFormat.Rtf);
         }
 
         private void simpleButton_cancel_Click(object sender, EventArgs e)
@@ -95,7 +96,6 @@ namespace zhuhai
             }
             CommonText ct = new CommonText();
             ct.Title = textEdit_title.Text;
-            MessageBox.Show(System.IO.Path.GetTempPath());
             //保存到一个临时文件中,AppData\Local\Temp
             string filePath = System.IO.Path.GetTempPath() + "/zxt.rtf";
             richEditControl_context.Document.SaveDocument(filePath, DocumentFormat.Rtf);

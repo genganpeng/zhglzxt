@@ -6,6 +6,7 @@ using System.Data;
 using zhuhai.model;
 using zhuhai.util;
 using System.IO;
+using zhuhai.xmlrpc;
 
 namespace zhuhai.service
 {
@@ -14,25 +15,10 @@ namespace zhuhai.service
     /// </summary>
     class DisposePlanService : IQueryService,IOperateService<CommonText>
     {
-        private List<DisposePlan> disposePlans = new List<DisposePlan>();
         private static DisposePlanService disposePlanService = null;
 
         private DisposePlanService()
         {
-            disposePlans.Add(new DisposePlan(1, "处置预案"));
-            disposePlans.Add(new DisposePlan(2, "处置预案1"));
-            disposePlans.Add(new DisposePlan(3, "处置预案"));
-            disposePlans.Add(new DisposePlan(4, "处置预案1"));
-            disposePlans.Add(new DisposePlan(5, "处置预案"));
-            disposePlans.Add(new DisposePlan(6, "处置预案1"));
-            disposePlans.Add(new DisposePlan(7, "处置预案"));
-            disposePlans.Add(new DisposePlan(8, "处置预案1"));
-            disposePlans.Add(new DisposePlan(9, "处置预案"));
-            disposePlans.Add(new DisposePlan(10, "处置预案1"));
-            disposePlans.Add(new DisposePlan(11, "处置预案"));
-            disposePlans.Add(new DisposePlan(12, "处置预案"));
-            disposePlans.Add(new DisposePlan(13, "处置预案1"));
-            disposePlans.Add(new DisposePlan(14, "处置预案1"));
         }
 
         public static DisposePlanService getInstance()
@@ -67,28 +53,37 @@ namespace zhuhai.service
 
         public List<DisposePlan> InitDt(IDictionary<string, object> strWhere, int startIndex, int endIndex)
         {
-            //实现分页查询的方法， 使用strWhere,startIndex,endIndex, 同时需要返回Pager
-            //记录总数量
-            TotalNum = disposePlans.Count;
-
-            startIndex = startIndex - 1;
-            endIndex = endIndex - 1;
-            //当前页需要显示的记录
-            int count = endIndex < (TotalNum - 1) ? endIndex : (TotalNum - 1);
-            List<DisposePlan> retLists = new List<DisposePlan>();
-            for (int i = startIndex; i <= count; i++)
+            try
             {
-                retLists.Add(disposePlans[i]);
+                ICustomsCMS server = XmlRpcInstance.getInstance();
+                TitleNumResponse titleNumResponse = server.findEmerPlanCount(strWhere[CommonText.TITLE_COLOMUN].ToString(), DateTime.Parse("0001-01-01"), DateTime.Parse("9999-12-30"));
+                if (titleNumResponse.error_code != 0)
+                {
+                    throw new Exception("连接服务器错误：" + titleNumResponse.error_msg);
+                }
+                TotalNum = titleNumResponse.titlenum;
+
+                Title_Response title_Response = server.findEmerPlanTitleList(strWhere[CommonText.TITLE_COLOMUN].ToString(), DateTime.Parse("0001-01-01"), DateTime.Parse("9999-12-30"), startIndex, endIndex);
+                TitleInfo[] titlelist = title_Response.titlelist;
+                List<DisposePlan> dps = new List<DisposePlan>();
+                for (int i = 0; i < titlelist.Length; i++)
+                {
+                    dps.Add(new DisposePlan(titlelist[i].id, titlelist[i].title));
+                }
+                return dps;
             }
-            return retLists;
+            catch (Exception ex)
+            {
+                throw new Exception("错误：" + ex.Message);
+            }
         }
 
         /// <summary>
         /// 根据数据库查询，并返回数据，strWhere是条件
         /// </summary>
         /// <param name="strWhere">查询条件</param>
-        /// <param name="startIndex">从1开始</param>
-        /// <param name="endIndex">到这为止</param>
+        /// <param name="startIndex">从1开始，页码</param>
+        /// <param name="endIndex">每页的数量</param>
         /// <returns></returns>
         public DataTable GetListByPage(IDictionary<string, object> strWhere, int startIndex, int endIndex)
         {
@@ -98,77 +93,73 @@ namespace zhuhai.service
 
         public Boolean deleteRow(int id)
         {
-            foreach (DisposePlan disposePlan in disposePlans)
+            try
             {
-                if (disposePlan.Id == id)
+                ICustomsCMS server = XmlRpcInstance.getInstance();
+                DBRPCResponse dBRPCResponse = server.deleteEmerPlan(id);
+                if (dBRPCResponse.error_code != 0)
                 {
-                    disposePlans.Remove(disposePlan);
-                    return true;
+                    throw new Exception("连接服务器错误：" + dBRPCResponse.error_msg);
                 }
+                return true;
             }
-
-            return false;
+            catch (Exception ex)
+            {
+                throw new Exception("错误：" + ex.Message);
+            }
         }
 
         public Boolean addRow(CommonText commonText)
         {
-            DisposePlan disposePlan = new DisposePlan(15, commonText.Title);
-            disposePlans.Add(disposePlan);
-
-            //以下删掉
-            //实例化一个文件流--->与写入文件相关联  
-            FileStream fo = new FileStream("D:/tmp/tmp.rtf", FileMode.Create);
-            //实例化BinaryWriter
-            BinaryWriter bw = new BinaryWriter(fo);
-            bw.Write(commonText.Bytes);
-            //清空缓冲区  
-            bw.Flush();
-            //关闭流  
-            bw.Close();
-            fo.Close(); 
-
-            return true;
+            try
+            {
+                ICustomsCMS server = XmlRpcInstance.getInstance();
+                ImageTextInfo imageTextInfo = new ImageTextInfo();
+                imageTextInfo.title = commonText.Title;
+                imageTextInfo.content = commonText.Bytes;
+                imageTextInfo.authod = SystemManageService.currentUser.UserName;
+                DBRPCResponse dBRPCResponse = server.putEmerPlan(imageTextInfo);
+                return true;
+            }
+            catch (Exception ex)
+            {
+                throw new Exception("错误：" + ex.Message);
+            }
         }
 
         public Boolean modifyRow(CommonText commonText)
         {
-            for (int i = 0; i < disposePlans.Count; i++)
+            try
             {
-                if (disposePlans[i].Id == commonText.Id)
-                {
-                    DisposePlan disposePlan = new DisposePlan(commonText.Id, commonText.Title);
-                    disposePlans[i] = disposePlan;
-
-                    //以下删掉
-                    //实例化一个文件流--->与写入文件相关联  
-                    FileStream fo = new FileStream("D:/tmp/tmp.rtf", FileMode.Create);
-                    //实例化BinaryWriter
-                    BinaryWriter bw = new BinaryWriter(fo);
-                    bw.Write(commonText.Bytes);
-                    //清空缓冲区  
-                    bw.Flush();
-                    //关闭流  
-                    bw.Close();
-                    fo.Close(); 
-
-                    return true;
-                }
-
+                ICustomsCMS server = XmlRpcInstance.getInstance();
+                ImageTextInfo imageTextInfo = new ImageTextInfo();
+                imageTextInfo.id = commonText.Id;
+                imageTextInfo.title = commonText.Title;
+                imageTextInfo.content = commonText.Bytes;
+                imageTextInfo.authod = SystemManageService.currentUser.UserName;
+                DBRPCResponse dBRPCResponse = server.modifyEmerPlan(imageTextInfo);
+                return true;
             }
-            return false;
+            catch (Exception ex)
+            {
+                throw new Exception("错误：" + ex.Message);
+            }
         }
 
-        public CommonText getRow(int id)
+        public CommonText getRow(int id, string title)
         {
-            foreach (DisposePlan disposePlan in disposePlans)
+            try
             {
-                if (disposePlan.Id == id)
-                {
-                    disposePlan.Bytes = StreamByteTransfer.FileToBytes("D:/tmp/tmp.rtf");
-                    return disposePlan;
-                }
+                ICustomsCMS server = XmlRpcInstance.getInstance();
+                ImageTextInfo imageTextInfo = server.findEmerPlanbytitle(title);
+                CommonText commonText = new CommonText(imageTextInfo.id, imageTextInfo.title);
+                commonText.Bytes = imageTextInfo.content;
+                return commonText;
             }
-            return null;
+            catch (Exception ex)
+            {
+                throw new Exception("错误：" + ex.Message);
+            }
         }
 
         /// <summary>
@@ -179,16 +170,21 @@ namespace zhuhai.service
         /// <returns></returns>
         public Boolean findRowByIdAndTitle(int id, string title)
         {
-            //根据id和标题查询数据库，全匹配
-            foreach (DisposePlan disposePlan in disposePlans)
+            try
             {
-                if (disposePlan.Title == title && disposePlan.Id != id)
+                ICustomsCMS server = XmlRpcInstance.getInstance();
+                ImageTextInfo imageTextInfo = server.findEmerPlanbytitle(title);
+                //查询出结果，同时id不和本身相同
+                if (imageTextInfo.id != 0 && imageTextInfo.id != id)
                 {
                     return true;
                 }
+                return false;
             }
-
-            return false;
+            catch (Exception ex)
+            {
+                throw new Exception("错误：" + ex.Message);
+            }
         }
     }
 }

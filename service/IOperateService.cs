@@ -26,7 +26,7 @@ namespace zhuhai.service
         /// </summary>
         /// <param name="id"></param>
         /// <returns></returns>
-        T getRow(int id);
+        T getRow(int id, string title);
 
         /// <summary>
         /// 根据id和title查询，是否有符合要求的记录

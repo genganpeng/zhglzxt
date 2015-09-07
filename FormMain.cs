@@ -34,7 +34,7 @@ namespace zhuhai
             addUIMonitors();
             this.DoubleBuffered = true;
             UpdateStyles();
-            initMonitorControler();
+            //initMonitorControler();
             this.barStaticItem_currentUser.Caption = "当前用户：" + SystemManageService.currentUser.UserName;
         }
 
@@ -150,8 +150,8 @@ namespace zhuhai
         //选中一个通道后预览
         private void selectMonitorRadio(object sender, EventArgs e)
         {
-            //this.groupBox5.Controls.Remove(this.videoPlayWnd);
-            //this.tabPageMonitor.Controls.Add(this.videoPlayWnd);
+            this.groupBox5.Controls.Remove(this.videoPlayWnd);
+            this.xtraTabPage_shipinMonitor.Controls.Add(this.videoPlayWnd);
             selectMonitor();
         }
 

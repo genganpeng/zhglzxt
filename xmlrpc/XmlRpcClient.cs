@@ -60,6 +60,163 @@ namespace zhuhai.xmlrpc
 
         [XmlRpcMethod("getGateInfo")]
         GateInfoResponse getGateInfo(int controller_id, int gate_id);
+
+        //新增工作规程
+        [XmlRpcMethod("putWorkRule")]
+        DBRPCResponse putWorkRule(ImageTextInfo textinfo);
+
+        //修改工作规程
+        [XmlRpcMethod("modifyWorkRule")]
+        DBRPCResponse modifyWorkRule(ImageTextInfo textinfo);
+
+
+        //删除工作规程
+        [XmlRpcMethod("deleteWorkRule")]
+        DBRPCResponse deleteWorkRule(int id);
+
+        //根据标题查询规程内容
+        [XmlRpcMethod("findWorkRulebytitle")]
+        ImageTextInfo findWorkRulebytitle(String textinfo);
+
+
+        //查询所有工作规程，这个可以暂时考虑不用！！！！！！
+        [XmlRpcMethod("findWorkRuleList")]
+        ImageText_List_Response findWorkRuleList();
+
+        //查询指定时间段内工作规程的标题数量，注意这个地方不返回内容。支持分页
+        //titlelike:根据标题模糊查询
+        //begintime 开始时间
+        //endtime 结束时间
+        //startline:页码数，从1开始
+        //limit：每页的容量
+        [XmlRpcMethod("findWorkRuleTitleList")]
+        Title_Response findWorkRuleTitleList(String titlelike, DateTime begintime, DateTime endtime, int startline, int limit);
+
+        //查询指定时间段内工作规程的数量，用于计算总数
+        //titlelike:根据标题模糊查询
+        //begintime 开始时间
+        //endtime 结束时间
+        [XmlRpcMethod("findWorkRuleCount")]
+        TitleNumResponse findWorkRuleCount(String titlelike, DateTime begintime, DateTime endtime);
+
+
+        //新增作业指导书
+        [XmlRpcMethod("putJobInstruct")]
+        DBRPCResponse putJobInstruct(ImageTextInfo textinfo);
+
+        //修改作业指导书
+        [XmlRpcMethod("modifyJobInstruct")]
+        DBRPCResponse modifyJobInstruct(ImageTextInfo textinfo);
+
+
+        //删除作业指导书
+        [XmlRpcMethod("deleteJobInstruct")]
+        DBRPCResponse deleteJobInstruct(int id);
+
+        //根据标题查询规程内容
+        [XmlRpcMethod("findJobInstructbytitle")]
+        ImageTextInfo findJobInstructbytitle(String textinfo);
+
+
+        //查询所有工作规程，这个可以暂时考虑不用！！！！！！
+        [XmlRpcMethod("findJobInstructList")]
+        ImageText_List_Response findJobInstructList();
+
+        //查询指定时间段内工作规程的标题数量，注意这个地方不返回内容。支持分页
+        //titlelike:根据标题模糊查询
+        //begintime 开始时间
+        //endtime 结束时间
+        //startline:页码数，从1开始
+        //limit：每页的容量
+        [XmlRpcMethod("findJobInstructTitleList")]
+        Title_Response findJobInstructTitleList(String titlelike, DateTime begintime, DateTime endtime, int startline, int limit);
+
+        //查询指定时间段内作业指导书的数量，用于计算总数
+        //titlelike:根据标题模糊查询
+        //begintime 开始时间
+        //endtime 结束时间
+        [XmlRpcMethod("findJobInstructCount")]
+        TitleNumResponse findJobInstructCount(String titlelike, DateTime begintime, DateTime endtime);
+
+
+
+        //新增疫情信息
+        [XmlRpcMethod("putEpideInfo")]
+        DBRPCResponse putEpideInfo(ImageTextInfo textinfo);
+
+        //修改疫情信息
+        [XmlRpcMethod("modifyEpideInfo")]
+        DBRPCResponse modifyEpideInfo(ImageTextInfo textinfo);
+
+
+        //删除疫情信息
+        [XmlRpcMethod("deleteEpideInfo")]
+        DBRPCResponse deleteEpideInfo(int id);
+
+        //根据标题查询规程内容
+        [XmlRpcMethod("findEpideInfobytitle")]
+        ImageTextInfo findEpideInfobytitle(String textinfo);
+
+
+        //查询所有工作规程，这个可以暂时考虑不用！！！！！！
+        [XmlRpcMethod("findEpideInfoList")]
+        ImageText_List_Response findEpideInfoList();
+
+        //查询指定时间段内工作规程的标题数量，注意这个地方不返回内容。支持分页
+        //titlelike:根据标题模糊查询
+        //begintime 开始时间
+        //endtime 结束时间
+        //startline:页码数，从1开始
+        //limit：每页的容量
+        [XmlRpcMethod("findEpideInfoTitleList")]
+        Title_Response findEpideInfoTitleList(String titlelike, DateTime begintime, DateTime endtime, int startline, int limit);
+
+        //查询指定时间段内疫情信息的数量，用于计算总数
+        //titlelike:根据标题模糊查询
+        //begintime 开始时间
+        //endtime 结束时间
+        [XmlRpcMethod("findEpideInfoCount")]
+        TitleNumResponse findEpideInfoCount(String titlelike, DateTime begintime, DateTime endtime);
+
+
+
+        //新增应急预案
+        [XmlRpcMethod("putEmerPlan")]
+        DBRPCResponse putEmerPlan(ImageTextInfo textinfo);
+
+        //修改应急预案
+        [XmlRpcMethod("modifyEmerPlan")]
+        DBRPCResponse modifyEmerPlan(ImageTextInfo textinfo);
+
+
+        //删除应急预案
+        [XmlRpcMethod("deleteEmerPlan")]
+        DBRPCResponse deleteEmerPlan(int id);
+
+        //根据标题查询规程内容
+        [XmlRpcMethod("findEmerPlanbytitle")]
+        ImageTextInfo findEmerPlanbytitle(String textinfo);
+
+
+        //查询所有工作规程，这个可以暂时考虑不用！！！！！！
+        [XmlRpcMethod("findEmerPlanList")]
+        ImageText_List_Response findEmerPlanList();
+
+        //查询指定时间段内工作规程的标题数量，注意这个地方不返回内容。支持分页
+        //titlelike:根据标题模糊查询
+        //begintime 开始时间
+        //endtime 结束时间
+        //startline:页码数，从1开始
+        //limit：每页的容量
+        [XmlRpcMethod("findEmerPlanTitleList")]
+        Title_Response findEmerPlanTitleList(String titlelike, DateTime begintime, DateTime endtime, int startline, int limit);
+
+        //查询指定时间段内应急预案的数量，用于计算总数
+        //titlelike:根据标题模糊查询
+        //begintime 开始时间
+        //endtime 结束时间
+        [XmlRpcMethod("findEmerPlanCount")]
+        TitleNumResponse findEmerPlanCount(String titlelike, DateTime begintime, DateTime endtime);
     }
 
     /**
@@ -324,6 +481,32 @@ namespace zhuhai.xmlrpc
             return String.Format(
                 "gate_id= {0}, nvr_ip= {1}, nvr_channel= {2}",
                 this.gate_id, this.nvr_ip, this.nvr_channel);
+        }
+    }
+
+    /**
+        * 
+        * 添加图文消息的通用接口，可以被工作规程，作业指导书等通用
+        * 
+       **/
+    public class ImageTextInfo
+    {
+        [XmlRpcMissingMapping(MappingAction.Ignore)]
+        public int id;
+        //标题
+        public string title;
+
+        //内容，这个地方只需要是byte[]就可以，解码也是返回的byte[]，需要管理客户端根据自己的编码规则进行转化和还原。
+        public byte[] content;
+
+        //作者
+        public string authod;
+
+        public override string ToString()
+        {
+            return String.Format(
+                "authod= {0}, title={1}",
+                this.authod, this.title);
         }
     }
 }
