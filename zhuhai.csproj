@@ -53,8 +53,9 @@
     <StartupObject />
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="CookComputing.XmlRpcV2">
-      <HintPath>.\CookComputing.XmlRpcV2.dll</HintPath>
+    <Reference Include="CookComputing.XmlRpcV2, Version=2.5.0.0, Culture=neutral, PublicKeyToken=a7d6e17aa302004d, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>dll\CookComputing.XmlRpcV2.dll</HintPath>
     </Reference>
     <Reference Include="DevExpress.BonusSkins.v14.1" />
     <Reference Include="DevExpress.Data.v14.1" />
@@ -73,7 +74,7 @@
     <Reference Include="DevExpress.XtraRichEdit.v14.1.Extensions, Version=14.1.4.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL" />
     <Reference Include="Newtonsoft.Json, Version=7.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>.\Newtonsoft.Json.dll</HintPath>
+      <HintPath>dll\Newtonsoft.Json.dll</HintPath>
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.configuration" />
@@ -100,6 +101,14 @@
     <Compile Include="model\JobGuideBook.cs" />
     <Compile Include="model\EpidemicInfo.cs" />
     <Compile Include="model\DisposePlan.cs" />
+    <Compile Include="monitorinfo\h264\H264Controler.cs" />
+    <Compile Include="monitorinfo\h264\XMSDK.cs" />
+    <Compile Include="monitorinfo\hc\HCControler.cs" />
+    <Compile Include="monitorinfo\hc\HCNetSDK.cs" />
+    <Compile Include="monitorinfo\hc\PlayFileControler.cs" />
+    <Compile Include="monitorinfo\Monitor.cs" />
+    <Compile Include="monitorinfo\NVRControler.cs" />
+    <Compile Include="monitorinfo\NVRDevice.cs" />
     <Compile Include="PublishNoticeForm.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -443,6 +452,321 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="Resources\exception.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\leftarrow.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\rightarrow.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\channel\channelblue.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\channel\channelbluered.gif" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\channel\channelred.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\channel\channelyellow.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\channel\_1.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\channel\_2.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\channel\_3.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\channel\_4.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\channel\_5.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\channel\_6.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\channel\_7.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\channel\_8.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\channel\_9.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\channel\_10.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\channel\_11.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\channel\_12.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\channel\_13.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\channel\_14.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\channel\_15.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\channel\_16.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\channel\_17.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\channel\_18.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\channel\_19.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\channel\_20.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\channel\_21.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\channel\_22.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\channel\_23.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\channel\_24.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\channel\_25.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\channel\_26.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\channel\_27.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\channel\_28.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\channel\_29.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\channel\_30.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\channel\_31.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\channel\_32.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\channel\_33.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\channel\_34.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\channel\_35.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\channel\_36.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\channel\_37.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\channel\_38.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\channel\_39.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\channel\_40.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\channel\_41.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\channel\_42.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\channel\_43.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\channel\_44.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\channel\_45.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\channel\_46.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\channel\_47.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\channel\_48.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\channel\_49.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\channel\_50.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\channel\_51.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\channel\_52.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\channel\_53.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\channel\_54.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\channel\_55.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\channel\_56.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\channel\_57.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\channel\_58.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\channel\_59.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\channel\_61.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\channel\_62.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\channel\_63.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\channel\_64.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\channel\_65.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\channel\_66.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\channel\_67.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\channel\_68.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\channel\_69.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\channel\_70.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\channel\_71.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\channel\_72.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\channel\_73.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\channel\_74.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\channel\_75.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\channel\_76.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\channel\_77.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\channel\_78.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\channel\_79.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\channel\_80.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\channel\_81.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\channel\_82.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\channel\_83.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\channel\_84.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\channel\_85.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\channel\_86.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\channel\_87.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\channel\_88.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\channel\_89.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\channel\_90.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\channel\_91.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\channel\_92.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\channel\_93.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\channel\_94.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\channel\_95.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\channel\_96.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\channel\_97.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\channel\_98.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\channel\_99.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\channel\_100.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it.

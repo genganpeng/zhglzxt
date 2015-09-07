@@ -73,15 +73,22 @@
             this.navBarGroup4 = new DevExpress.XtraNavBar.NavBarGroup();
             this.navBarItem_huaxue = new DevExpress.XtraNavBar.NavBarItem();
             this.navBarItem2 = new DevExpress.XtraNavBar.NavBarItem();
+            this.button_right = new System.Windows.Forms.Button();
+            this.button_left = new System.Windows.Forms.Button();
+            this.channelPanel = new System.Windows.Forms.Panel();
             this.timer_updateTime = new System.Windows.Forms.Timer(this.components);
             this.timer_updateSHWXQH = new System.Windows.Forms.Timer(this.components);
+            this.videoPlayWnd = new System.Windows.Forms.PictureBox();
             ((System.ComponentModel.ISupportInitialize)(this.ribbonControl1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainerControl1)).BeginInit();
             this.splitContainerControl1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.xtraTabControl)).BeginInit();
             this.xtraTabControl.SuspendLayout();
+            this.xtraTabPage_shipinMonitor.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.navBarControl1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.videoPlayWnd)).BeginInit();
+            this.toolStripStatusLabel = new System.Windows.Forms.ToolStripStatusLabel();
             this.SuspendLayout();
             // 
             // ribbonControl1
@@ -236,7 +243,6 @@
             this.barStaticItem_systemTime.Id = 25;
             this.barStaticItem_systemTime.Name = "barStaticItem_systemTime";
             this.barStaticItem_systemTime.TextAlignment = System.Drawing.StringAlignment.Near;
-            this.barStaticItem_systemTime.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.barStaticItem3_ItemClick);
             // 
             // barStaticItem_currentUser
             // 
@@ -352,7 +358,7 @@
             this.ribbonStatusBar1.ItemLinks.Add(this.barButtonItem_exitSystem);
             this.ribbonStatusBar1.ItemLinks.Add(this.barStaticItem_currentUser);
             this.ribbonStatusBar1.ItemLinks.Add(this.barStaticItem_systemTime);
-            this.ribbonStatusBar1.Location = new System.Drawing.Point(0, 694);
+            this.ribbonStatusBar1.Location = new System.Drawing.Point(0, 647);
             this.ribbonStatusBar1.Name = "ribbonStatusBar1";
             this.ribbonStatusBar1.Ribbon = this.ribbonControl1;
             this.ribbonStatusBar1.Size = new System.Drawing.Size(1350, 27);
@@ -374,7 +380,7 @@
             // splitContainerControl1
             // 
             this.splitContainerControl1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.splitContainerControl1.Location = new System.Drawing.Point(0, 122);
+            this.splitContainerControl1.Location = new System.Drawing.Point(0, 210);
             this.splitContainerControl1.Name = "splitContainerControl1";
             this.splitContainerControl1.Padding = new System.Windows.Forms.Padding(5);
             this.splitContainerControl1.Panel1.Controls.Add(this.xtraTabControl);
@@ -383,7 +389,7 @@
             this.splitContainerControl1.Panel2.Controls.Add(this.navBarControl1);
             this.splitContainerControl1.Panel2.MinSize = 336;
             this.splitContainerControl1.Panel2.Text = "Panel2";
-            this.splitContainerControl1.Size = new System.Drawing.Size(1350, 572);
+            this.splitContainerControl1.Size = new System.Drawing.Size(1350, 437);
             this.splitContainerControl1.TabIndex = 17;
             this.splitContainerControl1.Text = "splitContainerControl1";
             // 
@@ -393,30 +399,35 @@
             this.xtraTabControl.Location = new System.Drawing.Point(0, 0);
             this.xtraTabControl.Name = "xtraTabControl";
             this.xtraTabControl.SelectedTabPage = this.xtraTabPage_tongguanMonitor;
-            this.xtraTabControl.Size = new System.Drawing.Size(1000, 562);
+            this.xtraTabControl.Size = new System.Drawing.Size(1000, 427);
             this.xtraTabControl.TabIndex = 0;
             this.xtraTabControl.TabPages.AddRange(new DevExpress.XtraTab.XtraTabPage[] {
             this.xtraTabPage_tongguanMonitor,
             this.xtraTabPage_zhajiMonitor,
             this.xtraTabPage_shipinMonitor});
+            this.xtraTabControl.VisibleChanged += new System.EventHandler(this.xtraTabControl_VisibleChanged);
             // 
             // xtraTabPage_tongguanMonitor
             // 
             this.xtraTabPage_tongguanMonitor.Name = "xtraTabPage_tongguanMonitor";
-            this.xtraTabPage_tongguanMonitor.Size = new System.Drawing.Size(994, 533);
+            this.xtraTabPage_tongguanMonitor.Size = new System.Drawing.Size(994, 398);
             this.xtraTabPage_tongguanMonitor.Text = "通关监控";
+            this.xtraTabPage_tongguanMonitor.VisibleChanged += new System.EventHandler(this.xtraTabPage_tongguanMonitor_VisibleChanged);
             // 
             // xtraTabPage_zhajiMonitor
             // 
             this.xtraTabPage_zhajiMonitor.Name = "xtraTabPage_zhajiMonitor";
-            this.xtraTabPage_zhajiMonitor.Size = new System.Drawing.Size(994, 533);
+            this.xtraTabPage_zhajiMonitor.Size = new System.Drawing.Size(994, 398);
             this.xtraTabPage_zhajiMonitor.Text = "闸机监控";
+            this.xtraTabPage_zhajiMonitor.VisibleChanged += new System.EventHandler(this.xtraTabPage_zhajiMonitor_VisibleChanged);
             // 
             // xtraTabPage_shipinMonitor
             // 
+            this.xtraTabPage_shipinMonitor.Controls.Add(this.videoPlayWnd);
             this.xtraTabPage_shipinMonitor.Name = "xtraTabPage_shipinMonitor";
-            this.xtraTabPage_shipinMonitor.Size = new System.Drawing.Size(994, 533);
+            this.xtraTabPage_shipinMonitor.Size = new System.Drawing.Size(994, 398);
             this.xtraTabPage_shipinMonitor.Text = "视频监控";
+            this.xtraTabPage_shipinMonitor.VisibleChanged += new System.EventHandler(this.xtraTabPage_shipinMonitor_VisibleChanged);
             // 
             // navBarControl1
             // 
@@ -434,7 +445,7 @@
             this.navBarControl1.Location = new System.Drawing.Point(0, 0);
             this.navBarControl1.Name = "navBarControl1";
             this.navBarControl1.OptionsNavPane.ExpandedWidth = 335;
-            this.navBarControl1.Size = new System.Drawing.Size(335, 562);
+            this.navBarControl1.Size = new System.Drawing.Size(335, 427);
             this.navBarControl1.TabIndex = 0;
             this.navBarControl1.Text = "navBarControl1";
             // 
@@ -482,6 +493,38 @@
             this.navBarItem2.Caption = "navBarItem2";
             this.navBarItem2.Name = "navBarItem2";
             // 
+            // button_right
+            // 
+            this.button_right.BackColor = System.Drawing.Color.Transparent;
+            this.button_right.BackgroundImage = global::zhuhai.Properties.Resources.rightarrow;
+            this.button_right.Location = new System.Drawing.Point(1315, 142);
+            this.button_right.Name = "button_right";
+            this.button_right.Size = new System.Drawing.Size(32, 51);
+            this.button_right.TabIndex = 3;
+            this.button_right.UseMnemonic = false;
+            this.button_right.UseVisualStyleBackColor = false;
+            this.button_right.Click += new System.EventHandler(this.button_right_Click);
+            // 
+            // button_left
+            // 
+            this.button_left.BackColor = System.Drawing.Color.Transparent;
+            this.button_left.BackgroundImage = global::zhuhai.Properties.Resources.leftarrow;
+            this.button_left.Location = new System.Drawing.Point(1, 142);
+            this.button_left.Name = "button_left";
+            this.button_left.Size = new System.Drawing.Size(32, 51);
+            this.button_left.TabIndex = 2;
+            this.button_left.UseMnemonic = false;
+            this.button_left.UseVisualStyleBackColor = false;
+            this.button_left.Click += new System.EventHandler(this.button_left_Click);
+            // 
+            // channelPanel
+            // 
+            this.channelPanel.Dock = System.Windows.Forms.DockStyle.Top;
+            this.channelPanel.Location = new System.Drawing.Point(0, 122);
+            this.channelPanel.Name = "channelPanel";
+            this.channelPanel.Size = new System.Drawing.Size(1350, 88);
+            this.channelPanel.TabIndex = 1;
+            // 
             // timer_updateTime
             // 
             this.timer_updateTime.Tick += new System.EventHandler(this.timer_updateTime_Tick);
@@ -490,13 +533,31 @@
             // 
             this.timer_updateSHWXQH.Tick += new System.EventHandler(this.timer_updateSHWXQH_Tick);
             // 
+            // videoPlayWnd
+            // 
+            this.videoPlayWnd.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.videoPlayWnd.Location = new System.Drawing.Point(0, 0);
+            this.videoPlayWnd.Name = "videoPlayWnd";
+            this.videoPlayWnd.Size = new System.Drawing.Size(994, 398);
+            this.videoPlayWnd.TabIndex = 0;
+            this.videoPlayWnd.TabStop = false;
+            // 
+            // toolStripStatusLabel
+            // 
+            this.toolStripStatusLabel.Name = "toolStripStatusLabel";
+            this.toolStripStatusLabel.Size = new System.Drawing.Size(29, 36);
+            this.toolStripStatusLabel.Text = "就绪";
+            // 
             // FormMain
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 14F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1350, 721);
+            this.ClientSize = new System.Drawing.Size(1350, 674);
+            this.Controls.Add(this.button_right);
             this.Controls.Add(this.splitContainerControl1);
+            this.Controls.Add(this.button_left);
             this.Controls.Add(this.ribbonStatusBar1);
+            this.Controls.Add(this.channelPanel);
             this.Controls.Add(this.pictureBox1);
             this.Controls.Add(this.ribbonControl1);
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
@@ -513,7 +574,9 @@
             this.splitContainerControl1.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.xtraTabControl)).EndInit();
             this.xtraTabControl.ResumeLayout(false);
+            this.xtraTabPage_shipinMonitor.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.navBarControl1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.videoPlayWnd)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -566,6 +629,13 @@
         private DevExpress.XtraBars.Ribbon.RibbonPageCategory ribbonPageCategory1;
         private DevExpress.XtraBars.BarButtonItem barButtonItem_hxswqhThreshold;
         private DevExpress.XtraBars.BarButtonItem barButtonItem_modeset;
+        private System.Windows.Forms.Panel channelPanel;
+        private System.Windows.Forms.Button button_left;
+        private System.Windows.Forms.Button button_right;
+        private System.Windows.Forms.PictureBox videoPlayWnd;
+        private System.Windows.Forms.ToolStripStatusLabel toolStripStatusLabel;
+        
+       
 
     }
 }

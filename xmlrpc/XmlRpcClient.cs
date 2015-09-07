@@ -57,6 +57,9 @@ namespace zhuhai.xmlrpc
 
         [XmlRpcMethod("getPassengerPhoto")]
         IDPhotoResponse getPassengerPhoto(int controller_id, int photo_id);
+
+        [XmlRpcMethod("getGateInfo")]
+        GateInfoResponse getGateInfo(int controller_id, int gate_id);
     }
 
     /**
@@ -305,5 +308,22 @@ namespace zhuhai.xmlrpc
         public int photo_id;
         public string filename;
         public byte[] content;
+    }
+
+    public class GateInfoResponse : RPCResponse
+    {
+        public int gate_id;
+        public string nvr_ip;
+        public int nvr_port;
+        public string nvr_username;
+        public string nvr_passwd;
+        public int nvr_channel;
+
+        public override string ToString()
+        {
+            return String.Format(
+                "gate_id= {0}, nvr_ip= {1}, nvr_channel= {2}",
+                this.gate_id, this.nvr_ip, this.nvr_channel);
+        }
     }
 }
