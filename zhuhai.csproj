@@ -79,6 +79,7 @@
     <Reference Include="System" />
     <Reference Include="System.configuration" />
     <Reference Include="System.Core" />
+    <Reference Include="System.Web.Extensions" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="Microsoft.CSharp" />
@@ -147,6 +148,7 @@
     <Compile Include="LoginForm.Designer.cs">
       <DependentUpon>LoginForm.cs</DependentUpon>
     </Compile>
+    <Compile Include="util\DictionaryToXmlRpcStruct.cs" />
     <Compile Include="util\ModelHandler.cs" />
     <Compile Include="util\Pager.cs" />
     <Compile Include="PageUpControl.cs">
@@ -239,6 +241,12 @@
     <Compile Include="ClearanceRecordForm.Designer.cs">
       <DependentUpon>ClearanceRecordForm.cs</DependentUpon>
     </Compile>
+    <Compile Include="VideoReplayForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="VideoReplayForm.Designer.cs">
+      <DependentUpon>VideoReplayForm.cs</DependentUpon>
+    </Compile>
     <EmbeddedResource Include="ClearanceStatisticsForm.resx">
       <DependentUpon>ClearanceStatisticsForm.cs</DependentUpon>
     </EmbeddedResource>
@@ -300,6 +308,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="ClearanceRecordForm.resx">
       <DependentUpon>ClearanceRecordForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="VideoReplayForm.resx">
+      <DependentUpon>VideoReplayForm.cs</DependentUpon>
     </EmbeddedResource>
     <None Include="App.config" />
     <None Include="Properties\Settings.settings">
@@ -768,6 +779,48 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="Resources\channel\_100.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\zhaji\abnormal.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\zhaji\fengbi.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\zhaji\gate.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\zhaji\normal.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\zhaji\other.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\zhaji\shenbao.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\zhaji\shuaka.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\zhaji\sleep.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\zhaji\zidong.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\fast.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\pause.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\play.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\slow.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\stop.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it.

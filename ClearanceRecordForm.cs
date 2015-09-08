@@ -38,6 +38,9 @@ namespace zhuhai
             this.comboBox_abnormal.Items.AddRange(zhuhai.util.AbnormalType.getAllAbnormalTypeNames());
             this.comboBox_abnormal.SelectedIndex = 0;
 
+            this.dateTimePicker_startTime.Text = DateTime.Now.ToString();
+            this.dateTimePicker_endTime.Text = DateTime.Now.ToString();
+
             initData(formatWhere());
         }
 
@@ -48,21 +51,28 @@ namespace zhuhai
         public IDictionary<string, object> formatWhere()
         {
             IDictionary<string, object> strWhere = new Dictionary<string, object>();
-            string name = textEdit_name.Text;
-            strWhere.Add(ClearanceRecord.NAME_COLUMN, name);
+            string name = textEdit_name.Text.Trim();
+            strWhere.Add(ClearanceRecord.NAME_COLUMN, name.Trim());
 
             string country = textEdit_country.Text;
-            strWhere.Add(ClearanceRecord.NATIONALITY_COLUMN, country);
-
-            string sex = comboBox_sex.Text;
-            if (sex == "全部")
+            if (country != "" && country.Trim() != "")
             {
-                sex = "";
+                strWhere.Add(ClearanceRecord.NATIONALITY_COLUMN, country.Trim());
             }
-            strWhere.Add(ClearanceRecord.SEX_COLUMN, sex);
 
-            DateTime startTime = dateTimePicker_startTime.Value;
-            strWhere.Add(ClearanceRecord.NVR_STARTTIME_COLUMN, startTime);
+            if (comboBox_sex.Text != "" && comboBox_sex.Text != "全部" && comboBox_sex.Text.Trim() != "")
+            {
+                if (comboBox_sex.Text.Trim().Equals("男"))
+                {
+                    strWhere.Add(ClearanceRecord.IS_MALE_COLUMN, true);
+                }
+                else
+                {
+                    strWhere.Add(ClearanceRecord.IS_MALE_COLUMN, false);
+                }
+            }
+
+            strWhere.Add(ClearanceRecord.NVR_STARTTIME_COLUMN, dateTimePicker_startTime.Value);
 
             DateTime endTime = dateTimePicker_endTime.Value;
             endTime = endTime.AddDays(1);
@@ -87,6 +97,12 @@ namespace zhuhai
                 gateNo = int.Parse(channel);
             }
             strWhere.Add(ClearanceRecord.GATE_ID_COLUMN, gateNo);
+
+            if (strWhere.Count == 0 && name == "")
+            {
+                MessageBox.Show("请输入查询条件，至少要包括姓名和开始时间!");
+                textEdit_name.Focus();
+            }
 
             return strWhere;
 

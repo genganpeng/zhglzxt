@@ -795,6 +795,13 @@ namespace zhuhai.Properties {
             }
         }
         
+        internal static System.Drawing.Bitmap abnormal {
+            get {
+                object obj = ResourceManager.GetObject("abnormal", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
         internal static System.Drawing.Bitmap autofit_window_16x16 {
             get {
                 object obj = ResourceManager.GetObject("autofit_window_16x16", resourceCulture);
@@ -879,6 +886,27 @@ namespace zhuhai.Properties {
             }
         }
         
+        internal static System.Drawing.Bitmap fast {
+            get {
+                object obj = ResourceManager.GetObject("fast", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        internal static System.Drawing.Bitmap fengbi {
+            get {
+                object obj = ResourceManager.GetObject("fengbi", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        internal static System.Drawing.Bitmap gate {
+            get {
+                object obj = ResourceManager.GetObject("gate", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
         internal static System.Drawing.Bitmap gured {
             get {
                 object obj = ResourceManager.GetObject("gured", resourceCulture);
@@ -921,6 +949,20 @@ namespace zhuhai.Properties {
             }
         }
         
+        internal static System.Drawing.Bitmap normal {
+            get {
+                object obj = ResourceManager.GetObject("normal", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        internal static System.Drawing.Bitmap other {
+            get {
+                object obj = ResourceManager.GetObject("other", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
         internal static System.Drawing.Bitmap paste_16x16 {
             get {
                 object obj = ResourceManager.GetObject("paste_16x16", resourceCulture);
@@ -935,9 +977,23 @@ namespace zhuhai.Properties {
             }
         }
         
+        internal static System.Drawing.Bitmap pause {
+            get {
+                object obj = ResourceManager.GetObject("pause", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
         internal static System.Drawing.Bitmap people {
             get {
                 object obj = ResourceManager.GetObject("people", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        internal static System.Drawing.Bitmap play {
+            get {
+                object obj = ResourceManager.GetObject("play", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
@@ -1005,6 +1061,13 @@ namespace zhuhai.Properties {
             }
         }
         
+        internal static System.Drawing.Bitmap shenbao {
+            get {
+                object obj = ResourceManager.GetObject("shenbao", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
         internal static System.Drawing.Bitmap show_16x16 {
             get {
                 object obj = ResourceManager.GetObject("show_16x16", resourceCulture);
@@ -1015,6 +1078,34 @@ namespace zhuhai.Properties {
         internal static System.Drawing.Bitmap show_32x32 {
             get {
                 object obj = ResourceManager.GetObject("show_32x32", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        internal static System.Drawing.Bitmap shuaka {
+            get {
+                object obj = ResourceManager.GetObject("shuaka", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        internal static System.Drawing.Bitmap sleep {
+            get {
+                object obj = ResourceManager.GetObject("sleep", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        internal static System.Drawing.Bitmap slow {
+            get {
+                object obj = ResourceManager.GetObject("slow", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        internal static System.Drawing.Bitmap stop {
+            get {
+                object obj = ResourceManager.GetObject("stop", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
@@ -1064,6 +1155,13 @@ namespace zhuhai.Properties {
         internal static System.Drawing.Bitmap yiwhite {
             get {
                 object obj = ResourceManager.GetObject("yiwhite", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        internal static System.Drawing.Bitmap zidong {
+            get {
+                object obj = ResourceManager.GetObject("zidong", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }

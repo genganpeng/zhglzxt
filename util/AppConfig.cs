@@ -32,5 +32,26 @@ namespace zhuhai.util
         /// 口岸传感器编号
         /// </summary>
         static public int hxswqhnum = int.Parse(ConfigurationManager.AppSettings["hxswqhnum"]);
+
+        /// <summary>
+        /// 闪烁时间
+        /// </summary>
+        static public int blinkSecond = int.Parse(ConfigurationManager.AppSettings["blinkSecond"]);
+
+        /// <summary>
+        /// 获取异常的间隔时间
+        /// </summary>
+        static public int getMessageSecond = int.Parse(ConfigurationManager.AppSettings["getMessageSecond"]);
+
+        /// <summary>
+        /// 显示异常人员数量
+        /// </summary>
+        static public int personNo = int.Parse(ConfigurationManager.AppSettings["personNo"]);
+
+        /// <summary>
+        /// 获取闸机状态的间隔时间
+        /// </summary>
+        static public int getGateSecond = int.Parse(ConfigurationManager.AppSettings["getGateSecond"]);
+        
     }
 }

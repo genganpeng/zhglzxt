@@ -212,7 +212,7 @@
             this.Controls.Add(this.labelControl_gate);
             this.Name = "ModeStateSetForm";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
-            this.Text = "信息发布";
+            this.Text = "闸机模式状态设置";
             ((System.ComponentModel.ISupportInitialize)(this.checkedListBoxControl_gate)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();

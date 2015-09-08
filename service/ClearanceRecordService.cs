@@ -53,12 +53,11 @@ namespace zhuhai.service
             //实现分页查询的方法， 使用strWhere,startIndex,endIndex, 同时需要返回Pager
             //记录总数量
             TotalNum = 100;
-
             ICustomsCMS server = XmlRpcInstance.getInstance();
 
             try
             {
-                GateRecordsResponse res = server.searchPassenger(AppConfig.gateSensor, strWhere[ClearanceRecord.NAME_COLUMN].ToString(), new XmlRpcStruct());
+                GateRecordsResponse res = server.searchPassenger(AppConfig.gateSensor, strWhere[ClearanceRecord.NAME_COLUMN].ToString(), DictionaryToXmlRpcStruct.dictionaryToXmlRpcStruct(strWhere));
                 TotalNum = res.records_num;
                 if (res.error_code == 0)
                 {
@@ -94,6 +93,7 @@ namespace zhuhai.service
             DataTable dt = new ModelHandler<GateRecord>().FillDataTable(InitDt(strWhere, startIndex, endIndex));
             return dt;
         }
+
 
     }
 }

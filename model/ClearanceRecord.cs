@@ -11,6 +11,7 @@ namespace zhuhai.model
         public static string NAME_COLUMN = "name";
         public static string NATIONALITY_COLUMN = "nationality";
         public static string SEX_COLUMN = "sex";
+        public static string IS_MALE_COLUMN = "is_male";
         public static string NVR_STARTTIME_COLUMN = "nvr_begintime";
         public static string NVR_ENDTIME_COLUMN = "nvr_endtime";
         public static string GATE_ID_COLUMN = "gate_id";

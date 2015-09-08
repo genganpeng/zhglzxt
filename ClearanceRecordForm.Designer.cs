@@ -29,6 +29,7 @@
         private void InitializeComponent()
         {
             this.groupControl_query = new DevExpress.XtraEditors.GroupControl();
+            this.simpleButton_view = new DevExpress.XtraEditors.SimpleButton();
             this.simpleButton_query = new DevExpress.XtraEditors.SimpleButton();
             this.comboBox__channel = new System.Windows.Forms.ComboBox();
             this.labelControl_channel = new DevExpress.XtraEditors.LabelControl();
@@ -44,7 +45,6 @@
             this.labelControl__country = new DevExpress.XtraEditors.LabelControl();
             this.textEdit_name = new DevExpress.XtraEditors.TextEdit();
             this.labelControl_name = new DevExpress.XtraEditors.LabelControl();
-            this.simpleButton_view = new DevExpress.XtraEditors.SimpleButton();
             this.pageUpControl_query = new zhuhai.Component.PageUpControl();
             this.gridControl_query = new DevExpress.XtraGrid.GridControl();
             this.gridView_query = new DevExpress.XtraGrid.Views.Grid.GridView();
@@ -91,6 +91,17 @@
             this.groupControl_query.Size = new System.Drawing.Size(1292, 110);
             this.groupControl_query.TabIndex = 0;
             this.groupControl_query.Text = "查询条件";
+            // 
+            // simpleButton_view
+            // 
+            this.simpleButton_view.Appearance.Font = new System.Drawing.Font("微软雅黑", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.simpleButton_view.Appearance.Options.UseFont = true;
+            this.simpleButton_view.Location = new System.Drawing.Point(1128, 67);
+            this.simpleButton_view.Name = "simpleButton_view";
+            this.simpleButton_view.Size = new System.Drawing.Size(111, 29);
+            this.simpleButton_view.TabIndex = 15;
+            this.simpleButton_view.Text = "查  看";
+            this.simpleButton_view.Click += new System.EventHandler(this.simpleButton_view_Click);
             // 
             // simpleButton_query
             // 
@@ -142,7 +153,7 @@
             // dateTimePicker_endTime
             // 
             this.dateTimePicker_endTime.CalendarFont = new System.Drawing.Font("微软雅黑", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.dateTimePicker_endTime.CustomFormat = "yyyy-MM-dd";
+            this.dateTimePicker_endTime.CustomFormat = "yyyy年M月d日";
             this.dateTimePicker_endTime.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
             this.dateTimePicker_endTime.Location = new System.Drawing.Point(340, 67);
             this.dateTimePicker_endTime.Name = "dateTimePicker_endTime";
@@ -152,7 +163,7 @@
             // dateTimePicker_startTime
             // 
             this.dateTimePicker_startTime.CalendarFont = new System.Drawing.Font("微软雅黑", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.dateTimePicker_startTime.CustomFormat = "yyyy-MM-dd";
+            this.dateTimePicker_startTime.CustomFormat = "yyyy年M月d日";
             this.dateTimePicker_startTime.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
             this.dateTimePicker_startTime.Location = new System.Drawing.Point(94, 66);
             this.dateTimePicker_startTime.Name = "dateTimePicker_startTime";
@@ -183,8 +194,8 @@
             this.comboBox_sex.FormattingEnabled = true;
             this.comboBox_sex.Items.AddRange(new object[] {
             "全部",
-            "Male",
-            "Female"});
+            "男",
+            "女"});
             this.comboBox_sex.Location = new System.Drawing.Point(596, 22);
             this.comboBox_sex.Name = "comboBox_sex";
             this.comboBox_sex.Size = new System.Drawing.Size(145, 29);
@@ -234,17 +245,6 @@
             this.labelControl_name.Size = new System.Drawing.Size(48, 21);
             this.labelControl_name.TabIndex = 0;
             this.labelControl_name.Text = "姓名：";
-            // 
-            // simpleButton_view
-            // 
-            this.simpleButton_view.Appearance.Font = new System.Drawing.Font("微软雅黑", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.simpleButton_view.Appearance.Options.UseFont = true;
-            this.simpleButton_view.Location = new System.Drawing.Point(1128, 67);
-            this.simpleButton_view.Name = "simpleButton_view";
-            this.simpleButton_view.Size = new System.Drawing.Size(111, 29);
-            this.simpleButton_view.TabIndex = 15;
-            this.simpleButton_view.Text = "查  看";
-            this.simpleButton_view.Click += new System.EventHandler(this.simpleButton_view_Click);
             // 
             // pageUpControl_query
             // 

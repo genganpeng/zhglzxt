@@ -55,11 +55,19 @@ namespace zhuhai.xmlrpc
         GateRecordsResponse searchPassenger(int controller_id, string passenger_name,
                                             XmlRpcStruct other_conditions);
 
+        //获得旅客通过时的异常记录
+        [XmlRpcMethod("getAbnormalRecord")]
+        GateRecordResponse getAbnormalRecord(int controller_id);
+
         [XmlRpcMethod("getPassengerPhoto")]
         IDPhotoResponse getPassengerPhoto(int controller_id, int photo_id);
 
         [XmlRpcMethod("getGateInfo")]
         GateInfoResponse getGateInfo(int controller_id, int gate_id);
+
+        //管理子系统发布命令，包括闸机重启，休眠等
+        [XmlRpcMethod("publishSensorOrder")]
+        OrderRPCResponse publishSensorOrder(int controller_id, SysOrder sys_ord);
 
         //新增工作规程
         [XmlRpcMethod("putWorkRule")]
@@ -267,26 +275,6 @@ namespace zhuhai.xmlrpc
         Fengbi = 3
     }
 
-
-    public enum WorkState
-    {
-        /// <summary>
-        /// 闸机休眠
-        /// </summary>
-        Sleep = 0,
-        /// <summary>
-        /// 闸机重启
-        /// </summary>
-        Restart = 1,
-        /// <summary>
-        /// 闸机锁定
-        /// </summary>
-        Lock = 2,
-        /// <summary>
-        /// 闸机解锁
-        /// </summary>
-        Unlock = 3
-    }
 
     public enum AbnormalType
     {

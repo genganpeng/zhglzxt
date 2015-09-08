@@ -168,7 +168,7 @@
             this.Controls.Add(this.labelControl_gate);
             this.Name = "GateThresholdErrorUpdateForm";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
-            this.Text = "闸机阈值修改";
+            this.Text = "闸机误差修改";
             ((System.ComponentModel.ISupportInitialize)(this.checkedListBoxControl_gate)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.textEdit_temperatureError.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.textEdit_nuclearError.Properties)).EndInit();

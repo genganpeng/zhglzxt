@@ -65,14 +65,13 @@ namespace zhuhai.service
         public Boolean updateGateState(int state, int[] gateNos)
         {
             ICustomsCMS server = XmlRpcInstance.getInstance();
-            SysTask task = new SysTask();
-            task.type = (int)TaskType.ChangeState;
-            task.mode = state;
-            task.target_gates = gateNos;
+            SysOrder sysOrder = new SysOrder();
+            sysOrder.type = state;
+            sysOrder.target_gates = gateNos;
 
             try
             {
-                RPCResponse response = server.publishTask(AppConfig.gateSensor, task);
+                OrderRPCResponse response = server.publishSensorOrder(AppConfig.gateSensor, sysOrder);
                 if (response.error_code == 0)
                 {
                     return true;

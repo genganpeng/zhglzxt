@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FormMain));
             this.ribbonControl1 = new DevExpress.XtraBars.Ribbon.RibbonControl();
             this.barButtonItem_workRule = new DevExpress.XtraBars.BarButtonItem();
@@ -35,7 +36,7 @@
             this.barButtonItem_disposePlan = new DevExpress.XtraBars.BarButtonItem();
             this.barButtonItem_epidemicInfo = new DevExpress.XtraBars.BarButtonItem();
             this.barButtonItem_clearanceRecord = new DevExpress.XtraBars.BarButtonItem();
-            this.barButtonItem6 = new DevExpress.XtraBars.BarButtonItem();
+            this.barButtonItem_videoReplay = new DevExpress.XtraBars.BarButtonItem();
             this.barButtonItem_ClearanceStatistics = new DevExpress.XtraBars.BarButtonItem();
             this.barButtonItem_systemManage = new DevExpress.XtraBars.BarButtonItem();
             this.barButtonItem_publishMessage = new DevExpress.XtraBars.BarButtonItem();
@@ -61,10 +62,26 @@
             this.navBarItem4 = new DevExpress.XtraNavBar.NavBarItem();
             this.splitContainerControl1 = new DevExpress.XtraEditors.SplitContainerControl();
             this.xtraTabControl = new DevExpress.XtraTab.XtraTabControl();
-            this.xtraTabPage_tongguanMonitor = new DevExpress.XtraTab.XtraTabPage();
-            this.xtraTabPage_zhajiMonitor = new DevExpress.XtraTab.XtraTabPage();
             this.xtraTabPage_shipinMonitor = new DevExpress.XtraTab.XtraTabPage();
             this.videoPlayWnd = new System.Windows.Forms.PictureBox();
+            this.xtraTabPage_tongguanMonitor = new DevExpress.XtraTab.XtraTabPage();
+            this.monitorInfoPanel = new System.Windows.Forms.Panel();
+            this.groupBox5 = new System.Windows.Forms.GroupBox();
+            this.gridControl_abnormal = new DevExpress.XtraGrid.GridControl();
+            this.gridView_abnormal = new DevExpress.XtraGrid.Views.Grid.GridView();
+            this.name = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.gate_id = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.nvr_begintime = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.temperature = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.nuclear = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.nationality = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.sex = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.birth_date = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.id_code = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.issue_date = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.expire_date = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.xtraTabPage_zhajiMonitor = new DevExpress.XtraTab.XtraTabPage();
+            this.zhajipanel = new System.Windows.Forms.Panel();
             this.navBarControl1 = new DevExpress.XtraNavBar.NavBarControl();
             this.navBarGroup1 = new DevExpress.XtraNavBar.NavBarGroup();
             this.navBarItem_weixiaoqihou = new DevExpress.XtraNavBar.NavBarItem();
@@ -76,21 +93,22 @@
             this.button_right = new System.Windows.Forms.Button();
             this.button_left = new System.Windows.Forms.Button();
             this.channelPanel = new System.Windows.Forms.Panel();
-            this.timer_updateTime = new System.Windows.Forms.Timer();
-            this.timer_updateSHWXQH = new System.Windows.Forms.Timer();
+            this.timer_updateTime = new System.Windows.Forms.Timer(this.components);
+            this.timer_updateSHWXQH = new System.Windows.Forms.Timer(this.components);
             this.toolStripStatusLabel = new System.Windows.Forms.ToolStripStatusLabel();
-            this.monitorInfo = new System.Windows.Forms.Panel();
-            this.personinfoPanel = new System.Windows.Forms.Panel();
-            this.groupBox5 = new System.Windows.Forms.GroupBox();
             ((System.ComponentModel.ISupportInitialize)(this.ribbonControl1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainerControl1)).BeginInit();
             this.splitContainerControl1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.xtraTabControl)).BeginInit();
             this.xtraTabControl.SuspendLayout();
-            this.xtraTabPage_zhajiMonitor.SuspendLayout();
             this.xtraTabPage_shipinMonitor.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.videoPlayWnd)).BeginInit();
+            this.xtraTabPage_tongguanMonitor.SuspendLayout();
+            this.monitorInfoPanel.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.gridControl_abnormal)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.gridView_abnormal)).BeginInit();
+            this.xtraTabPage_zhajiMonitor.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.navBarControl1)).BeginInit();
             this.SuspendLayout();
             // 
@@ -105,7 +123,7 @@
             this.barButtonItem_disposePlan,
             this.barButtonItem_epidemicInfo,
             this.barButtonItem_clearanceRecord,
-            this.barButtonItem6,
+            this.barButtonItem_videoReplay,
             this.barButtonItem_ClearanceStatistics,
             this.barButtonItem_systemManage,
             this.barButtonItem_publishMessage,
@@ -175,13 +193,14 @@
             this.barButtonItem_clearanceRecord.RibbonStyle = DevExpress.XtraBars.Ribbon.RibbonItemStyles.Large;
             this.barButtonItem_clearanceRecord.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.barButtonItem_clearanceRecord_ItemClick);
             // 
-            // barButtonItem6
+            // barButtonItem_videoReplay
             // 
-            this.barButtonItem6.Caption = "视频回调";
-            this.barButtonItem6.Glyph = global::zhuhai.Properties.Resources.show_16x16;
-            this.barButtonItem6.Id = 11;
-            this.barButtonItem6.LargeGlyph = global::zhuhai.Properties.Resources.show_32x32;
-            this.barButtonItem6.Name = "barButtonItem6";
+            this.barButtonItem_videoReplay.Caption = "视频回调";
+            this.barButtonItem_videoReplay.Glyph = global::zhuhai.Properties.Resources.show_16x16;
+            this.barButtonItem_videoReplay.Id = 11;
+            this.barButtonItem_videoReplay.LargeGlyph = global::zhuhai.Properties.Resources.show_32x32;
+            this.barButtonItem_videoReplay.Name = "barButtonItem_videoReplay";
+            this.barButtonItem_videoReplay.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.barButtonItem_videoReplay_ItemClick);
             // 
             // barButtonItem_ClearanceStatistics
             // 
@@ -317,7 +336,7 @@
             // ribbonPageGroup3
             // 
             this.ribbonPageGroup3.ItemLinks.Add(this.barButtonItem_clearanceRecord);
-            this.ribbonPageGroup3.ItemLinks.Add(this.barButtonItem6);
+            this.ribbonPageGroup3.ItemLinks.Add(this.barButtonItem_videoReplay);
             this.ribbonPageGroup3.Name = "ribbonPageGroup3";
             this.ribbonPageGroup3.ShowCaptionButton = false;
             this.ribbonPageGroup3.Text = "数据查询";
@@ -398,10 +417,11 @@
             // 
             // xtraTabControl
             // 
+            this.xtraTabControl.BorderStyle = DevExpress.XtraEditors.Controls.BorderStyles.Office2003;
             this.xtraTabControl.Dock = System.Windows.Forms.DockStyle.Fill;
             this.xtraTabControl.Location = new System.Drawing.Point(0, 0);
             this.xtraTabControl.Name = "xtraTabControl";
-            this.xtraTabControl.SelectedTabPage = this.xtraTabPage_tongguanMonitor;
+            this.xtraTabControl.SelectedTabPage = this.xtraTabPage_shipinMonitor;
             this.xtraTabControl.Size = new System.Drawing.Size(1000, 427);
             this.xtraTabControl.TabIndex = 0;
             this.xtraTabControl.TabPages.AddRange(new DevExpress.XtraTab.XtraTabPage[] {
@@ -410,28 +430,11 @@
             this.xtraTabPage_shipinMonitor});
             this.xtraTabControl.VisibleChanged += new System.EventHandler(this.xtraTabControl_VisibleChanged);
             // 
-            // xtraTabPage_tongguanMonitor
-            // 
-            this.xtraTabPage_tongguanMonitor.Name = "xtraTabPage_tongguanMonitor";
-            this.xtraTabPage_tongguanMonitor.Size = new System.Drawing.Size(994, 398);
-            this.xtraTabPage_tongguanMonitor.Text = "通关监控";
-            this.xtraTabPage_tongguanMonitor.VisibleChanged += new System.EventHandler(this.xtraTabPage_tongguanMonitor_VisibleChanged);
-            // 
-            // xtraTabPage_zhajiMonitor
-            // 
-            this.xtraTabPage_zhajiMonitor.Controls.Add(this.groupBox5);
-            this.xtraTabPage_zhajiMonitor.Controls.Add(this.personinfoPanel);
-            this.xtraTabPage_zhajiMonitor.Controls.Add(this.monitorInfo);
-            this.xtraTabPage_zhajiMonitor.Name = "xtraTabPage_zhajiMonitor";
-            this.xtraTabPage_zhajiMonitor.Size = new System.Drawing.Size(994, 398);
-            this.xtraTabPage_zhajiMonitor.Text = "闸机监控";
-            this.xtraTabPage_zhajiMonitor.VisibleChanged += new System.EventHandler(this.xtraTabPage_zhajiMonitor_VisibleChanged);
-            // 
             // xtraTabPage_shipinMonitor
             // 
             this.xtraTabPage_shipinMonitor.Controls.Add(this.videoPlayWnd);
             this.xtraTabPage_shipinMonitor.Name = "xtraTabPage_shipinMonitor";
-            this.xtraTabPage_shipinMonitor.Size = new System.Drawing.Size(994, 398);
+            this.xtraTabPage_shipinMonitor.Size = new System.Drawing.Size(992, 396);
             this.xtraTabPage_shipinMonitor.Text = "视频监控";
             this.xtraTabPage_shipinMonitor.VisibleChanged += new System.EventHandler(this.xtraTabPage_shipinMonitor_VisibleChanged);
             // 
@@ -440,9 +443,184 @@
             this.videoPlayWnd.Dock = System.Windows.Forms.DockStyle.Fill;
             this.videoPlayWnd.Location = new System.Drawing.Point(0, 0);
             this.videoPlayWnd.Name = "videoPlayWnd";
-            this.videoPlayWnd.Size = new System.Drawing.Size(994, 398);
+            this.videoPlayWnd.Size = new System.Drawing.Size(992, 396);
             this.videoPlayWnd.TabIndex = 0;
             this.videoPlayWnd.TabStop = false;
+            // 
+            // xtraTabPage_tongguanMonitor
+            // 
+            this.xtraTabPage_tongguanMonitor.Controls.Add(this.monitorInfoPanel);
+            this.xtraTabPage_tongguanMonitor.Name = "xtraTabPage_tongguanMonitor";
+            this.xtraTabPage_tongguanMonitor.Size = new System.Drawing.Size(992, 396);
+            this.xtraTabPage_tongguanMonitor.Text = "通关监控";
+            this.xtraTabPage_tongguanMonitor.VisibleChanged += new System.EventHandler(this.xtraTabPage_tongguanMonitor_VisibleChanged);
+            // 
+            // monitorInfoPanel
+            // 
+            this.monitorInfoPanel.Controls.Add(this.groupBox5);
+            this.monitorInfoPanel.Controls.Add(this.gridControl_abnormal);
+            this.monitorInfoPanel.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.monitorInfoPanel.Location = new System.Drawing.Point(0, 0);
+            this.monitorInfoPanel.Name = "monitorInfoPanel";
+            this.monitorInfoPanel.Size = new System.Drawing.Size(992, 396);
+            this.monitorInfoPanel.TabIndex = 0;
+            // 
+            // groupBox5
+            // 
+            this.groupBox5.Dock = System.Windows.Forms.DockStyle.Right;
+            this.groupBox5.Location = new System.Drawing.Point(490, 0);
+            this.groupBox5.Name = "groupBox5";
+            this.groupBox5.Size = new System.Drawing.Size(502, 396);
+            this.groupBox5.TabIndex = 1;
+            this.groupBox5.TabStop = false;
+            this.groupBox5.Text = "视频";
+            // 
+            // gridControl_abnormal
+            // 
+            this.gridControl_abnormal.Cursor = System.Windows.Forms.Cursors.Default;
+            this.gridControl_abnormal.Dock = System.Windows.Forms.DockStyle.Left;
+            this.gridControl_abnormal.Location = new System.Drawing.Point(0, 0);
+            this.gridControl_abnormal.MainView = this.gridView_abnormal;
+            this.gridControl_abnormal.MenuManager = this.ribbonControl1;
+            this.gridControl_abnormal.Name = "gridControl_abnormal";
+            this.gridControl_abnormal.Size = new System.Drawing.Size(484, 396);
+            this.gridControl_abnormal.TabIndex = 0;
+            this.gridControl_abnormal.ViewCollection.AddRange(new DevExpress.XtraGrid.Views.Base.BaseView[] {
+            this.gridView_abnormal});
+            // 
+            // gridView_abnormal
+            // 
+            this.gridView_abnormal.Columns.AddRange(new DevExpress.XtraGrid.Columns.GridColumn[] {
+            this.name,
+            this.gate_id,
+            this.nvr_begintime,
+            this.temperature,
+            this.nuclear,
+            this.nationality,
+            this.sex,
+            this.birth_date,
+            this.id_code,
+            this.issue_date,
+            this.expire_date});
+            this.gridView_abnormal.GridControl = this.gridControl_abnormal;
+            this.gridView_abnormal.Name = "gridView_abnormal";
+            this.gridView_abnormal.OptionsView.ShowGroupPanel = false;
+            // 
+            // name
+            // 
+            this.name.Caption = "姓名";
+            this.name.FieldName = "name";
+            this.name.Name = "name";
+            this.name.OptionsColumn.AllowEdit = false;
+            this.name.Visible = true;
+            this.name.VisibleIndex = 0;
+            // 
+            // gate_id
+            // 
+            this.gate_id.Caption = "通道";
+            this.gate_id.FieldName = "gate_id";
+            this.gate_id.Name = "gate_id";
+            this.gate_id.OptionsColumn.AllowEdit = false;
+            this.gate_id.Visible = true;
+            this.gate_id.VisibleIndex = 1;
+            // 
+            // nvr_begintime
+            // 
+            this.nvr_begintime.Caption = "开始时间";
+            this.nvr_begintime.FieldName = "nvr_begintime";
+            this.nvr_begintime.Name = "nvr_begintime";
+            this.nvr_begintime.OptionsColumn.AllowEdit = false;
+            this.nvr_begintime.Visible = true;
+            this.nvr_begintime.VisibleIndex = 2;
+            // 
+            // temperature
+            // 
+            this.temperature.Caption = "体温";
+            this.temperature.FieldName = "temperature";
+            this.temperature.Name = "temperature";
+            this.temperature.OptionsColumn.AllowEdit = false;
+            this.temperature.Visible = true;
+            this.temperature.VisibleIndex = 3;
+            // 
+            // nuclear
+            // 
+            this.nuclear.Caption = "核素";
+            this.nuclear.FieldName = "nuclear";
+            this.nuclear.Name = "nuclear";
+            this.nuclear.OptionsColumn.AllowEdit = false;
+            this.nuclear.Visible = true;
+            this.nuclear.VisibleIndex = 4;
+            // 
+            // nationality
+            // 
+            this.nationality.Caption = "国籍";
+            this.nationality.FieldName = "nationality";
+            this.nationality.Name = "nationality";
+            this.nationality.OptionsColumn.AllowEdit = false;
+            this.nationality.Visible = true;
+            this.nationality.VisibleIndex = 5;
+            // 
+            // sex
+            // 
+            this.sex.Caption = "性别";
+            this.sex.FieldName = "sex";
+            this.sex.Name = "sex";
+            this.sex.OptionsColumn.AllowEdit = false;
+            this.sex.Visible = true;
+            this.sex.VisibleIndex = 6;
+            // 
+            // birth_date
+            // 
+            this.birth_date.Caption = "出生日期";
+            this.birth_date.FieldName = "birth_date";
+            this.birth_date.Name = "birth_date";
+            this.birth_date.OptionsColumn.AllowEdit = false;
+            this.birth_date.Visible = true;
+            this.birth_date.VisibleIndex = 7;
+            // 
+            // id_code
+            // 
+            this.id_code.Caption = "证件号码";
+            this.id_code.FieldName = "id_code";
+            this.id_code.Name = "id_code";
+            this.id_code.OptionsColumn.AllowEdit = false;
+            this.id_code.Visible = true;
+            this.id_code.VisibleIndex = 8;
+            // 
+            // issue_date
+            // 
+            this.issue_date.Caption = "签发日期";
+            this.issue_date.FieldName = "issue_date";
+            this.issue_date.Name = "issue_date";
+            this.issue_date.OptionsColumn.AllowEdit = false;
+            this.issue_date.Visible = true;
+            this.issue_date.VisibleIndex = 9;
+            // 
+            // expire_date
+            // 
+            this.expire_date.Caption = "有效期";
+            this.expire_date.FieldName = "expire_date";
+            this.expire_date.Name = "expire_date";
+            this.expire_date.OptionsColumn.AllowEdit = false;
+            this.expire_date.Visible = true;
+            this.expire_date.VisibleIndex = 10;
+            // 
+            // xtraTabPage_zhajiMonitor
+            // 
+            this.xtraTabPage_zhajiMonitor.Controls.Add(this.zhajipanel);
+            this.xtraTabPage_zhajiMonitor.Name = "xtraTabPage_zhajiMonitor";
+            this.xtraTabPage_zhajiMonitor.Size = new System.Drawing.Size(992, 396);
+            this.xtraTabPage_zhajiMonitor.Text = "闸机监控";
+            this.xtraTabPage_zhajiMonitor.VisibleChanged += new System.EventHandler(this.xtraTabPage_zhajiMonitor_VisibleChanged);
+            // 
+            // zhajipanel
+            // 
+            this.zhajipanel.AutoScroll = true;
+            this.zhajipanel.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.zhajipanel.Location = new System.Drawing.Point(0, 0);
+            this.zhajipanel.Name = "zhajipanel";
+            this.zhajipanel.Size = new System.Drawing.Size(992, 396);
+            this.zhajipanel.TabIndex = 0;
             // 
             // navBarControl1
             // 
@@ -554,32 +732,6 @@
             this.toolStripStatusLabel.Size = new System.Drawing.Size(29, 36);
             this.toolStripStatusLabel.Text = "就绪";
             // 
-            // monitorInfo
-            // 
-            this.monitorInfo.Dock = System.Windows.Forms.DockStyle.Left;
-            this.monitorInfo.Location = new System.Drawing.Point(0, 0);
-            this.monitorInfo.Name = "monitorInfo";
-            this.monitorInfo.Size = new System.Drawing.Size(252, 398);
-            this.monitorInfo.TabIndex = 0;
-            // 
-            // personinfoPanel
-            // 
-            this.personinfoPanel.Dock = System.Windows.Forms.DockStyle.Left;
-            this.personinfoPanel.Location = new System.Drawing.Point(252, 0);
-            this.personinfoPanel.Name = "personinfoPanel";
-            this.personinfoPanel.Size = new System.Drawing.Size(269, 398);
-            this.personinfoPanel.TabIndex = 1;
-            // 
-            // groupBox5
-            // 
-            this.groupBox5.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.groupBox5.Location = new System.Drawing.Point(521, 0);
-            this.groupBox5.Name = "groupBox5";
-            this.groupBox5.Size = new System.Drawing.Size(473, 398);
-            this.groupBox5.TabIndex = 2;
-            this.groupBox5.TabStop = false;
-            this.groupBox5.Text = "视频";
-            // 
             // FormMain
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 14F);
@@ -600,15 +752,20 @@
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "珠海";
             this.Load += new System.EventHandler(this.form_load);
+            this.Resize += new System.EventHandler(this.FormMain_Resize);
             ((System.ComponentModel.ISupportInitialize)(this.ribbonControl1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainerControl1)).EndInit();
             this.splitContainerControl1.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.xtraTabControl)).EndInit();
             this.xtraTabControl.ResumeLayout(false);
-            this.xtraTabPage_zhajiMonitor.ResumeLayout(false);
             this.xtraTabPage_shipinMonitor.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.videoPlayWnd)).EndInit();
+            this.xtraTabPage_tongguanMonitor.ResumeLayout(false);
+            this.monitorInfoPanel.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.gridControl_abnormal)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.gridView_abnormal)).EndInit();
+            this.xtraTabPage_zhajiMonitor.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.navBarControl1)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
@@ -631,7 +788,7 @@
         private DevExpress.XtraBars.Ribbon.RibbonPageGroup ribbonPageGroup2;
         private DevExpress.XtraBars.Ribbon.RibbonPageGroup ribbonPageGroup3;
         private DevExpress.XtraBars.Ribbon.RibbonPageGroup ribbonPageGroup4;
-        private DevExpress.XtraBars.BarButtonItem barButtonItem6;
+        private DevExpress.XtraBars.BarButtonItem barButtonItem_videoReplay;
         private DevExpress.XtraBars.BarButtonItem barButtonItem_ClearanceStatistics;
         private DevExpress.XtraBars.BarButtonItem barButtonItem_systemManage;
         private DevExpress.XtraBars.BarButtonItem barButtonItem_publishMessage;
@@ -667,8 +824,21 @@
         private System.Windows.Forms.Button button_right;
         private System.Windows.Forms.PictureBox videoPlayWnd;
         private System.Windows.Forms.ToolStripStatusLabel toolStripStatusLabel;
-        private System.Windows.Forms.Panel monitorInfo;
-        private System.Windows.Forms.Panel personinfoPanel;
+        private System.Windows.Forms.Panel monitorInfoPanel;
+        private System.Windows.Forms.Panel zhajipanel;
+        private DevExpress.XtraGrid.GridControl gridControl_abnormal;
+        private DevExpress.XtraGrid.Views.Grid.GridView gridView_abnormal;
+        private DevExpress.XtraGrid.Columns.GridColumn name;
+        private DevExpress.XtraGrid.Columns.GridColumn gate_id;
+        private DevExpress.XtraGrid.Columns.GridColumn nvr_begintime;
+        private DevExpress.XtraGrid.Columns.GridColumn temperature;
+        private DevExpress.XtraGrid.Columns.GridColumn nuclear;
+        private DevExpress.XtraGrid.Columns.GridColumn nationality;
+        private DevExpress.XtraGrid.Columns.GridColumn sex;
+        private DevExpress.XtraGrid.Columns.GridColumn birth_date;
+        private DevExpress.XtraGrid.Columns.GridColumn id_code;
+        private DevExpress.XtraGrid.Columns.GridColumn issue_date;
+        private DevExpress.XtraGrid.Columns.GridColumn expire_date;
         private System.Windows.Forms.GroupBox groupBox5;
         
        

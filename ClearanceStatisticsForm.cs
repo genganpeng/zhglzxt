@@ -32,6 +32,9 @@ namespace zhuhai
             //异常类型
             this.comboBox_abnormal.Items.AddRange(AbnormalType.getAllAbnormalTypeNames());
             this.comboBox_abnormal.SelectedIndex = 0;
+
+            this.dateTimePicker_startTime.Text = DateTime.Now.ToString();
+            this.dateTimePicker_endTime.Text = DateTime.Now.ToString();
         }
 
         private void simpleButton_query_Click(object sender, EventArgs e)

@@ -147,22 +147,22 @@ namespace zhuhai
 
         private void simpleButton_sleep_Click(object sender, EventArgs e)
         {
-            changeGateState("闸机休眠", (int)WorkState.Sleep);
+            changeGateState("闸机休眠", (int)OrderType.Gate_Sleep);
         }
 
         private void simpleButton_restart_Click(object sender, EventArgs e)
         {
-            changeGateState("闸机重启", (int)WorkState.Restart);
+            changeGateState("闸机重启", (int)OrderType.Gate_Reboot);
         }
 
         private void simpleButton_lock_Click(object sender, EventArgs e)
         {
-            changeGateState("闸机锁定", (int)WorkState.Lock);
+            changeGateState("闸机锁定", (int)OrderType.Gate_Lock);
         }
 
         private void simpleButton_unlock_Click(object sender, EventArgs e)
         {
-            changeGateState("闸机解锁", (int)WorkState.Unlock);
+            changeGateState("闸机解锁", (int)OrderType.Gate_Unlock);
         }
     }
 }

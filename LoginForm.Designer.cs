@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(LoginForm));
             this.btn_reset = new DevExpress.XtraEditors.SimpleButton();
             this.btn_login = new DevExpress.XtraEditors.SimpleButton();
             this.pictureBox_checkCode = new System.Windows.Forms.PictureBox();
@@ -138,9 +139,9 @@
             this.Controls.Add(this.labelControl1);
             this.FormBorderEffect = DevExpress.XtraEditors.FormBorderEffect.None;
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.MaximizeBox = false;
             this.Name = "LoginForm";
-            this.ShowIcon = false;
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "LoginForm";
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox_checkCode)).EndInit();
