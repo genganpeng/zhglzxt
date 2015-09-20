@@ -83,6 +83,8 @@ namespace zhuhai
             {
                 UpdateThresholdService.getInstance().updateHxswqhThreshold(biology, chem);
                 MessageBox.Show("修改口岸阈值成功！");
+                LogService.getInstance().log("更新口岸阈值", ModuleConstant.GateThresholdUpdate_MODULE);
+                this.Close();
             }
             catch (Exception ex)
             {

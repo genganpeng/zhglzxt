@@ -18,6 +18,15 @@ namespace zhuhai
         public LoginForm()
         {
             InitializeComponent();
+            try
+            {
+                label.Text = TitleService.getInstance().getTitle();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message, "错误");
+            }
+            
             new RandomCodeGenerator().CodeImage(ref checkCode, pictureBox_checkCode);
         }
 
@@ -33,6 +42,7 @@ namespace zhuhai
             if (SystemManageService.getInstance().validateUserNameAndPassword(txt_user.Text, txt_passwd.Text))
             {
                 this.DialogResult = System.Windows.Forms.DialogResult.OK;
+                LogService.getInstance().log(ModuleConstant.LOGIN_MODULE_CONTENT, ModuleConstant.LOGIN_MODULE);
                 this.Close();
             }
             else
@@ -53,6 +63,11 @@ namespace zhuhai
             checkCode = "";
             //刷新验证码
             new RandomCodeGenerator().CodeImage(ref checkCode, pictureBox_checkCode);
+        }
+
+        private void LoginForm_FormClosing(object sender, FormClosingEventArgs e)
+        {
+
         }
 
     }

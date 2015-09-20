@@ -112,7 +112,8 @@ namespace zhuhai
         {
             //初始化实现的service，每页数量，开始页码
             pageUpControl_query.PageIndex = 1;
-            pageUpControl_query.Pagesize = 10;
+            //以后需要改
+            pageUpControl_query.Pagesize = 1000;
             pageUpControl_query.StrWhere = strWhere;
             pageUpControl_query.GetDataTable();
         }

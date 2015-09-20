@@ -10,6 +10,7 @@ using DevExpress.XtraEditors;
 using zhuhai.model;
 using zhuhai.service;
 using DevExpress.XtraEditors.Controls;
+using zhuhai.util;
 
 namespace zhuhai
 {
@@ -104,12 +105,14 @@ namespace zhuhai
             if (Id == 0 && smService.addRow(sm) == true)
             {
                 MessageBox.Show("保存成功！", "提示");
+                LogService.getInstance().log("新增，用户名为" + sm.UserName, ModuleConstant.SystemManage_MODULE);
                 this.Close();
             }
             //编辑
             else if (Id != 0 && smService.modifyRow(sm) == true)
             {
                 MessageBox.Show("保存成功！", "提示");
+                LogService.getInstance().log("修改，用户名为" + sm.UserName, ModuleConstant.SystemManage_MODULE);
                 this.Close();
             }
             else

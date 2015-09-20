@@ -38,6 +38,7 @@
             this.labelControl2 = new DevExpress.XtraEditors.LabelControl();
             this.txt_user = new DevExpress.XtraEditors.TextEdit();
             this.labelControl1 = new DevExpress.XtraEditors.LabelControl();
+            this.label = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox_checkCode)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.txt_verificationCode.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.txt_passwd.Properties)).BeginInit();
@@ -120,6 +121,18 @@
             this.labelControl1.TabIndex = 18;
             this.labelControl1.Text = "用 户 名：";
             // 
+            // label
+            // 
+            this.label.AutoSize = true;
+            this.label.BackColor = System.Drawing.Color.Transparent;
+            this.label.Font = new System.Drawing.Font("微软雅黑", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label.Location = new System.Drawing.Point(301, 18);
+            this.label.Name = "label";
+            this.label.Size = new System.Drawing.Size(42, 21);
+            this.label.TabIndex = 27;
+            this.label.Text = "珠海";
+            this.label.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            // 
             // LoginForm
             // 
             this.AcceptButton = this.btn_login;
@@ -128,6 +141,7 @@
             this.BackgroundImageLayoutStore = System.Windows.Forms.ImageLayout.Tile;
             this.BackgroundImageStore = global::zhuhai.Properties.Resources.login_bg;
             this.ClientSize = new System.Drawing.Size(640, 480);
+            this.Controls.Add(this.label);
             this.Controls.Add(this.btn_reset);
             this.Controls.Add(this.btn_login);
             this.Controls.Add(this.pictureBox_checkCode);
@@ -144,6 +158,7 @@
             this.Name = "LoginForm";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "LoginForm";
+            this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.LoginForm_FormClosing);
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox_checkCode)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.txt_verificationCode.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.txt_passwd.Properties)).EndInit();
@@ -164,5 +179,6 @@
         private DevExpress.XtraEditors.LabelControl labelControl2;
         private DevExpress.XtraEditors.TextEdit txt_user;
         private DevExpress.XtraEditors.LabelControl labelControl1;
+        private System.Windows.Forms.Label label;
     }
 }

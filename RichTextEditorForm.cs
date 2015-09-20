@@ -101,18 +101,57 @@ namespace zhuhai
             richEditControl_context.Document.SaveDocument(filePath, DocumentFormat.Rtf);
             ct.Bytes = StreamByteTransfer.FileToBytes(filePath);
 
+            //超过规定的大小后提示用户无法保存
+            if (ct.Bytes.LongLength > 65535 * 1000)
+            {
+                MessageBox.Show("图片太多, 请删除一些图片然后在保存（默认大小是64M）！", "错误");
+                return;
+            }
+
 
             ct.Id = Id;
             //保存
             if (id == 0 && true == operateService.addRow(ct))
             {
                 MessageBox.Show("保存成功！", "提示");
+
+                if (operateService is DisposePlanService)
+                {
+                    LogService.getInstance().log("增加，标题为" + ct.Title, ModuleConstant.DisposePlan_MODULE);
+                }
+                else if (operateService is EpidemicInfoService) {
+                    LogService.getInstance().log("增加，标题为" + ct.Title, ModuleConstant.EpidemicInfo_MODULE);
+                }
+                else if (operateService is JobGuideBookService) {
+                    LogService.getInstance().log("增加，标题为" + ct.Title, ModuleConstant.JobGuideBook_MODULE);
+                }
+                else if (operateService is WorkRuleService)
+                {
+                    LogService.getInstance().log("增加，标题为" + ct.Title, ModuleConstant.WorkRule_MODULE);
+                }
+                
                 this.Close();
                 return ;
             }
             else if (id != 0 && true == operateService.modifyRow(ct))
             {
                 MessageBox.Show("保存成功！", "提示");
+                if (operateService is DisposePlanService)
+                {
+                    LogService.getInstance().log("修改，标题为" + ct.Title, ModuleConstant.DisposePlan_MODULE);
+                }
+                else if (operateService is EpidemicInfoService)
+                {
+                    LogService.getInstance().log("修改，标题为" + ct.Title, ModuleConstant.EpidemicInfo_MODULE);
+                }
+                else if (operateService is JobGuideBookService)
+                {
+                    LogService.getInstance().log("修改，标题为" + ct.Title, ModuleConstant.JobGuideBook_MODULE);
+                }
+                else if (operateService is WorkRuleService)
+                {
+                    LogService.getInstance().log("修改，标题为" + ct.Title, ModuleConstant.WorkRule_MODULE);
+                }
                 this.Close();
             }
             else

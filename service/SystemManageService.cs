@@ -5,6 +5,7 @@ using System.Text;
 using System.Data;
 using zhuhai.model;
 using zhuhai.util;
+using zhuhai.xmlrpc;
 
 namespace zhuhai.service
 {
@@ -202,6 +203,25 @@ namespace zhuhai.service
         /// <returns>验证是否正确</returns>
         public Boolean validateUserNameAndPassword(string username, string password)
         {
+            //try
+            //{
+            //    ICustomsCMS server = XmlRpcInstance.getInstance();
+            //    Usercheck usercheck = new Usercheck();
+            //    usercheck.username = username;
+            //    usercheck.password = password;
+            //    DBRPCResponse r = server.checkUser(usercheck);
+            //    if (r.dbresult != 0)
+            //    {
+            //        throw new Exception("用户名或者密码错误");
+            //    }
+            //    return true;
+            //}
+            //catch (Exception ex)
+            //{
+            //    throw new Exception("错误：" + ex.Message);
+            //}
+
+
             //赋值当前的用户
             foreach (SystemManage sm in sms)
             {

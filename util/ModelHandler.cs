@@ -152,6 +152,27 @@ namespace zhuhai.util
             return dataTable;
         }
 
+        /// <summary>
+        /// 实体类转换成DataRow
+        /// </summary>
+        /// <param name="modelList">实体类</param>
+        /// <returns></returns>
+        public DataRow FillDataRow(T model)
+        {
+            if (model == null)
+            {
+                return null;
+            }
+
+            DataTable dt = CreateData(model);
+            DataRow dataRow = dt.NewRow();
+            foreach (PropertyInfo propertyInfo in typeof(T).GetProperties())
+            {
+                dataRow[propertyInfo.Name] = propertyInfo.GetValue(model, null);
+            }
+            return dataRow;
+        }
+
         #endregion
     }
 }

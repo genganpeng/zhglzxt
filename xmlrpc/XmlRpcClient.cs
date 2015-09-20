@@ -43,7 +43,7 @@ namespace zhuhai.xmlrpc
         /// </summary>
         /// <returns></returns>
         [XmlRpcMethod("getCurrentThreshold")]
-        TaskRPCResponse getCurrentThreshold(int controller_id, SysTask task);
+        TaskRPCResponse getCurrentThreshold(int gateNo);
 
         // 获取一个闸机在一段时间内的通关人数，若 gate_id 为0，则返回所有闸机的通关总数
         [XmlRpcMethod("getGateRecordsNum")]
@@ -225,6 +225,74 @@ namespace zhuhai.xmlrpc
         //endtime 结束时间
         [XmlRpcMethod("findEmerPlanCount")]
         TitleNumResponse findEmerPlanCount(String titlelike, DateTime begintime, DateTime endtime);
+
+        /// <summary>
+        /// 设置口岸标题
+        /// </summary>
+        /// <param name="titileName"></param>
+        /// <returns></returns>
+        [XmlRpcMethod("setTitle")]
+        RPCResponse setTitle(string rolename, string value);
+
+        /// <summary>
+        /// 获取口岸标题
+        /// </summary>
+        /// <returns></returns>
+        [XmlRpcMethod("getTitle")]
+        TitleNameRPCResponse getTitle(string rolename);
+
+        /// <summary>
+        /// 记录日志
+        /// </summary>
+        /// <param name="operateContent"></param>
+        /// <param name="operateModule"></param>
+        /// <param name="operatePeople"></param>
+        /// <param name="dateTime"></param>
+        /// <returns></returns>
+         [XmlRpcMethod("insertlog")]
+        RPCResponse log(Log log);
+
+         //新增申报内容
+         [XmlRpcMethod("addReportContent")]
+         DBRPCResponse addReportContent(ReportContent reportContent);
+
+         //修改申报内容
+         [XmlRpcMethod("modifyReportContent")]
+         DBRPCResponse modifyReportContent(ReportContent reportContent);
+
+
+         //删除申报内容
+         [XmlRpcMethod("deleteReportContent")]
+         DBRPCResponse deleteReportContent(int id);
+
+         //查询申报内容的数量。支持分页
+         //titlelike:根据标题模糊查询
+         //startline:页码数，从1开始
+         //limit：每页的容量
+         [XmlRpcMethod("findReportContent")]
+         ReportContent_Response findReportContentList(String content, int startline, int limit);
+
+         //查询申报内容的数量，用于计算总数
+         //titlelike:根据标题模糊查询
+         [XmlRpcMethod("findReportContentCount")]
+         TitleNumResponse findReportContenCount(String content);
+
+        /// <summary>
+        /// 获取所有闸机的信息
+        /// </summary>
+        /// <param name="control_id"></param>
+        /// <param name="target_gates"></param>
+        /// <returns></returns>
+        [XmlRpcMethod("getGateAllInfo")]
+         Gate_state_record_Response getGateAllInfo(int control_id, int[] target_gates);
+
+        /// <summary>
+        /// 检测用户名和密码
+        /// </summary>
+        /// <param name="usercheck"></param>
+        /// <returns></returns>
+        [XmlRpcMethod("checkUser")]
+        DBRPCResponse checkUser(Usercheck usercheck);
     }
 
     /**
@@ -250,17 +318,24 @@ namespace zhuhai.xmlrpc
         /// </summary>
         PublishNotice = 3,
         /// <summary>
-        /// 改变状态
+        /// 生物战剂
         /// </summary>
-        ChangeState = 4
+        bio_port = 4,
+        /// <summary>
+        /// 生物战剂
+        /// </summary>
+        chem_port = 5
     }
 
+    /// <summary>
+    /// 工作模式
+    /// </summary>
     public enum WorkMode
     {
         /// <summary>
         /// 自助通关
         /// </summary>
-        Zizhu = 0,	
+        Zizhu = 2,	
         /// <summary>
         /// 刷卡通关
         /// </summary>
@@ -268,11 +343,37 @@ namespace zhuhai.xmlrpc
         /// <summary>
         /// 申报通关
         /// </summary>
-        Shenbao = 2,
+        Shenbao = 0,
         /// <summary>
         /// 通关封闭
         /// </summary>
         Fengbi = 3
+    }
+
+    /// <summary>
+    /// 工作状态
+    /// </summary>
+    public enum WorkState
+    {
+        /// <summary>
+        /// 正常
+        /// </summary>
+        Normal = 3,
+        /// <summary>
+        /// 休眠
+        /// </summary>
+        Sleep = 0,
+        /// <summary>
+        /// 关机
+        /// </summary>
+        ShutDown = 1,
+        /// <summary>
+        /// 异常
+        /// </summary>
+        Abnormal = 2,
+        HesuAbnormal = 4,
+        WenduAbnormal = 5,
+        SaomiaoyiAbnormal = 6
     }
 
 
@@ -323,9 +424,9 @@ namespace zhuhai.xmlrpc
 
         // properities for UpdateThreshold, optional
         [XmlRpcMissingMapping(MappingAction.Ignore)]
-        public double biology;
+        public double bio_port;
         [XmlRpcMissingMapping(MappingAction.Ignore)]
-        public double chem;
+        public double chem_port;
 
         // properities for ChangeMode, optional
         [XmlRpcMissingMapping(MappingAction.Ignore)]

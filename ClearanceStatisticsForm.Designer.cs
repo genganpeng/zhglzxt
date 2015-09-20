@@ -107,7 +107,7 @@
             // 
             this.comboBox_abnormal.Font = new System.Drawing.Font("微软雅黑", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
             this.comboBox_abnormal.FormattingEnabled = true;
-            this.comboBox_abnormal.Location = new System.Drawing.Point(596, 64);
+            this.comboBox_abnormal.Location = new System.Drawing.Point(530, 104);
             this.comboBox_abnormal.Name = "comboBox_abnormal";
             this.comboBox_abnormal.Size = new System.Drawing.Size(145, 29);
             this.comboBox_abnormal.TabIndex = 11;
@@ -115,7 +115,7 @@
             // labelControl_abnormal
             // 
             this.labelControl_abnormal.Appearance.Font = new System.Drawing.Font("微软雅黑", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.labelControl_abnormal.Location = new System.Drawing.Point(498, 67);
+            this.labelControl_abnormal.Location = new System.Drawing.Point(432, 107);
             this.labelControl_abnormal.Name = "labelControl_abnormal";
             this.labelControl_abnormal.Size = new System.Drawing.Size(80, 21);
             this.labelControl_abnormal.TabIndex = 10;
@@ -124,27 +124,28 @@
             // dateTimePicker_endTime
             // 
             this.dateTimePicker_endTime.CalendarFont = new System.Drawing.Font("微软雅黑", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.dateTimePicker_endTime.CustomFormat = "yyyy年M月d日";
+            this.dateTimePicker_endTime.CustomFormat = "yyyy年M月d日 HH时mm分ss秒";
             this.dateTimePicker_endTime.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
-            this.dateTimePicker_endTime.Location = new System.Drawing.Point(340, 67);
+            this.dateTimePicker_endTime.Location = new System.Drawing.Point(519, 66);
             this.dateTimePicker_endTime.Name = "dateTimePicker_endTime";
-            this.dateTimePicker_endTime.Size = new System.Drawing.Size(133, 21);
+            this.dateTimePicker_endTime.Size = new System.Drawing.Size(222, 21);
             this.dateTimePicker_endTime.TabIndex = 9;
+            this.dateTimePicker_endTime.Value = new System.DateTime(2015, 9, 19, 22, 14, 2, 0);
             // 
             // dateTimePicker_startTime
             // 
             this.dateTimePicker_startTime.CalendarFont = new System.Drawing.Font("微软雅黑", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.dateTimePicker_startTime.CustomFormat = "yyyy年M月d日";
+            this.dateTimePicker_startTime.CustomFormat = "yyyy年M月d日 HH时mm分ss秒";
             this.dateTimePicker_startTime.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
             this.dateTimePicker_startTime.Location = new System.Drawing.Point(94, 66);
             this.dateTimePicker_startTime.Name = "dateTimePicker_startTime";
-            this.dateTimePicker_startTime.Size = new System.Drawing.Size(145, 21);
+            this.dateTimePicker_startTime.Size = new System.Drawing.Size(240, 21);
             this.dateTimePicker_startTime.TabIndex = 8;
             // 
             // labelControl_endTime
             // 
             this.labelControl_endTime.Appearance.Font = new System.Drawing.Font("微软雅黑", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.labelControl_endTime.Location = new System.Drawing.Point(254, 67);
+            this.labelControl_endTime.Location = new System.Drawing.Point(433, 66);
             this.labelControl_endTime.Name = "labelControl_endTime";
             this.labelControl_endTime.Size = new System.Drawing.Size(80, 21);
             this.labelControl_endTime.TabIndex = 7;

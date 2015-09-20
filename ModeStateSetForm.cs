@@ -87,6 +87,7 @@ namespace zhuhai
             {
                 service.updateGateMode(mode, gateIds);
                 MessageBox.Show("修改闸机运行模式成功！");
+                LogService.getInstance().log(gateIds.ToString() + "运行模式变为" + modeStr, ModuleConstant.GateMode_MODULE);
             }
             catch (Exception ex)
             {
@@ -137,6 +138,7 @@ namespace zhuhai
             try
             {
                 service.updateGateState(state, gateIds);
+                LogService.getInstance().log(gateIds.ToString() + "闸机状态变为" + stateStr, ModuleConstant.ModeStateSet_MODULE);
                 MessageBox.Show("操作闸机状态成功！");
             }
             catch (Exception ex)

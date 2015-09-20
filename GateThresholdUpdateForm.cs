@@ -120,6 +120,8 @@ namespace zhuhai
             {
                 UpdateThresholdService.getInstance().updateGateThreshold(temperature, nuclear, gateIds);
                 MessageBox.Show("修改闸机阈值成功！");
+
+                LogService.getInstance().log(ModuleConstant.HxswqhThresholod_MODULE, ModuleConstant.HxswqhThresholod_MODULE);
             }
             catch (Exception ex)
             {

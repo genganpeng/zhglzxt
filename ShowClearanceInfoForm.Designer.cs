@@ -29,6 +29,8 @@
         private void InitializeComponent()
         {
             this.personinfoPanel = new System.Windows.Forms.Panel();
+            this.label_statuName = new System.Windows.Forms.Label();
+            this.label_status = new System.Windows.Forms.Label();
             this.label7 = new System.Windows.Forms.Label();
             this.label6 = new System.Windows.Forms.Label();
             this.label5 = new System.Windows.Forms.Label();
@@ -50,6 +52,7 @@
             this.photoPictureBox = new System.Windows.Forms.PictureBox();
             this.nationalityLabel = new System.Windows.Forms.Label();
             this.nameLabel = new System.Windows.Forms.Label();
+            this.button_print = new System.Windows.Forms.Button();
             this.personinfoPanel.SuspendLayout();
             this.picPanel.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.photoPictureBox)).BeginInit();
@@ -58,6 +61,9 @@
             // personinfoPanel
             // 
             this.personinfoPanel.BackColor = System.Drawing.Color.Transparent;
+            this.personinfoPanel.Controls.Add(this.button_print);
+            this.personinfoPanel.Controls.Add(this.label_statuName);
+            this.personinfoPanel.Controls.Add(this.label_status);
             this.personinfoPanel.Controls.Add(this.label7);
             this.personinfoPanel.Controls.Add(this.label6);
             this.personinfoPanel.Controls.Add(this.label5);
@@ -85,11 +91,35 @@
             this.personinfoPanel.TabIndex = 0;
             this.personinfoPanel.Text = "异常";
             // 
+            // label_statuName
+            // 
+            this.label_statuName.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)
+                        | System.Windows.Forms.AnchorStyles.Right)));
+            this.label_statuName.AutoEllipsis = true;
+            this.label_statuName.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(54)))), ((int)(((byte)(152)))), ((int)(((byte)(191)))));
+            this.label_statuName.Font = new System.Drawing.Font("宋体", 36F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.label_statuName.ForeColor = System.Drawing.Color.Red;
+            this.label_statuName.Location = new System.Drawing.Point(248, 228);
+            this.label_statuName.Name = "label_statuName";
+            this.label_statuName.Size = new System.Drawing.Size(148, 49);
+            this.label_statuName.TabIndex = 35;
+            this.label_statuName.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            // 
+            // label_status
+            // 
+            this.label_status.AutoSize = true;
+            this.label_status.Font = new System.Drawing.Font("微软雅黑", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.label_status.Location = new System.Drawing.Point(190, 239);
+            this.label_status.Name = "label_status";
+            this.label_status.Size = new System.Drawing.Size(58, 21);
+            this.label_status.TabIndex = 34;
+            this.label_status.Text = "状态：";
+            // 
             // label7
             // 
             this.label7.AutoSize = true;
             this.label7.Font = new System.Drawing.Font("微软雅黑", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.label7.Location = new System.Drawing.Point(323, 226);
+            this.label7.Location = new System.Drawing.Point(323, 292);
             this.label7.Name = "label7";
             this.label7.Size = new System.Drawing.Size(58, 21);
             this.label7.TabIndex = 33;
@@ -99,7 +129,7 @@
             // 
             this.label6.AutoSize = true;
             this.label6.Font = new System.Drawing.Font("微软雅黑", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.label6.Location = new System.Drawing.Point(13, 226);
+            this.label6.Location = new System.Drawing.Point(13, 292);
             this.label6.Name = "label6";
             this.label6.Size = new System.Drawing.Size(58, 21);
             this.label6.TabIndex = 32;
@@ -158,7 +188,7 @@
             // nuclearjialabel
             // 
             this.nuclearjialabel.Image = global::zhuhai.Properties.Resources.jiawhite;
-            this.nuclearjialabel.Location = new System.Drawing.Point(232, 324);
+            this.nuclearjialabel.Location = new System.Drawing.Point(227, 390);
             this.nuclearjialabel.Name = "nuclearjialabel";
             this.nuclearjialabel.Size = new System.Drawing.Size(35, 35);
             this.nuclearjialabel.TabIndex = 26;
@@ -166,7 +196,7 @@
             // nuclearselabel
             // 
             this.nuclearselabel.Image = global::zhuhai.Properties.Resources.sewhite;
-            this.nuclearselabel.Location = new System.Drawing.Point(176, 324);
+            this.nuclearselabel.Location = new System.Drawing.Point(176, 390);
             this.nuclearselabel.Name = "nuclearselabel";
             this.nuclearselabel.Size = new System.Drawing.Size(35, 35);
             this.nuclearselabel.TabIndex = 25;
@@ -174,7 +204,7 @@
             // nucleartulabel
             // 
             this.nucleartulabel.Image = global::zhuhai.Properties.Resources.tuwhite;
-            this.nucleartulabel.Location = new System.Drawing.Point(121, 324);
+            this.nucleartulabel.Location = new System.Drawing.Point(121, 390);
             this.nucleartulabel.Name = "nucleartulabel";
             this.nucleartulabel.Size = new System.Drawing.Size(35, 35);
             this.nucleartulabel.TabIndex = 24;
@@ -182,7 +212,7 @@
             // nucleargulabel
             // 
             this.nucleargulabel.Image = global::zhuhai.Properties.Resources.guwhite;
-            this.nucleargulabel.Location = new System.Drawing.Point(65, 324);
+            this.nucleargulabel.Location = new System.Drawing.Point(65, 390);
             this.nucleargulabel.Name = "nucleargulabel";
             this.nucleargulabel.Size = new System.Drawing.Size(35, 35);
             this.nucleargulabel.TabIndex = 23;
@@ -190,7 +220,7 @@
             // nuclearyilabel
             // 
             this.nuclearyilabel.Image = global::zhuhai.Properties.Resources.yiwhite;
-            this.nuclearyilabel.Location = new System.Drawing.Point(11, 324);
+            this.nuclearyilabel.Location = new System.Drawing.Point(11, 390);
             this.nuclearyilabel.Name = "nuclearyilabel";
             this.nuclearyilabel.Size = new System.Drawing.Size(35, 35);
             this.nuclearyilabel.TabIndex = 22;
@@ -203,7 +233,7 @@
             this.exceptionLabel.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(56)))), ((int)(((byte)(170)))), ((int)(((byte)(197)))));
             this.exceptionLabel.Font = new System.Drawing.Font("宋体", 36F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
             this.exceptionLabel.ForeColor = System.Drawing.Color.Red;
-            this.exceptionLabel.Location = new System.Drawing.Point(39, 259);
+            this.exceptionLabel.Location = new System.Drawing.Point(39, 325);
             this.exceptionLabel.Name = "exceptionLabel";
             this.exceptionLabel.Size = new System.Drawing.Size(198, 55);
             this.exceptionLabel.TabIndex = 21;
@@ -217,7 +247,7 @@
             this.extempraturelabel.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(56)))), ((int)(((byte)(161)))), ((int)(((byte)(195)))));
             this.extempraturelabel.Font = new System.Drawing.Font("宋体", 36F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
             this.extempraturelabel.ForeColor = System.Drawing.Color.Red;
-            this.extempraturelabel.Location = new System.Drawing.Point(387, 259);
+            this.extempraturelabel.Location = new System.Drawing.Point(387, 325);
             this.extempraturelabel.Name = "extempraturelabel";
             this.extempraturelabel.Size = new System.Drawing.Size(198, 57);
             this.extempraturelabel.TabIndex = 20;
@@ -301,6 +331,17 @@
             this.nameLabel.Size = new System.Drawing.Size(333, 31);
             this.nameLabel.TabIndex = 6;
             // 
+            // button_print
+            // 
+            this.button_print.Font = new System.Drawing.Font("微软雅黑", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.button_print.Location = new System.Drawing.Point(395, 390);
+            this.button_print.Name = "button_print";
+            this.button_print.Size = new System.Drawing.Size(177, 46);
+            this.button_print.TabIndex = 36;
+            this.button_print.Text = "打  印";
+            this.button_print.UseVisualStyleBackColor = true;
+            this.button_print.Click += new System.EventHandler(this.button_print_Click);
+            // 
             // ShowClearanceInfoForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
@@ -343,5 +384,8 @@
         private System.Windows.Forms.Label label5;
         private System.Windows.Forms.Label label6;
         private System.Windows.Forms.Label label7;
+        private System.Windows.Forms.Label label_status;
+        private System.Windows.Forms.Label label_statuName;
+        private System.Windows.Forms.Button button_print;
     }
 }

@@ -5,6 +5,7 @@ using System.Text;
 using System.Windows.Forms;
 using zhuhai.xmlrpc;
 using zhuhai.util;
+using System.Threading;
 
 namespace zhuhai.monitorinfo.h264
 {
@@ -34,8 +35,14 @@ namespace zhuhai.monitorinfo.h264
         }
         public void setMonitor(Monitor theMonitor)
         {
-
-            GateInfoResponse gateInfoResponse = server.getGateInfo(AppConfig.gateSensor, theMonitor.gateNo);
+            GateInfoResponse gateInfoResponse = new GateInfoResponse();
+            try {
+                gateInfoResponse = server.getGateInfo(AppConfig.gateSensor, theMonitor.gateNo);
+            }
+            catch (Exception ex) {
+                Console.WriteLine(ex.Message);
+            }
+            
             if (gateInfoResponse.error_code != 0)
             {
                 MessageBox.Show("获取监控信息失败：" + gateInfoResponse.error_msg);
@@ -198,7 +205,7 @@ namespace zhuhai.monitorinfo.h264
             {
                 if (m_iPlayhandle != -1)
                 {
-
+                    string thead = Thread.CurrentThread.Name;
                     if (0 != XMSDK.H264_DVR_StopRealPlay(m_iPlayhandle, (uint)this.pictureBox.Handle))
                     {
                         //TRACE("H264_DVR_StopRealPlay fail m_iPlayhandle = %d", m_iPlayhandle);

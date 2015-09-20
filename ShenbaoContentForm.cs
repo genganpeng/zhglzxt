@@ -14,21 +14,17 @@ using zhuhai.model;
 
 namespace zhuhai
 {
-    public partial class SystemManageForm : DevExpress.XtraEditors.XtraForm
+    public partial class ShenbaoContentForm : DevExpress.XtraEditors.XtraForm
     {
-        private SystemManageService smService;
-        public SystemManageForm()
+        private ShenbaoContentService shenbaoContentService;
+        public ShenbaoContentForm()
         {
             InitializeComponent();
 
-            smService = SystemManageService.getInstance();
-            comboBoxEdit_type.Properties.Items.AddRange(smService.getTypes().ToArray());
-            //设置ComboBoxEdit下拉不可编辑
-            comboBoxEdit_type.Properties.TextEditStyle = TextEditStyles.DisableTextEditor;
-
+            shenbaoContentService = ShenbaoContentService.getInstance();
             
             pageUpControl.MyControl = gridControl;
-            pageUpControl.QueryService = smService;
+            pageUpControl.QueryService = shenbaoContentService;
 
             initData(formatWhere());
         }
@@ -39,32 +35,10 @@ namespace zhuhai
         /// <returns></returns>
         public IDictionary<string, object> formatWhere()
         {
-            string username = textEdit_userName.Text;
-            string name = textEdit_name.Text;
-            string idCard = textEdit_IDCard.Text;
-            string type = "";
+            string title = textEdit_title.Text;
 
             IDictionary<string, object> strWhere = new Dictionary<string, object>();
-
-            if (comboBoxEdit_type.SelectedIndex != -1)
-                type = comboBoxEdit_type.SelectedIndex.ToString();
-
-            if (!String.IsNullOrEmpty(username))
-            {
-                strWhere.Add(SystemManage.USERNAME_COLUMN, " like '%" + username + "%'");
-            }
-            if (!String.IsNullOrEmpty(name))
-            {
-                strWhere.Add(SystemManage.NAME_COLUMN, " like '%" + name + "%'");
-            }
-            if (!String.IsNullOrEmpty(idCard))
-            {
-                strWhere.Add(SystemManage.IDCARD_COLUMN, " like '%" + idCard + "%'");
-            }
-            if (type != "0" && type != "")
-            {
-                strWhere.Add(SystemManage.TYPE_COLUMN, " = " + type);
-            }
+            strWhere.Add(WorkRule.TITLE_COLOMUN, title);
             return strWhere;
         }
 
@@ -84,17 +58,15 @@ namespace zhuhai
 
         private void simpleButton_reset_Click(object sender, EventArgs e)
         {
-            textEdit_userName.Text = "";
-            textEdit_name.Text = "";
-            textEdit_IDCard.Text = "";
+            textEdit_title.Text = "";
 
             initData(formatWhere());
         }
 
         private void simpleButton_add_Click(object sender, EventArgs e)
         {
-            SystemManageEditForm systemManageEditForm = new SystemManageEditForm();
-            systemManageEditForm.ShowDialog();
+            ShenbaoContentEditForm form = new ShenbaoContentEditForm(shenbaoContentService);
+            form.ShowDialog();
             initData(formatWhere());
         }
 
@@ -108,8 +80,8 @@ namespace zhuhai
             //获取选中的行的行号
             int[] rowNums = gridView.GetSelectedRows();
             DataTable dt = (DataTable)gridControl.DataSource;
-            SystemManageEditForm systemManageEditForm = new SystemManageEditForm(Int32.Parse(dt.Rows[rowNums[0]][SystemManage.ID_COLUMN].ToString()));
-            systemManageEditForm.ShowDialog();
+            ShenbaoContentEditForm form = new ShenbaoContentEditForm(Int32.Parse(dt.Rows[rowNums[0]][CommonText.ID_COLUMN].ToString()), dt.Rows[rowNums[0]][CommonText.TITLE_COLOMUN].ToString(), shenbaoContentService);
+            form.ShowDialog();
             pageUpControl.GetDataTable();
         }
 
@@ -128,13 +100,27 @@ namespace zhuhai
             foreach (int rowNum in rowNums)
             {
                 //要删除的id
-                string deleteId = dt.Rows[rowNum][SystemManage.ID_COLUMN].ToString();
-                smService.deleteRow(Int32.Parse(deleteId));
+                string deleteId = dt.Rows[rowNum][CommonText.ID_COLUMN].ToString();
+                shenbaoContentService.deleteRow(Int32.Parse(deleteId));
 
-                LogService.getInstance().log("删除，用户名为" + dt.Rows[rowNum][SystemManage.NAME_COLUMN], ModuleConstant.SystemManage_MODULE);
+                LogService.getInstance().log("删除，内容为" + dt.Rows[rowNum][CommonText.TITLE_COLOMUN].ToString(), ModuleConstant.ShenbaoContent_MODULE);
             }
             initData(formatWhere());
              
+        }
+
+        private void simpleButton_view_Click(object sender, EventArgs e)
+        {
+            if (gridView.SelectedRowsCount != 1)
+            {
+                MessageBox.Show("请选择一条记录！", "警告");
+                return;
+            }
+            //获取选中的行的行号
+            int[] rowNums = gridView.GetSelectedRows();
+            DataTable dt = (DataTable)gridControl.DataSource;
+            ShenbaoContentEditForm form = new ShenbaoContentEditForm(Int32.Parse(dt.Rows[rowNums[0]][CommonText.ID_COLUMN].ToString()), dt.Rows[rowNums[0]][CommonText.TITLE_COLOMUN].ToString(), shenbaoContentService, true);
+            form.ShowDialog();
         }
 
     }

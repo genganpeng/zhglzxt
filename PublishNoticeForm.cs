@@ -73,6 +73,8 @@ namespace zhuhai
             {
                 service.publishTask(this.textBox_message.Text.Trim(), gateIds);
                 MessageBox.Show("发布消息成功！");
+
+                LogService.getInstance().log(ModuleConstant.PublishNotice_MODULE, ModuleConstant.PublishNotice_MODULE);
             }
             catch (Exception ex)
             {

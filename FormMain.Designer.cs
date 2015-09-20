@@ -47,6 +47,7 @@
             this.barStaticItem_currentUser = new DevExpress.XtraBars.BarStaticItem();
             this.barButtonItem_hxswqhThreshold = new DevExpress.XtraBars.BarButtonItem();
             this.barButtonItem_modeset = new DevExpress.XtraBars.BarButtonItem();
+            this.barButtonItem_title = new DevExpress.XtraBars.BarButtonItem();
             this.ribbonPageCategory1 = new DevExpress.XtraBars.Ribbon.RibbonPageCategory();
             this.ribbonPage1 = new DevExpress.XtraBars.Ribbon.RibbonPage();
             this.ribbonPageGroup1 = new DevExpress.XtraBars.Ribbon.RibbonPageGroup();
@@ -66,7 +67,6 @@
             this.videoPlayWnd = new System.Windows.Forms.PictureBox();
             this.xtraTabPage_tongguanMonitor = new DevExpress.XtraTab.XtraTabPage();
             this.monitorInfoPanel = new System.Windows.Forms.Panel();
-            this.groupBox5 = new System.Windows.Forms.GroupBox();
             this.gridControl_abnormal = new DevExpress.XtraGrid.GridControl();
             this.gridView_abnormal = new DevExpress.XtraGrid.Views.Grid.GridView();
             this.name = new DevExpress.XtraGrid.Columns.GridColumn();
@@ -90,12 +90,10 @@
             this.navBarGroup4 = new DevExpress.XtraNavBar.NavBarGroup();
             this.navBarItem_huaxue = new DevExpress.XtraNavBar.NavBarItem();
             this.navBarItem2 = new DevExpress.XtraNavBar.NavBarItem();
-            this.button_right = new System.Windows.Forms.Button();
-            this.button_left = new System.Windows.Forms.Button();
-            this.channelPanel = new System.Windows.Forms.Panel();
             this.timer_updateTime = new System.Windows.Forms.Timer(this.components);
             this.timer_updateSHWXQH = new System.Windows.Forms.Timer(this.components);
             this.toolStripStatusLabel = new System.Windows.Forms.ToolStripStatusLabel();
+            this.barButtonItem_shenbaocontent = new DevExpress.XtraBars.BarButtonItem();
             ((System.ComponentModel.ISupportInitialize)(this.ribbonControl1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainerControl1)).BeginInit();
@@ -133,9 +131,11 @@
             this.barStaticItem_systemTime,
             this.barStaticItem_currentUser,
             this.barButtonItem_hxswqhThreshold,
-            this.barButtonItem_modeset});
+            this.barButtonItem_modeset,
+            this.barButtonItem_title,
+            this.barButtonItem_shenbaocontent});
             this.ribbonControl1.Location = new System.Drawing.Point(0, 0);
-            this.ribbonControl1.MaxItemId = 3;
+            this.ribbonControl1.MaxItemId = 5;
             this.ribbonControl1.Name = "ribbonControl1";
             this.ribbonControl1.PageCategories.AddRange(new DevExpress.XtraBars.Ribbon.RibbonPageCategory[] {
             this.ribbonPageCategory1});
@@ -294,6 +294,16 @@
             this.barButtonItem_modeset.RibbonStyle = DevExpress.XtraBars.Ribbon.RibbonItemStyles.Large;
             this.barButtonItem_modeset.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.barButtonItem_modeset_ItemClick);
             // 
+            // barButtonItem_title
+            // 
+            this.barButtonItem_title.Caption = "口岸标题";
+            this.barButtonItem_title.Glyph = global::zhuhai.Properties.Resources.timelineview_16x16;
+            this.barButtonItem_title.Id = 3;
+            this.barButtonItem_title.LargeGlyph = global::zhuhai.Properties.Resources.timelineview_32x32;
+            this.barButtonItem_title.Name = "barButtonItem_title";
+            this.barButtonItem_title.RibbonStyle = DevExpress.XtraBars.Ribbon.RibbonItemStyles.Large;
+            this.barButtonItem_title.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.barButtonItem_title_ItemClick);
+            // 
             // ribbonPageCategory1
             // 
             this.ribbonPageCategory1.Name = "ribbonPageCategory1";
@@ -371,6 +381,8 @@
             this.ribbonPageGroup6.ItemLinks.Add(this.barButtonItem_gateThreshold);
             this.ribbonPageGroup6.ItemLinks.Add(this.barButtonItem_hxswqhThreshold);
             this.ribbonPageGroup6.ItemLinks.Add(this.barButtonItem_modeset);
+            this.ribbonPageGroup6.ItemLinks.Add(this.barButtonItem_title);
+            this.ribbonPageGroup6.ItemLinks.Add(this.barButtonItem_shenbaocontent);
             this.ribbonPageGroup6.Name = "ribbonPageGroup6";
             this.ribbonPageGroup6.ShowCaptionButton = false;
             this.ribbonPageGroup6.Text = "系统参数";
@@ -402,7 +414,7 @@
             // splitContainerControl1
             // 
             this.splitContainerControl1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.splitContainerControl1.Location = new System.Drawing.Point(0, 210);
+            this.splitContainerControl1.Location = new System.Drawing.Point(0, 122);
             this.splitContainerControl1.Name = "splitContainerControl1";
             this.splitContainerControl1.Padding = new System.Windows.Forms.Padding(5);
             this.splitContainerControl1.Panel1.Controls.Add(this.xtraTabControl);
@@ -411,7 +423,7 @@
             this.splitContainerControl1.Panel2.Controls.Add(this.navBarControl1);
             this.splitContainerControl1.Panel2.MinSize = 336;
             this.splitContainerControl1.Panel2.Text = "Panel2";
-            this.splitContainerControl1.Size = new System.Drawing.Size(1350, 437);
+            this.splitContainerControl1.Size = new System.Drawing.Size(1350, 525);
             this.splitContainerControl1.TabIndex = 17;
             this.splitContainerControl1.Text = "splitContainerControl1";
             // 
@@ -422,7 +434,7 @@
             this.xtraTabControl.Location = new System.Drawing.Point(0, 0);
             this.xtraTabControl.Name = "xtraTabControl";
             this.xtraTabControl.SelectedTabPage = this.xtraTabPage_shipinMonitor;
-            this.xtraTabControl.Size = new System.Drawing.Size(1000, 427);
+            this.xtraTabControl.Size = new System.Drawing.Size(1000, 515);
             this.xtraTabControl.TabIndex = 0;
             this.xtraTabControl.TabPages.AddRange(new DevExpress.XtraTab.XtraTabPage[] {
             this.xtraTabPage_tongguanMonitor,
@@ -434,7 +446,7 @@
             // 
             this.xtraTabPage_shipinMonitor.Controls.Add(this.videoPlayWnd);
             this.xtraTabPage_shipinMonitor.Name = "xtraTabPage_shipinMonitor";
-            this.xtraTabPage_shipinMonitor.Size = new System.Drawing.Size(992, 396);
+            this.xtraTabPage_shipinMonitor.Size = new System.Drawing.Size(992, 484);
             this.xtraTabPage_shipinMonitor.Text = "视频监控";
             this.xtraTabPage_shipinMonitor.VisibleChanged += new System.EventHandler(this.xtraTabPage_shipinMonitor_VisibleChanged);
             // 
@@ -443,7 +455,7 @@
             this.videoPlayWnd.Dock = System.Windows.Forms.DockStyle.Fill;
             this.videoPlayWnd.Location = new System.Drawing.Point(0, 0);
             this.videoPlayWnd.Name = "videoPlayWnd";
-            this.videoPlayWnd.Size = new System.Drawing.Size(992, 396);
+            this.videoPlayWnd.Size = new System.Drawing.Size(992, 484);
             this.videoPlayWnd.TabIndex = 0;
             this.videoPlayWnd.TabStop = false;
             // 
@@ -451,42 +463,32 @@
             // 
             this.xtraTabPage_tongguanMonitor.Controls.Add(this.monitorInfoPanel);
             this.xtraTabPage_tongguanMonitor.Name = "xtraTabPage_tongguanMonitor";
-            this.xtraTabPage_tongguanMonitor.Size = new System.Drawing.Size(992, 396);
+            this.xtraTabPage_tongguanMonitor.Size = new System.Drawing.Size(992, 484);
             this.xtraTabPage_tongguanMonitor.Text = "通关监控";
             this.xtraTabPage_tongguanMonitor.VisibleChanged += new System.EventHandler(this.xtraTabPage_tongguanMonitor_VisibleChanged);
             // 
             // monitorInfoPanel
             // 
-            this.monitorInfoPanel.Controls.Add(this.groupBox5);
             this.monitorInfoPanel.Controls.Add(this.gridControl_abnormal);
             this.monitorInfoPanel.Dock = System.Windows.Forms.DockStyle.Fill;
             this.monitorInfoPanel.Location = new System.Drawing.Point(0, 0);
             this.monitorInfoPanel.Name = "monitorInfoPanel";
-            this.monitorInfoPanel.Size = new System.Drawing.Size(992, 396);
+            this.monitorInfoPanel.Size = new System.Drawing.Size(992, 484);
             this.monitorInfoPanel.TabIndex = 0;
-            // 
-            // groupBox5
-            // 
-            this.groupBox5.Dock = System.Windows.Forms.DockStyle.Right;
-            this.groupBox5.Location = new System.Drawing.Point(490, 0);
-            this.groupBox5.Name = "groupBox5";
-            this.groupBox5.Size = new System.Drawing.Size(502, 396);
-            this.groupBox5.TabIndex = 1;
-            this.groupBox5.TabStop = false;
-            this.groupBox5.Text = "视频";
             // 
             // gridControl_abnormal
             // 
             this.gridControl_abnormal.Cursor = System.Windows.Forms.Cursors.Default;
-            this.gridControl_abnormal.Dock = System.Windows.Forms.DockStyle.Left;
+            this.gridControl_abnormal.Dock = System.Windows.Forms.DockStyle.Fill;
             this.gridControl_abnormal.Location = new System.Drawing.Point(0, 0);
             this.gridControl_abnormal.MainView = this.gridView_abnormal;
             this.gridControl_abnormal.MenuManager = this.ribbonControl1;
             this.gridControl_abnormal.Name = "gridControl_abnormal";
-            this.gridControl_abnormal.Size = new System.Drawing.Size(484, 396);
+            this.gridControl_abnormal.Size = new System.Drawing.Size(992, 484);
             this.gridControl_abnormal.TabIndex = 0;
             this.gridControl_abnormal.ViewCollection.AddRange(new DevExpress.XtraGrid.Views.Base.BaseView[] {
             this.gridView_abnormal});
+            this.gridControl_abnormal.MouseDoubleClick += new System.Windows.Forms.MouseEventHandler(this.gridControl_abnormal_MouseDoubleClick);
             // 
             // gridView_abnormal
             // 
@@ -609,7 +611,7 @@
             // 
             this.xtraTabPage_zhajiMonitor.Controls.Add(this.zhajipanel);
             this.xtraTabPage_zhajiMonitor.Name = "xtraTabPage_zhajiMonitor";
-            this.xtraTabPage_zhajiMonitor.Size = new System.Drawing.Size(992, 396);
+            this.xtraTabPage_zhajiMonitor.Size = new System.Drawing.Size(992, 484);
             this.xtraTabPage_zhajiMonitor.Text = "闸机监控";
             this.xtraTabPage_zhajiMonitor.VisibleChanged += new System.EventHandler(this.xtraTabPage_zhajiMonitor_VisibleChanged);
             // 
@@ -638,7 +640,7 @@
             this.navBarControl1.Location = new System.Drawing.Point(0, 0);
             this.navBarControl1.Name = "navBarControl1";
             this.navBarControl1.OptionsNavPane.ExpandedWidth = 335;
-            this.navBarControl1.Size = new System.Drawing.Size(335, 427);
+            this.navBarControl1.Size = new System.Drawing.Size(335, 515);
             this.navBarControl1.TabIndex = 0;
             this.navBarControl1.Text = "navBarControl1";
             // 
@@ -652,6 +654,8 @@
             // 
             // navBarItem_weixiaoqihou
             // 
+            this.navBarItem_weixiaoqihou.Appearance.Font = new System.Drawing.Font("微软雅黑", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.navBarItem_weixiaoqihou.Appearance.Options.UseFont = true;
             this.navBarItem_weixiaoqihou.Caption = "navBarItem1";
             this.navBarItem_weixiaoqihou.Name = "navBarItem_weixiaoqihou";
             // 
@@ -665,6 +669,8 @@
             // 
             // navBarItem_shengwu
             // 
+            this.navBarItem_shengwu.Appearance.Font = new System.Drawing.Font("微软雅黑", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.navBarItem_shengwu.Appearance.Options.UseFont = true;
             this.navBarItem_shengwu.Caption = "navBarItem3";
             this.navBarItem_shengwu.Name = "navBarItem_shengwu";
             // 
@@ -678,6 +684,8 @@
             // 
             // navBarItem_huaxue
             // 
+            this.navBarItem_huaxue.Appearance.Font = new System.Drawing.Font("微软雅黑", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.navBarItem_huaxue.Appearance.Options.UseFont = true;
             this.navBarItem_huaxue.Caption = "navBarItem5";
             this.navBarItem_huaxue.Name = "navBarItem_huaxue";
             // 
@@ -685,38 +693,6 @@
             // 
             this.navBarItem2.Caption = "navBarItem2";
             this.navBarItem2.Name = "navBarItem2";
-            // 
-            // button_right
-            // 
-            this.button_right.BackColor = System.Drawing.Color.Transparent;
-            this.button_right.BackgroundImage = global::zhuhai.Properties.Resources.rightarrow;
-            this.button_right.Location = new System.Drawing.Point(1315, 142);
-            this.button_right.Name = "button_right";
-            this.button_right.Size = new System.Drawing.Size(32, 51);
-            this.button_right.TabIndex = 3;
-            this.button_right.UseMnemonic = false;
-            this.button_right.UseVisualStyleBackColor = false;
-            this.button_right.Click += new System.EventHandler(this.button_right_Click);
-            // 
-            // button_left
-            // 
-            this.button_left.BackColor = System.Drawing.Color.Transparent;
-            this.button_left.BackgroundImage = global::zhuhai.Properties.Resources.leftarrow;
-            this.button_left.Location = new System.Drawing.Point(1, 142);
-            this.button_left.Name = "button_left";
-            this.button_left.Size = new System.Drawing.Size(32, 51);
-            this.button_left.TabIndex = 2;
-            this.button_left.UseMnemonic = false;
-            this.button_left.UseVisualStyleBackColor = false;
-            this.button_left.Click += new System.EventHandler(this.button_left_Click);
-            // 
-            // channelPanel
-            // 
-            this.channelPanel.Dock = System.Windows.Forms.DockStyle.Top;
-            this.channelPanel.Location = new System.Drawing.Point(0, 122);
-            this.channelPanel.Name = "channelPanel";
-            this.channelPanel.Size = new System.Drawing.Size(1350, 88);
-            this.channelPanel.TabIndex = 1;
             // 
             // timer_updateTime
             // 
@@ -732,16 +708,22 @@
             this.toolStripStatusLabel.Size = new System.Drawing.Size(29, 36);
             this.toolStripStatusLabel.Text = "就绪";
             // 
+            // barButtonItem_shenbaocontent
+            // 
+            this.barButtonItem_shenbaocontent.Caption = "申报内容管理";
+            this.barButtonItem_shenbaocontent.Glyph = global::zhuhai.Properties.Resources.timelineview_16x16;
+            this.barButtonItem_shenbaocontent.Id = 4;
+            this.barButtonItem_shenbaocontent.LargeGlyph = global::zhuhai.Properties.Resources.timelineview_32x32;
+            this.barButtonItem_shenbaocontent.Name = "barButtonItem_shenbaocontent";
+            this.barButtonItem_shenbaocontent.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.barButtonItem_shenbaocontent_ItemClick);
+            // 
             // FormMain
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 14F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1350, 674);
-            this.Controls.Add(this.button_right);
             this.Controls.Add(this.splitContainerControl1);
-            this.Controls.Add(this.button_left);
             this.Controls.Add(this.ribbonStatusBar1);
-            this.Controls.Add(this.channelPanel);
             this.Controls.Add(this.pictureBox1);
             this.Controls.Add(this.ribbonControl1);
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
@@ -751,6 +733,7 @@
             this.Name = "FormMain";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "珠海";
+            this.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.FormMain_FormClosed);
             this.Load += new System.EventHandler(this.form_load);
             this.Resize += new System.EventHandler(this.FormMain_Resize);
             ((System.ComponentModel.ISupportInitialize)(this.ribbonControl1)).EndInit();
@@ -819,9 +802,6 @@
         private DevExpress.XtraBars.Ribbon.RibbonPageCategory ribbonPageCategory1;
         private DevExpress.XtraBars.BarButtonItem barButtonItem_hxswqhThreshold;
         private DevExpress.XtraBars.BarButtonItem barButtonItem_modeset;
-        private System.Windows.Forms.Panel channelPanel;
-        private System.Windows.Forms.Button button_left;
-        private System.Windows.Forms.Button button_right;
         private System.Windows.Forms.PictureBox videoPlayWnd;
         private System.Windows.Forms.ToolStripStatusLabel toolStripStatusLabel;
         private System.Windows.Forms.Panel monitorInfoPanel;
@@ -839,7 +819,8 @@
         private DevExpress.XtraGrid.Columns.GridColumn id_code;
         private DevExpress.XtraGrid.Columns.GridColumn issue_date;
         private DevExpress.XtraGrid.Columns.GridColumn expire_date;
-        private System.Windows.Forms.GroupBox groupBox5;
+        private DevExpress.XtraBars.BarButtonItem barButtonItem_title;
+        private DevExpress.XtraBars.BarButtonItem barButtonItem_shenbaocontent;
         
        
 

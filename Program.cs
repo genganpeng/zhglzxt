@@ -7,6 +7,7 @@ using DevExpress.Skins;
 using DevExpress.LookAndFeel;
 using zhuhai.xmlrpc;
 using CookComputing.XmlRpc;
+using zhuhai.service;
 
 namespace zhuhai
 {
@@ -37,7 +38,7 @@ namespace zhuhai
             //DisposePlanManageForm disposePlanManageForm = new DisposePlanManageForm();
             //disposePlanManageForm.ShowDialog();
 
-            //RichTextEditorForm richTextEditorForm = new RichTextEditorForm();
+            //RichTextEditorForm richTextEditorForm = new RichTextEditorForm(WorkRuleService.getInstance());
             //richTextEditorForm.ShowDialog();
 
             //SystemManageForm smForm = new SystemManageForm();

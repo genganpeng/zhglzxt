@@ -21,10 +21,11 @@ namespace zhuhai
     {
         private int gateTotal = 100;
         private List<zhuhai.monitorinfo.Monitor> monitorList = new List<zhuhai.monitorinfo.Monitor>();
-        private List<RadioButton> monitorRadios = new List<RadioButton>();
+        private List<System.Windows.Forms.Panel> monitorPanels = new List<System.Windows.Forms.Panel>();
         private zhuhai.monitorinfo.Monitor previewMonitor = null;
-        private RadioButton previewMonitorRadio = null;
+        private Panel previewMonitorPanels = null;
         private H264Controler previewControler = null;
+
         //每页显示9个通道
         private static int channelNumsByPage = 9;
 
@@ -32,11 +33,10 @@ namespace zhuhai
         {
             init();
             InitializeComponent();
-            addUIMonitors();
             addGateMonitors();
             this.DoubleBuffered = true;
             UpdateStyles();
-            //initMonitorControler();
+            initMonitorControler();
             this.barStaticItem_currentUser.Caption = "当前用户：" + SystemManageService.currentUser.UserName;
         }
 
@@ -89,7 +89,7 @@ namespace zhuhai
                 }
                 catch (Exception ex)
                 {
-                    MessageBox.Show("获取异常人员出错：" + ex.Message);
+                    MessageBox.Show("获取异常人员出错：" + ex.Message, "错误");
                 }
                 finally
                 {
@@ -112,130 +112,27 @@ namespace zhuhai
                 abnormalList.RemoveAt(abnormalList.Count - 1);
             }
             gridControl_abnormal.DataSource = abnormalList;
+            gridControl_abnormal.RefreshDataSource();
 
             if (!this.IsDisposed)
             {
-                if (previewMonitor != null && gate_id != previewMonitor.gateNo)
-                {
-                    //将上一个预览的通道重置为初始状态
-                    if (previewMonitorRadio.BackgroundImage == global::zhuhai.Properties.Resources.channelred)
-                    {
-                        previewMonitorRadio.Checked = false;
-                        previewMonitorRadio.BackgroundImage = global::zhuhai.Properties.Resources.channelblue;
-                    }
-                }
-                RadioButton radioButton = this.monitorRadios[gate_id - 1];
-                radioButton.BackgroundImage = global::zhuhai.Properties.Resources.channelred;
+                //异常的闸机背景为红色
+                monitorPanels[gate_id - 1].BackColor = Color.Red;
                 System.Threading.ThreadPool.QueueUserWorkItem(new System.Threading.WaitCallback(this.channelBlinkThread), gate_id);
-            }
+                ICustomsCMS server = XmlRpcInstance.getInstance();
 
-            if (!this.IsDisposed)
-            {
-                //视频调整到当前发生的异常的通道
-                if (previewMonitor == null || (previewMonitor != null && gate_id != previewMonitor.gateNo))
+                if (MessageBox.Show("检查到异常记录,是否切换到异常预案中？", "提示", MessageBoxButtons.YesNo) == DialogResult.Yes)
                 {
-                    previewControler.setMonitor(monitorList[gateRecordResponse.gate_record.gate_id - 1]);
-                    bool isSuccess = previewControler.preview();
-                    if (!this.IsDisposed)
-                    {
-                        RadioButton radioButton = this.monitorRadios[gate_id - 1];
-                        if (isSuccess)
-                        {
-                            radioButton.Checked = true;
-                            previewMonitor = monitorList[gate_id - 1];
-                            previewMonitorRadio = radioButton;
-                        }
-                        else
-                        {
-                            radioButton.Checked = false;
-                            previewMonitor = null;
-                            previewMonitorRadio = null;
-                        }
-
-                    }
+                    RichTextEditorForm richTextEditorForm = new RichTextEditorForm(0, "温度", DisposePlanService.getInstance(), true);
+                    richTextEditorForm.ShowDialog();
                 }
             }
 
         }
-        //几秒后自动不闪烁
-        private void channelBlinkThread(object gate_no)
-        {
-            System.Threading.Thread.Sleep(AppConfig.blinkSecond);
-            if (!this.IsDisposed)
-            {
-                this.Invoke(new Action<int>(this.channelBlink), (int)gate_no);
-            }
-        }
-
-        /// <summary>
-        /// 停止闪烁
-        /// </summary>
-        /// <param name="gate_no"></param>
-        private void channelBlink(int gate_no)
-        {
-            RadioButton radioButton = this.monitorRadios[gate_no - 1];
-            if (previewMonitor != null && previewMonitor.gateNo == gate_no)
-            {
-                radioButton.BackgroundImage = global::zhuhai.Properties.Resources.channelyellow;
-            }
-            else
-            {
-                radioButton.BackgroundImage = global::zhuhai.Properties.Resources.channelblue;
-            }
-
-        }
 
 
-        /// <summary>
-        /// 显示通道按钮
-        /// </summary>
-        private void addUIMonitors()
-        {
-            object[] monitors = monitorList.ToArray();
-            int[] intervals = { 149, 148, 149, 147, 149, 149, 147, 149, 148 };
-            int left = 10;
-            for (int i = 0; i < monitors.Length; i++)
-            {
-                System.Windows.Forms.RadioButton radioMonitor = new System.Windows.Forms.RadioButton();
-                radioMonitor.Appearance = System.Windows.Forms.Appearance.Button;
-                radioMonitor.BackgroundImage = zhuhai.Properties.Resources.channelblue;
-                radioMonitor.FlatAppearance.BorderSize = 0;
-                radioMonitor.Cursor = System.Windows.Forms.Cursors.Hand;
-                radioMonitor.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-                radioMonitor.Image = ((System.Drawing.Image)(zhuhai.Properties.Resources.ResourceManager.GetObject("_" + (i + 1).ToString())));
-                if (i % channelNumsByPage == 0)
-                {
-                    left = 10;
-                }
-                radioMonitor.Location = new System.Drawing.Point(left, 5);
-                left = left + intervals[i % channelNumsByPage];
-                radioMonitor.Name = "radioButton" + (i + 1);
-                radioMonitor.Size = new System.Drawing.Size(145, 82);
-                radioMonitor.TabIndex = 73 + i;
-                radioMonitor.TabStop = true;
-                radioMonitor.UseVisualStyleBackColor = true;
-                if (i < channelNumsByPage)
-                {
-                    radioMonitor.Visible = true;
-                }
-                else
-                {
-                    radioMonitor.Visible = false;
-                }
 
-
-                radioMonitor.Click += new System.EventHandler(this.selectMonitorRadio);
-
-                if (i == 0)
-                {
-                    previewMonitorRadio = radioMonitor;
-                }
-                this.monitorRadios.Add(radioMonitor);
-                this.channelPanel.Controls.Add(radioMonitor);
-            }
-        }
-
-        private List<System.Windows.Forms.Panel> monitorPanels = new List<System.Windows.Forms.Panel>();
+        
         /// <summary>
         /// 显示闸机监控
         /// </summary>
@@ -268,8 +165,11 @@ namespace zhuhai
                 panel1.Controls.Add(pictureBoxzhaji11);
                 panel1.Controls.Add(pictureBoxzhaji10);
                 panel1.Name = "panel" + (i + 1).ToString();
+                panel1.BackColor = Color.Transparent;
                 panel1.Size = new System.Drawing.Size(panelWidth, panelHeight);
                 panel1.TabIndex = 200 + i;
+                panel1.Click += new System.EventHandler(this.monitorPanel_click);
+                panel1.Cursor = Cursors.Hand;
 
                 Size size = this.zhajipanel.Size;
                 if (x > size.Width - panelWidth)
@@ -334,10 +234,34 @@ namespace zhuhai
 
         private void receiveGateState(object obj)
         {
+
+
             while (true && (!this.IsDisposed))
             {
-                System.Threading.Thread.Sleep(AppConfig.getGateSecond);
-                this.Invoke(new Action<Object>(this.refreshGateMonitors), new Object());
+
+                try
+                {
+                    ICustomsCMS server = XmlRpcInstance.getInstance();
+                    List<int> gateIds = new List<int>();
+                    for (int i = 1; i <= 100; i++)
+                    {
+                        gateIds.Add(i);
+                    }
+
+                    Gate_state_record_Response reportContent_Response = server.getGateAllInfo(AppConfig.gateSensor, gateIds.ToArray());
+                    if (reportContent_Response.error_code == 0 && !this.IsDisposed)
+                    {
+                        this.Invoke(new Action<Gate_state_record_Response>(this.refreshGateMonitors), reportContent_Response);
+                    }
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show("获取闸机状态出错：" + ex.Message, "错误");
+                }
+                finally
+                {
+                    System.Threading.Thread.Sleep(AppConfig.getGateSecond);
+                }
                 
             }
         }
@@ -345,26 +269,34 @@ namespace zhuhai
         /// <summary>
         /// 刷新闸机监控
         /// </summary>
-        private void refreshGateMonitors(Object obj)
+        private void refreshGateMonitors(Gate_state_record_Response reportContent_Response)
         {
             //从server中获取所有的状态，使用线程的方式
+            Gate_state_record[] gate_state_recode = reportContent_Response.gate_state_recode;
 
-            for (int i = 0; i < gateTotal; i++)
+
+            for (int i = 0; i < gate_state_recode.Length; i++)
             {
                 Panel panel1 = monitorPanels[i];
                 panel1.SuspendLayout();
                 //模式
                 System.Windows.Forms.PictureBox pictureBoxzhaji11 = (PictureBox)(panel1.Controls.Find("pictureBoxzhaji" + (i + 1).ToString() + "1", false)[0]);
-                if (i % 2 == 0)
+                if (gate_state_recode[i].mode == (int)WorkMode.Shenbao)
                     pictureBoxzhaji11.Image = global::zhuhai.Properties.Resources.shenbao;
-                else
+                else if (gate_state_recode[i].mode == (int)WorkMode.Zizhu)
                     pictureBoxzhaji11.Image = global::zhuhai.Properties.Resources.zidong;
+                else if (gate_state_recode[i].mode == (int)WorkMode.Shuaka)
+                    pictureBoxzhaji11.Image = global::zhuhai.Properties.Resources.shuaka;
+                else if (gate_state_recode[i].mode == (int)WorkMode.Fengbi)
+                    pictureBoxzhaji11.Image = global::zhuhai.Properties.Resources.fengbi;
                 //状态
                 System.Windows.Forms.PictureBox pictureBoxzhaji10 = (PictureBox)(panel1.Controls.Find("pictureBoxzhaji" + (i + 1).ToString() + "0", false)[0]);
-                if (i % 2 == 0)
+                if (gate_state_recode[i].working_state ==  (int)WorkState.Abnormal)
                     pictureBoxzhaji10.Image = global::zhuhai.Properties.Resources.abnormal;
-                else
+                else if (gate_state_recode[i].working_state ==  (int)WorkState.Normal)
                     pictureBoxzhaji10.Image = global::zhuhai.Properties.Resources.normal;
+                else
+                    pictureBoxzhaji10.Image = global::zhuhai.Properties.Resources.other;
                 panel1.ResumeLayout(false);
                 panel1.PerformLayout();
             }
@@ -385,64 +317,89 @@ namespace zhuhai
             isSuccess = previewControler.preview();
             if (isSuccess)
             {
-                RadioButton radioMonitor = this.monitorRadios[0];
-                radioMonitor.Checked = true;
-                radioMonitor.BackgroundImage = global::zhuhai.Properties.Resources.channelyellow;
+                //正在监控的面板颜色
+                Panel panel = this.monitorPanels[0];
+                panel.BackColor = Color.YellowGreen;
+                previewMonitorPanels = panel;
             }
             else
             {
                 previewMonitor = null;
-                previewMonitorRadio = null;
+                previewMonitorPanels = null;
             }
         }
 
 
         //选中一个通道后预览
-        private void selectMonitorRadio(object sender, EventArgs e)
+        private void monitorPanel_click(object sender, EventArgs e)
         {
-            this.xtraTabPage_shipinMonitor.SuspendLayout();
-            this.groupBox5.Controls.Remove(this.videoPlayWnd);
-            this.xtraTabPage_shipinMonitor.Controls.Add(this.videoPlayWnd);
-            this.xtraTabPage_shipinMonitor.BringToFront();
-            this.xtraTabPage_shipinMonitor.ResumeLayout();
-            selectMonitor();
+            Panel panel = sender as Panel;
+            selectMonitor(panel);
         }
 
-        private void selectMonitor()
+        private void selectMonitor(Panel panel)
         {
-            object[] radios = this.monitorRadios.ToArray();
-            for (int i = 0; i < radios.Length; i++)
+            string name = panel.Name;
+            //name 由 panel + 闸机号构成
+            string selectedGateNo = name.Substring(5);
+            int gateNo = Int32.Parse(selectedGateNo);
+
+            //不是上一次监控的闸机
+            if (previewMonitor != monitorList[gateNo - 1])
             {
-                System.Windows.Forms.RadioButton radio = (System.Windows.Forms.RadioButton)radios[i];
-                if (radio.Checked)
+                //上一次有监控的闸机置为初始状态
+                if (previewMonitorPanels != null)
                 {
-                    if (previewMonitor != monitorList[i])
-                    {
-                        if (previewMonitorRadio != null)
-                        {
-                            previewMonitorRadio.BackgroundImage = global::zhuhai.Properties.Resources.channelblue;
-                        }
+                    previewMonitorPanels.BackColor = Color.Transparent;
+                }
 
-                        previewControler.setMonitor(monitorList[i]);
-                        bool isSuccess = previewControler.preview();
+                previewControler.setMonitor(monitorList[gateNo - 1]);
+                bool isSuccess = previewControler.preview();
 
-                        if (isSuccess)
-                        {
-                            radio.BackgroundImage = global::zhuhai.Properties.Resources.channelyellow;
-                            previewMonitor = monitorList[i];
-                            previewMonitorRadio = radio;
-                        }
-                        else
-                        {
-                            radio.Checked = false;
-                            radio.BackgroundImage = global::zhuhai.Properties.Resources.channelblue;
-                            previewMonitor = null;
-                            previewMonitorRadio = null;
-                        }
-                    }
-                    break;
+                if (isSuccess)
+                {
+                    panel.BackColor = Color.YellowGreen;
+                    previewMonitor = monitorList[gateNo - 1];
+                    previewMonitorPanels = panel;
+
+                    xtraTabControl.SelectedTabPage = xtraTabPage_shipinMonitor;
+                }
+                else
+                {
+                    panel.BackColor = Color.Transparent;
+                    previewMonitor = null;
+                    previewMonitorPanels = null;
                 }
             }
+        }
+
+        //几秒后红色消失
+        private void channelBlinkThread(object gate_no)
+        {
+            System.Threading.Thread.Sleep(AppConfig.blinkSecond);
+            if (!this.IsDisposed)
+            {
+                this.Invoke(new Action<int>(this.channelBlink), (int)gate_no);
+            }
+        }
+
+        /// <summary>
+        /// 停止闪烁
+        /// </summary>
+        /// <param name="gate_no"></param>
+        private void channelBlink(int gate_no)
+        {
+            Panel panel = this.monitorPanels[gate_no - 1];
+            //不是当前正在监控的闸机
+            if (previewMonitor != null && previewMonitor.gateNo == gate_no)
+            {
+                panel.BackColor = Color.Transparent;
+            }
+            else
+            {
+                panel.BackColor = Color.YellowGreen;
+            }
+
         }
 
         private void barButtonItem_disposePlan_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
@@ -489,6 +446,7 @@ namespace zhuhai
             {
                 previewControler.quit();
             }
+            LogService.getInstance().log(ModuleConstant.LOGOUT_MODULE_CONTENT, ModuleConstant.LOGOUT_MODULE);
             Application.Exit();
         }
 
@@ -497,23 +455,23 @@ namespace zhuhai
             this.barStaticItem_systemTime.Caption = DateTime.Now.ToString("yyyy年MM月dd日 HH:mm:ss", DateTimeFormatInfo.InvariantInfo);
         }
 
-        private void refreshVideoMonitor(object obj)
-        {
-            while (true)
-            {
-                if (previewControler != null && previewMonitor != null)
-                {
-                    previewControler.setMonitor(previewMonitor);
-                    previewControler.preview();
-                }
-                System.Threading.Thread.Sleep(30 * 60 * 1000);
-            }
-        }
+        //private void refreshVideoMonitor(object obj)
+        //{
+        //    while (true)
+        //    {
+        //        if (previewControler != null && previewMonitor != null)
+        //        {
+        //            previewControler.setMonitor(previewMonitor);
+        //            previewControler.preview();
+        //        }
+        //        System.Threading.Thread.Sleep(30 * 60 * 1000);
+        //    }
+        //}
 
         private void form_load(object sender, EventArgs e)
         {
             System.Threading.ThreadPool.QueueUserWorkItem(new System.Threading.WaitCallback(this.receiveMessage));
-            System.Threading.ThreadPool.QueueUserWorkItem(new System.Threading.WaitCallback(this.refreshVideoMonitor));
+            //System.Threading.ThreadPool.QueueUserWorkItem(new System.Threading.WaitCallback(this.refreshVideoMonitor));
             System.Threading.ThreadPool.QueueUserWorkItem(new System.Threading.WaitCallback(this.receiveGateState));
             
             //每隔1秒更新显示时间
@@ -555,7 +513,10 @@ namespace zhuhai
                 //使用异步UI线程更新
                 this.BeginInvoke((MethodInvoker)delegate()
                 {
-                    updateSHWXQH(chemicalToxic, bioaerosol, microlimate);
+                    if (!this.IsDisposed)
+                    {
+                        updateSHWXQH(chemicalToxic, bioaerosol, microlimate);
+                    }
                 });
             }
             
@@ -653,59 +614,6 @@ namespace zhuhai
 
        
 
-        private void button_left_Click(object sender, EventArgs e)
-        {
-            if (radioMonitorStart - 1 >= 0)
-            {
-                refreshUIMonitors(-1);
-            }
-        }
-
-        private void button_right_Click(object sender, EventArgs e)
-        {
-            if ((radioMonitorStart + 1) * channelNumsByPage < this.monitorList.Count())
-            {
-                refreshUIMonitors(1);
-            }
-        }
-
-        int radioMonitorStart = 0;
-        private void refreshUIMonitors(int addpage)
-        {
-            this.channelPanel.SuspendLayout();
-            radioMonitorStart = radioMonitorStart + addpage;
-            if (addpage > 0)
-            {
-                for (int i = this.monitorRadios.Count - 1; i >= 0; i--)
-                {
-                    System.Windows.Forms.RadioButton radioMonitor = this.monitorRadios[i];
-                    if (i >= radioMonitorStart * channelNumsByPage && i < (radioMonitorStart + 1) * channelNumsByPage)
-                    {
-                        radioMonitor.Visible = true;
-                    }
-                    else
-                    {
-                        radioMonitor.Visible = false;
-                    }
-                }
-            }
-            else
-            {
-                for (int i = 0; i < this.monitorRadios.Count; i++)
-                {
-                    System.Windows.Forms.RadioButton radioMonitor = this.monitorRadios[i];
-                    if (i >= radioMonitorStart * channelNumsByPage && i < (radioMonitorStart + 1) * channelNumsByPage)
-                    {
-                        radioMonitor.Visible = true;
-                    }
-                    else
-                    {
-                        radioMonitor.Visible = false;
-                    }
-                }
-            }
-            this.channelPanel.ResumeLayout();
-        }
 
         private void xtraTabControl_VisibleChanged(object sender, EventArgs e)
         {
@@ -714,16 +622,6 @@ namespace zhuhai
 
         private void xtraTabPage_tongguanMonitor_VisibleChanged(object sender, EventArgs e)
         {
-            //页面可见时,初始化的时候调用了两次
-            if (xtraTabPage_tongguanMonitor.Visible == true)
-            {
-                this.xtraTabPage_tongguanMonitor.SuspendLayout();
-                this.xtraTabPage_shipinMonitor.Controls.Remove(this.videoPlayWnd);
-                this.groupBox5.Controls.Add(this.videoPlayWnd);
-                this.xtraTabPage_tongguanMonitor.BringToFront();
-                this.xtraTabPage_tongguanMonitor.ResumeLayout();
-            }
-
         }
 
         private void xtraTabPage_zhajiMonitor_VisibleChanged(object sender, EventArgs e)
@@ -731,7 +629,7 @@ namespace zhuhai
             //页面可见时
             if (xtraTabPage_zhajiMonitor.Visible == true)
             {
-                
+
             }
         }
 
@@ -740,7 +638,13 @@ namespace zhuhai
             //页面可见时
             if (xtraTabPage_shipinMonitor.Visible == true)
             {
-                
+                this.xtraTabPage_tongguanMonitor.SuspendLayout();
+                this.xtraTabPage_shipinMonitor.Controls.Add(this.videoPlayWnd);
+                this.xtraTabPage_tongguanMonitor.ResumeLayout();
+            }
+            else
+            {
+                this.xtraTabPage_shipinMonitor.Controls.Remove(this.videoPlayWnd);
             }
         }
 
@@ -753,6 +657,39 @@ namespace zhuhai
         {
             VideoReplayForm videoReplayForm = new VideoReplayForm();
             videoReplayForm.ShowDialog(this);
+        }
+
+        private void gridControl_abnormal_MouseDoubleClick(object sender, MouseEventArgs e)
+        {
+            if (gridView_abnormal.SelectedRowsCount != 1)
+            {
+                MessageBox.Show("请选择一条记录！", "警告");
+                return;
+            }
+            //获取选中的行的行号
+            int[] rowNums = gridView_abnormal.GetSelectedRows();
+            List<GateRecord> list = (List<GateRecord>)gridControl_abnormal.DataSource;
+            DataRow dr = new ModelHandler<GateRecord>().FillDataRow(list[rowNums[0]]);
+
+            ShowClearanceInfoForm showClearanceInfoForm = new ShowClearanceInfoForm(dr);
+            showClearanceInfoForm.ShowDialog();
+        }
+
+        private void FormMain_FormClosed(object sender, FormClosedEventArgs e)
+        {
+            LogService.getInstance().log(ModuleConstant.LOGOUT_MODULE_CONTENT, ModuleConstant.LOGOUT_MODULE);
+        }
+
+        private void barButtonItem_title_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
+        {
+            SetTitleForm form = new SetTitleForm();
+            form.ShowDialog();
+        }
+
+        private void barButtonItem_shenbaocontent_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
+        {
+            ShenbaoContentForm shenbaoContentForm = new ShenbaoContentForm();
+            shenbaoContentForm.ShowDialog();
         }
     }
 }

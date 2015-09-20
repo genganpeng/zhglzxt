@@ -51,11 +51,10 @@ namespace zhuhai.service
         public GateThresholdValue getGateThreshold(int gateNo)
         {
             SysTask task = new SysTask();
-            task.target_gates = new int[] { gateNo };
             try
             {
                 ICustomsCMS server = XmlRpcInstance.getInstance();
-                TaskRPCResponse taskRPCResponse = server.getCurrentThreshold(AppConfig.gateSensor, task);
+                TaskRPCResponse taskRPCResponse = server.getCurrentThreshold(gateNo);
                 if (taskRPCResponse.error_code == 0)
                 {
                     return new GateThresholdValue(taskRPCResponse.task.thr_temperature, taskRPCResponse.task.thr_nuclear);
@@ -82,10 +81,10 @@ namespace zhuhai.service
             try
             {
                 ICustomsCMS server = XmlRpcInstance.getInstance();
-                TaskRPCResponse taskRPCResponse = server.getCurrentThreshold(AppConfig.hxswqhsensor, task);
+                TaskRPCResponse taskRPCResponse = server.getCurrentThreshold(AppConfig.hxswqhnum);
                 if (taskRPCResponse.error_code == 0)
                 {
-                    return new HxswqhThresholdValue(taskRPCResponse.task.biology, taskRPCResponse.task.chem);
+                    return new HxswqhThresholdValue(taskRPCResponse.task.bio_port, taskRPCResponse.task.chem_port);
                 }
                 else
                 {
@@ -112,7 +111,7 @@ namespace zhuhai.service
             try
             {
                 ICustomsCMS server = XmlRpcInstance.getInstance();
-                TaskRPCResponse taskRPCResponse = server.getCurrentThreshold(AppConfig.gateSensor, task);
+                TaskRPCResponse taskRPCResponse = server.getCurrentThreshold(AppConfig.gateSensor);
                 if (taskRPCResponse.error_code == 0)
                 {
                     return new GateThresholdErrorValue(taskRPCResponse.task.thr_temperature, taskRPCResponse.task.thr_nuclear);

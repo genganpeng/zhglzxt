@@ -14,6 +14,7 @@
     <TargetFrameworkProfile>
     </TargetFrameworkProfile>
     <FileAlignment>512</FileAlignment>
+    <IsWebBootstrapper>false</IsWebBootstrapper>
     <PublishUrl>publish\</PublishUrl>
     <Install>true</Install>
     <InstallFrom>Disk</InstallFrom>
@@ -26,7 +27,6 @@
     <MapFileExtensions>true</MapFileExtensions>
     <ApplicationRevision>0</ApplicationRevision>
     <ApplicationVersion>1.0.0.%2a</ApplicationVersion>
-    <IsWebBootstrapper>false</IsWebBootstrapper>
     <UseApplicationTrust>false</UseApplicationTrust>
     <BootstrapperEnabled>true</BootstrapperEnabled>
   </PropertyGroup>
@@ -35,7 +35,7 @@
     <DebugSymbols>true</DebugSymbols>
     <DebugType>full</DebugType>
     <Optimize>false</Optimize>
-    <OutputPath>bin\</OutputPath>
+    <OutputPath>bin\Debug\</OutputPath>
     <DefineConstants>DEBUG;TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
@@ -102,6 +102,7 @@
     <Compile Include="model\JobGuideBook.cs" />
     <Compile Include="model\EpidemicInfo.cs" />
     <Compile Include="model\DisposePlan.cs" />
+    <Compile Include="model\ShenboContent.cs" />
     <Compile Include="monitorinfo\h264\H264Controler.cs" />
     <Compile Include="monitorinfo\h264\XMSDK.cs" />
     <Compile Include="monitorinfo\hc\HCControler.cs" />
@@ -110,6 +111,12 @@
     <Compile Include="monitorinfo\Monitor.cs" />
     <Compile Include="monitorinfo\NVRControler.cs" />
     <Compile Include="monitorinfo\NVRDevice.cs" />
+    <Compile Include="PrintForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="PrintForm.Designer.cs">
+      <DependentUpon>PrintForm.cs</DependentUpon>
+    </Compile>
     <Compile Include="PublishNoticeForm.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -118,14 +125,29 @@
     </Compile>
     <Compile Include="service\GateService.cs" />
     <Compile Include="service\IOperateService.cs" />
+    <Compile Include="service\LogService.cs" />
     <Compile Include="service\ModeStateSetService.cs" />
     <Compile Include="service\PublishNoticeService.cs" />
+    <Compile Include="service\TitleService.cs" />
     <Compile Include="service\WorkRuleService.cs" />
     <Compile Include="service\JobGuideBookService.cs" />
     <Compile Include="service\EpidemicInfoService.cs" />
     <Compile Include="service\DisposePlanService.cs" />
     <Compile Include="service\UpdateThresholdService.cs" />
     <Compile Include="service\ClearanceRecordService.cs" />
+    <Compile Include="service\ShenbaoContentService.cs" />
+    <Compile Include="SetTitleForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="SetTitleForm.Designer.cs">
+      <DependentUpon>SetTitleForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="ShenbaoContentEditForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="ShenbaoContentEditForm.Designer.cs">
+      <DependentUpon>ShenbaoContentEditForm.cs</DependentUpon>
+    </Compile>
     <Compile Include="ShowClearanceInfoForm.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -150,6 +172,7 @@
     </Compile>
     <Compile Include="util\DictionaryToXmlRpcStruct.cs" />
     <Compile Include="util\ModelHandler.cs" />
+    <Compile Include="util\ModuleConstant.cs" />
     <Compile Include="util\Pager.cs" />
     <Compile Include="PageUpControl.cs">
       <SubType>UserControl</SubType>
@@ -247,6 +270,12 @@
     <Compile Include="VideoReplayForm.Designer.cs">
       <DependentUpon>VideoReplayForm.cs</DependentUpon>
     </Compile>
+    <Compile Include="ShenbaoContentForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="ShenbaoContentForm.Designer.cs">
+      <DependentUpon>ShenbaoContentForm.cs</DependentUpon>
+    </Compile>
     <EmbeddedResource Include="ClearanceStatisticsForm.resx">
       <DependentUpon>ClearanceStatisticsForm.cs</DependentUpon>
     </EmbeddedResource>
@@ -255,6 +284,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="LoginForm.resx">
       <DependentUpon>LoginForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="PrintForm.resx">
+      <DependentUpon>PrintForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\licenses.licx" />
     <EmbeddedResource Include="Properties\Resources.resx">
@@ -272,6 +304,12 @@
     </EmbeddedResource>
     <EmbeddedResource Include="RichTextEditorForm.resx">
       <DependentUpon>RichTextEditorForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="SetTitleForm.resx">
+      <DependentUpon>SetTitleForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ShenbaoContentEditForm.resx">
+      <DependentUpon>ShenbaoContentEditForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="ShowClearanceInfoForm.resx">
       <DependentUpon>ShowClearanceInfoForm.cs</DependentUpon>
@@ -311,6 +349,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="VideoReplayForm.resx">
       <DependentUpon>VideoReplayForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ShenbaoContentForm.resx">
+      <DependentUpon>ShenbaoContentForm.cs</DependentUpon>
     </EmbeddedResource>
     <None Include="App.config" />
     <None Include="Properties\Settings.settings">

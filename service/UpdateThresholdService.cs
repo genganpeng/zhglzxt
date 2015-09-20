@@ -54,14 +54,18 @@ namespace zhuhai.service
         public Boolean updateHxswqhThreshold(double biology, double chem)
         {
             SysTask task = new SysTask();
-            task.type = (int)TaskType.UpdateThreshold;
-            task.target_gates = new int[AppConfig.hxswqhnum];
-            task.biology = biology;
-            task.chem = chem;
+            task.type = (int)TaskType.bio_port;
+            task.target_gates = new int[] { AppConfig.hxswqhnum };
+            task.bio_port = biology;
+            
             try
             {
                 ICustomsCMS server = XmlRpcInstance.getInstance();
                 RPCResponse response = server.publishTask(AppConfig.hxswqhsensor, task);
+
+                task.type = (int)TaskType.chem_port;
+                task.chem_port = chem;
+                response = server.publishTask(AppConfig.hxswqhsensor, task);
                 if (response.error_code == 0)
                 {
                     return true;
@@ -76,5 +80,8 @@ namespace zhuhai.service
                 throw new Exception("错误"  + ex.Message);
             }
         }
+
+
+
     }
 }

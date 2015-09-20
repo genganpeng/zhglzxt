@@ -9,15 +9,18 @@ using System.Windows.Forms;
 using zhuhai.model;
 using System.IO;
 using zhuhai.service;
+using zhuhai.util;
+using zhuhai.xmlrpc;
 
 namespace zhuhai
 {
     public partial class ShowClearanceInfoForm : Form
     {
+        private DataRow row;
         public ShowClearanceInfoForm(DataRow row)
         {
             InitializeComponent();
-
+            this.row = row;
             nameLabel.Text = row[ClearanceRecord.NAME_COLUMN].ToString();
             nationalityLabel.Text = row[ClearanceRecord.NATIONALITY_COLUMN].ToString();
             idnoLabel.Text = row[ClearanceRecord.ID_CODE_COLUMN].ToString();
@@ -67,6 +70,15 @@ namespace zhuhai
                 this.nuclearjialabel.Image = global::zhuhai.Properties.Resources.jiawhite;
             }
 
+            if ((bool)row[ClearanceRecord.IS_HEALTHY_COLUMN])
+            {
+                this.label_statuName.Text = "正常";
+            }
+            else
+            {
+                this.label_statuName.Text = "异常";
+            }
+
             try
             {
                 byte[] bytes = GateService.getInstance().getPassengerPhoto(int.Parse(row[ClearanceRecord.ID_PHOTO_ID_COLUMN].ToString()));
@@ -81,6 +93,12 @@ namespace zhuhai
                 MessageBox.Show(ex.Message, "错误");
             }
             
+        }
+
+        private void button_print_Click(object sender, EventArgs e)
+        {
+            PrintForm printForm = new PrintForm(new ModelHandler<GateRecord>().FillModel(row));
+            printForm.ShowDialog();
         }
     }
 }

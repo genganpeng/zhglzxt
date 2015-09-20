@@ -106,6 +106,8 @@ namespace zhuhai
                 //要删除的id
                 string deleteId = dt.Rows[rowNum][CommonText.ID_COLUMN].ToString();
                 jobGuideBookService.deleteRow(Int32.Parse(deleteId));
+
+                LogService.getInstance().log("删除，标题为" + dt.Rows[rowNum][CommonText.TITLE_COLOMUN].ToString(), ModuleConstant.JobGuideBook_MODULE);
             }
             initData(formatWhere());
              

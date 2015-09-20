@@ -72,6 +72,7 @@ namespace zhuhai
             RichTextEditorForm richTextEditorForm = new RichTextEditorForm(disposePlanService);
             richTextEditorForm.ShowDialog();
             initData(formatWhere());
+
         }
 
         private void simpleButton_modify_Click(object sender, EventArgs e)
@@ -87,6 +88,7 @@ namespace zhuhai
             RichTextEditorForm richTextEditorForm = new RichTextEditorForm(Int32.Parse(dt.Rows[rowNums[0]][CommonText.ID_COLUMN].ToString()), dt.Rows[rowNums[0]][CommonText.TITLE_COLOMUN].ToString(), disposePlanService);
             richTextEditorForm.ShowDialog();
             pageUpControl.GetDataTable();
+
         }
 
         private void simpleButton_delete_Click(object sender, EventArgs e)
@@ -106,9 +108,13 @@ namespace zhuhai
                 //要删除的id
                 string deleteId = dt.Rows[rowNum][CommonText.ID_COLUMN].ToString();
                 disposePlanService.deleteRow(Int32.Parse(deleteId));
+
+                LogService.getInstance().log("删除，标题为" + dt.Rows[rowNum][CommonText.TITLE_COLOMUN].ToString(), ModuleConstant.DisposePlan_MODULE);
             }
             initData(formatWhere());
-             
+
+            
+
         }
 
         private void simpleButton_view_Click(object sender, EventArgs e)

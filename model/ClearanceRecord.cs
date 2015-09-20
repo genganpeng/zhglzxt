@@ -20,5 +20,6 @@ namespace zhuhai.model
         public static string TEMPERATURE_COLUMN = "temperature";
         public static string NUCLEAR_COLUMN = "nuclear";
         public static string NULCLEAR_DETAIL_COLUMN = "nuclear_detail";
+        public static string IS_HEALTHY_COLUMN = "is_healthy";
     }
 }

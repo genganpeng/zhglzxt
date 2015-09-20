@@ -88,7 +88,11 @@ namespace zhuhai.xmlrpc
         /// <summary>
         /// 摄像头拍照
         /// </summary>
-        Camera_photo = 4 
+        Camera_photo = 4,
+        /// <summary>
+        /// 闸机复位
+        /// </summary>
+        Gate_Reset = 5
     }
 
     public class SysOrder
@@ -113,4 +117,75 @@ namespace zhuhai.xmlrpc
             return this.ToString();
         }
     }
+
+    public class TitleNameRPCResponse : RPCResponse
+    {
+        public string name;
+
+        public string value;
+
+        public int type;
+
+        public string rolename;
+
+        public override string ToString()
+        {
+            return value.ToString();
+        }
+    }
+
+    public class Log
+    {
+        public string operateContent;
+        public string operateModule;
+        public string operatePeople;
+    }
+
+    public class ReportContent
+    {
+        public int id;
+        public string operatePeople;
+        public string content;
+    }
+
+    public class ReportContent_Response : RPCResponse
+    {
+        public ReportContent[] reportcontentlist;
+    }
+
+    public class Gate_state_record
+    {
+        public int gateid;
+        public int mode;
+        public int working_state;
+    }
+
+    public class Gate_state_record_Response : RPCResponse
+    {
+        public Gate_state_record[] gate_state_recode;
+
+    }
+
+    /// <summary>
+    /// 用户管理
+    /// </summary>
+    public class Usercheck
+    {
+        public string username;
+        public string password;
+         [XmlRpcMissingMapping(MappingAction.Ignore)]
+        public string rolename;
+         [XmlRpcMissingMapping(MappingAction.Ignore)]
+        public string realname;
+    }
+
+    /// <summary>
+    /// 用户
+    /// </summary>
+    public class UsercheckRPCResponse : RPCResponse
+    {
+
+    }
+
+
 }
