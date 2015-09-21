@@ -166,5 +166,10 @@ namespace zhuhai
         {
             changeGateState("闸机解锁", (int)OrderType.Gate_Unlock);
         }
+
+        private void simpleButton_reset_Click(object sender, EventArgs e)
+        {
+            changeGateState("闸机复位", (int)OrderType.Gate_Reset);
+        }
     }
 }

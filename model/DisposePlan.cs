@@ -16,6 +16,11 @@ namespace zhuhai.model
             
         }
 
+        public DisposePlan(int id, string title, string operatePeople)
+            : base(id, title, operatePeople)
+        {
+        }
+
         public DisposePlan(int id, string title)
             : base(id, title)
         {

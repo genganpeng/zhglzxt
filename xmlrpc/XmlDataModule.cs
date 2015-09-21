@@ -144,8 +144,10 @@ namespace zhuhai.xmlrpc
     public class ReportContent
     {
         public int id;
+        public int logicid;
         public string operatePeople;
         public string content;
+        public string content_en;
     }
 
     public class ReportContent_Response : RPCResponse

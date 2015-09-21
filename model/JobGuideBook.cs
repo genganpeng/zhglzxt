@@ -20,5 +20,9 @@ namespace zhuhai.model
             : base(id, title)
         {
         }
+
+        public JobGuideBook(int id, string title, string operatePeople) : base(id, title, operatePeople)
+        {
+        }
     }
 }

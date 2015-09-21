@@ -31,8 +31,6 @@
             this.groupControl = new DevExpress.XtraEditors.GroupControl();
             this.simpleButton1 = new DevExpress.XtraEditors.SimpleButton();
             this.simpleButton_query = new DevExpress.XtraEditors.SimpleButton();
-            this.dateTimePicker_startTime = new System.Windows.Forms.DateTimePicker();
-            this.labelControl_startTime = new DevExpress.XtraEditors.LabelControl();
             this.comboBox_sex = new System.Windows.Forms.ComboBox();
             this.labelControl_sex = new DevExpress.XtraEditors.LabelControl();
             this.textEdit_country = new DevExpress.XtraEditors.TextEdit();
@@ -63,6 +61,12 @@
             this.btnSlow = new System.Windows.Forms.Button();
             this.btnPause = new System.Windows.Forms.Button();
             this.toolStripStatusLabel = new System.Windows.Forms.ToolStripStatusLabel();
+            this.dateTimePicker_endTime_time = new System.Windows.Forms.DateTimePicker();
+            this.dateTimePicker_startTime_time = new System.Windows.Forms.DateTimePicker();
+            this.dateTimePicker_endTime = new System.Windows.Forms.DateTimePicker();
+            this.dateTimePicker_startTime = new System.Windows.Forms.DateTimePicker();
+            this.labelControl_endTime = new DevExpress.XtraEditors.LabelControl();
+            this.labelControl_startTime = new DevExpress.XtraEditors.LabelControl();
             ((System.ComponentModel.ISupportInitialize)(this.groupControl)).BeginInit();
             this.groupControl.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.textEdit_country.Properties)).BeginInit();
@@ -77,10 +81,14 @@
             // 
             // groupControl
             // 
+            this.groupControl.Controls.Add(this.dateTimePicker_endTime_time);
+            this.groupControl.Controls.Add(this.dateTimePicker_startTime_time);
+            this.groupControl.Controls.Add(this.dateTimePicker_endTime);
+            this.groupControl.Controls.Add(this.dateTimePicker_startTime);
+            this.groupControl.Controls.Add(this.labelControl_endTime);
+            this.groupControl.Controls.Add(this.labelControl_startTime);
             this.groupControl.Controls.Add(this.simpleButton1);
             this.groupControl.Controls.Add(this.simpleButton_query);
-            this.groupControl.Controls.Add(this.dateTimePicker_startTime);
-            this.groupControl.Controls.Add(this.labelControl_startTime);
             this.groupControl.Controls.Add(this.comboBox_sex);
             this.groupControl.Controls.Add(this.labelControl_sex);
             this.groupControl.Controls.Add(this.textEdit_country);
@@ -98,7 +106,7 @@
             // 
             this.simpleButton1.Appearance.Font = new System.Drawing.Font("微软雅黑", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.simpleButton1.Appearance.Options.UseFont = true;
-            this.simpleButton1.Location = new System.Drawing.Point(599, 91);
+            this.simpleButton1.Location = new System.Drawing.Point(599, 95);
             this.simpleButton1.Name = "simpleButton1";
             this.simpleButton1.Size = new System.Drawing.Size(111, 29);
             this.simpleButton1.TabIndex = 15;
@@ -109,32 +117,12 @@
             // 
             this.simpleButton_query.Appearance.Font = new System.Drawing.Font("微软雅黑", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.simpleButton_query.Appearance.Options.UseFont = true;
-            this.simpleButton_query.Location = new System.Drawing.Point(599, 43);
+            this.simpleButton_query.Location = new System.Drawing.Point(450, 95);
             this.simpleButton_query.Name = "simpleButton_query";
             this.simpleButton_query.Size = new System.Drawing.Size(111, 29);
             this.simpleButton_query.TabIndex = 14;
             this.simpleButton_query.Text = "查  询";
             this.simpleButton_query.Click += new System.EventHandler(this.simpleButton_query_Click);
-            // 
-            // dateTimePicker_startTime
-            // 
-            this.dateTimePicker_startTime.CalendarFont = new System.Drawing.Font("微软雅黑", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.dateTimePicker_startTime.CustomFormat = "yyyy年M月d日";
-            this.dateTimePicker_startTime.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
-            this.dateTimePicker_startTime.Location = new System.Drawing.Point(387, 67);
-            this.dateTimePicker_startTime.Name = "dateTimePicker_startTime";
-            this.dateTimePicker_startTime.Size = new System.Drawing.Size(145, 21);
-            this.dateTimePicker_startTime.TabIndex = 8;
-            this.dateTimePicker_startTime.ValueChanged += new System.EventHandler(this.dateTimePicker_startTime_ValueChanged);
-            // 
-            // labelControl_startTime
-            // 
-            this.labelControl_startTime.Appearance.Font = new System.Drawing.Font("微软雅黑", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.labelControl_startTime.Location = new System.Drawing.Point(333, 66);
-            this.labelControl_startTime.Name = "labelControl_startTime";
-            this.labelControl_startTime.Size = new System.Drawing.Size(48, 21);
-            this.labelControl_startTime.TabIndex = 6;
-            this.labelControl_startTime.Text = "时间：";
             // 
             // comboBox_sex
             // 
@@ -144,7 +132,7 @@
             "全部",
             "男",
             "女"});
-            this.comboBox_sex.Location = new System.Drawing.Point(94, 59);
+            this.comboBox_sex.Location = new System.Drawing.Point(537, 28);
             this.comboBox_sex.Name = "comboBox_sex";
             this.comboBox_sex.Size = new System.Drawing.Size(145, 29);
             this.comboBox_sex.TabIndex = 5;
@@ -152,7 +140,7 @@
             // labelControl_sex
             // 
             this.labelControl_sex.Appearance.Font = new System.Drawing.Font("微软雅黑", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.labelControl_sex.Location = new System.Drawing.Point(40, 62);
+            this.labelControl_sex.Location = new System.Drawing.Point(483, 31);
             this.labelControl_sex.Name = "labelControl_sex";
             this.labelControl_sex.Size = new System.Drawing.Size(48, 21);
             this.labelControl_sex.TabIndex = 4;
@@ -160,7 +148,7 @@
             // 
             // textEdit_country
             // 
-            this.textEdit_country.Location = new System.Drawing.Point(387, 25);
+            this.textEdit_country.Location = new System.Drawing.Point(322, 25);
             this.textEdit_country.Name = "textEdit_country";
             this.textEdit_country.Properties.Appearance.Font = new System.Drawing.Font("微软雅黑", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.textEdit_country.Properties.Appearance.Options.UseFont = true;
@@ -170,7 +158,7 @@
             // labelControl__country
             // 
             this.labelControl__country.Appearance.Font = new System.Drawing.Font("微软雅黑", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.labelControl__country.Location = new System.Drawing.Point(333, 28);
+            this.labelControl__country.Location = new System.Drawing.Point(268, 28);
             this.labelControl__country.Name = "labelControl__country";
             this.labelControl__country.Size = new System.Drawing.Size(48, 21);
             this.labelControl__country.TabIndex = 2;
@@ -470,6 +458,62 @@
             this.toolStripStatusLabel.Size = new System.Drawing.Size(29, 36);
             this.toolStripStatusLabel.Text = "就绪";
             // 
+            // dateTimePicker_endTime_time
+            // 
+            this.dateTimePicker_endTime_time.Format = System.Windows.Forms.DateTimePickerFormat.Time;
+            this.dateTimePicker_endTime_time.Location = new System.Drawing.Point(502, 68);
+            this.dateTimePicker_endTime_time.Name = "dateTimePicker_endTime_time";
+            this.dateTimePicker_endTime_time.ShowUpDown = true;
+            this.dateTimePicker_endTime_time.Size = new System.Drawing.Size(76, 21);
+            this.dateTimePicker_endTime_time.TabIndex = 23;
+            // 
+            // dateTimePicker_startTime_time
+            // 
+            this.dateTimePicker_startTime_time.Format = System.Windows.Forms.DateTimePickerFormat.Time;
+            this.dateTimePicker_startTime_time.Location = new System.Drawing.Point(204, 68);
+            this.dateTimePicker_startTime_time.Name = "dateTimePicker_startTime_time";
+            this.dateTimePicker_startTime_time.ShowUpDown = true;
+            this.dateTimePicker_startTime_time.Size = new System.Drawing.Size(76, 21);
+            this.dateTimePicker_startTime_time.TabIndex = 22;
+            // 
+            // dateTimePicker_endTime
+            // 
+            this.dateTimePicker_endTime.CalendarFont = new System.Drawing.Font("微软雅黑", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.dateTimePicker_endTime.CustomFormat = "yyyy-MM-dd";
+            this.dateTimePicker_endTime.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
+            this.dateTimePicker_endTime.Location = new System.Drawing.Point(395, 68);
+            this.dateTimePicker_endTime.Name = "dateTimePicker_endTime";
+            this.dateTimePicker_endTime.Size = new System.Drawing.Size(99, 21);
+            this.dateTimePicker_endTime.TabIndex = 21;
+            // 
+            // dateTimePicker_startTime
+            // 
+            this.dateTimePicker_startTime.CalendarFont = new System.Drawing.Font("微软雅黑", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.dateTimePicker_startTime.CustomFormat = "yyyy-MM-dd";
+            this.dateTimePicker_startTime.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
+            this.dateTimePicker_startTime.Location = new System.Drawing.Point(94, 68);
+            this.dateTimePicker_startTime.Name = "dateTimePicker_startTime";
+            this.dateTimePicker_startTime.Size = new System.Drawing.Size(103, 21);
+            this.dateTimePicker_startTime.TabIndex = 20;
+            // 
+            // labelControl_endTime
+            // 
+            this.labelControl_endTime.Appearance.Font = new System.Drawing.Font("微软雅黑", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.labelControl_endTime.Location = new System.Drawing.Point(309, 68);
+            this.labelControl_endTime.Name = "labelControl_endTime";
+            this.labelControl_endTime.Size = new System.Drawing.Size(80, 21);
+            this.labelControl_endTime.TabIndex = 19;
+            this.labelControl_endTime.Text = "结束时间：";
+            // 
+            // labelControl_startTime
+            // 
+            this.labelControl_startTime.Appearance.Font = new System.Drawing.Font("微软雅黑", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.labelControl_startTime.Location = new System.Drawing.Point(12, 68);
+            this.labelControl_startTime.Name = "labelControl_startTime";
+            this.labelControl_startTime.Size = new System.Drawing.Size(80, 21);
+            this.labelControl_startTime.TabIndex = 18;
+            this.labelControl_startTime.Text = "开始时间：";
+            // 
             // VideoReplayForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
@@ -505,8 +549,6 @@
         private DevExpress.XtraEditors.LabelControl labelControl__country;
         private DevExpress.XtraEditors.LabelControl labelControl_sex;
         private System.Windows.Forms.ComboBox comboBox_sex;
-        private DevExpress.XtraEditors.LabelControl labelControl_startTime;
-        private System.Windows.Forms.DateTimePicker dateTimePicker_startTime;
         private DevExpress.XtraEditors.SimpleButton simpleButton_query;
         private DevExpress.XtraGrid.GridControl gridControl_query;
         private DevExpress.XtraGrid.Views.Grid.GridView gridView;
@@ -533,5 +575,11 @@
         private System.Windows.Forms.Button btnPause;
         private System.Windows.Forms.ToolStripStatusLabel toolStripStatusLabel;
         private DevExpress.XtraEditors.SimpleButton simpleButton1;
+        private System.Windows.Forms.DateTimePicker dateTimePicker_endTime_time;
+        private System.Windows.Forms.DateTimePicker dateTimePicker_startTime_time;
+        private System.Windows.Forms.DateTimePicker dateTimePicker_endTime;
+        private System.Windows.Forms.DateTimePicker dateTimePicker_startTime;
+        private DevExpress.XtraEditors.LabelControl labelControl_endTime;
+        private DevExpress.XtraEditors.LabelControl labelControl_startTime;
     }
 }

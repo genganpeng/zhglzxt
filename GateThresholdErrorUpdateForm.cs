@@ -118,7 +118,7 @@ namespace zhuhai
 
             try
             {
-                UpdateThresholdService.getInstance().updateGateThreshold(temperature_error, nuclear_error, gateIds);
+                UpdateThresholdService.getInstance().updateGateThresholdError(temperature_error, nuclear_error, gateIds);
                 MessageBox.Show("修改闸机误差值成功！");
             }
             catch (Exception ex)

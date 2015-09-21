@@ -63,7 +63,6 @@
             this.tablesBar1 = new DevExpress.XtraRichEdit.UI.TablesBar();
             this.insertTableItem1 = new DevExpress.XtraRichEdit.UI.InsertTableItem();
             this.illustrationsBar1 = new DevExpress.XtraRichEdit.UI.IllustrationsBar();
-            this.insertPictureItem1 = new DevExpress.XtraRichEdit.UI.InsertPictureItem();
             this.insertFloatingPictureItem1 = new DevExpress.XtraRichEdit.UI.InsertFloatingPictureItem();
             this.barDockControlTop = new DevExpress.XtraBars.BarDockControl();
             this.barDockControlBottom = new DevExpress.XtraBars.BarDockControl();
@@ -96,6 +95,7 @@
             this.findItem1 = new DevExpress.XtraRichEdit.UI.FindItem();
             this.replaceItem1 = new DevExpress.XtraRichEdit.UI.ReplaceItem();
             this.insertPageBreakItem21 = new DevExpress.XtraRichEdit.UI.InsertPageBreakItem2();
+            this.insertPictureItem1 = new DevExpress.XtraRichEdit.UI.InsertPictureItem();
             this.insertBookmarkItem1 = new DevExpress.XtraRichEdit.UI.InsertBookmarkItem();
             this.insertHyperlinkItem1 = new DevExpress.XtraRichEdit.UI.InsertHyperlinkItem();
             this.editPageHeaderItem1 = new DevExpress.XtraRichEdit.UI.EditPageHeaderItem();
@@ -109,27 +109,30 @@
             this.textEdit_title = new DevExpress.XtraEditors.TextEdit();
             this.simpleButton_save = new DevExpress.XtraEditors.SimpleButton();
             this.simpleButton_cancel = new DevExpress.XtraEditors.SimpleButton();
+            this.panel1 = new System.Windows.Forms.Panel();
             ((System.ComponentModel.ISupportInitialize)(this.barManager1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.repositoryItemFontEdit1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.repositoryItemRichEditFontSizeEdit1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.repositoryItemRichEditStyleEdit1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.richEditBarController1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.textEdit_title.Properties)).BeginInit();
+            this.panel1.SuspendLayout();
             this.SuspendLayout();
             // 
             // richEditControl_context
             // 
             this.richEditControl_context.ActiveViewType = DevExpress.XtraRichEdit.RichEditViewType.Simple;
             this.richEditControl_context.EnableToolTips = true;
-            this.richEditControl_context.Location = new System.Drawing.Point(1, 60);
+            this.richEditControl_context.Location = new System.Drawing.Point(0, 37);
             this.richEditControl_context.MenuManager = this.barManager1;
             this.richEditControl_context.Name = "richEditControl_context";
             this.richEditControl_context.Options.CopyPaste.MaintainDocumentSectionSettings = false;
             this.richEditControl_context.Options.Fields.UseCurrentCultureDateTimeFormat = false;
             this.richEditControl_context.Options.MailMerge.KeepLastParagraph = false;
             this.richEditControl_context.Options.Printing.PrintPreviewFormKind = DevExpress.XtraRichEdit.PrintPreviewFormKind.Bars;
-            this.richEditControl_context.Size = new System.Drawing.Size(1158, 300);
+            this.richEditControl_context.Size = new System.Drawing.Size(1148, 495);
             this.richEditControl_context.TabIndex = 0;
+            this.richEditControl_context.Click += new System.EventHandler(this.richEditControl_context_Click);
             // 
             // barManager1
             // 
@@ -206,7 +209,7 @@
             this.insertPageCountItem1,
             this.insertTextBoxItem1,
             this.insertSymbolItem1});
-            this.barManager1.MaxItemId = 62;
+            this.barManager1.MaxItemId = 71;
             this.barManager1.RepositoryItems.AddRange(new DevExpress.XtraEditors.Repository.RepositoryItem[] {
             this.repositoryItemFontEdit1,
             this.repositoryItemRichEditFontSizeEdit1,
@@ -218,6 +221,7 @@
             this.fontBar1.DockCol = 0;
             this.fontBar1.DockRow = 0;
             this.fontBar1.DockStyle = DevExpress.XtraBars.BarDockStyle.Top;
+            this.fontBar1.FloatLocation = new System.Drawing.Point(58, 248);
             this.fontBar1.LinksPersistInfo.AddRange(new DevExpress.XtraBars.LinkPersistInfo[] {
             new DevExpress.XtraBars.LinkPersistInfo(this.changeFontNameItem1),
             new DevExpress.XtraBars.LinkPersistInfo(this.changeFontSizeItem1),
@@ -234,6 +238,8 @@
             new DevExpress.XtraBars.LinkPersistInfo(this.changeFontColorItem1),
             new DevExpress.XtraBars.LinkPersistInfo(this.changeFontBackColorItem1),
             new DevExpress.XtraBars.LinkPersistInfo(this.clearFormattingItem1)});
+            this.fontBar1.Offset = 3;
+            this.fontBar1.OptionsBar.AllowQuickCustomization = false;
             // 
             // changeFontNameItem1
             // 
@@ -333,6 +339,7 @@
             this.paragraphBar1.DockCol = 1;
             this.paragraphBar1.DockRow = 0;
             this.paragraphBar1.DockStyle = DevExpress.XtraBars.BarDockStyle.Top;
+            this.paragraphBar1.FloatLocation = new System.Drawing.Point(667, 266);
             this.paragraphBar1.LinksPersistInfo.AddRange(new DevExpress.XtraBars.LinkPersistInfo[] {
             new DevExpress.XtraBars.LinkPersistInfo(this.toggleBulletedListItem1),
             new DevExpress.XtraBars.LinkPersistInfo(this.toggleNumberingListItem1),
@@ -344,6 +351,8 @@
             new DevExpress.XtraBars.LinkPersistInfo(this.toggleParagraphAlignmentRightItem1),
             new DevExpress.XtraBars.LinkPersistInfo(this.toggleParagraphAlignmentJustifyItem1),
             new DevExpress.XtraBars.LinkPersistInfo(this.changeParagraphBackColorItem1)});
+            this.paragraphBar1.Offset = 573;
+            this.paragraphBar1.OptionsBar.AllowQuickCustomization = false;
             // 
             // toggleBulletedListItem1
             // 
@@ -398,11 +407,14 @@
             // tablesBar1
             // 
             this.tablesBar1.Control = this.richEditControl_context;
-            this.tablesBar1.DockCol = 1;
-            this.tablesBar1.DockRow = 1;
+            this.tablesBar1.DockCol = 3;
+            this.tablesBar1.DockRow = 0;
             this.tablesBar1.DockStyle = DevExpress.XtraBars.BarDockStyle.Top;
+            this.tablesBar1.FloatLocation = new System.Drawing.Point(851, 182);
             this.tablesBar1.LinksPersistInfo.AddRange(new DevExpress.XtraBars.LinkPersistInfo[] {
             new DevExpress.XtraBars.LinkPersistInfo(this.insertTableItem1)});
+            this.tablesBar1.Offset = 1004;
+            this.tablesBar1.OptionsBar.AllowQuickCustomization = false;
             // 
             // insertTableItem1
             // 
@@ -412,17 +424,14 @@
             // illustrationsBar1
             // 
             this.illustrationsBar1.Control = this.richEditControl_context;
-            this.illustrationsBar1.DockCol = 0;
-            this.illustrationsBar1.DockRow = 1;
+            this.illustrationsBar1.DockCol = 2;
+            this.illustrationsBar1.DockRow = 0;
             this.illustrationsBar1.DockStyle = DevExpress.XtraBars.BarDockStyle.Top;
+            this.illustrationsBar1.FloatLocation = new System.Drawing.Point(899, 223);
             this.illustrationsBar1.LinksPersistInfo.AddRange(new DevExpress.XtraBars.LinkPersistInfo[] {
-            new DevExpress.XtraBars.LinkPersistInfo(this.insertPictureItem1),
             new DevExpress.XtraBars.LinkPersistInfo(this.insertFloatingPictureItem1)});
-            // 
-            // insertPictureItem1
-            // 
-            this.insertPictureItem1.Id = 52;
-            this.insertPictureItem1.Name = "insertPictureItem1";
+            this.illustrationsBar1.Offset = 915;
+            this.illustrationsBar1.OptionsBar.AllowQuickCustomization = false;
             // 
             // insertFloatingPictureItem1
             // 
@@ -434,28 +443,28 @@
             this.barDockControlTop.CausesValidation = false;
             this.barDockControlTop.Dock = System.Windows.Forms.DockStyle.Top;
             this.barDockControlTop.Location = new System.Drawing.Point(0, 0);
-            this.barDockControlTop.Size = new System.Drawing.Size(1159, 62);
+            this.barDockControlTop.Size = new System.Drawing.Size(1159, 31);
             // 
             // barDockControlBottom
             // 
             this.barDockControlBottom.CausesValidation = false;
             this.barDockControlBottom.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.barDockControlBottom.Location = new System.Drawing.Point(0, 429);
+            this.barDockControlBottom.Location = new System.Drawing.Point(0, 585);
             this.barDockControlBottom.Size = new System.Drawing.Size(1159, 0);
             // 
             // barDockControlLeft
             // 
             this.barDockControlLeft.CausesValidation = false;
             this.barDockControlLeft.Dock = System.Windows.Forms.DockStyle.Left;
-            this.barDockControlLeft.Location = new System.Drawing.Point(0, 62);
-            this.barDockControlLeft.Size = new System.Drawing.Size(0, 367);
+            this.barDockControlLeft.Location = new System.Drawing.Point(0, 31);
+            this.barDockControlLeft.Size = new System.Drawing.Size(0, 554);
             // 
             // barDockControlRight
             // 
             this.barDockControlRight.CausesValidation = false;
             this.barDockControlRight.Dock = System.Windows.Forms.DockStyle.Right;
-            this.barDockControlRight.Location = new System.Drawing.Point(1159, 62);
-            this.barDockControlRight.Size = new System.Drawing.Size(0, 367);
+            this.barDockControlRight.Location = new System.Drawing.Point(1159, 31);
+            this.barDockControlRight.Size = new System.Drawing.Size(0, 554);
             // 
             // pasteItem1
             // 
@@ -610,6 +619,11 @@
             this.insertPageBreakItem21.Id = 50;
             this.insertPageBreakItem21.Name = "insertPageBreakItem21";
             // 
+            // insertPictureItem1
+            // 
+            this.insertPictureItem1.Id = 52;
+            this.insertPictureItem1.Name = "insertPictureItem1";
+            // 
             // insertBookmarkItem1
             // 
             this.insertBookmarkItem1.Id = 54;
@@ -718,7 +732,7 @@
             // 
             // labelControl1
             // 
-            this.labelControl1.Location = new System.Drawing.Point(13, 367);
+            this.labelControl1.Location = new System.Drawing.Point(13, 11);
             this.labelControl1.Name = "labelControl1";
             this.labelControl1.Size = new System.Drawing.Size(44, 14);
             this.labelControl1.TabIndex = 5;
@@ -726,7 +740,7 @@
             // 
             // textEdit_title
             // 
-            this.textEdit_title.Location = new System.Drawing.Point(64, 367);
+            this.textEdit_title.Location = new System.Drawing.Point(64, 11);
             this.textEdit_title.MenuManager = this.barManager1;
             this.textEdit_title.Name = "textEdit_title";
             this.textEdit_title.Size = new System.Drawing.Size(1083, 20);
@@ -734,36 +748,49 @@
             // 
             // simpleButton_save
             // 
-            this.simpleButton_save.Location = new System.Drawing.Point(468, 394);
+            this.simpleButton_save.Appearance.Font = new System.Drawing.Font("微软雅黑", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.simpleButton_save.Appearance.Options.UseFont = true;
+            this.simpleButton_save.Location = new System.Drawing.Point(272, 538);
             this.simpleButton_save.Name = "simpleButton_save";
-            this.simpleButton_save.Size = new System.Drawing.Size(106, 23);
+            this.simpleButton_save.Size = new System.Drawing.Size(147, 35);
             this.simpleButton_save.TabIndex = 11;
             this.simpleButton_save.Text = "保  存";
             this.simpleButton_save.Click += new System.EventHandler(this.simpleButton_save_Click);
             // 
             // simpleButton_cancel
             // 
-            this.simpleButton_cancel.Location = new System.Drawing.Point(602, 394);
+            this.simpleButton_cancel.Appearance.Font = new System.Drawing.Font("微软雅黑", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.simpleButton_cancel.Appearance.Options.UseFont = true;
+            this.simpleButton_cancel.Location = new System.Drawing.Point(617, 538);
             this.simpleButton_cancel.Name = "simpleButton_cancel";
-            this.simpleButton_cancel.Size = new System.Drawing.Size(110, 23);
+            this.simpleButton_cancel.Size = new System.Drawing.Size(151, 35);
             this.simpleButton_cancel.TabIndex = 12;
             this.simpleButton_cancel.Text = "取  消";
             this.simpleButton_cancel.Click += new System.EventHandler(this.simpleButton_cancel_Click);
+            // 
+            // panel1
+            // 
+            this.panel1.Controls.Add(this.simpleButton_cancel);
+            this.panel1.Controls.Add(this.simpleButton_save);
+            this.panel1.Controls.Add(this.richEditControl_context);
+            this.panel1.Controls.Add(this.barDockControlLeft);
+            this.panel1.Controls.Add(this.barDockControlRight);
+            this.panel1.Controls.Add(this.barDockControlBottom);
+            this.panel1.Controls.Add(this.barDockControlTop);
+            this.panel1.Dock = System.Windows.Forms.DockStyle.Bottom;
+            this.panel1.Location = new System.Drawing.Point(0, 37);
+            this.panel1.Name = "panel1";
+            this.panel1.Size = new System.Drawing.Size(1159, 585);
+            this.panel1.TabIndex = 17;
             // 
             // RichTextEditorForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 14F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1159, 429);
-            this.Controls.Add(this.simpleButton_cancel);
-            this.Controls.Add(this.simpleButton_save);
+            this.ClientSize = new System.Drawing.Size(1159, 622);
             this.Controls.Add(this.textEdit_title);
             this.Controls.Add(this.labelControl1);
-            this.Controls.Add(this.richEditControl_context);
-            this.Controls.Add(this.barDockControlLeft);
-            this.Controls.Add(this.barDockControlRight);
-            this.Controls.Add(this.barDockControlBottom);
-            this.Controls.Add(this.barDockControlTop);
+            this.Controls.Add(this.panel1);
             this.Name = "RichTextEditorForm";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
             this.Text = "编辑";
@@ -773,6 +800,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.repositoryItemRichEditStyleEdit1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.richEditBarController1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.textEdit_title.Properties)).EndInit();
+            this.panel1.ResumeLayout(false);
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -860,5 +888,6 @@
         private DevExpress.XtraEditors.TextEdit textEdit_title;
         private DevExpress.XtraEditors.SimpleButton simpleButton_cancel;
         private DevExpress.XtraEditors.SimpleButton simpleButton_save;
+        private System.Windows.Forms.Panel panel1;
     }
 }

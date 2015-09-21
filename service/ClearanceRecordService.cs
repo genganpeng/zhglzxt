@@ -57,7 +57,7 @@ namespace zhuhai.service
 
             try
             {
-                GateRecordsResponse res = server.searchPassenger(AppConfig.gateSensor, strWhere[ClearanceRecord.NAME_COLUMN].ToString(), DictionaryToXmlRpcStruct.dictionaryToXmlRpcStruct(strWhere));
+                GateRecordsResponse res = server.searchPassenger( strWhere[ClearanceRecord.NAME_COLUMN].ToString(), DictionaryToXmlRpcStruct.dictionaryToXmlRpcStruct(strWhere));
                 TotalNum = res.records_num;
                 if (res.error_code == 0)
                 {

@@ -20,9 +20,7 @@ namespace zhuhai
         public ClearanceRecordForm(int gateTotal)
         {
             InitializeComponent();
-            clearanceRecordService = ClearanceRecordService.getInstance();
-            pageUpControl_query.MyControl = gridControl_query;
-            pageUpControl_query.QueryService = clearanceRecordService;
+            
 
             this.comboBox_sex.SelectedIndex = 0;
             //以下初始化通道
@@ -38,10 +36,17 @@ namespace zhuhai
             this.comboBox_abnormal.Items.AddRange(zhuhai.util.AbnormalType.getAllAbnormalTypeNames());
             this.comboBox_abnormal.SelectedIndex = 0;
 
+            this.dateTimePicker_startTime.Format = DateTimePickerFormat.Custom;
             this.dateTimePicker_startTime.Text = DateTime.Now.ToString();
+            this.dateTimePicker_startTime_time.Text = DateTime.Now.ToString();
+            this.dateTimePicker_endTime.Format = DateTimePickerFormat.Custom;
             this.dateTimePicker_endTime.Text = DateTime.Now.ToString();
+            this.dateTimePicker_endTime_time.Text = DateTime.Now.ToString();
 
-            initData(formatWhere());
+            clearanceRecordService = ClearanceRecordService.getInstance();
+            pageUpControl_query.MyControl = gridControl_query;
+            pageUpControl_query.QueryService = clearanceRecordService;
+
         }
 
         /// <summary>
@@ -72,19 +77,18 @@ namespace zhuhai
                 }
             }
 
-            strWhere.Add(ClearanceRecord.NVR_STARTTIME_COLUMN, dateTimePicker_startTime.Value);
-
-            DateTime endTime = dateTimePicker_endTime.Value;
-            endTime = endTime.AddDays(1);
-            strWhere.Add(ClearanceRecord.NVR_ENDTIME_COLUMN, endTime);
+            DateTime dt = DateTime.Parse(dateTimePicker_startTime.Text + " " + dateTimePicker_startTime_time.Text);
+            strWhere.Add(ClearanceRecord.NVR_STARTTIME_COLUMN, dt);
+            DateTime dt1 = DateTime.Parse(dateTimePicker_endTime.Text + " " + dateTimePicker_endTime_time.Text);
+            strWhere.Add(ClearanceRecord.NVR_ENDTIME_COLUMN, dt1);
 
             string abnormal = comboBox_abnormal.Text;
             int abnormalType = -1;
             if (abnormal != "全部")
             {
                 abnormalType = zhuhai.util.AbnormalType.getIndexByName(abnormal);
+                strWhere.Add(ClearanceRecord.ABNORMAL_TYPE_COLUMN, abnormalType);
             }
-            strWhere.Add(ClearanceRecord.ABNORMAL_TYPE_COLUMN, abnormalType);
 
             string channel = comboBox__channel.Text;
             int gateNo = 0;
@@ -95,13 +99,14 @@ namespace zhuhai
             else
             {
                 gateNo = int.Parse(channel);
+                strWhere.Add(ClearanceRecord.GATE_ID_COLUMN, gateNo);
             }
-            strWhere.Add(ClearanceRecord.GATE_ID_COLUMN, gateNo);
-
-            if (strWhere.Count == 0 && name == "")
+            
+            if (name == "")
             {
-                MessageBox.Show("请输入查询条件，至少要包括姓名和开始时间!");
+                MessageBox.Show("请输入查询条件，至少要包括姓名!");
                 textEdit_name.Focus();
+                return null;
             }
 
             return strWhere;
@@ -120,9 +125,12 @@ namespace zhuhai
 
         private void simpleButton_query_Click(object sender, EventArgs e)
         {
+            if (formatWhere() != null)
+            {
+                //查询
+                initData(formatWhere());
+            }
             
-            //查询
-            initData(formatWhere());
         }
 
         private void simpleButton_view_Click(object sender, EventArgs e)

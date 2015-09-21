@@ -40,7 +40,9 @@
             this.pageUpControl = new zhuhai.Component.PageUpControl();
             this.gridControl = new DevExpress.XtraGrid.GridControl();
             this.gridView = new DevExpress.XtraGrid.Views.Grid.GridView();
-            this.Title = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.Content = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.Logicid = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.Content_en = new DevExpress.XtraGrid.Columns.GridColumn();
             ((System.ComponentModel.ISupportInitialize)(this.groupControl)).BeginInit();
             this.groupControl.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.textEdit_title.Properties)).BeginInit();
@@ -163,20 +165,40 @@
             // gridView
             // 
             this.gridView.Columns.AddRange(new DevExpress.XtraGrid.Columns.GridColumn[] {
-            this.Title});
+            this.Logicid,
+            this.Content,
+            this.Content_en});
             this.gridView.GridControl = this.gridControl;
             this.gridView.Name = "gridView";
             this.gridView.OptionsSelection.MultiSelect = true;
             this.gridView.OptionsView.ShowGroupPanel = false;
             // 
-            // Title
+            // Content
             // 
-            this.Title.Caption = "内容";
-            this.Title.FieldName = "Title";
-            this.Title.Name = "Title";
-            this.Title.OptionsColumn.AllowEdit = false;
-            this.Title.Visible = true;
-            this.Title.VisibleIndex = 0;
+            this.Content.Caption = "内容";
+            this.Content.FieldName = "Content";
+            this.Content.Name = "Content";
+            this.Content.OptionsColumn.AllowEdit = false;
+            this.Content.Visible = true;
+            this.Content.VisibleIndex = 1;
+            // 
+            // Logicid
+            // 
+            this.Logicid.Caption = "逻辑编号";
+            this.Logicid.FieldName = "Logicid";
+            this.Logicid.Name = "Logicid";
+            this.Logicid.OptionsColumn.AllowEdit = false;
+            this.Logicid.Visible = true;
+            this.Logicid.VisibleIndex = 0;
+            // 
+            // Content_en
+            // 
+            this.Content_en.Caption = "英文内容";
+            this.Content_en.FieldName = "Content_en";
+            this.Content_en.Name = "Content_en";
+            this.Content_en.OptionsColumn.AllowEdit = false;
+            this.Content_en.Visible = true;
+            this.Content_en.VisibleIndex = 2;
             // 
             // ShenbaoContentForm
             // 
@@ -209,11 +231,13 @@
         private DevExpress.XtraEditors.TextEdit textEdit_title;
         private DevExpress.XtraEditors.SimpleButton simpleButton_query;
         private DevExpress.XtraEditors.SimpleButton simpleButton_reset;
-        private DevExpress.XtraGrid.Columns.GridColumn Title;
+        private DevExpress.XtraGrid.Columns.GridColumn Content;
         private DevExpress.XtraEditors.SimpleButton simpleButton_delete;
         private DevExpress.XtraEditors.SimpleButton simpleButton_modify;
         private DevExpress.XtraEditors.SimpleButton simpleButton_add;
         private DevExpress.XtraEditors.SimpleButton simpleButton_view;
+        private DevExpress.XtraGrid.Columns.GridColumn Logicid;
+        private DevExpress.XtraGrid.Columns.GridColumn Content_en;
 
 
 

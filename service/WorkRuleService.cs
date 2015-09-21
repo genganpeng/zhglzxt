@@ -68,7 +68,7 @@ namespace zhuhai.service
                 List<WorkRule> wrs = new List<WorkRule>();
                 for (int i = 0; i < titlelist.Length; i++ )
                 {
-                    wrs.Add(new WorkRule(titlelist[i].id, titlelist[i].title));
+                    wrs.Add(new WorkRule(titlelist[i].id, titlelist[i].title, titlelist[i].authod));
                 }
                 return wrs;
             }

@@ -39,7 +39,13 @@ namespace zhuhai
 
             this.comboBox_sex.SelectedIndex = 0;
 
-            initData(formatWhere());
+            this.dateTimePicker_startTime.Format = DateTimePickerFormat.Custom;
+            this.dateTimePicker_startTime.Text = DateTime.Now.ToString();
+            this.dateTimePicker_startTime_time.Text = DateTime.Now.ToString();
+            this.dateTimePicker_endTime.Format = DateTimePickerFormat.Custom;
+            this.dateTimePicker_endTime.Text = DateTime.Now.ToString();
+            this.dateTimePicker_endTime_time.Text = DateTime.Now.ToString();
+
         }
 
         /// <summary>
@@ -70,12 +76,16 @@ namespace zhuhai
                 }
             }
 
-            strWhere.Add(ClearanceRecord.NVR_STARTTIME_COLUMN, dateTimePicker_startTime.Value);
+            DateTime dt = DateTime.Parse(dateTimePicker_startTime.Text + " " + dateTimePicker_startTime_time.Text);
+            strWhere.Add(ClearanceRecord.NVR_STARTTIME_COLUMN, dt);
+            DateTime dt1 = DateTime.Parse(dateTimePicker_endTime.Text + " " + dateTimePicker_endTime_time.Text);
+            strWhere.Add(ClearanceRecord.NVR_ENDTIME_COLUMN, dt1);
             
-            if (strWhere.Count == 0 && name == "")
+            if (strWhere.Count == 0 || name == "")
             {
-                MessageBox.Show("请输入查询条件，至少要包括姓名和时间!");
+                MessageBox.Show("请输入查询条件，至少要包括姓名!");
                 textEdit_name.Focus();
+                return null;
             }
 
             return strWhere;
@@ -93,9 +103,11 @@ namespace zhuhai
 
         private void simpleButton_query_Click(object sender, EventArgs e)
         {
-            
-            //查询
-            initData(formatWhere());
+            if (formatWhere() != null)
+            {
+                //查询
+                initData(formatWhere());
+            }
         }
 
         private void simpleButton_view_Click(object sender, EventArgs e)

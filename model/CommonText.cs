@@ -41,8 +41,26 @@ namespace zhuhai.model
             set { bytes = value; }
         }
 
+        /// <summary>
+        /// 操作人
+        /// </summary>
+        private string operatePeople;
+        public static string OPERATEPEOPLE_COLOMUN = "operatePeople";
+        public string OperatePeople
+        {
+            get { return operatePeople; }
+            set { operatePeople = value; }
+        }
+
         public CommonText()
         {
+        }
+
+        public CommonText(int id, string title, string operatePeople)
+        {
+            Id = id;
+            Title = title;
+            OperatePeople = operatePeople;
         }
 
         public CommonText(int id, string title)

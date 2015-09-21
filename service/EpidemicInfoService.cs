@@ -69,7 +69,7 @@ namespace zhuhai.service
                 List<EpidemicInfo> es = new List<EpidemicInfo>();
                 for (int i = 0; i < titlelist.Length; i++)
                 {
-                    es.Add(new EpidemicInfo(titlelist[i].id, titlelist[i].title));
+                    es.Add(new EpidemicInfo(titlelist[i].id, titlelist[i].title, titlelist[i].authod));
                 }
                 return es;
             }

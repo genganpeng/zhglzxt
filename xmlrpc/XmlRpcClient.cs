@@ -47,12 +47,12 @@ namespace zhuhai.xmlrpc
 
         // 获取一个闸机在一段时间内的通关人数，若 gate_id 为0，则返回所有闸机的通关总数
         [XmlRpcMethod("getGateRecordsNum")]
-        GateRecordsNumResponse getGateRecordsNum(int controller_id, int gate_id,
-            DateTime time_from, DateTime time_to);
+        GateRecordsNumResponse getGateRecordsNum(string passenger_name,
+                                            XmlRpcStruct other_conditions);
 
         //查询乘客异常信息，可根据姓名、通关时间、性别、出生日期等信息对历史通关的乘客进行查询，返回查询结果。
         [XmlRpcMethod("searchPassenger")]
-        GateRecordsResponse searchPassenger(int controller_id, string passenger_name,
+        GateRecordsResponse searchPassenger(string passenger_name,
                                             XmlRpcStruct other_conditions);
 
         //获得旅客通过时的异常记录
@@ -318,13 +318,17 @@ namespace zhuhai.xmlrpc
         /// </summary>
         PublishNotice = 3,
         /// <summary>
-        /// 生物战剂
+        /// 生物战剂阈值更新
         /// </summary>
         bio_port = 4,
         /// <summary>
-        /// 生物战剂
+        /// 化学战剂阈值更新
         /// </summary>
-        chem_port = 5
+        chem_port = 5,
+        /// <summary>
+        /// 更新误差阈值
+        /// </summary>
+        gateThresholdErrorUpdate = 6
     }
 
     /// <summary>
@@ -371,8 +375,17 @@ namespace zhuhai.xmlrpc
         /// 异常
         /// </summary>
         Abnormal = 2,
+        /// <summary>
+        /// 生物异常
+        /// </summary>
         HesuAbnormal = 4,
+        /// <summary>
+        /// 温度异常
+        /// </summary>
         WenduAbnormal = 5,
+        /// <summary>
+        /// 扫描仪异常
+        /// </summary>
         SaomiaoyiAbnormal = 6
     }
 

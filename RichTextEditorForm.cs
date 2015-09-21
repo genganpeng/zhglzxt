@@ -161,5 +161,10 @@ namespace zhuhai
 
            
         }
+
+        private void richEditControl_context_Click(object sender, EventArgs e)
+        {
+
+        }
     }
 }

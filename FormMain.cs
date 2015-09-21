@@ -691,5 +691,35 @@ namespace zhuhai
             ShenbaoContentForm shenbaoContentForm = new ShenbaoContentForm();
             shenbaoContentForm.ShowDialog();
         }
+
+        private void barButtonItem_change_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
+        {
+            if (previewControler != null)
+            {
+                previewControler.stopCurrentPreview();
+            }
+            if (previewControler != null)
+            {
+                previewControler.quit();
+            }
+            LogService.getInstance().log(ModuleConstant.LOGOUT_MODULE_CONTENT, ModuleConstant.LOGOUT_MODULE);
+            this.Visible = false;
+
+            //新建Login窗口
+            LoginForm login = new LoginForm();
+
+            //使用模式对话框方法显示FLogin
+            login.ShowDialog();
+
+            //DialogResult用来判断是否登录成功
+            if (login.DialogResult == DialogResult.OK)
+            {
+                this.Visible = true;
+            }
+            else
+            {
+                Application.Exit();
+            }
+        }
     }
 }

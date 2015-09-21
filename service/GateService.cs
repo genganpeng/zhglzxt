@@ -133,20 +133,13 @@ namespace zhuhai.service
         /// 根据条件查询通关记录人数
         /// </summary>
         /// <param name="name">姓名</param>
-        /// <param name="country">国籍</param>
-        /// <param name="sex">性别</param>
-        /// <param name="startTime">开始时间</param>
-        /// <param name="endTime">结束时间</param>
-        /// <param name="abonormalType">异常类型（查询全部为-1）</param>
-        /// <param name="gateNo">闸机号（查询全部为0）</param>
         /// <returns></returns>
-        public string getGateRecordsNum(string name, string country, string sex, DateTime startTime, DateTime endTime, int abonormalType, int gateNo)
+        public string getGateRecordsNum(string name, IDictionary<string, object> strWhere)
         {
             try
             {
                 ICustomsCMS server = XmlRpcInstance.getInstance();
-                GateRecordsNumResponse gateRecordsNumResponse = server.getGateRecordsNum(AppConfig.gateSensor, gateNo,
-                startTime, endTime);
+                GateRecordsNumResponse gateRecordsNumResponse = server.getGateRecordsNum(name, DictionaryToXmlRpcStruct.dictionaryToXmlRpcStruct(strWhere));
 
                 if (gateRecordsNumResponse.error_code == 0)
                 {

@@ -20,5 +20,10 @@ namespace zhuhai.model
             : base(id, title)
         {
         }
+
+        public EpidemicInfo(int id, string title, string operatePeople)
+            : base(id, title, operatePeople)
+        {
+        }
     }
 }

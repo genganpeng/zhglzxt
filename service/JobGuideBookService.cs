@@ -68,7 +68,7 @@ namespace zhuhai.service
                 List<JobGuideBook> jgbs = new List<JobGuideBook>();
                 for (int i = 0; i < titlelist.Length; i++)
                 {
-                    jgbs.Add(new JobGuideBook(titlelist[i].id, titlelist[i].title));
+                    jgbs.Add(new JobGuideBook(titlelist[i].id, titlelist[i].title, titlelist[i].authod));
                 }
                 return jgbs;
             }

@@ -29,6 +29,8 @@
         private void InitializeComponent()
         {
             this.groupControl_query = new DevExpress.XtraEditors.GroupControl();
+            this.dateTimePicker_endTime_time = new System.Windows.Forms.DateTimePicker();
+            this.dateTimePicker_startTime_time = new System.Windows.Forms.DateTimePicker();
             this.simpleButton_view = new DevExpress.XtraEditors.SimpleButton();
             this.simpleButton_query = new DevExpress.XtraEditors.SimpleButton();
             this.comboBox__channel = new System.Windows.Forms.ComboBox();
@@ -69,6 +71,8 @@
             // 
             // groupControl_query
             // 
+            this.groupControl_query.Controls.Add(this.dateTimePicker_endTime_time);
+            this.groupControl_query.Controls.Add(this.dateTimePicker_startTime_time);
             this.groupControl_query.Controls.Add(this.simpleButton_view);
             this.groupControl_query.Controls.Add(this.simpleButton_query);
             this.groupControl_query.Controls.Add(this.comboBox__channel);
@@ -91,6 +95,24 @@
             this.groupControl_query.Size = new System.Drawing.Size(1292, 110);
             this.groupControl_query.TabIndex = 0;
             this.groupControl_query.Text = "查询条件";
+            // 
+            // dateTimePicker_endTime_time
+            // 
+            this.dateTimePicker_endTime_time.Format = System.Windows.Forms.DateTimePickerFormat.Time;
+            this.dateTimePicker_endTime_time.Location = new System.Drawing.Point(502, 68);
+            this.dateTimePicker_endTime_time.Name = "dateTimePicker_endTime_time";
+            this.dateTimePicker_endTime_time.ShowUpDown = true;
+            this.dateTimePicker_endTime_time.Size = new System.Drawing.Size(76, 21);
+            this.dateTimePicker_endTime_time.TabIndex = 17;
+            // 
+            // dateTimePicker_startTime_time
+            // 
+            this.dateTimePicker_startTime_time.Format = System.Windows.Forms.DateTimePickerFormat.Time;
+            this.dateTimePicker_startTime_time.Location = new System.Drawing.Point(204, 66);
+            this.dateTimePicker_startTime_time.Name = "dateTimePicker_startTime_time";
+            this.dateTimePicker_startTime_time.ShowUpDown = true;
+            this.dateTimePicker_startTime_time.Size = new System.Drawing.Size(76, 21);
+            this.dateTimePicker_startTime_time.TabIndex = 16;
             // 
             // simpleButton_view
             // 
@@ -153,21 +175,21 @@
             // dateTimePicker_endTime
             // 
             this.dateTimePicker_endTime.CalendarFont = new System.Drawing.Font("微软雅黑", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.dateTimePicker_endTime.CustomFormat = "yyyy年M月d日 HH时mm分ss秒";
+            this.dateTimePicker_endTime.CustomFormat = "yyyy-MM-dd";
             this.dateTimePicker_endTime.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
             this.dateTimePicker_endTime.Location = new System.Drawing.Point(395, 67);
             this.dateTimePicker_endTime.Name = "dateTimePicker_endTime";
-            this.dateTimePicker_endTime.Size = new System.Drawing.Size(199, 21);
+            this.dateTimePicker_endTime.Size = new System.Drawing.Size(99, 21);
             this.dateTimePicker_endTime.TabIndex = 9;
             // 
             // dateTimePicker_startTime
             // 
             this.dateTimePicker_startTime.CalendarFont = new System.Drawing.Font("微软雅黑", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.dateTimePicker_startTime.CustomFormat = "yyyy年M月d日 HH时mm分ss秒";
+            this.dateTimePicker_startTime.CustomFormat = "yyyy-MM-dd";
             this.dateTimePicker_startTime.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
             this.dateTimePicker_startTime.Location = new System.Drawing.Point(94, 66);
             this.dateTimePicker_startTime.Name = "dateTimePicker_startTime";
-            this.dateTimePicker_startTime.Size = new System.Drawing.Size(199, 21);
+            this.dateTimePicker_startTime.Size = new System.Drawing.Size(103, 21);
             this.dateTimePicker_startTime.TabIndex = 8;
             // 
             // labelControl_endTime
@@ -182,7 +204,7 @@
             // labelControl_startTime
             // 
             this.labelControl_startTime.Appearance.Font = new System.Drawing.Font("微软雅黑", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.labelControl_startTime.Location = new System.Drawing.Point(12, 67);
+            this.labelControl_startTime.Location = new System.Drawing.Point(12, 65);
             this.labelControl_startTime.Name = "labelControl_startTime";
             this.labelControl_startTime.Size = new System.Drawing.Size(80, 21);
             this.labelControl_startTime.TabIndex = 6;
@@ -445,5 +467,7 @@
         private DevExpress.XtraGrid.Columns.GridColumn id_code;
         private DevExpress.XtraGrid.Columns.GridColumn issue_date;
         private DevExpress.XtraGrid.Columns.GridColumn expire_date;
+        private System.Windows.Forms.DateTimePicker dateTimePicker_startTime_time;
+        private System.Windows.Forms.DateTimePicker dateTimePicker_endTime_time;
     }
 }

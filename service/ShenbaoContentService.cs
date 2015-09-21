@@ -56,19 +56,19 @@ namespace zhuhai.service
             try
             {
                 ICustomsCMS server = XmlRpcInstance.getInstance();
-                TitleNumResponse titleNumResponse = server.findReportContenCount(strWhere[ShenboContent.TITLE_COLOMUN].ToString());
+                TitleNumResponse titleNumResponse = server.findReportContenCount(strWhere[ShenboContent.CONTENT_COLOMUN].ToString());
                 if (titleNumResponse.error_code != 0)
                 {
                     throw new Exception("连接服务器错误：" + titleNumResponse.error_msg);
                 }
                 TotalNum = titleNumResponse.titlenum;
 
-                ReportContent_Response response = server.findReportContentList(strWhere[ShenboContent.TITLE_COLOMUN].ToString(), startIndex, endIndex);
+                ReportContent_Response response = server.findReportContentList(strWhere[ShenboContent.CONTENT_COLOMUN].ToString(), startIndex, endIndex);
                 ReportContent[] titlelist = response.reportcontentlist;
                 List<ShenboContent> wrs = new List<ShenboContent>();
                 for (int i = 0; i < titlelist.Length; i++ )
                 {
-                    wrs.Add(new ShenboContent(titlelist[i].id, titlelist[i].content));
+                    wrs.Add(new ShenboContent(titlelist[i].id, titlelist[i].logicid, titlelist[i].content, titlelist[i].content_en));
                 }
                 return wrs;
             }
@@ -110,13 +110,15 @@ namespace zhuhai.service
 
         }
 
-        public Boolean addRow(string content)
+        public Boolean addRow(string content, string content_en, int logicid)
         {
             try
             {
                 ICustomsCMS server = XmlRpcInstance.getInstance();
                 ReportContent reportContent = new ReportContent();
                 reportContent.content = content;
+                reportContent.logicid = logicid;
+                reportContent.content_en = content_en;
                 reportContent.operatePeople = SystemManageService.currentUser.UserName;
                 DBRPCResponse dBRPCResponse = server.addReportContent(reportContent);
                 return true;
@@ -128,7 +130,7 @@ namespace zhuhai.service
             
         }
 
-        public Boolean modifyRow(int id, string content)
+        public Boolean modifyRow(int id, string content, string content_en, int logicid)
         {
             try
             {
@@ -136,6 +138,8 @@ namespace zhuhai.service
                 ReportContent reportContent = new ReportContent();
                 reportContent.id = id;
                 reportContent.content = content;
+                reportContent.logicid = logicid;
+                reportContent.content_en = content_en;
                 reportContent.operatePeople = SystemManageService.currentUser.UserName;
                 DBRPCResponse dBRPCResponse = server.modifyReportContent(reportContent);
                 return true;

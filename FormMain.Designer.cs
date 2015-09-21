@@ -48,6 +48,8 @@
             this.barButtonItem_hxswqhThreshold = new DevExpress.XtraBars.BarButtonItem();
             this.barButtonItem_modeset = new DevExpress.XtraBars.BarButtonItem();
             this.barButtonItem_title = new DevExpress.XtraBars.BarButtonItem();
+            this.barButtonItem_shenbaocontent = new DevExpress.XtraBars.BarButtonItem();
+            this.barButtonItem_change = new DevExpress.XtraBars.BarButtonItem();
             this.ribbonPageCategory1 = new DevExpress.XtraBars.Ribbon.RibbonPageCategory();
             this.ribbonPage1 = new DevExpress.XtraBars.Ribbon.RibbonPage();
             this.ribbonPageGroup1 = new DevExpress.XtraBars.Ribbon.RibbonPageGroup();
@@ -89,11 +91,9 @@
             this.navBarItem_shengwu = new DevExpress.XtraNavBar.NavBarItem();
             this.navBarGroup4 = new DevExpress.XtraNavBar.NavBarGroup();
             this.navBarItem_huaxue = new DevExpress.XtraNavBar.NavBarItem();
-            this.navBarItem2 = new DevExpress.XtraNavBar.NavBarItem();
             this.timer_updateTime = new System.Windows.Forms.Timer(this.components);
             this.timer_updateSHWXQH = new System.Windows.Forms.Timer(this.components);
             this.toolStripStatusLabel = new System.Windows.Forms.ToolStripStatusLabel();
-            this.barButtonItem_shenbaocontent = new DevExpress.XtraBars.BarButtonItem();
             ((System.ComponentModel.ISupportInitialize)(this.ribbonControl1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainerControl1)).BeginInit();
@@ -133,9 +133,10 @@
             this.barButtonItem_hxswqhThreshold,
             this.barButtonItem_modeset,
             this.barButtonItem_title,
-            this.barButtonItem_shenbaocontent});
+            this.barButtonItem_shenbaocontent,
+            this.barButtonItem_change});
             this.ribbonControl1.Location = new System.Drawing.Point(0, 0);
-            this.ribbonControl1.MaxItemId = 5;
+            this.ribbonControl1.MaxItemId = 6;
             this.ribbonControl1.Name = "ribbonControl1";
             this.ribbonControl1.PageCategories.AddRange(new DevExpress.XtraBars.Ribbon.RibbonPageCategory[] {
             this.ribbonPageCategory1});
@@ -232,7 +233,7 @@
             // 
             // barButtonItem_gateThreshold
             // 
-            this.barButtonItem_gateThreshold.Caption = "闸机阀值设置";
+            this.barButtonItem_gateThreshold.Caption = "批量闸机阀值设置";
             this.barButtonItem_gateThreshold.Glyph = global::zhuhai.Properties.Resources.timelineview_16x16;
             this.barButtonItem_gateThreshold.Id = 16;
             this.barButtonItem_gateThreshold.LargeGlyph = global::zhuhai.Properties.Resources.timelineview_32x32;
@@ -242,7 +243,7 @@
             // 
             // barButtonItem_gateThresholdErrorUpdate
             // 
-            this.barButtonItem_gateThresholdErrorUpdate.Caption = "误差调节";
+            this.barButtonItem_gateThresholdErrorUpdate.Caption = "批量误差调节";
             this.barButtonItem_gateThresholdErrorUpdate.Glyph = global::zhuhai.Properties.Resources.rulervertical_16x16;
             this.barButtonItem_gateThresholdErrorUpdate.Id = 17;
             this.barButtonItem_gateThresholdErrorUpdate.LargeGlyph = global::zhuhai.Properties.Resources.rulervertical_32x32;
@@ -276,7 +277,7 @@
             // 
             // barButtonItem_hxswqhThreshold
             // 
-            this.barButtonItem_hxswqhThreshold.Caption = "口岸阈值设置";
+            this.barButtonItem_hxswqhThreshold.Caption = "批量口岸阈值设置";
             this.barButtonItem_hxswqhThreshold.Glyph = global::zhuhai.Properties.Resources.timelineview_16x16;
             this.barButtonItem_hxswqhThreshold.Id = 1;
             this.barButtonItem_hxswqhThreshold.LargeGlyph = global::zhuhai.Properties.Resources.timelineview_32x32;
@@ -286,7 +287,7 @@
             // 
             // barButtonItem_modeset
             // 
-            this.barButtonItem_modeset.Caption = "模式状态设置";
+            this.barButtonItem_modeset.Caption = "批量模式状态设置";
             this.barButtonItem_modeset.Glyph = global::zhuhai.Properties.Resources.timelineview_16x16;
             this.barButtonItem_modeset.Id = 2;
             this.barButtonItem_modeset.LargeGlyph = global::zhuhai.Properties.Resources.timelineview_32x32;
@@ -303,6 +304,25 @@
             this.barButtonItem_title.Name = "barButtonItem_title";
             this.barButtonItem_title.RibbonStyle = DevExpress.XtraBars.Ribbon.RibbonItemStyles.Large;
             this.barButtonItem_title.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.barButtonItem_title_ItemClick);
+            // 
+            // barButtonItem_shenbaocontent
+            // 
+            this.barButtonItem_shenbaocontent.Caption = "申报内容管理";
+            this.barButtonItem_shenbaocontent.Glyph = global::zhuhai.Properties.Resources.timelineview_16x16;
+            this.barButtonItem_shenbaocontent.Id = 4;
+            this.barButtonItem_shenbaocontent.LargeGlyph = global::zhuhai.Properties.Resources.timelineview_32x32;
+            this.barButtonItem_shenbaocontent.Name = "barButtonItem_shenbaocontent";
+            this.barButtonItem_shenbaocontent.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.barButtonItem_shenbaocontent_ItemClick);
+            // 
+            // barButtonItem_change
+            // 
+            this.barButtonItem_change.Alignment = DevExpress.XtraBars.BarItemLinkAlignment.Right;
+            this.barButtonItem_change.Caption = "交接班";
+            this.barButtonItem_change.CategoryGuid = new System.Guid("6ffddb2b-9015-4d97-a4c1-91613e0ef537");
+            this.barButtonItem_change.Glyph = global::zhuhai.Properties.Resources.close_32x32;
+            this.barButtonItem_change.Id = 5;
+            this.barButtonItem_change.Name = "barButtonItem_change";
+            this.barButtonItem_change.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.barButtonItem_change_ItemClick);
             // 
             // ribbonPageCategory1
             // 
@@ -392,6 +412,7 @@
             this.ribbonStatusBar1.ItemLinks.Add(this.barButtonItem_exitSystem);
             this.ribbonStatusBar1.ItemLinks.Add(this.barStaticItem_currentUser);
             this.ribbonStatusBar1.ItemLinks.Add(this.barStaticItem_systemTime);
+            this.ribbonStatusBar1.ItemLinks.Add(this.barButtonItem_change);
             this.ribbonStatusBar1.Location = new System.Drawing.Point(0, 647);
             this.ribbonStatusBar1.Name = "ribbonStatusBar1";
             this.ribbonStatusBar1.Ribbon = this.ribbonControl1;
@@ -621,7 +642,7 @@
             this.zhajipanel.Dock = System.Windows.Forms.DockStyle.Fill;
             this.zhajipanel.Location = new System.Drawing.Point(0, 0);
             this.zhajipanel.Name = "zhajipanel";
-            this.zhajipanel.Size = new System.Drawing.Size(992, 396);
+            this.zhajipanel.Size = new System.Drawing.Size(992, 484);
             this.zhajipanel.TabIndex = 0;
             // 
             // navBarControl1
@@ -634,7 +655,6 @@
             this.navBarGroup4});
             this.navBarControl1.Items.AddRange(new DevExpress.XtraNavBar.NavBarItem[] {
             this.navBarItem_weixiaoqihou,
-            this.navBarItem2,
             this.navBarItem_shengwu,
             this.navBarItem_huaxue});
             this.navBarControl1.Location = new System.Drawing.Point(0, 0);
@@ -646,8 +666,11 @@
             // 
             // navBarGroup1
             // 
+            this.navBarGroup1.Appearance.Font = new System.Drawing.Font("微软雅黑", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.navBarGroup1.Appearance.Options.UseFont = true;
             this.navBarGroup1.Caption = "微小气候信息";
             this.navBarGroup1.Expanded = true;
+            this.navBarGroup1.GroupStyle = DevExpress.XtraNavBar.NavBarGroupStyle.LargeIconsText;
             this.navBarGroup1.ItemLinks.AddRange(new DevExpress.XtraNavBar.NavBarItemLink[] {
             new DevExpress.XtraNavBar.NavBarItemLink(this.navBarItem_weixiaoqihou)});
             this.navBarGroup1.Name = "navBarGroup1";
@@ -656,13 +679,24 @@
             // 
             this.navBarItem_weixiaoqihou.Appearance.Font = new System.Drawing.Font("微软雅黑", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
             this.navBarItem_weixiaoqihou.Appearance.Options.UseFont = true;
+            this.navBarItem_weixiaoqihou.AppearanceDisabled.Font = new System.Drawing.Font("微软雅黑", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.navBarItem_weixiaoqihou.AppearanceDisabled.Options.UseFont = true;
+            this.navBarItem_weixiaoqihou.AppearanceHotTracked.Font = new System.Drawing.Font("微软雅黑", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.navBarItem_weixiaoqihou.AppearanceHotTracked.Options.UseFont = true;
+            this.navBarItem_weixiaoqihou.AppearancePressed.Font = new System.Drawing.Font("微软雅黑", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.navBarItem_weixiaoqihou.AppearancePressed.Options.UseFont = true;
+            this.navBarItem_weixiaoqihou.AppearancePressed.Options.UseTextOptions = true;
+            this.navBarItem_weixiaoqihou.AppearancePressed.TextOptions.WordWrap = DevExpress.Utils.WordWrap.Wrap;
             this.navBarItem_weixiaoqihou.Caption = "navBarItem1";
             this.navBarItem_weixiaoqihou.Name = "navBarItem_weixiaoqihou";
             // 
             // navBarGroup3
             // 
+            this.navBarGroup3.Appearance.Font = new System.Drawing.Font("微软雅黑", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.navBarGroup3.Appearance.Options.UseFont = true;
             this.navBarGroup3.Caption = "生物战剂监控";
             this.navBarGroup3.Expanded = true;
+            this.navBarGroup3.GroupStyle = DevExpress.XtraNavBar.NavBarGroupStyle.LargeIconsText;
             this.navBarGroup3.ItemLinks.AddRange(new DevExpress.XtraNavBar.NavBarItemLink[] {
             new DevExpress.XtraNavBar.NavBarItemLink(this.navBarItem_shengwu)});
             this.navBarGroup3.Name = "navBarGroup3";
@@ -671,13 +705,24 @@
             // 
             this.navBarItem_shengwu.Appearance.Font = new System.Drawing.Font("微软雅黑", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
             this.navBarItem_shengwu.Appearance.Options.UseFont = true;
+            this.navBarItem_shengwu.AppearanceDisabled.Font = new System.Drawing.Font("微软雅黑", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.navBarItem_shengwu.AppearanceDisabled.Options.UseFont = true;
+            this.navBarItem_shengwu.AppearanceHotTracked.Font = new System.Drawing.Font("微软雅黑", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.navBarItem_shengwu.AppearanceHotTracked.Options.UseFont = true;
+            this.navBarItem_shengwu.AppearancePressed.Font = new System.Drawing.Font("微软雅黑", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.navBarItem_shengwu.AppearancePressed.Options.UseFont = true;
+            this.navBarItem_shengwu.AppearancePressed.Options.UseTextOptions = true;
+            this.navBarItem_shengwu.AppearancePressed.TextOptions.WordWrap = DevExpress.Utils.WordWrap.Wrap;
             this.navBarItem_shengwu.Caption = "navBarItem3";
             this.navBarItem_shengwu.Name = "navBarItem_shengwu";
             // 
             // navBarGroup4
             // 
+            this.navBarGroup4.Appearance.Font = new System.Drawing.Font("微软雅黑", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.navBarGroup4.Appearance.Options.UseFont = true;
             this.navBarGroup4.Caption = "化学战剂监控";
             this.navBarGroup4.Expanded = true;
+            this.navBarGroup4.GroupStyle = DevExpress.XtraNavBar.NavBarGroupStyle.LargeIconsText;
             this.navBarGroup4.ItemLinks.AddRange(new DevExpress.XtraNavBar.NavBarItemLink[] {
             new DevExpress.XtraNavBar.NavBarItemLink(this.navBarItem_huaxue)});
             this.navBarGroup4.Name = "navBarGroup4";
@@ -686,13 +731,16 @@
             // 
             this.navBarItem_huaxue.Appearance.Font = new System.Drawing.Font("微软雅黑", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
             this.navBarItem_huaxue.Appearance.Options.UseFont = true;
+            this.navBarItem_huaxue.AppearanceDisabled.Font = new System.Drawing.Font("微软雅黑", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.navBarItem_huaxue.AppearanceDisabled.Options.UseFont = true;
+            this.navBarItem_huaxue.AppearanceHotTracked.Font = new System.Drawing.Font("微软雅黑", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.navBarItem_huaxue.AppearanceHotTracked.Options.UseFont = true;
+            this.navBarItem_huaxue.AppearancePressed.Font = new System.Drawing.Font("微软雅黑", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.navBarItem_huaxue.AppearancePressed.Options.UseFont = true;
+            this.navBarItem_huaxue.AppearancePressed.Options.UseTextOptions = true;
+            this.navBarItem_huaxue.AppearancePressed.TextOptions.WordWrap = DevExpress.Utils.WordWrap.Wrap;
             this.navBarItem_huaxue.Caption = "navBarItem5";
             this.navBarItem_huaxue.Name = "navBarItem_huaxue";
-            // 
-            // navBarItem2
-            // 
-            this.navBarItem2.Caption = "navBarItem2";
-            this.navBarItem2.Name = "navBarItem2";
             // 
             // timer_updateTime
             // 
@@ -707,15 +755,6 @@
             this.toolStripStatusLabel.Name = "toolStripStatusLabel";
             this.toolStripStatusLabel.Size = new System.Drawing.Size(29, 36);
             this.toolStripStatusLabel.Text = "就绪";
-            // 
-            // barButtonItem_shenbaocontent
-            // 
-            this.barButtonItem_shenbaocontent.Caption = "申报内容管理";
-            this.barButtonItem_shenbaocontent.Glyph = global::zhuhai.Properties.Resources.timelineview_16x16;
-            this.barButtonItem_shenbaocontent.Id = 4;
-            this.barButtonItem_shenbaocontent.LargeGlyph = global::zhuhai.Properties.Resources.timelineview_32x32;
-            this.barButtonItem_shenbaocontent.Name = "barButtonItem_shenbaocontent";
-            this.barButtonItem_shenbaocontent.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.barButtonItem_shenbaocontent_ItemClick);
             // 
             // FormMain
             // 
@@ -791,7 +830,6 @@
         private DevExpress.XtraNavBar.NavBarControl navBarControl1;
         private DevExpress.XtraNavBar.NavBarGroup navBarGroup1;
         private DevExpress.XtraNavBar.NavBarItem navBarItem_weixiaoqihou;
-        private DevExpress.XtraNavBar.NavBarItem navBarItem2;
         private DevExpress.XtraNavBar.NavBarGroup navBarGroup3;
         private DevExpress.XtraNavBar.NavBarItem navBarItem_shengwu;
         private DevExpress.XtraNavBar.NavBarGroup navBarGroup4;
@@ -821,6 +859,7 @@
         private DevExpress.XtraGrid.Columns.GridColumn expire_date;
         private DevExpress.XtraBars.BarButtonItem barButtonItem_title;
         private DevExpress.XtraBars.BarButtonItem barButtonItem_shenbaocontent;
+        private DevExpress.XtraBars.BarButtonItem barButtonItem_change;
         
        
 

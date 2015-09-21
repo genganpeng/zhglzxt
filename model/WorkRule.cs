@@ -19,5 +19,9 @@ namespace zhuhai.model
         public WorkRule(int id, string title) : base(id, title)
         {
         }
+
+        public WorkRule(int id, string title, string operatePeople) : base(id, title, operatePeople)
+        {
+        }
     }
 }

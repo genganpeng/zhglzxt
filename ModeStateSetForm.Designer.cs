@@ -41,6 +41,7 @@
             this.simpleButton_lock = new DevExpress.XtraEditors.SimpleButton();
             this.simpleButton_restart = new DevExpress.XtraEditors.SimpleButton();
             this.simpleButton_sleep = new DevExpress.XtraEditors.SimpleButton();
+            this.simpleButton_reset = new DevExpress.XtraEditors.SimpleButton();
             ((System.ComponentModel.ISupportInitialize)(this.checkedListBoxControl_gate)).BeginInit();
             this.SuspendLayout();
             // 
@@ -157,6 +158,7 @@
             this.simpleButton_unlock.Size = new System.Drawing.Size(91, 36);
             this.simpleButton_unlock.TabIndex = 14;
             this.simpleButton_unlock.Text = "闸机解锁";
+            this.simpleButton_unlock.Visible = false;
             this.simpleButton_unlock.Click += new System.EventHandler(this.simpleButton_unlock_Click);
             // 
             // simpleButton_lock
@@ -168,6 +170,7 @@
             this.simpleButton_lock.Size = new System.Drawing.Size(91, 36);
             this.simpleButton_lock.TabIndex = 13;
             this.simpleButton_lock.Text = "闸机锁定";
+            this.simpleButton_lock.Visible = false;
             this.simpleButton_lock.Click += new System.EventHandler(this.simpleButton_lock_Click);
             // 
             // simpleButton_restart
@@ -179,6 +182,7 @@
             this.simpleButton_restart.Size = new System.Drawing.Size(91, 36);
             this.simpleButton_restart.TabIndex = 12;
             this.simpleButton_restart.Text = "闸机重启";
+            this.simpleButton_restart.Visible = false;
             this.simpleButton_restart.Click += new System.EventHandler(this.simpleButton_restart_Click);
             // 
             // simpleButton_sleep
@@ -190,13 +194,26 @@
             this.simpleButton_sleep.Size = new System.Drawing.Size(91, 36);
             this.simpleButton_sleep.TabIndex = 11;
             this.simpleButton_sleep.Text = "闸机休眠";
+            this.simpleButton_sleep.Visible = false;
             this.simpleButton_sleep.Click += new System.EventHandler(this.simpleButton_sleep_Click);
+            // 
+            // simpleButton_reset
+            // 
+            this.simpleButton_reset.Appearance.Font = new System.Drawing.Font("微软雅黑", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.simpleButton_reset.Appearance.Options.UseFont = true;
+            this.simpleButton_reset.Location = new System.Drawing.Point(448, 408);
+            this.simpleButton_reset.Name = "simpleButton_reset";
+            this.simpleButton_reset.Size = new System.Drawing.Size(91, 36);
+            this.simpleButton_reset.TabIndex = 15;
+            this.simpleButton_reset.Text = "闸机复位";
+            this.simpleButton_reset.Click += new System.EventHandler(this.simpleButton_reset_Click);
             // 
             // ModeStateSetForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(886, 503);
+            this.Controls.Add(this.simpleButton_reset);
             this.Controls.Add(this.simpleButton_unlock);
             this.Controls.Add(this.simpleButton_lock);
             this.Controls.Add(this.simpleButton_restart);
@@ -234,5 +251,6 @@
         private DevExpress.XtraEditors.SimpleButton simpleButton_lock;
         private DevExpress.XtraEditors.SimpleButton simpleButton_restart;
         private DevExpress.XtraEditors.SimpleButton simpleButton_sleep;
+        private DevExpress.XtraEditors.SimpleButton simpleButton_reset;
     }
 }

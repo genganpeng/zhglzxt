@@ -68,7 +68,7 @@ namespace zhuhai.service
                 List<DisposePlan> dps = new List<DisposePlan>();
                 for (int i = 0; i < titlelist.Length; i++)
                 {
-                    dps.Add(new DisposePlan(titlelist[i].id, titlelist[i].title));
+                    dps.Add(new DisposePlan(titlelist[i].id, titlelist[i].title, titlelist[i].authod));
                 }
                 return dps;
             }

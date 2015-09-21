@@ -81,7 +81,39 @@ namespace zhuhai.service
             }
         }
 
+        /// <summary>
+        /// 温度和核素阈值误差更新
+        /// </summary>
+        /// <param name="temperature_error"></param>
+        /// <param name="nuclear"></param>
+        /// <param name="gates"></param>
+        /// <returns></returns>
+        public Boolean updateGateThresholdError(double temperature_error, double nuclear_error, int[] gates)
+        {
+            ICustomsCMS server = XmlRpcInstance.getInstance();
+            SysTask task = new SysTask();
+            task.type = (int)TaskType.gateThresholdErrorUpdate;
+            task.target_gates = gates;
+            task.thr_temperature = temperature_error;
+            task.thr_nuclear = nuclear_error;
 
+            try
+            {
+                RPCResponse response = server.publishTask(AppConfig.gateSensor, task);
+                if (response.error_code == 0)
+                {
+                    return true;
+                }
+                else
+                {
+                    throw new Exception("修改闸机阀值误差错误：" + response.error_msg);
+                }
+            }
+            catch (Exception ex)
+            {
+                throw new Exception("错误：" + ex.Message);
+            }
+        }
 
     }
 }

@@ -29,6 +29,7 @@
         private void InitializeComponent()
         {
             this.personinfoPanel = new System.Windows.Forms.Panel();
+            this.button_print = new System.Windows.Forms.Button();
             this.label_statuName = new System.Windows.Forms.Label();
             this.label_status = new System.Windows.Forms.Label();
             this.label7 = new System.Windows.Forms.Label();
@@ -52,7 +53,6 @@
             this.photoPictureBox = new System.Windows.Forms.PictureBox();
             this.nationalityLabel = new System.Windows.Forms.Label();
             this.nameLabel = new System.Windows.Forms.Label();
-            this.button_print = new System.Windows.Forms.Button();
             this.personinfoPanel.SuspendLayout();
             this.picPanel.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.photoPictureBox)).BeginInit();
@@ -91,12 +91,23 @@
             this.personinfoPanel.TabIndex = 0;
             this.personinfoPanel.Text = "异常";
             // 
+            // button_print
+            // 
+            this.button_print.Font = new System.Drawing.Font("微软雅黑", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.button_print.Location = new System.Drawing.Point(395, 390);
+            this.button_print.Name = "button_print";
+            this.button_print.Size = new System.Drawing.Size(177, 46);
+            this.button_print.TabIndex = 36;
+            this.button_print.Text = "打  印";
+            this.button_print.UseVisualStyleBackColor = true;
+            this.button_print.Click += new System.EventHandler(this.button_print_Click);
+            // 
             // label_statuName
             // 
             this.label_statuName.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)
                         | System.Windows.Forms.AnchorStyles.Right)));
             this.label_statuName.AutoEllipsis = true;
-            this.label_statuName.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(54)))), ((int)(((byte)(152)))), ((int)(((byte)(191)))));
+            this.label_statuName.BackColor = System.Drawing.Color.White;
             this.label_statuName.Font = new System.Drawing.Font("宋体", 36F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
             this.label_statuName.ForeColor = System.Drawing.Color.Red;
             this.label_statuName.Location = new System.Drawing.Point(248, 228);
@@ -230,7 +241,7 @@
             this.exceptionLabel.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)
                         | System.Windows.Forms.AnchorStyles.Right)));
             this.exceptionLabel.AutoEllipsis = true;
-            this.exceptionLabel.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(56)))), ((int)(((byte)(170)))), ((int)(((byte)(197)))));
+            this.exceptionLabel.BackColor = System.Drawing.Color.White;
             this.exceptionLabel.Font = new System.Drawing.Font("宋体", 36F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
             this.exceptionLabel.ForeColor = System.Drawing.Color.Red;
             this.exceptionLabel.Location = new System.Drawing.Point(39, 325);
@@ -244,7 +255,7 @@
             this.extempraturelabel.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)
                         | System.Windows.Forms.AnchorStyles.Right)));
             this.extempraturelabel.AutoEllipsis = true;
-            this.extempraturelabel.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(56)))), ((int)(((byte)(161)))), ((int)(((byte)(195)))));
+            this.extempraturelabel.BackColor = System.Drawing.Color.White;
             this.extempraturelabel.Font = new System.Drawing.Font("宋体", 36F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
             this.extempraturelabel.ForeColor = System.Drawing.Color.Red;
             this.extempraturelabel.Location = new System.Drawing.Point(387, 325);
@@ -258,7 +269,7 @@
             this.exchannellabel.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)
                         | System.Windows.Forms.AnchorStyles.Right)));
             this.exchannellabel.AutoEllipsis = true;
-            this.exchannellabel.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(54)))), ((int)(((byte)(152)))), ((int)(((byte)(191)))));
+            this.exchannellabel.BackColor = System.Drawing.Color.White;
             this.exchannellabel.Font = new System.Drawing.Font("宋体", 36F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
             this.exchannellabel.ForeColor = System.Drawing.Color.Red;
             this.exchannellabel.Location = new System.Drawing.Point(248, 169);
@@ -269,7 +280,7 @@
             // 
             // passTime
             // 
-            this.passTime.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(54)))), ((int)(((byte)(143)))), ((int)(((byte)(187)))));
+            this.passTime.BackColor = System.Drawing.Color.White;
             this.passTime.Font = new System.Drawing.Font("宋体", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
             this.passTime.ForeColor = System.Drawing.Color.Red;
             this.passTime.Location = new System.Drawing.Point(248, 131);
@@ -279,7 +290,7 @@
             // 
             // idnoLabel
             // 
-            this.idnoLabel.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(55)))), ((int)(((byte)(136)))), ((int)(((byte)(182)))));
+            this.idnoLabel.BackColor = System.Drawing.Color.White;
             this.idnoLabel.Font = new System.Drawing.Font("宋体", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
             this.idnoLabel.ForeColor = System.Drawing.Color.Red;
             this.idnoLabel.Location = new System.Drawing.Point(248, 97);
@@ -310,7 +321,7 @@
             this.nationalityLabel.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)
                         | System.Windows.Forms.AnchorStyles.Right)));
             this.nationalityLabel.AutoEllipsis = true;
-            this.nationalityLabel.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(55)))), ((int)(((byte)(129)))), ((int)(((byte)(180)))));
+            this.nationalityLabel.BackColor = System.Drawing.Color.White;
             this.nationalityLabel.Font = new System.Drawing.Font("宋体", 18F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
             this.nationalityLabel.ForeColor = System.Drawing.Color.Red;
             this.nationalityLabel.Location = new System.Drawing.Point(248, 53);
@@ -323,24 +334,13 @@
             this.nameLabel.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)
                         | System.Windows.Forms.AnchorStyles.Right)));
             this.nameLabel.AutoEllipsis = true;
-            this.nameLabel.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(55)))), ((int)(((byte)(121)))), ((int)(((byte)(176)))));
+            this.nameLabel.BackColor = System.Drawing.Color.White;
             this.nameLabel.Font = new System.Drawing.Font("宋体", 18F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
             this.nameLabel.ForeColor = System.Drawing.Color.Red;
             this.nameLabel.Location = new System.Drawing.Point(248, 9);
             this.nameLabel.Name = "nameLabel";
             this.nameLabel.Size = new System.Drawing.Size(333, 31);
             this.nameLabel.TabIndex = 6;
-            // 
-            // button_print
-            // 
-            this.button_print.Font = new System.Drawing.Font("微软雅黑", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.button_print.Location = new System.Drawing.Point(395, 390);
-            this.button_print.Name = "button_print";
-            this.button_print.Size = new System.Drawing.Size(177, 46);
-            this.button_print.TabIndex = 36;
-            this.button_print.Text = "打  印";
-            this.button_print.UseVisualStyleBackColor = true;
-            this.button_print.Click += new System.EventHandler(this.button_print_Click);
             // 
             // ShowClearanceInfoForm
             // 

@@ -123,12 +123,11 @@
             // 
             // label
             // 
-            this.label.AutoSize = true;
             this.label.BackColor = System.Drawing.Color.Transparent;
-            this.label.Font = new System.Drawing.Font("微软雅黑", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label.Location = new System.Drawing.Point(301, 18);
+            this.label.Font = new System.Drawing.Font("微软雅黑", 15F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.label.Location = new System.Drawing.Point(3, 96);
             this.label.Name = "label";
-            this.label.Size = new System.Drawing.Size(42, 21);
+            this.label.Size = new System.Drawing.Size(633, 43);
             this.label.TabIndex = 27;
             this.label.Text = "珠海";
             this.label.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;

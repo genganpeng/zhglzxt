@@ -41,6 +41,7 @@
             this.gridControl = new DevExpress.XtraGrid.GridControl();
             this.gridView = new DevExpress.XtraGrid.Views.Grid.GridView();
             this.Title = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.OperatePeople = new DevExpress.XtraGrid.Columns.GridColumn();
             ((System.ComponentModel.ISupportInitialize)(this.groupControl)).BeginInit();
             this.groupControl.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.textEdit_title.Properties)).BeginInit();
@@ -163,7 +164,8 @@
             // gridView
             // 
             this.gridView.Columns.AddRange(new DevExpress.XtraGrid.Columns.GridColumn[] {
-            this.Title});
+            this.Title,
+            this.OperatePeople});
             this.gridView.GridControl = this.gridControl;
             this.gridView.Name = "gridView";
             this.gridView.OptionsSelection.MultiSelect = true;
@@ -177,6 +179,15 @@
             this.Title.OptionsColumn.AllowEdit = false;
             this.Title.Visible = true;
             this.Title.VisibleIndex = 0;
+            // 
+            // OperatePeople
+            // 
+            this.OperatePeople.Caption = "操作人";
+            this.OperatePeople.FieldName = "OperatePeople";
+            this.OperatePeople.Name = "OperatePeople";
+            this.OperatePeople.OptionsColumn.AllowEdit = false;
+            this.OperatePeople.Visible = true;
+            this.OperatePeople.VisibleIndex = 1;
             // 
             // EpidemicInfoManageForm
             // 
@@ -214,6 +225,7 @@
         private DevExpress.XtraEditors.SimpleButton simpleButton_modify;
         private DevExpress.XtraEditors.SimpleButton simpleButton_add;
         private DevExpress.XtraEditors.SimpleButton simpleButton_view;
+        private DevExpress.XtraGrid.Columns.GridColumn OperatePeople;
 
 
 

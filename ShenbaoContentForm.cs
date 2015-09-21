@@ -80,7 +80,7 @@ namespace zhuhai
             //获取选中的行的行号
             int[] rowNums = gridView.GetSelectedRows();
             DataTable dt = (DataTable)gridControl.DataSource;
-            ShenbaoContentEditForm form = new ShenbaoContentEditForm(Int32.Parse(dt.Rows[rowNums[0]][CommonText.ID_COLUMN].ToString()), dt.Rows[rowNums[0]][CommonText.TITLE_COLOMUN].ToString(), shenbaoContentService);
+            ShenbaoContentEditForm form = new ShenbaoContentEditForm(Int32.Parse(dt.Rows[rowNums[0]][ShenboContent.ID_COLUMN].ToString()), Int32.Parse(dt.Rows[rowNums[0]][ShenboContent.LOGICID_COLUMN].ToString()), dt.Rows[rowNums[0]][ShenboContent.CONTENT_COLOMUN].ToString(), dt.Rows[rowNums[0]][ShenboContent.CONTENT_EN_COLOMUN].ToString(), shenbaoContentService);
             form.ShowDialog();
             pageUpControl.GetDataTable();
         }
@@ -119,7 +119,7 @@ namespace zhuhai
             //获取选中的行的行号
             int[] rowNums = gridView.GetSelectedRows();
             DataTable dt = (DataTable)gridControl.DataSource;
-            ShenbaoContentEditForm form = new ShenbaoContentEditForm(Int32.Parse(dt.Rows[rowNums[0]][CommonText.ID_COLUMN].ToString()), dt.Rows[rowNums[0]][CommonText.TITLE_COLOMUN].ToString(), shenbaoContentService, true);
+            ShenbaoContentEditForm form = new ShenbaoContentEditForm(Int32.Parse(dt.Rows[rowNums[0]][ShenboContent.ID_COLUMN].ToString()), Int32.Parse(dt.Rows[rowNums[0]][ShenboContent.LOGICID_COLUMN].ToString()), dt.Rows[rowNums[0]][ShenboContent.CONTENT_COLOMUN].ToString(), dt.Rows[rowNums[0]][ShenboContent.CONTENT_EN_COLOMUN].ToString(), shenbaoContentService, true);
             form.ShowDialog();
         }
 
