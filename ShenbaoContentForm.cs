@@ -38,7 +38,7 @@ namespace zhuhai
             string title = textEdit_title.Text;
 
             IDictionary<string, object> strWhere = new Dictionary<string, object>();
-            strWhere.Add(WorkRule.TITLE_COLOMUN, title);
+            strWhere.Add(ShenboContent.CONTENT_COLOMUN, title);
             return strWhere;
         }
 
@@ -103,7 +103,7 @@ namespace zhuhai
                 string deleteId = dt.Rows[rowNum][CommonText.ID_COLUMN].ToString();
                 shenbaoContentService.deleteRow(Int32.Parse(deleteId));
 
-                LogService.getInstance().log("删除，内容为" + dt.Rows[rowNum][CommonText.TITLE_COLOMUN].ToString(), ModuleConstant.ShenbaoContent_MODULE);
+                LogService.getInstance().log("删除，内容为" + dt.Rows[rowNum][ShenboContent.CONTENT_COLOMUN].ToString(), ModuleConstant.ShenbaoContent_MODULE);
             }
             initData(formatWhere());
              

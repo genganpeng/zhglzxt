@@ -52,26 +52,19 @@ namespace zhuhai.service
         {
             //实现分页查询的方法， 使用strWhere,startIndex,endIndex, 同时需要返回Pager
             //记录总数量
-            TotalNum = 100;
+            
             ICustomsCMS server = XmlRpcInstance.getInstance();
 
             try
             {
+                NumResponse numResponse = server.searchPassengerCount(strWhere[ClearanceRecord.NAME_COLUMN].ToString(), DictionaryToXmlRpcStruct.dictionaryToXmlRpcStruct(strWhere)); ;
+                strWhere.Add("start", startIndex);
+                strWhere.Add("limit", endIndex);
                 GateRecordsResponse res = server.searchPassenger( strWhere[ClearanceRecord.NAME_COLUMN].ToString(), DictionaryToXmlRpcStruct.dictionaryToXmlRpcStruct(strWhere));
-                TotalNum = res.records_num;
-                if (res.error_code == 0)
-                {
-                    startIndex = startIndex - 1;
-                    endIndex = endIndex - 1;
-                    //当前页需要显示的记录
-                    int count = endIndex < (TotalNum - 1) ? endIndex : (TotalNum - 1);
-                    List<GateRecord> gateRecords = new List<GateRecord>(res.records);
-                    return gateRecords;
-                }
-                else
-                {
-                    Console.WriteLine("ClearanceRecordService - InitDt" + res.error_msg);
-                }
+                TotalNum = numResponse.all_num;
+
+                 List<GateRecord> gateRecords = new List<GateRecord>(res.records);
+                 return gateRecords;
             }
             catch(Exception ex) {
                 Console.WriteLine("ClearanceRecordService - InitDt" + ex.Message);

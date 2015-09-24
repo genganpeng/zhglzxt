@@ -55,6 +55,11 @@ namespace zhuhai.xmlrpc
         GateRecordsResponse searchPassenger(string passenger_name,
                                             XmlRpcStruct other_conditions);
 
+        //查询乘客异常信息，可根据姓名、通关时间、性别、出生日期等信息对历史通关的乘客进行查询，返回查询结果总数。
+        [XmlRpcMethod("searchPassengerCount")]
+        NumResponse searchPassengerCount(string passenger_name,
+                                            XmlRpcStruct other_conditions);
+
         //获得旅客通过时的异常记录
         [XmlRpcMethod("getAbnormalRecord")]
         GateRecordResponse getAbnormalRecord(int controller_id);
@@ -252,6 +257,13 @@ namespace zhuhai.xmlrpc
          [XmlRpcMethod("insertlog")]
         RPCResponse log(Log log);
 
+         [XmlRpcMethod("getlog")]
+         LogListRPCResponse getLog(DateTime para_begin, DateTime para_end, string operatePeople, string operateModule, string operatecontent, int start, int limit);
+
+
+         [XmlRpcMethod("getlogCount")]
+         NumResponse getLogCount(DateTime para_begin, DateTime para_end, string operatePeople, string operateModule, string operatecontent);
+
          //新增申报内容
          [XmlRpcMethod("addReportContent")]
          DBRPCResponse addReportContent(ReportContent reportContent);
@@ -287,12 +299,44 @@ namespace zhuhai.xmlrpc
          Gate_state_record_Response getGateAllInfo(int control_id, int[] target_gates);
 
         /// <summary>
+        /// 获取闸机状态
+        /// </summary>
+        /// <param name="gateid"></param>
+        /// <returns></returns>
+        [XmlRpcMethod("getSensorOrder")]
+        OrderRPCResponse getSensorOrder(int gateid);
+
+        /// <summary>
         /// 检测用户名和密码
         /// </summary>
         /// <param name="usercheck"></param>
         /// <returns></returns>
         [XmlRpcMethod("checkUser")]
-        DBRPCResponse checkUser(Usercheck usercheck);
+        UsercheckRPCResponse checkUser(Usercheck usercheck);
+
+        /// <summary>
+        /// 根据用户名查询用户，用户判断用户名是否存在
+        /// </summary>
+        /// <param name="usercheck"></param>
+        /// <returns></returns>
+        [XmlRpcMethod("findUser")]
+        UsercheckRPCResponse findUser(string userName);
+
+        [XmlRpcMethod("AddUser")]
+        DBRPCResponse AddUser(Usercheck usercheck);
+
+        [XmlRpcMethod("ModifyUser")]
+        DBRPCResponse ModifyUser(Usercheck usercheck);
+
+        [XmlRpcMethod("DeleteUser")]
+        DBRPCResponse DeleteUser(int userid);
+
+        [XmlRpcMethod("findAllUserCount")]
+        NumResponse findAllUserCount(string username);
+
+        [XmlRpcMethod("findAllUserByUserid")]
+        UsercheckListRPCResponse findAllUserByUserid(string username, int start, int limit);
+        
     }
 
     /**
@@ -376,7 +420,7 @@ namespace zhuhai.xmlrpc
         /// </summary>
         Abnormal = 2,
         /// <summary>
-        /// 生物异常
+        /// 核素异常
         /// </summary>
         HesuAbnormal = 4,
         /// <summary>
@@ -386,7 +430,7 @@ namespace zhuhai.xmlrpc
         /// <summary>
         /// 扫描仪异常
         /// </summary>
-        SaomiaoyiAbnormal = 6
+        SaomiaoyiAbnormal = 6,
     }
 
 
@@ -405,13 +449,17 @@ namespace zhuhai.xmlrpc
         /// </summary>
         Nuclear = 2,
         /// <summary>
+        /// 温度和核素异常
+        /// </summary>
+        TemperatareNuclear = 3,
+        /// <summary>
         /// 生物异常
         /// </summary>
-        Biology = 3,
+        Biology = 4,
         /// <summary>
         /// 化学异常
         /// </summary>
-        Chem = 4
+        Chem = 5
     }
 
     public enum IDType
@@ -440,6 +488,12 @@ namespace zhuhai.xmlrpc
         public double bio_port;
         [XmlRpcMissingMapping(MappingAction.Ignore)]
         public double chem_port;
+
+        // properities for UpdateThreshold, optional
+        [XmlRpcMissingMapping(MappingAction.Ignore)]
+        public double tiny_temperature;
+        [XmlRpcMissingMapping(MappingAction.Ignore)]
+        public double tiny_nuclear;
 
         // properities for ChangeMode, optional
         [XmlRpcMissingMapping(MappingAction.Ignore)]
@@ -552,6 +606,8 @@ namespace zhuhai.xmlrpc
         public DateTime nvr_endtime { get; set; }	// 填充为发送时的时刻，server会进一步修正
         [XmlRpcMissingMapping(MappingAction.Ignore)]
         public string discharged_by { get; set; }	// 放行的工作人员，闸机不发送此信息，保持为空即可
+        [XmlRpcMissingMapping(MappingAction.Ignore)]
+        public string retport_content { get; set; }
 
         public override string ToString()
         {

@@ -28,18 +28,18 @@ namespace zhuhai
             init();
         }
 
-        public SystemManageEditForm(int id)
+        public SystemManageEditForm(SystemManage sys)
         {
             InitializeComponent();
             init();
-            Id = id;
-            SystemManage sm = smService.getRow(Id);
+            Id = sys.Id;
+            SystemManage sm = sys;
             //编辑，根据id取出原来的数据，显示出来
             textEdit_userName.Text = sm.UserName;
             textEdit_password.Text = sm.Password ;
             textEdit_name.Text = sm.Name;
             textEdit_IDCard.Text = sm.IdCard;
-            comboBoxEdit_type.SelectedIndex = sm.Type;
+            comboBoxEdit_type.SelectedIndex = smService.getIndex(sm.Type);
             //不可修改用户名
             textEdit_userName.Properties.ReadOnly = true;
         }
@@ -50,6 +50,7 @@ namespace zhuhai
             comboBoxEdit_type.Properties.Items.AddRange(smService.getTypes().ToArray());
             //设置ComboBoxEdit下拉不可编辑
             comboBoxEdit_type.Properties.TextEditStyle = TextEditStyles.DisableTextEditor;
+            comboBoxEdit_type.SelectedIndex = 0;
         }
 
         private void simpleButton_add_Click(object sender, EventArgs e)
@@ -98,7 +99,7 @@ namespace zhuhai
                 return;
             }
 
-            sm.Type = comboBoxEdit_type.SelectedIndex;
+            sm.Type = (smService.getTypes())[comboBoxEdit_type.SelectedIndex].Key;
             sm.Id = Id;
 
             //保存

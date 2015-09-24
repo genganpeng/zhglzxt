@@ -49,21 +49,19 @@ namespace zhuhai
             if (comboBoxEdit_type.SelectedIndex != -1)
                 type = comboBoxEdit_type.SelectedIndex.ToString();
 
-            if (!String.IsNullOrEmpty(username))
-            {
-                strWhere.Add(SystemManage.USERNAME_COLUMN, " like '%" + username + "%'");
-            }
+           strWhere.Add(SystemManage.USERNAME_COLUMN, username);
+
             if (!String.IsNullOrEmpty(name))
             {
-                strWhere.Add(SystemManage.NAME_COLUMN, " like '%" + name + "%'");
+                strWhere.Add(SystemManage.NAME_COLUMN, name);
             }
             if (!String.IsNullOrEmpty(idCard))
             {
-                strWhere.Add(SystemManage.IDCARD_COLUMN, " like '%" + idCard + "%'");
+                strWhere.Add(SystemManage.IDCARD_COLUMN, idCard);
             }
             if (type != "0" && type != "")
             {
-                strWhere.Add(SystemManage.TYPE_COLUMN, " = " + type);
+                strWhere.Add(SystemManage.TYPE_COLUMN, type);
             }
             return strWhere;
         }
@@ -108,7 +106,16 @@ namespace zhuhai
             //获取选中的行的行号
             int[] rowNums = gridView.GetSelectedRows();
             DataTable dt = (DataTable)gridControl.DataSource;
-            SystemManageEditForm systemManageEditForm = new SystemManageEditForm(Int32.Parse(dt.Rows[rowNums[0]][SystemManage.ID_COLUMN].ToString()));
+            SystemManage sys = new SystemManage();
+            sys.Id = Int32.Parse(dt.Rows[rowNums[0]][SystemManage.ID_COLUMN].ToString());
+            sys.UserName = dt.Rows[rowNums[0]][SystemManage.USERNAME_COLUMN].ToString();
+            sys.Password = dt.Rows[rowNums[0]][SystemManage.PASSWORD_COLUMN].ToString();
+            sys.Type = Int32.Parse(dt.Rows[rowNums[0]][SystemManage.TYPE_COLUMN].ToString());
+            sys.TypeName = dt.Rows[rowNums[0]][SystemManage.TYPENAME_COLUMN].ToString();
+            sys.Name = dt.Rows[rowNums[0]][SystemManage.NAME_COLUMN].ToString();
+            sys.IdCard = dt.Rows[rowNums[0]][SystemManage.IDCARD_COLUMN].ToString();
+
+            SystemManageEditForm systemManageEditForm = new SystemManageEditForm(sys);
             systemManageEditForm.ShowDialog();
             pageUpControl.GetDataTable();
         }

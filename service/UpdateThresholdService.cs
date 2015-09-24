@@ -94,8 +94,8 @@ namespace zhuhai.service
             SysTask task = new SysTask();
             task.type = (int)TaskType.gateThresholdErrorUpdate;
             task.target_gates = gates;
-            task.thr_temperature = temperature_error;
-            task.thr_nuclear = nuclear_error;
+            task.tiny_temperature = temperature_error;
+            task.tiny_nuclear = nuclear_error;
 
             try
             {

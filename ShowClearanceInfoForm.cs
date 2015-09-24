@@ -100,5 +100,11 @@ namespace zhuhai
             PrintForm printForm = new PrintForm(new ModelHandler<GateRecord>().FillModel(row));
             printForm.ShowDialog();
         }
+
+        private void button_shipin_Click(object sender, EventArgs e)
+        {
+            ClearanceVideoReplayForm clearanceVideoReplayForm = new ClearanceVideoReplayForm(row);
+            clearanceVideoReplayForm.ShowDialog();
+        }
     }
 }

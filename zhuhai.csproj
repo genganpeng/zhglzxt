@@ -97,6 +97,7 @@
       <DependentUpon>ClearanceStatisticsForm.cs</DependentUpon>
     </Compile>
     <Compile Include="model\ClearanceRecord.cs" />
+    <Compile Include="model\Log.cs" />
     <Compile Include="model\WorkRule.cs" />
     <Compile Include="model\CommonText.cs" />
     <Compile Include="model\JobGuideBook.cs" />
@@ -154,6 +155,12 @@
     <Compile Include="ShowClearanceInfoForm.Designer.cs">
       <DependentUpon>ShowClearanceInfoForm.cs</DependentUpon>
     </Compile>
+    <Compile Include="TestForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="TestForm.Designer.cs">
+      <DependentUpon>TestForm.cs</DependentUpon>
+    </Compile>
     <Compile Include="util\AbnormalType.cs" />
     <Compile Include="util\AppConfig.cs" />
     <Compile Include="util\DictionaryItem.cs" />
@@ -171,6 +178,7 @@
       <DependentUpon>LoginForm.cs</DependentUpon>
     </Compile>
     <Compile Include="util\DictionaryToXmlRpcStruct.cs" />
+    <Compile Include="util\EnumName.cs" />
     <Compile Include="util\ModelHandler.cs" />
     <Compile Include="util\ModuleConstant.cs" />
     <Compile Include="util\Pager.cs" />
@@ -182,6 +190,7 @@
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="util\PermissionControl.cs" />
     <Compile Include="util\RandomCodeGenerator.cs" />
     <Compile Include="RichTextEditorForm.cs">
       <SubType>Form</SubType>
@@ -276,6 +285,30 @@
     <Compile Include="ShenbaoContentForm.Designer.cs">
       <DependentUpon>ShenbaoContentForm.cs</DependentUpon>
     </Compile>
+    <Compile Include="SingleGateThresholdUpdateForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="SingleGateThresholdUpdateForm.Designer.cs">
+      <DependentUpon>SingleGateThresholdUpdateForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="SingleGateThresholdErrorUpdateForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="SingleGateThresholdErrorUpdateForm.Designer.cs">
+      <DependentUpon>SingleGateThresholdErrorUpdateForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="ClearanceVideoReplayForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="ClearanceVideoReplayForm.Designer.cs">
+      <DependentUpon>ClearanceVideoReplayForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="LogRecordForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="LogRecordForm.Designer.cs">
+      <DependentUpon>LogRecordForm.cs</DependentUpon>
+    </Compile>
     <EmbeddedResource Include="ClearanceStatisticsForm.resx">
       <DependentUpon>ClearanceStatisticsForm.cs</DependentUpon>
     </EmbeddedResource>
@@ -320,6 +353,9 @@
     <EmbeddedResource Include="SystemManageForm.resx">
       <DependentUpon>SystemManageForm.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="TestForm.resx">
+      <DependentUpon>TestForm.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="WorkRuleManageForm.resx">
       <DependentUpon>WorkRuleManageForm.cs</DependentUpon>
     </EmbeddedResource>
@@ -352,6 +388,18 @@
     </EmbeddedResource>
     <EmbeddedResource Include="ShenbaoContentForm.resx">
       <DependentUpon>ShenbaoContentForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="SingleGateThresholdUpdateForm.resx">
+      <DependentUpon>SingleGateThresholdUpdateForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="SingleGateThresholdErrorUpdateForm.resx">
+      <DependentUpon>SingleGateThresholdErrorUpdateForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ClearanceVideoReplayForm.resx">
+      <DependentUpon>ClearanceVideoReplayForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="LogRecordForm.resx">
+      <DependentUpon>LogRecordForm.cs</DependentUpon>
     </EmbeddedResource>
     <None Include="App.config" />
     <None Include="Properties\Settings.settings">
@@ -862,6 +910,33 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="Resources\stop.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\gate\gate_abnormal.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\gate\gate_normal.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\gate\gate_shutdown.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\gate\baojingdeng.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\gate\jinzhitongxing.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\gate\kuaisutongguan.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\gate\shenbaotongguan.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\gate\shuakatongguan.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\gate\wuchatiaojie.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it.

@@ -24,7 +24,7 @@ namespace zhuhai.model
         /// 用户名
         /// </summary>
         private string userName;
-        public static string USERNAME_COLUMN = "userName";
+        public static string USERNAME_COLUMN = "username";
 
         public string UserName
         {

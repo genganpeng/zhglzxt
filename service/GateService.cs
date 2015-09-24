@@ -50,7 +50,6 @@ namespace zhuhai.service
         /// <returns></returns>
         public GateThresholdValue getGateThreshold(int gateNo)
         {
-            SysTask task = new SysTask();
             try
             {
                 ICustomsCMS server = XmlRpcInstance.getInstance();
@@ -76,8 +75,6 @@ namespace zhuhai.service
         {
 
             //以下是获取原来的阈值，并显示出来
-            SysTask task = new SysTask();
-            task.target_gates = new int[] { AppConfig.hxswqhnum };
             try
             {
                 ICustomsCMS server = XmlRpcInstance.getInstance();
@@ -106,15 +103,13 @@ namespace zhuhai.service
         /// <returns></returns>
         public GateThresholdErrorValue getGateThresholdError(int gateNo)
         {
-            SysTask task = new SysTask();
-            task.target_gates = new int[] { gateNo };
             try
             {
                 ICustomsCMS server = XmlRpcInstance.getInstance();
-                TaskRPCResponse taskRPCResponse = server.getCurrentThreshold(AppConfig.gateSensor);
+                TaskRPCResponse taskRPCResponse = server.getCurrentThreshold(gateNo);
                 if (taskRPCResponse.error_code == 0)
                 {
-                    return new GateThresholdErrorValue(taskRPCResponse.task.thr_temperature, taskRPCResponse.task.thr_nuclear);
+                    return new GateThresholdErrorValue(taskRPCResponse.task.tiny_temperature, taskRPCResponse.task.tiny_nuclear);
                 }
                 else
                 {

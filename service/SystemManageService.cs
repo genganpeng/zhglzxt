@@ -22,6 +22,15 @@ namespace zhuhai.service
             set { userName = value; }
         }
 
+        /// <summary>
+        /// 角色名
+        /// </summary>
+        public string Rolename
+        {
+            get;
+            set;
+        }
+
         private List<string> permissions;
         /// <summary>
         /// 权限列表
@@ -35,26 +44,11 @@ namespace zhuhai.service
 
     public class SystemManageService : IQueryService
     {
-        private List<SystemManage> sms = new List<SystemManage>();
         private static SystemManageService systemManageService = null;
         public static CurrentUser currentUser = new CurrentUser();
 
         private SystemManageService()
         {
-            sms.Add(new SystemManage( 1, "123", "123", 1, "系统管理员", "张老三", "12343445" ));
-            sms.Add(new SystemManage( 2, "张三1", "123", 2, "口岸系统管理员", "张老三1", "12343446"));
-            sms.Add(new SystemManage( 3, "张三", "123", 3, "口岸监控员", "张老三", "12343445"));
-            sms.Add(new SystemManage( 4, "张三1", "123", 1, "系统管理员", "张老三1", "12343445"));
-            sms.Add(new SystemManage( 5, "张三", "123", 2, "口岸系统管理员", "张老三", "12343445"));
-            sms.Add(new SystemManage( 6, "张三1", "123", 3, "口岸监控员", "张老三1", "12343445"));
-            sms.Add(new SystemManage( 7, "张三", "123", 1, "系统管理员", "张老三", "12343445"));
-            sms.Add(new SystemManage( 8, "张三1", "123", 2, "口岸系统管理员", "张老三1", "12343445"));
-            sms.Add(new SystemManage( 9, "张三", "123", 3, "口岸监控员", "张老三", "12343445"));
-            sms.Add(new SystemManage( 10, "张三1", "123", 1, "系统管理员", "张老三1", "12343445"));
-            sms.Add(new SystemManage( 11, "张三", "123", 2, "口岸系统管理员", "张老三", "12343445"));
-            sms.Add(new SystemManage( 12, "张三", "123", 3, "口岸监控员", "张老三", "12343445"));
-            sms.Add(new SystemManage( 13, "张三1", "123", 1, "系统管理员", "张老三1", "12343445"));
-            sms.Add(new SystemManage( 14, "张三1", "123", 2, "口岸系统管理员", "张老三1", "12343445"));
         }
 
         public static SystemManageService getInstance()
@@ -89,20 +83,31 @@ namespace zhuhai.service
 
         public List<SystemManage> InitDt(IDictionary<string, object> strWhere, int startIndex, int endIndex)
         {
-            //实现分页查询的方法， 使用strWhere,startIndex,endIndex, 同时需要返回Pager
-            //记录总数量
-            TotalNum = sms.Count;
-
-            startIndex = startIndex - 1;
-            endIndex = endIndex - 1;
-            //当前页需要显示的记录
-            int count = endIndex < (TotalNum - 1) ? endIndex : (TotalNum - 1);
-            List<SystemManage> retLists = new List<SystemManage>();
-            for (int i = startIndex; i <= count; i++)
+            try
             {
-                retLists.Add(sms[i]);
+                ICustomsCMS server = XmlRpcInstance.getInstance();
+                NumResponse numResponse = server.findAllUserCount(strWhere[SystemManage.USERNAME_COLUMN].ToString());
+                if (numResponse.error_code != 0)
+                {
+                    throw new Exception("连接服务器错误：" + numResponse.error_msg);
+                }
+                TotalNum = numResponse.all_num;
+
+                UsercheckListRPCResponse response = server.findAllUserByUserid(strWhere[SystemManage.USERNAME_COLUMN].ToString(), startIndex, endIndex);
+                Usercheck[] titlelist = response.listmodule;
+                List<SystemManage> wrs = new List<SystemManage>();
+                for (int i = 0; i < titlelist.Length; i++)
+                {
+                    string rolename = getRoleName(Int32.Parse(titlelist[i].rolename));
+                    wrs.Add(new SystemManage(titlelist[i].id, titlelist[i].username, titlelist[i].password, Int32.Parse(titlelist[i].rolename), rolename, titlelist[i].realname, titlelist[i].idcard));
+                }
+                return wrs;
             }
-            return retLists;
+            catch (Exception ex)
+            {
+                Console.WriteLine("错误：" + ex.Message);
+                return null;
+            }
         }
 
         /// <summary>
@@ -120,50 +125,65 @@ namespace zhuhai.service
 
         public Boolean deleteRow(int id)
         {
-            foreach (SystemManage sm in sms)
+            try
             {
-                if (sm.Id == id)
+                ICustomsCMS server = XmlRpcInstance.getInstance();
+                DBRPCResponse dBRPCResponse = server.DeleteUser(id);
+                if (dBRPCResponse.error_code != 0)
                 {
-                    sms.Remove(sm);
-                    return true;
+                    throw new Exception("连接服务器错误：" + dBRPCResponse.error_msg);
                 }
+                return true;
             }
-
-            return false;
+            catch (Exception ex)
+            {
+                throw new Exception("错误：" + ex.Message);
+            }
         }
 
         public Boolean addRow(SystemManage systemManage)
         {
-            systemManage.Id = 15;
-            sms.Add(systemManage);
-            return true;
+            try
+            {
+                ICustomsCMS server = XmlRpcInstance.getInstance();
+                Usercheck usercheck = new Usercheck();
+                usercheck.idcard = systemManage.IdCard;
+                usercheck.password = systemManage.Password;
+                usercheck.realname = systemManage.Name;
+                usercheck.username = systemManage.UserName;
+                usercheck.rolename = systemManage.Type.ToString();
+
+                DBRPCResponse dBRPCResponse = server.AddUser(usercheck);
+                return true;
+            }
+            catch (Exception ex)
+            {
+                throw new Exception("错误：" + ex.Message);
+            }
         }
 
         public Boolean modifyRow(SystemManage systemManage)
         {
-            for (int i = 0; i < sms.Count; i++)
+            try
             {
-                if (sms[i].Id == systemManage.Id)
-                {
-                    sms[i] = systemManage;
-                    return true;
-                }
-                    
+                ICustomsCMS server = XmlRpcInstance.getInstance();
+                Usercheck usercheck = new Usercheck();
+                usercheck.idcard = systemManage.IdCard;
+                usercheck.password = systemManage.Password;
+                usercheck.realname = systemManage.Name;
+                usercheck.username = systemManage.UserName;
+                usercheck.rolename = systemManage.Type.ToString();
+                usercheck.id = systemManage.Id;
+
+                DBRPCResponse dBRPCResponse = server.ModifyUser(usercheck);
+                return true;
             }
-            return false;
+            catch (Exception ex)
+            {
+                throw new Exception("错误：" + ex.Message);
+            }
         }
 
-        public SystemManage getRow(int id)
-        {
-            foreach (SystemManage sm in sms)
-            {
-                if (sm.Id == id)
-                {
-                    return sm;
-                }
-            }
-            return null;
-        }
 
         /// <summary>
         /// 根据id和用户名查询符合条件的记录
@@ -173,26 +193,70 @@ namespace zhuhai.service
         /// <returns></returns>
         public Boolean findRowByIdAndName(int id, string userName)
         {
-            //根据id和姓名查询数据库，全匹配
-            foreach (SystemManage sm in sms)
-            {
-                if (sm.UserName == userName && sm.Id != id)
-                {
-                    return true;
-                }
-            }
 
-            return false;
+            try
+            {
+                ICustomsCMS server = XmlRpcInstance.getInstance();
+                UsercheckRPCResponse usercheckRPCResponse = server.findUser(userName);
+                if (usercheckRPCResponse.id != 0 && usercheckRPCResponse.id != id) return true;
+                return false;
+
+
+            }
+            catch (Exception ex)
+            {
+                throw new Exception("错误：" + ex.Message);
+            }
+            try
+            {
+                ICustomsCMS server = XmlRpcInstance.getInstance();
+
+                UsercheckListRPCResponse response = server.findAllUserByUserid(userName, 1, 1);
+                Usercheck[] titlelist = response.listmodule;
+                
+            }
+            catch (Exception ex)
+            {
+                throw new Exception("错误：" + ex.Message);
+            }
         }
 
         public List<DictionaryItem<int>> getTypes() {
             List<DictionaryItem<int>> dicList = new List<DictionaryItem<int>>();
             dicList.Add(new DictionaryItem<int>(0, "请选择"));
-            dicList.Add(new DictionaryItem<int>(1, "系统管理员"));
-            dicList.Add(new DictionaryItem<int>(2, "口岸系统管理员"));
-            dicList.Add(new DictionaryItem<int>(3, "口岸监控员"));    
+            dicList.Add(new DictionaryItem<int>(100, "系统管理员"));
+            dicList.Add(new DictionaryItem<int>(200, "口岸系统管理员"));
+            dicList.Add(new DictionaryItem<int>(300, "口岸监控员"));    
 
             return dicList;
+        }
+
+        public string getRoleName(int roleId)
+        {
+            switch (roleId)
+            {
+                case 100:
+                    return "系统管理员";
+                case 200:
+                    return "口岸系统管理员";
+                case 300:
+                    return "口岸监控员";
+            }
+            return "";
+        }
+
+        public int getIndex(int roleId)
+        {
+            switch (roleId)
+            {
+                case 100:
+                    return 1;
+                case 200:
+                    return 2;
+                case 300:
+                    return 3;
+            }
+            return 0;
         }
 
         /// <summary>
@@ -209,31 +273,24 @@ namespace zhuhai.service
                 Usercheck usercheck = new Usercheck();
                 usercheck.username = username;
                 usercheck.password = password;
-                DBRPCResponse r = server.checkUser(usercheck);
-                if (r.dbresult != 0)
+                UsercheckRPCResponse usercheckRPCResponse = server.checkUser(usercheck);
+                if (usercheckRPCResponse.username != "")
                 {
-                    throw new Exception("用户名或者密码错误");
+                    currentUser.UserName = usercheckRPCResponse.username;
+                    currentUser.Rolename = usercheckRPCResponse.rolename;
+                    return true;
                 }
-                return true;
+                else
+                {
+                    return false;
+                }
+               
+                
             }
             catch (Exception ex)
             {
                 throw new Exception("错误：" + ex.Message);
             }
-
-
-            ////赋值当前的用户
-            //foreach (SystemManage sm in sms)
-            //{
-            //    if (sm.UserName == username && sm.Password == password)
-            //    {
-
-            //        currentUser.UserName = username;
-            //        currentUser.Permissions = new List<String>() { "abc" };
-            //        return true;
-            //    }
-            //}
-            //return false;
         }
     }
 }

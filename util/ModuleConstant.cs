@@ -18,6 +18,7 @@ namespace zhuhai.util
         public static string JobGuideBook_MODULE = "作业指导书";
         public static string WorkRule_MODULE = "工作规程";
         public static string GateThresholdUpdate_MODULE = "闸机阈值更新";
+        public static string GateThresholdUpdateError_MODULE = "闸机阈值误差更新";
         public static string HxswqhThresholod_MODULE = "口岸阈值更新";
         public static string ModeStateSet_MODULE = "闸机模式状态";
         public static string PublishNotice_MODULE = "消息发布";

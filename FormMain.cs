@@ -14,6 +14,7 @@ using zhuhai.xmlrpc;
 using zhuhai.util;
 using zhuhai.monitorinfo;
 using zhuhai.monitorinfo.h264;
+using DevExpress.XtraBars;
 
 namespace zhuhai
 {
@@ -23,21 +24,64 @@ namespace zhuhai
         private List<zhuhai.monitorinfo.Monitor> monitorList = new List<zhuhai.monitorinfo.Monitor>();
         private List<System.Windows.Forms.Panel> monitorPanels = new List<System.Windows.Forms.Panel>();
         private zhuhai.monitorinfo.Monitor previewMonitor = null;
+        private zhuhai.monitorinfo.Monitor previewMonitor1 = null;
+        private zhuhai.monitorinfo.Monitor previewMonitor2 = null;
         private Panel previewMonitorPanels = null;
         private H264Controler previewControler = null;
-
-        //每页显示9个通道
-        private static int channelNumsByPage = 9;
+        private H264Controler previewControler1 = null;
+        private H264Controler previewControler2 = null;
 
         public FormMain()
         {
             init();
             InitializeComponent();
+            initPermission();
             addGateMonitors();
             this.DoubleBuffered = true;
             UpdateStyles();
             initMonitorControler();
             this.barStaticItem_currentUser.Caption = "当前用户：" + SystemManageService.currentUser.UserName;
+
+            //以下初始化通道
+            object[] items = new object[gateTotal];
+            for (int i = 0; i < gateTotal; i++)
+            {
+                items[i] = (i + 1).ToString();
+            }
+            this.comboBox_shipin_1.Items.AddRange(items);
+            this.comboBox_shipin_2.Items.AddRange(items);
+            this.comboBox_shipin_3.Items.AddRange(items);
+            this.comboBox_shipin_1.SelectedIndex = 0;
+            this.comboBox_shipin_2.SelectedIndex = 1;
+            this.comboBox_shipin_3.SelectedIndex = 2;
+
+
+        }
+
+        /// <summary>
+        /// 根据角色初始化权限
+        /// </summary>
+        public void initPermission()
+        {
+            if (PermissionControl.IsAuthorized("barButtonItem_systemManage") == false)
+                barButtonItem_systemManage.Visibility = BarItemVisibility.Never;
+            if (PermissionControl.IsAuthorized("barButtonItem_title") == false)
+                barButtonItem_title.Visibility = BarItemVisibility.Never;
+            if (PermissionControl.IsAuthorized("barButtonItem_publishMessage") == false)
+                barButtonItem_publishMessage.Visibility = BarItemVisibility.Never;
+            if (PermissionControl.IsAuthorized("barButtonItem_gateThresholdErrorUpdate") == false)
+                barButtonItem_gateThresholdErrorUpdate.Visibility = BarItemVisibility.Never;
+            if (PermissionControl.IsAuthorized("barButtonItem_gateThreshold") == false)
+                barButtonItem_gateThreshold.Visibility = BarItemVisibility.Never;
+            if (PermissionControl.IsAuthorized("barButtonItem_hxswqhThreshold") == false)
+                barButtonItem_hxswqhThreshold.Visibility = BarItemVisibility.Never;
+            if (PermissionControl.IsAuthorized("barButtonItem_modeset") == false)
+                barButtonItem_modeset.Visibility = BarItemVisibility.Never;
+            if (PermissionControl.IsAuthorized("barButtonItem_shenbaocontent") == false)
+                barButtonItem_shenbaocontent.Visibility = BarItemVisibility.Never;
+            if (PermissionControl.IsAuthorized("barButtonItem_log") == false)
+                barButtonItem_log.Visibility = BarItemVisibility.Never;
+
         }
 
         /// <summary>
@@ -116,8 +160,9 @@ namespace zhuhai
 
             if (!this.IsDisposed)
             {
-                //异常的闸机背景为红色
-                monitorPanels[gate_id - 1].BackColor = Color.Red;
+                //显示报警灯
+                System.Windows.Forms.PictureBox pictureBox = (PictureBox)( monitorPanels[gate_id - 1].Controls.Find("pictureBox" + (gate_id).ToString() + "2", false)[0]);
+                pictureBox.Visible = true;
                 System.Threading.ThreadPool.QueueUserWorkItem(new System.Threading.WaitCallback(this.channelBlinkThread), gate_id);
                 ICustomsCMS server = XmlRpcInstance.getInstance();
 
@@ -140,36 +185,47 @@ namespace zhuhai
         {
             int x = 10;
             int y = 10;
-            int panelWidth = 146;
-            int panelHeight = 178;
+            int panelWidth = 200;
+            int panelHeight = 235;
             int interval = 10;//间隔
             for (int i = 0; i < gateTotal; i++)
             {
+
+                System.Windows.Forms.PictureBox pictureBox10 = new System.Windows.Forms.PictureBox();
+                System.Windows.Forms.PictureBox pictureBox11 = new System.Windows.Forms.PictureBox();
+                System.Windows.Forms.Label label10 = new System.Windows.Forms.Label();
+                System.Windows.Forms.Label label11 = new System.Windows.Forms.Label();
+                System.Windows.Forms.Label label12 = new System.Windows.Forms.Label();
+                System.Windows.Forms.Label label13 = new System.Windows.Forms.Label();
+                System.Windows.Forms.Label label14 = new System.Windows.Forms.Label();
                 System.Windows.Forms.Panel panel1 = new System.Windows.Forms.Panel();
-                System.Windows.Forms.Label label1 = new System.Windows.Forms.Label();
-                System.Windows.Forms.PictureBox pictureBoxzhaji12 = new System.Windows.Forms.PictureBox();
-                System.Windows.Forms.PictureBox pictureBoxzhaji11 = new System.Windows.Forms.PictureBox();
-                System.Windows.Forms.PictureBox pictureBoxzhaji10 = new System.Windows.Forms.PictureBox();
+                System.Windows.Forms.PictureBox pictureBox12 = new System.Windows.Forms.PictureBox();
+
                 zhajipanel.Controls.Add(panel1);
                 panel1.SuspendLayout();
-                ((System.ComponentModel.ISupportInitialize)(pictureBoxzhaji12)).BeginInit();
-                ((System.ComponentModel.ISupportInitialize)(pictureBoxzhaji11)).BeginInit();
-                ((System.ComponentModel.ISupportInitialize)(pictureBoxzhaji10)).BeginInit();
+                ((System.ComponentModel.ISupportInitialize)(pictureBox10)).BeginInit();
+                ((System.ComponentModel.ISupportInitialize)(pictureBox11)).BeginInit();
+                ((System.ComponentModel.ISupportInitialize)(pictureBox12)).BeginInit();
 
                 // 
                 // panel1
                 // 
-                panel1.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-                panel1.Controls.Add(label1);
-                panel1.Controls.Add(pictureBoxzhaji12);
-                panel1.Controls.Add(pictureBoxzhaji11);
-                panel1.Controls.Add(pictureBoxzhaji10);
+                panel1.BackgroundImage = global::zhuhai.Properties.Resources.gate_normal;
+                panel1.Controls.Add(pictureBox12);
+                panel1.Controls.Add(label14);
+                panel1.Controls.Add(label13);
+                panel1.Controls.Add(label12);
+                panel1.Controls.Add(label11);
+                panel1.Controls.Add(label10);
+                panel1.Controls.Add(pictureBox11);
+                panel1.Controls.Add(pictureBox10);
+                panel1.Location = new System.Drawing.Point(44, 12);
                 panel1.Name = "panel" + (i + 1).ToString();
-                panel1.BackColor = Color.Transparent;
                 panel1.Size = new System.Drawing.Size(panelWidth, panelHeight);
                 panel1.TabIndex = 200 + i;
                 panel1.Click += new System.EventHandler(this.monitorPanel_click);
                 panel1.Cursor = Cursors.Hand;
+                panel1.ContextMenuStrip = this.contextMenuStrip;
 
                 Size size = this.zhajipanel.Size;
                 if (x > size.Width - panelWidth)
@@ -182,51 +238,107 @@ namespace zhuhai
                 }
                 panel1.Location = new System.Drawing.Point(x, y);
                 x += panelWidth + interval;
-                
-                // 
-                // label1
-                // 
-                label1.AutoSize = true;
-                label1.Font = new System.Drawing.Font("微软雅黑", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-                label1.Location = new System.Drawing.Point(58, 152);
-                label1.Name = "label" + (i + 1).ToString();
-                label1.Size = new System.Drawing.Size(20, 22);
-                label1.TabIndex = 300 + i;
-                label1.Text = (i + 1).ToString();
-                label1.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
-                // 
-                // pictureBoxzhaji12 闸机
-                // 
-                pictureBoxzhaji12.Image = global::zhuhai.Properties.Resources.gate;
-                pictureBoxzhaji12.Location = new System.Drawing.Point(29, 49);
-                pictureBoxzhaji12.Name = "pictureBoxzhaji" + (i + 1).ToString() + "2";
-                pictureBoxzhaji12.Size = new System.Drawing.Size(87, 100);
-                pictureBoxzhaji12.TabIndex = 400 + i;
-                pictureBoxzhaji12.TabStop = false;
-                // 
-                // pictureBoxzhaji11 模式
-                // 
-                pictureBoxzhaji11.Image = global::zhuhai.Properties.Resources.zidong;
-                pictureBoxzhaji11.Location = new System.Drawing.Point(96, 3);
-                pictureBoxzhaji11.Name = "pictureBoxzhaji" + (i + 1).ToString() + "1";
-                pictureBoxzhaji11.Size = new System.Drawing.Size(40, 40);
-                pictureBoxzhaji11.TabIndex = 500 + i;
-                pictureBoxzhaji11.TabStop = false;
-                // 
-                // pictureBoxzhaji10 状态
-                // 
-                pictureBoxzhaji10.Image = global::zhuhai.Properties.Resources.normal;
-                pictureBoxzhaji10.Location = new System.Drawing.Point(3, 5);
-                pictureBoxzhaji10.Name = "pictureBoxzhaji" + (i + 1).ToString() + "0";
-                pictureBoxzhaji10.Size = new System.Drawing.Size(75, 31);
-                pictureBoxzhaji10.TabIndex = 600 + i;
-                pictureBoxzhaji10.TabStop = false;
 
+                // 
+                // pictureBox10
+                // 
+                pictureBox10.BackColor = System.Drawing.Color.Transparent;
+                pictureBox10.Image = global::zhuhai.Properties.Resources.kuaisutongguan;
+                pictureBox10.Location = new System.Drawing.Point(2, 202);
+                pictureBox10.Name = "pictureBox" + (i + 1).ToString()  + "0";
+                pictureBox10.Size = new System.Drawing.Size(32, 32);
+                pictureBox10.TabIndex = 300 + i;
+                pictureBox10.TabStop = false;
+                // 
+                // pictureBox11
+                // 
+                pictureBox11.BackColor = System.Drawing.Color.Transparent;
+                pictureBox11.Image = global::zhuhai.Properties.Resources.wuchatiaojie;
+                pictureBox11.Location = new System.Drawing.Point(35, 202);
+                pictureBox11.Name = "pictureBox" + (i + 1).ToString() + "1";
+                pictureBox11.Size = new System.Drawing.Size(32, 32);
+                pictureBox11.TabIndex = 400 + i;
+                pictureBox11.TabStop = false;
+                // 
+                // label10
+                // 
+                label10.AutoSize = true;
+                label10.BackColor = System.Drawing.Color.Transparent;
+                label10.Font = new System.Drawing.Font("宋体", 10.5F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+                label10.ForeColor = System.Drawing.Color.White;
+                label10.Location = new System.Drawing.Point(69, 213);
+                label10.Name = "label" + (i + 1).ToString() + "0";
+                label10.Size = new System.Drawing.Size(22, 14);
+                label10.TabIndex = 500 + i;
+                label10.Text = "核";
+                // 
+                // label11
+                // 
+                label11.AutoSize = true;
+                label11.BackColor = System.Drawing.Color.Transparent;
+                label11.Font = new System.Drawing.Font("宋体", 10.5F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+                label11.ForeColor = System.Drawing.Color.White;
+                label11.Location = new System.Drawing.Point(142, 213);
+                label11.Name = "label" + (i + 1).ToString() + "1";
+                label11.Size = new System.Drawing.Size(22, 14);
+                label11.TabIndex = 600 + i;
+                label11.Text = "温";
+                // 
+                // label12
+                // 
+                label12.BackColor = System.Drawing.Color.Transparent;
+                label12.Font = new System.Drawing.Font("宋体", 10.5F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+                label12.ForeColor = System.Drawing.Color.White;
+                label12.Location = new System.Drawing.Point(90, 212);
+                label12.Margin = new System.Windows.Forms.Padding(0);
+                label12.Name = "label" + (i + 1).ToString() + "2";
+                label12.Size = new System.Drawing.Size(52, 16);
+                label12.TabIndex = 700 + i;
+                label12.Text = "250.0";
+                label12.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+                // 
+                // label13
+                // 
+                label13.BackColor = System.Drawing.Color.Transparent;
+                label13.Font = new System.Drawing.Font("宋体", 10.5F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+                label13.ForeColor = System.Drawing.Color.White;
+                label13.Location = new System.Drawing.Point(165, 212);
+                label13.Margin = new System.Windows.Forms.Padding(0);
+                label13.Name = "label" + (i + 1).ToString() + "3";
+                label13.Size = new System.Drawing.Size(48, 16);
+                label13.TabIndex = 800 + i;
+                label13.Text = "38.0";
+                label13.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+                // 
+                // label14
+                // 
+                label14.BackColor = System.Drawing.Color.Transparent;
+                label14.Font = new System.Drawing.Font("宋体", 60F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+                label14.ForeColor = System.Drawing.Color.Blue;
+                label14.Location = new System.Drawing.Point(3, 20);
+                label14.Name = "label" + (i + 1).ToString() + "4";
+                label14.Size = new System.Drawing.Size(194, 105);
+                label14.TabIndex = 900 + i;
+                label14.Text = (i + 1).ToString(); ;
+                label14.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+
+                // 
+                // pictureBox12
+                // 
+                pictureBox12.BackColor = System.Drawing.Color.Transparent;
+                pictureBox12.Image = global::zhuhai.Properties.Resources.baojingdeng;
+                pictureBox12.Location = new System.Drawing.Point(125, 130);
+                pictureBox12.Name = "pictureBox" + (i + 1).ToString() + "2";
+                pictureBox12.Visible = false;
+                pictureBox12.Size = new System.Drawing.Size(72, 66);
+                pictureBox12.TabIndex = 1000 + i;
+                pictureBox12.TabStop = false;
+                
                 panel1.ResumeLayout(false);
                 panel1.PerformLayout();
-                ((System.ComponentModel.ISupportInitialize)(pictureBoxzhaji12)).EndInit();
-                ((System.ComponentModel.ISupportInitialize)(pictureBoxzhaji11)).EndInit();
-                ((System.ComponentModel.ISupportInitialize)(pictureBoxzhaji10)).EndInit();
+                ((System.ComponentModel.ISupportInitialize)(pictureBox12)).EndInit();
+                ((System.ComponentModel.ISupportInitialize)(pictureBox11)).EndInit();
+                ((System.ComponentModel.ISupportInitialize)(pictureBox10)).EndInit();
 
                 monitorPanels.Add(panel1);
             }
@@ -234,8 +346,6 @@ namespace zhuhai
 
         private void receiveGateState(object obj)
         {
-
-
             while (true && (!this.IsDisposed))
             {
 
@@ -274,52 +384,100 @@ namespace zhuhai
             //从server中获取所有的状态，使用线程的方式
             Gate_state_record[] gate_state_recode = reportContent_Response.gate_state_recode;
 
-
             for (int i = 0; i < gate_state_recode.Length; i++)
             {
                 Panel panel1 = monitorPanels[i];
-                panel1.SuspendLayout();
+
+                String display = "闸机状态：" + EnumName.getWorkStateName(gate_state_recode[i].working_state)
+                    + "\n闸机模式：" + EnumName.getGateModeName(gate_state_recode[i].mode)
+                    + "\n误差调节：核素误差 " + gate_state_recode[i].tiny_nuclear + "，温度误差 " + gate_state_recode[i].tiny_temper
+                    + "\n核素报警阀值 "+ gate_state_recode[i].thr_nuclear+ "，温度报警阀值 " + gate_state_recode[i].thr_temper
+                    + "\n报警状态：核素报警状态-";
+                if (gate_state_recode[i].unnormal_type == (int)zhuhai.xmlrpc.AbnormalType.Nuclear || gate_state_recode[i].unnormal_type == (int)zhuhai.xmlrpc.AbnormalType.TemperatareNuclear)
+                    display += "报警 " + gate_state_recode[i].temperature.ToString() + "，温度报警状态-";
+                else {
+                    display += "无报警，温度报警状态-";
+                }
+
+                if (gate_state_recode[i].unnormal_type == (int)zhuhai.xmlrpc.AbnormalType.Temperatare || gate_state_recode[i].unnormal_type == (int)zhuhai.xmlrpc.AbnormalType.TemperatareNuclear)
+                    display += "报警 " + gate_state_recode[i].temperature.ToString();
+                else {
+                    display += "无报警";
+                }
+                toolTip.SetToolTip(panel1, display);
                 //模式
-                System.Windows.Forms.PictureBox pictureBoxzhaji11 = (PictureBox)(panel1.Controls.Find("pictureBoxzhaji" + (i + 1).ToString() + "1", false)[0]);
+                System.Windows.Forms.PictureBox pictureBox10 = (PictureBox)(panel1.Controls.Find("pictureBox" + (i + 1).ToString() + "0", false)[0]);
+                
                 if (gate_state_recode[i].mode == (int)WorkMode.Shenbao)
-                    pictureBoxzhaji11.Image = global::zhuhai.Properties.Resources.shenbao;
+                    pictureBox10.Image = global::zhuhai.Properties.Resources.shenbaotongguan;
                 else if (gate_state_recode[i].mode == (int)WorkMode.Zizhu)
-                    pictureBoxzhaji11.Image = global::zhuhai.Properties.Resources.zidong;
+                    pictureBox10.Image = global::zhuhai.Properties.Resources.kuaisutongguan;
                 else if (gate_state_recode[i].mode == (int)WorkMode.Shuaka)
-                    pictureBoxzhaji11.Image = global::zhuhai.Properties.Resources.shuaka;
+                    pictureBox10.Image = global::zhuhai.Properties.Resources.shuakatongguan;
                 else if (gate_state_recode[i].mode == (int)WorkMode.Fengbi)
-                    pictureBoxzhaji11.Image = global::zhuhai.Properties.Resources.fengbi;
+                    pictureBox10.Image = global::zhuhai.Properties.Resources.jinzhitongxing;
+
                 //状态
-                System.Windows.Forms.PictureBox pictureBoxzhaji10 = (PictureBox)(panel1.Controls.Find("pictureBoxzhaji" + (i + 1).ToString() + "0", false)[0]);
-                if (gate_state_recode[i].working_state ==  (int)WorkState.Abnormal)
-                    pictureBoxzhaji10.Image = global::zhuhai.Properties.Resources.abnormal;
+                if (gate_state_recode[i].working_state == (int)WorkState.ShutDown || gate_state_recode[i].working_state == (int)WorkState.Sleep)
+                    panel1.BackgroundImage = global::zhuhai.Properties.Resources.gate_shutdown;
                 else if (gate_state_recode[i].working_state ==  (int)WorkState.Normal)
-                    pictureBoxzhaji10.Image = global::zhuhai.Properties.Resources.normal;
+                    panel1.BackgroundImage = global::zhuhai.Properties.Resources.gate_normal;
                 else
-                    pictureBoxzhaji10.Image = global::zhuhai.Properties.Resources.other;
-                panel1.ResumeLayout(false);
-                panel1.PerformLayout();
+                    panel1.BackgroundImage = global::zhuhai.Properties.Resources.gate_abnormal;
+
+                System.Windows.Forms.PictureBox pictureBox11 = (PictureBox)(panel1.Controls.Find("pictureBox" + (i + 1).ToString() + "1", false)[0]);
+                //根据是否设置温度或者核素误差阈值显示该图片
+                if (gate_state_recode[i].tiny_nuclear != 0 || gate_state_recode[i].tiny_temper != 0)
+                {
+                    pictureBox11.Visible = true;
+                }
+                else
+                {
+                    pictureBox11.Visible = false;
+                }
+                
+                //显示当前核数阈值
+                System.Windows.Forms.Label label12 = (Label)(panel1.Controls.Find("label" + (i + 1).ToString() + "2", false)[0]);
+                label12.Text = gate_state_recode[i].nuclear.ToString();
+
+                //显示当前温度阈值
+                System.Windows.Forms.Label label13 = (Label)(panel1.Controls.Find("label" + (i + 1).ToString() + "3", false)[0]);
+                label13.Text = gate_state_recode[i].temperature.ToString();
+
+                
             }
         }
 
         public void initMonitorControler()
         {
             ICustomsCMS server = XmlRpcInstance.getInstance();
+
+            previewControler1 = new H264Controler(this.videoPlayWnd_1, server);
             previewControler = new H264Controler(this.videoPlayWnd, server);
+            
+            previewControler2 = new H264Controler(this.videoPlayWnd_2, server);
             previewControler.setToolStripStatusLabel(this.toolStripStatusLabel);
+            previewControler1.setToolStripStatusLabel(this.toolStripStatusLabel);
+            previewControler2.setToolStripStatusLabel(this.toolStripStatusLabel);
             bool isSuccess = previewControler.init();
+            isSuccess = previewControler1.init() || isSuccess;
+            isSuccess = previewControler2.init() || isSuccess;
             if (!isSuccess)
             {
                 System.Environment.Exit(0);
             }
             previewMonitor = this.monitorList[0];
+            previewMonitor1 = this.monitorList[1];
+            previewMonitor2 = this.monitorList[2];
             previewControler.setMonitor(previewMonitor);
+            previewControler1.setMonitor(this.monitorList[1]);
+            previewControler2.setMonitor(this.monitorList[2]);
             isSuccess = previewControler.preview();
+            isSuccess = previewControler1.preview() || isSuccess;
+            isSuccess = previewControler2.preview() || isSuccess;
             if (isSuccess)
             {
-                //正在监控的面板颜色
                 Panel panel = this.monitorPanels[0];
-                panel.BackColor = Color.YellowGreen;
                 previewMonitorPanels = panel;
             }
             else
@@ -344,21 +502,16 @@ namespace zhuhai
             string selectedGateNo = name.Substring(5);
             int gateNo = Int32.Parse(selectedGateNo);
 
+            
+
             //不是上一次监控的闸机
             if (previewMonitor != monitorList[gateNo - 1])
             {
-                //上一次有监控的闸机置为初始状态
-                if (previewMonitorPanels != null)
-                {
-                    previewMonitorPanels.BackColor = Color.Transparent;
-                }
-
                 previewControler.setMonitor(monitorList[gateNo - 1]);
                 bool isSuccess = previewControler.preview();
 
                 if (isSuccess)
                 {
-                    panel.BackColor = Color.YellowGreen;
                     previewMonitor = monitorList[gateNo - 1];
                     previewMonitorPanels = panel;
 
@@ -366,10 +519,12 @@ namespace zhuhai
                 }
                 else
                 {
-                    panel.BackColor = Color.Transparent;
                     previewMonitor = null;
                     previewMonitorPanels = null;
                 }
+
+                //设置视频监控中选中的闸机
+                comboBox_shipin_1.SelectedIndex = gateNo - 1;
             }
         }
 
@@ -389,17 +544,9 @@ namespace zhuhai
         /// <param name="gate_no"></param>
         private void channelBlink(int gate_no)
         {
-            Panel panel = this.monitorPanels[gate_no - 1];
-            //不是当前正在监控的闸机
-            if (previewMonitor != null && previewMonitor.gateNo == gate_no)
-            {
-                panel.BackColor = Color.Transparent;
-            }
-            else
-            {
-                panel.BackColor = Color.YellowGreen;
-            }
-
+            //显示报警灯
+            System.Windows.Forms.PictureBox pictureBox = (PictureBox)(monitorPanels[gate_no - 1].Controls.Find("pictureBox" + (gate_no).ToString() + "2", false)[0]);
+            pictureBox.Visible = false;
         }
 
         private void barButtonItem_disposePlan_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
@@ -438,13 +585,17 @@ namespace zhuhai
 
         private void barButtonItem_exitSystem_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
         {
-            if (previewControler != null)
+            if (previewControler != null && previewControler1 != null && previewControler2 != null)
             {
                 previewControler.stopCurrentPreview();
+                previewControler1.stopCurrentPreview();
+                previewControler2.stopCurrentPreview();
             }
-            if (previewControler != null)
+            if (previewControler != null && previewControler1 != null && previewControler2 != null)
             {
                 previewControler.quit();
+                previewControler1.quit();
+                previewControler2.quit();
             }
             LogService.getInstance().log(ModuleConstant.LOGOUT_MODULE_CONTENT, ModuleConstant.LOGOUT_MODULE);
             Application.Exit();
@@ -715,10 +866,191 @@ namespace zhuhai
             if (login.DialogResult == DialogResult.OK)
             {
                 this.Visible = true;
+                initPermission();
             }
             else
             {
                 Application.Exit();
+            }
+        }
+
+        private int getSelectedGateNo(object sender)
+        {
+            Panel panel = selectedPanel;
+            string name = panel.Name;
+            //name 由 panel + 闸机号构成
+            string selectedGateNo = name.Substring(5);
+            int gateNo = Int32.Parse(selectedGateNo);
+            return gateNo;
+        }
+
+        private void ToolStripMenuItem_restart_Click(object sender, EventArgs e)
+        {
+            changeGateState(getSelectedGateNo(sender), "闸机重启", (int)OrderType.Gate_Reboot);
+        }
+
+        /// <summary>
+        /// 改变闸机状态
+        /// </summary>
+        /// <param name="modeStr">状态字符串</param>
+        /// <param name="mode">状态</param>
+        public void changeGateState(int gateNo, string stateStr, int state)
+        {
+
+            int[] gateIds = new int[] { gateNo };
+            if (gateIds == null) return;
+            if (MessageBox.Show("你确定要改变选中闸机" + gateNo.ToString() + "进行" + stateStr + "操作？", "提示", MessageBoxButtons.YesNo) == DialogResult.No)
+            {
+                return;
+            }
+            ModeStateSetService service = ModeStateSetService.getInstance();
+            try
+            {
+                service.updateGateState(state, gateIds);
+                LogService.getInstance().log(gateIds.ToString() + "闸机状态变为" + stateStr, ModuleConstant.ModeStateSet_MODULE);
+                MessageBox.Show("操作闸机状态成功！");
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message, "错误");
+            }
+        }
+
+        private void ToolStripMenuItem_shutDown_Click(object sender, EventArgs e)
+        {
+            changeGateState(getSelectedGateNo(sender),  "闸机复位", (int)OrderType.Gate_Reset);
+        }
+
+        /// <summary>
+        /// 改变闸机运行模式
+        /// </summary>
+        /// <param name="modeStr">模式字符串</param>
+        /// <param name="mode">运行模式</param>
+        private void changeGateMode(int gateNo, string modeStr, int mode)
+        {
+
+            int[] gateIds = new int[] { gateNo };
+            if (gateIds == null) return;
+            if (MessageBox.Show("你确定要改变选中闸机" + gateNo.ToString() + "的运行模式到" + modeStr + "模式？", "提示", MessageBoxButtons.YesNo) == DialogResult.No)
+            {
+                return;
+            }
+            ModeStateSetService service = ModeStateSetService.getInstance();
+            try
+            {
+                service.updateGateMode(mode, gateIds);
+                MessageBox.Show("修改闸机运行模式成功！");
+                LogService.getInstance().log(gateIds.ToString() + "运行模式变为" + modeStr, ModuleConstant.GateMode_MODULE);
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message, "错误");
+            }
+        }
+
+        private void ToolStripMenuItem_kuaisutongguan_Click(object sender, EventArgs e)
+        {
+            changeGateMode(getSelectedGateNo(sender), "自助通关", (int)WorkMode.Zizhu);
+        }
+
+        private void ToolStripMenuItem_shuakatongguan_Click(object sender, EventArgs e)
+        {
+            changeGateMode(getSelectedGateNo(sender), "刷卡通关", (int)WorkMode.Shuaka);
+        }
+
+        private void ToolStripMenuItem_shenbaotongguan_Click(object sender, EventArgs e)
+        {
+            changeGateMode(getSelectedGateNo(sender), "申报通关", (int)WorkMode.Shenbao);
+        }
+
+        private void ToolStripMenuItem_jinjiguanbi_Click(object sender, EventArgs e)
+        {
+            changeGateMode(getSelectedGateNo(sender), "通关封闭", (int)WorkMode.Fengbi);
+        }
+
+        private void ToolStripMenuItem_nuclearThreshold_Click(object sender, EventArgs e)
+        {
+            SingleGateThresholdUpdateForm form = new SingleGateThresholdUpdateForm(getSelectedGateNo(sender));
+            form.ShowDialog();
+        }
+
+        private void ToolStripMenuItem_nuclearThresholdError_Click(object sender, EventArgs e)
+        {
+            SingleGateThresholdErrorUpdateForm form = new SingleGateThresholdErrorUpdateForm(getSelectedGateNo(sender));
+            form.ShowDialog();
+        }
+
+        private Panel selectedPanel = null;
+        private void contextMenuStrip_Opening(object sender, CancelEventArgs e)
+        {
+            selectedPanel = ((ContextMenuStrip)sender).SourceControl as Panel;
+        }
+
+        private void barButtonItem_log_ItemClick(object sender, ItemClickEventArgs e)
+        {
+            LogRecordForm logRecordForm = new LogRecordForm();
+            logRecordForm.ShowDialog();
+        }
+
+        private void comboBox_shipin_1_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            int gateNo = comboBox_shipin_1.SelectedIndex + 1;
+            //不是上一次监控的闸机
+            if (previewMonitor != monitorList[gateNo -  1])
+            {
+                previewControler.setMonitor(monitorList[gateNo - 1]);
+                bool isSuccess = previewControler.preview();
+
+                if (isSuccess)
+                {
+                    previewMonitor = monitorList[gateNo - 1];
+                    previewMonitorPanels = monitorPanels[gateNo - 1];
+                }
+                else
+                {
+                    previewMonitor = null;
+                    previewMonitorPanels = null;
+                }
+            }
+        }
+
+        private void comboBox_shipin_2_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            int gateNo = comboBox_shipin_2.SelectedIndex + 1;
+            //不是上一次监控的闸机
+            if (previewMonitor1 != monitorList[gateNo - 1])
+            {
+                previewControler1.setMonitor(monitorList[gateNo - 1]);
+                bool isSuccess = previewControler1.preview();
+
+                if (isSuccess)
+                {
+                    previewMonitor1 = monitorList[gateNo - 1];
+                }
+                else
+                {
+                    previewMonitor1 = null;
+                }
+            }
+        }
+
+        private void comboBox_shipin_3_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            int gateNo = comboBox_shipin_3.SelectedIndex + 1;
+            //不是上一次监控的闸机
+            if (previewMonitor1 != monitorList[gateNo - 1])
+            {
+                previewControler2.setMonitor(monitorList[gateNo - 1]);
+                bool isSuccess = previewControler2.preview();
+
+                if (isSuccess)
+                {
+                    previewMonitor2 = monitorList[gateNo - 1];
+                }
+                else
+                {
+                    previewMonitor2 = null;
+                }
             }
         }
     }

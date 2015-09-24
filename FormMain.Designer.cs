@@ -50,6 +50,7 @@
             this.barButtonItem_title = new DevExpress.XtraBars.BarButtonItem();
             this.barButtonItem_shenbaocontent = new DevExpress.XtraBars.BarButtonItem();
             this.barButtonItem_change = new DevExpress.XtraBars.BarButtonItem();
+            this.barButtonItem_log = new DevExpress.XtraBars.BarButtonItem();
             this.ribbonPageCategory1 = new DevExpress.XtraBars.Ribbon.RibbonPageCategory();
             this.ribbonPage1 = new DevExpress.XtraBars.Ribbon.RibbonPage();
             this.ribbonPageGroup1 = new DevExpress.XtraBars.Ribbon.RibbonPageGroup();
@@ -66,6 +67,14 @@
             this.splitContainerControl1 = new DevExpress.XtraEditors.SplitContainerControl();
             this.xtraTabControl = new DevExpress.XtraTab.XtraTabControl();
             this.xtraTabPage_shipinMonitor = new DevExpress.XtraTab.XtraTabPage();
+            this.comboBox_shipin_3 = new System.Windows.Forms.ComboBox();
+            this.label__shipin_3 = new System.Windows.Forms.Label();
+            this.comboBox_shipin_2 = new System.Windows.Forms.ComboBox();
+            this.label_shipin_2 = new System.Windows.Forms.Label();
+            this.comboBox_shipin_1 = new System.Windows.Forms.ComboBox();
+            this.label_shipin_1 = new System.Windows.Forms.Label();
+            this.videoPlayWnd_2 = new System.Windows.Forms.PictureBox();
+            this.videoPlayWnd_1 = new System.Windows.Forms.PictureBox();
             this.videoPlayWnd = new System.Windows.Forms.PictureBox();
             this.xtraTabPage_tongguanMonitor = new DevExpress.XtraTab.XtraTabPage();
             this.monitorInfoPanel = new System.Windows.Forms.Panel();
@@ -94,6 +103,20 @@
             this.timer_updateTime = new System.Windows.Forms.Timer(this.components);
             this.timer_updateSHWXQH = new System.Windows.Forms.Timer(this.components);
             this.toolStripStatusLabel = new System.Windows.Forms.ToolStripStatusLabel();
+            this.contextMenuStrip = new System.Windows.Forms.ContextMenuStrip(this.components);
+            this.闸机状态ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.ToolStripMenuItem_restart = new System.Windows.Forms.ToolStripMenuItem();
+            this.ToolStripMenuItem_shutDown = new System.Windows.Forms.ToolStripMenuItem();
+            this.闸机模式ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.ToolStripMenuItem_kuaisutongguan = new System.Windows.Forms.ToolStripMenuItem();
+            this.ToolStripMenuItem_shuakatongguan = new System.Windows.Forms.ToolStripMenuItem();
+            this.ToolStripMenuItem_shenbaotongguan = new System.Windows.Forms.ToolStripMenuItem();
+            this.ToolStripMenuItem_jinjiguanbi = new System.Windows.Forms.ToolStripMenuItem();
+            this.报警阈值ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.ToolStripMenuItem_nuclearThreshold = new System.Windows.Forms.ToolStripMenuItem();
+            this.闸机误差ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.ToolStripMenuItem_nuclearThresholdError = new System.Windows.Forms.ToolStripMenuItem();
+            this.toolTip = new System.Windows.Forms.ToolTip(this.components);
             ((System.ComponentModel.ISupportInitialize)(this.ribbonControl1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainerControl1)).BeginInit();
@@ -101,6 +124,8 @@
             ((System.ComponentModel.ISupportInitialize)(this.xtraTabControl)).BeginInit();
             this.xtraTabControl.SuspendLayout();
             this.xtraTabPage_shipinMonitor.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.videoPlayWnd_2)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.videoPlayWnd_1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.videoPlayWnd)).BeginInit();
             this.xtraTabPage_tongguanMonitor.SuspendLayout();
             this.monitorInfoPanel.SuspendLayout();
@@ -108,6 +133,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.gridView_abnormal)).BeginInit();
             this.xtraTabPage_zhajiMonitor.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.navBarControl1)).BeginInit();
+            this.contextMenuStrip.SuspendLayout();
             this.SuspendLayout();
             // 
             // ribbonControl1
@@ -134,9 +160,10 @@
             this.barButtonItem_modeset,
             this.barButtonItem_title,
             this.barButtonItem_shenbaocontent,
-            this.barButtonItem_change});
+            this.barButtonItem_change,
+            this.barButtonItem_log});
             this.ribbonControl1.Location = new System.Drawing.Point(0, 0);
-            this.ribbonControl1.MaxItemId = 6;
+            this.ribbonControl1.MaxItemId = 7;
             this.ribbonControl1.Name = "ribbonControl1";
             this.ribbonControl1.PageCategories.AddRange(new DevExpress.XtraBars.Ribbon.RibbonPageCategory[] {
             this.ribbonPageCategory1});
@@ -324,6 +351,15 @@
             this.barButtonItem_change.Name = "barButtonItem_change";
             this.barButtonItem_change.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.barButtonItem_change_ItemClick);
             // 
+            // barButtonItem_log
+            // 
+            this.barButtonItem_log.Caption = "日志查询";
+            this.barButtonItem_log.Glyph = global::zhuhai.Properties.Resources.customizegrid_16x16;
+            this.barButtonItem_log.Id = 6;
+            this.barButtonItem_log.LargeGlyph = global::zhuhai.Properties.Resources.customizegrid_32x32;
+            this.barButtonItem_log.Name = "barButtonItem_log";
+            this.barButtonItem_log.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.barButtonItem_log_ItemClick);
+            // 
             // ribbonPageCategory1
             // 
             this.ribbonPageCategory1.Name = "ribbonPageCategory1";
@@ -367,6 +403,7 @@
             // 
             this.ribbonPageGroup3.ItemLinks.Add(this.barButtonItem_clearanceRecord);
             this.ribbonPageGroup3.ItemLinks.Add(this.barButtonItem_videoReplay);
+            this.ribbonPageGroup3.ItemLinks.Add(this.barButtonItem_log);
             this.ribbonPageGroup3.Name = "ribbonPageGroup3";
             this.ribbonPageGroup3.ShowCaptionButton = false;
             this.ribbonPageGroup3.Text = "数据查询";
@@ -413,7 +450,7 @@
             this.ribbonStatusBar1.ItemLinks.Add(this.barStaticItem_currentUser);
             this.ribbonStatusBar1.ItemLinks.Add(this.barStaticItem_systemTime);
             this.ribbonStatusBar1.ItemLinks.Add(this.barButtonItem_change);
-            this.ribbonStatusBar1.Location = new System.Drawing.Point(0, 647);
+            this.ribbonStatusBar1.Location = new System.Drawing.Point(0, 713);
             this.ribbonStatusBar1.Name = "ribbonStatusBar1";
             this.ribbonStatusBar1.Ribbon = this.ribbonControl1;
             this.ribbonStatusBar1.Size = new System.Drawing.Size(1350, 27);
@@ -444,7 +481,7 @@
             this.splitContainerControl1.Panel2.Controls.Add(this.navBarControl1);
             this.splitContainerControl1.Panel2.MinSize = 336;
             this.splitContainerControl1.Panel2.Text = "Panel2";
-            this.splitContainerControl1.Size = new System.Drawing.Size(1350, 525);
+            this.splitContainerControl1.Size = new System.Drawing.Size(1350, 591);
             this.splitContainerControl1.TabIndex = 17;
             this.splitContainerControl1.Text = "splitContainerControl1";
             // 
@@ -455,7 +492,7 @@
             this.xtraTabControl.Location = new System.Drawing.Point(0, 0);
             this.xtraTabControl.Name = "xtraTabControl";
             this.xtraTabControl.SelectedTabPage = this.xtraTabPage_shipinMonitor;
-            this.xtraTabControl.Size = new System.Drawing.Size(1000, 515);
+            this.xtraTabControl.Size = new System.Drawing.Size(1000, 581);
             this.xtraTabControl.TabIndex = 0;
             this.xtraTabControl.TabPages.AddRange(new DevExpress.XtraTab.XtraTabPage[] {
             this.xtraTabPage_tongguanMonitor,
@@ -465,18 +502,98 @@
             // 
             // xtraTabPage_shipinMonitor
             // 
+            this.xtraTabPage_shipinMonitor.Controls.Add(this.comboBox_shipin_3);
+            this.xtraTabPage_shipinMonitor.Controls.Add(this.label__shipin_3);
+            this.xtraTabPage_shipinMonitor.Controls.Add(this.comboBox_shipin_2);
+            this.xtraTabPage_shipinMonitor.Controls.Add(this.label_shipin_2);
+            this.xtraTabPage_shipinMonitor.Controls.Add(this.comboBox_shipin_1);
+            this.xtraTabPage_shipinMonitor.Controls.Add(this.label_shipin_1);
+            this.xtraTabPage_shipinMonitor.Controls.Add(this.videoPlayWnd_2);
+            this.xtraTabPage_shipinMonitor.Controls.Add(this.videoPlayWnd_1);
             this.xtraTabPage_shipinMonitor.Controls.Add(this.videoPlayWnd);
             this.xtraTabPage_shipinMonitor.Name = "xtraTabPage_shipinMonitor";
-            this.xtraTabPage_shipinMonitor.Size = new System.Drawing.Size(992, 484);
+            this.xtraTabPage_shipinMonitor.Size = new System.Drawing.Size(992, 550);
             this.xtraTabPage_shipinMonitor.Text = "视频监控";
             this.xtraTabPage_shipinMonitor.VisibleChanged += new System.EventHandler(this.xtraTabPage_shipinMonitor_VisibleChanged);
             // 
+            // comboBox_shipin_3
+            // 
+            this.comboBox_shipin_3.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.comboBox_shipin_3.FormattingEnabled = true;
+            this.comboBox_shipin_3.Location = new System.Drawing.Point(714, 273);
+            this.comboBox_shipin_3.Name = "comboBox_shipin_3";
+            this.comboBox_shipin_3.Size = new System.Drawing.Size(121, 22);
+            this.comboBox_shipin_3.TabIndex = 8;
+            this.comboBox_shipin_3.SelectedIndexChanged += new System.EventHandler(this.comboBox_shipin_3_SelectedIndexChanged);
+            // 
+            // label__shipin_3
+            // 
+            this.label__shipin_3.AutoSize = true;
+            this.label__shipin_3.Location = new System.Drawing.Point(639, 277);
+            this.label__shipin_3.Name = "label__shipin_3";
+            this.label__shipin_3.Size = new System.Drawing.Size(79, 14);
+            this.label__shipin_3.TabIndex = 7;
+            this.label__shipin_3.Text = "监控闸机号：";
+            // 
+            // comboBox_shipin_2
+            // 
+            this.comboBox_shipin_2.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.comboBox_shipin_2.FormattingEnabled = true;
+            this.comboBox_shipin_2.Location = new System.Drawing.Point(714, 3);
+            this.comboBox_shipin_2.Name = "comboBox_shipin_2";
+            this.comboBox_shipin_2.Size = new System.Drawing.Size(121, 22);
+            this.comboBox_shipin_2.TabIndex = 6;
+            this.comboBox_shipin_2.SelectedIndexChanged += new System.EventHandler(this.comboBox_shipin_2_SelectedIndexChanged);
+            // 
+            // label_shipin_2
+            // 
+            this.label_shipin_2.AutoSize = true;
+            this.label_shipin_2.Location = new System.Drawing.Point(639, 7);
+            this.label_shipin_2.Name = "label_shipin_2";
+            this.label_shipin_2.Size = new System.Drawing.Size(79, 14);
+            this.label_shipin_2.TabIndex = 5;
+            this.label_shipin_2.Text = "监控闸机号：";
+            // 
+            // comboBox_shipin_1
+            // 
+            this.comboBox_shipin_1.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.comboBox_shipin_1.FormattingEnabled = true;
+            this.comboBox_shipin_1.Location = new System.Drawing.Point(80, 3);
+            this.comboBox_shipin_1.Name = "comboBox_shipin_1";
+            this.comboBox_shipin_1.Size = new System.Drawing.Size(121, 22);
+            this.comboBox_shipin_1.TabIndex = 4;
+            this.comboBox_shipin_1.SelectedIndexChanged += new System.EventHandler(this.comboBox_shipin_1_SelectedIndexChanged);
+            // 
+            // label_shipin_1
+            // 
+            this.label_shipin_1.AutoSize = true;
+            this.label_shipin_1.Location = new System.Drawing.Point(5, 7);
+            this.label_shipin_1.Name = "label_shipin_1";
+            this.label_shipin_1.Size = new System.Drawing.Size(79, 14);
+            this.label_shipin_1.TabIndex = 3;
+            this.label_shipin_1.Text = "监控闸机号：";
+            // 
+            // videoPlayWnd_2
+            // 
+            this.videoPlayWnd_2.Location = new System.Drawing.Point(631, 306);
+            this.videoPlayWnd_2.Name = "videoPlayWnd_2";
+            this.videoPlayWnd_2.Size = new System.Drawing.Size(358, 241);
+            this.videoPlayWnd_2.TabIndex = 2;
+            this.videoPlayWnd_2.TabStop = false;
+            // 
+            // videoPlayWnd_1
+            // 
+            this.videoPlayWnd_1.Location = new System.Drawing.Point(631, 28);
+            this.videoPlayWnd_1.Name = "videoPlayWnd_1";
+            this.videoPlayWnd_1.Size = new System.Drawing.Size(358, 241);
+            this.videoPlayWnd_1.TabIndex = 1;
+            this.videoPlayWnd_1.TabStop = false;
+            // 
             // videoPlayWnd
             // 
-            this.videoPlayWnd.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.videoPlayWnd.Location = new System.Drawing.Point(0, 0);
+            this.videoPlayWnd.Location = new System.Drawing.Point(0, 28);
             this.videoPlayWnd.Name = "videoPlayWnd";
-            this.videoPlayWnd.Size = new System.Drawing.Size(992, 484);
+            this.videoPlayWnd.Size = new System.Drawing.Size(625, 519);
             this.videoPlayWnd.TabIndex = 0;
             this.videoPlayWnd.TabStop = false;
             // 
@@ -484,7 +601,7 @@
             // 
             this.xtraTabPage_tongguanMonitor.Controls.Add(this.monitorInfoPanel);
             this.xtraTabPage_tongguanMonitor.Name = "xtraTabPage_tongguanMonitor";
-            this.xtraTabPage_tongguanMonitor.Size = new System.Drawing.Size(992, 484);
+            this.xtraTabPage_tongguanMonitor.Size = new System.Drawing.Size(992, 550);
             this.xtraTabPage_tongguanMonitor.Text = "通关监控";
             this.xtraTabPage_tongguanMonitor.VisibleChanged += new System.EventHandler(this.xtraTabPage_tongguanMonitor_VisibleChanged);
             // 
@@ -632,7 +749,7 @@
             // 
             this.xtraTabPage_zhajiMonitor.Controls.Add(this.zhajipanel);
             this.xtraTabPage_zhajiMonitor.Name = "xtraTabPage_zhajiMonitor";
-            this.xtraTabPage_zhajiMonitor.Size = new System.Drawing.Size(992, 484);
+            this.xtraTabPage_zhajiMonitor.Size = new System.Drawing.Size(992, 550);
             this.xtraTabPage_zhajiMonitor.Text = "闸机监控";
             this.xtraTabPage_zhajiMonitor.VisibleChanged += new System.EventHandler(this.xtraTabPage_zhajiMonitor_VisibleChanged);
             // 
@@ -660,7 +777,7 @@
             this.navBarControl1.Location = new System.Drawing.Point(0, 0);
             this.navBarControl1.Name = "navBarControl1";
             this.navBarControl1.OptionsNavPane.ExpandedWidth = 335;
-            this.navBarControl1.Size = new System.Drawing.Size(335, 515);
+            this.navBarControl1.Size = new System.Drawing.Size(335, 581);
             this.navBarControl1.TabIndex = 0;
             this.navBarControl1.Text = "navBarControl1";
             // 
@@ -756,11 +873,114 @@
             this.toolStripStatusLabel.Size = new System.Drawing.Size(29, 36);
             this.toolStripStatusLabel.Text = "就绪";
             // 
+            // contextMenuStrip
+            // 
+            this.contextMenuStrip.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.闸机状态ToolStripMenuItem,
+            this.闸机模式ToolStripMenuItem,
+            this.报警阈值ToolStripMenuItem,
+            this.闸机误差ToolStripMenuItem});
+            this.contextMenuStrip.Name = "contextMenuStrip";
+            this.contextMenuStrip.Size = new System.Drawing.Size(125, 92);
+            this.contextMenuStrip.Opening += new System.ComponentModel.CancelEventHandler(this.contextMenuStrip_Opening);
+            // 
+            // 闸机状态ToolStripMenuItem
+            // 
+            this.闸机状态ToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.ToolStripMenuItem_restart,
+            this.ToolStripMenuItem_shutDown});
+            this.闸机状态ToolStripMenuItem.Name = "闸机状态ToolStripMenuItem";
+            this.闸机状态ToolStripMenuItem.Size = new System.Drawing.Size(124, 22);
+            this.闸机状态ToolStripMenuItem.Text = "闸机状态";
+            // 
+            // ToolStripMenuItem_restart
+            // 
+            this.ToolStripMenuItem_restart.Name = "ToolStripMenuItem_restart";
+            this.ToolStripMenuItem_restart.Size = new System.Drawing.Size(100, 22);
+            this.ToolStripMenuItem_restart.Text = "重启";
+            this.ToolStripMenuItem_restart.Click += new System.EventHandler(this.ToolStripMenuItem_restart_Click);
+            // 
+            // ToolStripMenuItem_shutDown
+            // 
+            this.ToolStripMenuItem_shutDown.Name = "ToolStripMenuItem_shutDown";
+            this.ToolStripMenuItem_shutDown.Size = new System.Drawing.Size(100, 22);
+            this.ToolStripMenuItem_shutDown.Text = "关闭";
+            this.ToolStripMenuItem_shutDown.Click += new System.EventHandler(this.ToolStripMenuItem_shutDown_Click);
+            // 
+            // 闸机模式ToolStripMenuItem
+            // 
+            this.闸机模式ToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.ToolStripMenuItem_kuaisutongguan,
+            this.ToolStripMenuItem_shuakatongguan,
+            this.ToolStripMenuItem_shenbaotongguan,
+            this.ToolStripMenuItem_jinjiguanbi});
+            this.闸机模式ToolStripMenuItem.Name = "闸机模式ToolStripMenuItem";
+            this.闸机模式ToolStripMenuItem.Size = new System.Drawing.Size(124, 22);
+            this.闸机模式ToolStripMenuItem.Text = "闸机模式";
+            // 
+            // ToolStripMenuItem_kuaisutongguan
+            // 
+            this.ToolStripMenuItem_kuaisutongguan.Name = "ToolStripMenuItem_kuaisutongguan";
+            this.ToolStripMenuItem_kuaisutongguan.Size = new System.Drawing.Size(124, 22);
+            this.ToolStripMenuItem_kuaisutongguan.Text = "快速通关";
+            this.ToolStripMenuItem_kuaisutongguan.Click += new System.EventHandler(this.ToolStripMenuItem_kuaisutongguan_Click);
+            // 
+            // ToolStripMenuItem_shuakatongguan
+            // 
+            this.ToolStripMenuItem_shuakatongguan.Name = "ToolStripMenuItem_shuakatongguan";
+            this.ToolStripMenuItem_shuakatongguan.Size = new System.Drawing.Size(124, 22);
+            this.ToolStripMenuItem_shuakatongguan.Text = "刷卡通关";
+            this.ToolStripMenuItem_shuakatongguan.Click += new System.EventHandler(this.ToolStripMenuItem_shuakatongguan_Click);
+            // 
+            // ToolStripMenuItem_shenbaotongguan
+            // 
+            this.ToolStripMenuItem_shenbaotongguan.Name = "ToolStripMenuItem_shenbaotongguan";
+            this.ToolStripMenuItem_shenbaotongguan.Size = new System.Drawing.Size(124, 22);
+            this.ToolStripMenuItem_shenbaotongguan.Text = "申报通关";
+            this.ToolStripMenuItem_shenbaotongguan.Click += new System.EventHandler(this.ToolStripMenuItem_shenbaotongguan_Click);
+            // 
+            // ToolStripMenuItem_jinjiguanbi
+            // 
+            this.ToolStripMenuItem_jinjiguanbi.Name = "ToolStripMenuItem_jinjiguanbi";
+            this.ToolStripMenuItem_jinjiguanbi.Size = new System.Drawing.Size(124, 22);
+            this.ToolStripMenuItem_jinjiguanbi.Text = "紧急关闭";
+            this.ToolStripMenuItem_jinjiguanbi.Click += new System.EventHandler(this.ToolStripMenuItem_jinjiguanbi_Click);
+            // 
+            // 报警阈值ToolStripMenuItem
+            // 
+            this.报警阈值ToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.ToolStripMenuItem_nuclearThreshold});
+            this.报警阈值ToolStripMenuItem.Name = "报警阈值ToolStripMenuItem";
+            this.报警阈值ToolStripMenuItem.Size = new System.Drawing.Size(124, 22);
+            this.报警阈值ToolStripMenuItem.Text = "闸机阈值";
+            // 
+            // ToolStripMenuItem_nuclearThreshold
+            // 
+            this.ToolStripMenuItem_nuclearThreshold.Name = "ToolStripMenuItem_nuclearThreshold";
+            this.ToolStripMenuItem_nuclearThreshold.Size = new System.Drawing.Size(172, 22);
+            this.ToolStripMenuItem_nuclearThreshold.Text = "核素温度报警阈值";
+            this.ToolStripMenuItem_nuclearThreshold.Click += new System.EventHandler(this.ToolStripMenuItem_nuclearThreshold_Click);
+            // 
+            // 闸机误差ToolStripMenuItem
+            // 
+            this.闸机误差ToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.ToolStripMenuItem_nuclearThresholdError});
+            this.闸机误差ToolStripMenuItem.Name = "闸机误差ToolStripMenuItem";
+            this.闸机误差ToolStripMenuItem.Size = new System.Drawing.Size(124, 22);
+            this.闸机误差ToolStripMenuItem.Text = "闸机误差";
+            // 
+            // ToolStripMenuItem_nuclearThresholdError
+            // 
+            this.ToolStripMenuItem_nuclearThresholdError.Name = "ToolStripMenuItem_nuclearThresholdError";
+            this.ToolStripMenuItem_nuclearThresholdError.Size = new System.Drawing.Size(172, 22);
+            this.ToolStripMenuItem_nuclearThresholdError.Text = "核素温度误差调节";
+            this.ToolStripMenuItem_nuclearThresholdError.Click += new System.EventHandler(this.ToolStripMenuItem_nuclearThresholdError_Click);
+            // 
             // FormMain
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 14F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1350, 674);
+            this.ClientSize = new System.Drawing.Size(1350, 740);
             this.Controls.Add(this.splitContainerControl1);
             this.Controls.Add(this.ribbonStatusBar1);
             this.Controls.Add(this.pictureBox1);
@@ -782,6 +1002,9 @@
             ((System.ComponentModel.ISupportInitialize)(this.xtraTabControl)).EndInit();
             this.xtraTabControl.ResumeLayout(false);
             this.xtraTabPage_shipinMonitor.ResumeLayout(false);
+            this.xtraTabPage_shipinMonitor.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.videoPlayWnd_2)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.videoPlayWnd_1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.videoPlayWnd)).EndInit();
             this.xtraTabPage_tongguanMonitor.ResumeLayout(false);
             this.monitorInfoPanel.ResumeLayout(false);
@@ -789,6 +1012,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.gridView_abnormal)).EndInit();
             this.xtraTabPage_zhajiMonitor.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.navBarControl1)).EndInit();
+            this.contextMenuStrip.ResumeLayout(false);
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -860,6 +1084,29 @@
         private DevExpress.XtraBars.BarButtonItem barButtonItem_title;
         private DevExpress.XtraBars.BarButtonItem barButtonItem_shenbaocontent;
         private DevExpress.XtraBars.BarButtonItem barButtonItem_change;
+        private System.Windows.Forms.ContextMenuStrip contextMenuStrip;
+        private System.Windows.Forms.ToolStripMenuItem 闸机状态ToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem 闸机模式ToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem 报警阈值ToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem 闸机误差ToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem ToolStripMenuItem_restart;
+        private System.Windows.Forms.ToolStripMenuItem ToolStripMenuItem_shutDown;
+        private System.Windows.Forms.ToolStripMenuItem ToolStripMenuItem_kuaisutongguan;
+        private System.Windows.Forms.ToolStripMenuItem ToolStripMenuItem_shuakatongguan;
+        private System.Windows.Forms.ToolStripMenuItem ToolStripMenuItem_shenbaotongguan;
+        private System.Windows.Forms.ToolStripMenuItem ToolStripMenuItem_jinjiguanbi;
+        private System.Windows.Forms.ToolStripMenuItem ToolStripMenuItem_nuclearThreshold;
+        private System.Windows.Forms.ToolStripMenuItem ToolStripMenuItem_nuclearThresholdError;
+        private System.Windows.Forms.ToolTip toolTip;
+        private DevExpress.XtraBars.BarButtonItem barButtonItem_log;
+        private System.Windows.Forms.PictureBox videoPlayWnd_1;
+        private System.Windows.Forms.PictureBox videoPlayWnd_2;
+        private System.Windows.Forms.Label label_shipin_1;
+        private System.Windows.Forms.ComboBox comboBox_shipin_1;
+        private System.Windows.Forms.ComboBox comboBox_shipin_2;
+        private System.Windows.Forms.Label label_shipin_2;
+        private System.Windows.Forms.ComboBox comboBox_shipin_3;
+        private System.Windows.Forms.Label label__shipin_3;
         
        
 

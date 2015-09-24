@@ -50,7 +50,7 @@ namespace zhuhai
             string country = textEdit_country.Text;
             if (country != "" && country.Trim() != "")
             {
-                strWhere.Add(ClearanceRecord.NATIONALITY_COLUMN, country.Trim());
+                strWhere.Add(ClearanceRecord.NATIONALITY_COLUMN_QUERY, country.Trim());
             }
 
             if (comboBox_sex.Text != "" && comboBox_sex.Text != "全部" && comboBox_sex.Text.Trim() != "")
@@ -66,9 +66,9 @@ namespace zhuhai
             }
 
             DateTime dt = DateTime.Parse(dateTimePicker_startTime.Text + " " + dateTimePicker_startTime_time.Text);
-            strWhere.Add(ClearanceRecord.NVR_STARTTIME_COLUMN, dt);
+            strWhere.Add(ClearanceRecord.NVR_STARTTIME_COLUMN_QUERY, dt);
             DateTime dt1 = DateTime.Parse(dateTimePicker_endTime.Text + " " + dateTimePicker_endTime_time.Text);
-            strWhere.Add(ClearanceRecord.NVR_ENDTIME_COLUMN, dt1);
+            strWhere.Add(ClearanceRecord.NVR_ENDTIME_COLUMN_QUERY, dt1);
 
             string abnormal = comboBox_abnormal.Text;
             int abnormalType = -1;

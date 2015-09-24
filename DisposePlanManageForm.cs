@@ -23,13 +23,29 @@ namespace zhuhai
         public DisposePlanManageForm()
         {
             InitializeComponent();
-
+            initPermission();
             disposePlanService = DisposePlanService.getInstance();
             
             pageUpControl.MyControl = gridControl;
             pageUpControl.QueryService = disposePlanService;
 
             initData(formatWhere());
+        }
+
+        public void initPermission()
+        {
+            if (PermissionControl.IsAuthorized("simpleButton_delete") == false)
+            {
+                simpleButton_delete.Visible = false;
+            }
+            if (PermissionControl.IsAuthorized("simpleButton_modify") == false)
+            {
+                simpleButton_modify.Visible = false;
+            }
+            if (PermissionControl.IsAuthorized("simpleButton_add") == false)
+            {
+                simpleButton_add.Visible = false;
+            }
         }
 
         /// <summary>

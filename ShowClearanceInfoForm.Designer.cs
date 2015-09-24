@@ -39,20 +39,21 @@
             this.label3 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
-            this.nuclearjialabel = new System.Windows.Forms.Label();
-            this.nuclearselabel = new System.Windows.Forms.Label();
-            this.nucleartulabel = new System.Windows.Forms.Label();
-            this.nucleargulabel = new System.Windows.Forms.Label();
-            this.nuclearyilabel = new System.Windows.Forms.Label();
             this.exceptionLabel = new System.Windows.Forms.Label();
             this.extempraturelabel = new System.Windows.Forms.Label();
             this.exchannellabel = new System.Windows.Forms.Label();
             this.passTime = new System.Windows.Forms.Label();
             this.idnoLabel = new System.Windows.Forms.Label();
             this.picPanel = new System.Windows.Forms.Panel();
-            this.photoPictureBox = new System.Windows.Forms.PictureBox();
             this.nationalityLabel = new System.Windows.Forms.Label();
             this.nameLabel = new System.Windows.Forms.Label();
+            this.button_shipin = new System.Windows.Forms.Button();
+            this.nuclearjialabel = new System.Windows.Forms.Label();
+            this.nuclearselabel = new System.Windows.Forms.Label();
+            this.nucleartulabel = new System.Windows.Forms.Label();
+            this.nucleargulabel = new System.Windows.Forms.Label();
+            this.nuclearyilabel = new System.Windows.Forms.Label();
+            this.photoPictureBox = new System.Windows.Forms.PictureBox();
             this.personinfoPanel.SuspendLayout();
             this.picPanel.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.photoPictureBox)).BeginInit();
@@ -61,6 +62,7 @@
             // personinfoPanel
             // 
             this.personinfoPanel.BackColor = System.Drawing.Color.Transparent;
+            this.personinfoPanel.Controls.Add(this.button_shipin);
             this.personinfoPanel.Controls.Add(this.button_print);
             this.personinfoPanel.Controls.Add(this.label_statuName);
             this.personinfoPanel.Controls.Add(this.label_status);
@@ -94,7 +96,7 @@
             // button_print
             // 
             this.button_print.Font = new System.Drawing.Font("微软雅黑", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.button_print.Location = new System.Drawing.Point(395, 390);
+            this.button_print.Location = new System.Drawing.Point(217, 393);
             this.button_print.Name = "button_print";
             this.button_print.Size = new System.Drawing.Size(177, 46);
             this.button_print.TabIndex = 36;
@@ -196,46 +198,6 @@
             this.label1.TabIndex = 27;
             this.label1.Text = "姓名：";
             // 
-            // nuclearjialabel
-            // 
-            this.nuclearjialabel.Image = global::zhuhai.Properties.Resources.jiawhite;
-            this.nuclearjialabel.Location = new System.Drawing.Point(227, 390);
-            this.nuclearjialabel.Name = "nuclearjialabel";
-            this.nuclearjialabel.Size = new System.Drawing.Size(35, 35);
-            this.nuclearjialabel.TabIndex = 26;
-            // 
-            // nuclearselabel
-            // 
-            this.nuclearselabel.Image = global::zhuhai.Properties.Resources.sewhite;
-            this.nuclearselabel.Location = new System.Drawing.Point(176, 390);
-            this.nuclearselabel.Name = "nuclearselabel";
-            this.nuclearselabel.Size = new System.Drawing.Size(35, 35);
-            this.nuclearselabel.TabIndex = 25;
-            // 
-            // nucleartulabel
-            // 
-            this.nucleartulabel.Image = global::zhuhai.Properties.Resources.tuwhite;
-            this.nucleartulabel.Location = new System.Drawing.Point(121, 390);
-            this.nucleartulabel.Name = "nucleartulabel";
-            this.nucleartulabel.Size = new System.Drawing.Size(35, 35);
-            this.nucleartulabel.TabIndex = 24;
-            // 
-            // nucleargulabel
-            // 
-            this.nucleargulabel.Image = global::zhuhai.Properties.Resources.guwhite;
-            this.nucleargulabel.Location = new System.Drawing.Point(65, 390);
-            this.nucleargulabel.Name = "nucleargulabel";
-            this.nucleargulabel.Size = new System.Drawing.Size(35, 35);
-            this.nucleargulabel.TabIndex = 23;
-            // 
-            // nuclearyilabel
-            // 
-            this.nuclearyilabel.Image = global::zhuhai.Properties.Resources.yiwhite;
-            this.nuclearyilabel.Location = new System.Drawing.Point(11, 390);
-            this.nuclearyilabel.Name = "nuclearyilabel";
-            this.nuclearyilabel.Size = new System.Drawing.Size(35, 35);
-            this.nuclearyilabel.TabIndex = 22;
-            // 
             // exceptionLabel
             // 
             this.exceptionLabel.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)
@@ -306,16 +268,6 @@
             this.picPanel.Size = new System.Drawing.Size(145, 170);
             this.picPanel.TabIndex = 10;
             // 
-            // photoPictureBox
-            // 
-            this.photoPictureBox.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
-            this.photoPictureBox.InitialImage = global::zhuhai.Properties.Resources.people;
-            this.photoPictureBox.Location = new System.Drawing.Point(4, 6);
-            this.photoPictureBox.Name = "photoPictureBox";
-            this.photoPictureBox.Size = new System.Drawing.Size(138, 161);
-            this.photoPictureBox.TabIndex = 9;
-            this.photoPictureBox.TabStop = false;
-            // 
             // nationalityLabel
             // 
             this.nationalityLabel.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)
@@ -341,6 +293,67 @@
             this.nameLabel.Name = "nameLabel";
             this.nameLabel.Size = new System.Drawing.Size(333, 31);
             this.nameLabel.TabIndex = 6;
+            // 
+            // button_shipin
+            // 
+            this.button_shipin.Font = new System.Drawing.Font("微软雅黑", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.button_shipin.Location = new System.Drawing.Point(408, 393);
+            this.button_shipin.Name = "button_shipin";
+            this.button_shipin.Size = new System.Drawing.Size(177, 46);
+            this.button_shipin.TabIndex = 37;
+            this.button_shipin.Text = "通关视频";
+            this.button_shipin.UseVisualStyleBackColor = true;
+            this.button_shipin.Click += new System.EventHandler(this.button_shipin_Click);
+            // 
+            // nuclearjialabel
+            // 
+            this.nuclearjialabel.Image = global::zhuhai.Properties.Resources.jiawhite;
+            this.nuclearjialabel.Location = new System.Drawing.Point(227, 390);
+            this.nuclearjialabel.Name = "nuclearjialabel";
+            this.nuclearjialabel.Size = new System.Drawing.Size(35, 35);
+            this.nuclearjialabel.TabIndex = 26;
+            // 
+            // nuclearselabel
+            // 
+            this.nuclearselabel.Image = global::zhuhai.Properties.Resources.sewhite;
+            this.nuclearselabel.Location = new System.Drawing.Point(176, 390);
+            this.nuclearselabel.Name = "nuclearselabel";
+            this.nuclearselabel.Size = new System.Drawing.Size(35, 35);
+            this.nuclearselabel.TabIndex = 25;
+            // 
+            // nucleartulabel
+            // 
+            this.nucleartulabel.Image = global::zhuhai.Properties.Resources.tuwhite;
+            this.nucleartulabel.Location = new System.Drawing.Point(121, 390);
+            this.nucleartulabel.Name = "nucleartulabel";
+            this.nucleartulabel.Size = new System.Drawing.Size(35, 35);
+            this.nucleartulabel.TabIndex = 24;
+            // 
+            // nucleargulabel
+            // 
+            this.nucleargulabel.Image = global::zhuhai.Properties.Resources.guwhite;
+            this.nucleargulabel.Location = new System.Drawing.Point(65, 390);
+            this.nucleargulabel.Name = "nucleargulabel";
+            this.nucleargulabel.Size = new System.Drawing.Size(35, 35);
+            this.nucleargulabel.TabIndex = 23;
+            // 
+            // nuclearyilabel
+            // 
+            this.nuclearyilabel.Image = global::zhuhai.Properties.Resources.yiwhite;
+            this.nuclearyilabel.Location = new System.Drawing.Point(11, 390);
+            this.nuclearyilabel.Name = "nuclearyilabel";
+            this.nuclearyilabel.Size = new System.Drawing.Size(35, 35);
+            this.nuclearyilabel.TabIndex = 22;
+            // 
+            // photoPictureBox
+            // 
+            this.photoPictureBox.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            this.photoPictureBox.InitialImage = global::zhuhai.Properties.Resources.people;
+            this.photoPictureBox.Location = new System.Drawing.Point(4, 6);
+            this.photoPictureBox.Name = "photoPictureBox";
+            this.photoPictureBox.Size = new System.Drawing.Size(138, 161);
+            this.photoPictureBox.TabIndex = 9;
+            this.photoPictureBox.TabStop = false;
             // 
             // ShowClearanceInfoForm
             // 
@@ -387,5 +400,6 @@
         private System.Windows.Forms.Label label_status;
         private System.Windows.Forms.Label label_statuName;
         private System.Windows.Forms.Button button_print;
+        private System.Windows.Forms.Button button_shipin;
     }
 }

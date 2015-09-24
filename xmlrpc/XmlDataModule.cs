@@ -12,7 +12,9 @@ namespace zhuhai.xmlrpc
 
     public class DBRPCResponse : RPCResponse
     {
+        [XmlRpcMissingMapping(MappingAction.Ignore)]
         public int dbresult;
+        [XmlRpcMissingMapping(MappingAction.Ignore)]
         public string dbreason;
 
         public override string ToString()
@@ -26,6 +28,11 @@ namespace zhuhai.xmlrpc
     public class TitleNumResponse : RPCResponse
     {
         public int titlenum;
+    }
+
+    public class NumResponse : RPCResponse
+    {
+        public int all_num;
     }
     public class ImageText_List_Response : RPCResponse
     {
@@ -110,7 +117,8 @@ namespace zhuhai.xmlrpc
 
     public class OrderRPCResponse : RPCResponse
     {
-        //public SysOrder order;
+        [XmlRpcMissingMapping(MappingAction.Ignore)]
+        public SysOrder order;
 
         public override string ToString()
         {
@@ -141,6 +149,20 @@ namespace zhuhai.xmlrpc
         public string operatePeople;
     }
 
+    public class LogRecord
+    {
+        public string operateContent {get; set;}
+        public string operateModule {get; set;}
+        public string operatePeople {get; set;}
+        [XmlRpcMissingMapping(MappingAction.Ignore)]
+        public string operateTime {get; set;}
+    }
+
+    public class LogListRPCResponse : RPCResponse
+    {
+        public LogRecord[] loglists;
+    }
+
     public class ReportContent
     {
         public int id;
@@ -157,9 +179,30 @@ namespace zhuhai.xmlrpc
 
     public class Gate_state_record
     {
+        //闸机号
         public int gateid;
+        //模式
         public int mode;
+        //状态
         public int working_state;
+        //核素阈值
+        public double thr_nuclear;
+        //温度阈值
+        public double thr_temper;
+        //核素误差
+        public double tiny_nuclear;
+        //温度误差
+        public double tiny_temper;
+
+        /// <summary>
+        /// 通关人员异常类型
+        /// 0就是正常，1是核素异常，2，温度异常， 3是温度和核素都有异常
+        /// </summary>
+        public int unnormal_type;
+        //通关人员的核素值
+        public double nuclear;
+        //通关人员的温度
+        public double temperature;
     }
 
     public class Gate_state_record_Response : RPCResponse
@@ -173,12 +216,15 @@ namespace zhuhai.xmlrpc
     /// </summary>
     public class Usercheck
     {
+        public int id;
         public string username;
         public string password;
          [XmlRpcMissingMapping(MappingAction.Ignore)]
         public string rolename;
          [XmlRpcMissingMapping(MappingAction.Ignore)]
         public string realname;
+         [XmlRpcMissingMapping(MappingAction.Ignore)]
+         public string idcard;
     }
 
     /// <summary>
@@ -186,6 +232,18 @@ namespace zhuhai.xmlrpc
     /// </summary>
     public class UsercheckRPCResponse : RPCResponse
     {
+        public int id;
+        public string username;
+        public string password;
+        public string rolename;
+        public string realname;
+        public string idcard;
+        public int state;
+    }
+
+    public class UsercheckListRPCResponse : RPCResponse
+    {
+        public Usercheck[] listmodule;
 
     }
 

@@ -55,7 +55,7 @@ namespace zhuhai
             {
                 String logicid = textBox_logicId.Text.Trim();
                 int logicid_int = Int32.Parse(logicid);
-                if (logicid_int == 1 || logicid_int == 2 || logicid_int == 3)
+                if (logicid_int  != 1 && logicid_int != 2 && logicid_int != 3)
                 {
                     MessageBox.Show("逻辑编号只能是1,2,3！");
                     return;
