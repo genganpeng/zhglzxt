@@ -1038,7 +1038,7 @@ namespace zhuhai
         {
             int gateNo = comboBox_shipin_3.SelectedIndex + 1;
             //不是上一次监控的闸机
-            if (previewMonitor1 != monitorList[gateNo - 1])
+            if (previewMonitor2 != monitorList[gateNo - 1])
             {
                 previewControler2.setMonitor(monitorList[gateNo - 1]);
                 bool isSuccess = previewControler2.preview();

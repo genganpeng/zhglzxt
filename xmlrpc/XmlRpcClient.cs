@@ -607,7 +607,7 @@ namespace zhuhai.xmlrpc
         [XmlRpcMissingMapping(MappingAction.Ignore)]
         public string discharged_by { get; set; }	// 放行的工作人员，闸机不发送此信息，保持为空即可
         [XmlRpcMissingMapping(MappingAction.Ignore)]
-        public string retport_content { get; set; }
+        public string report_content { get; set; }
 
         public override string ToString()
         {

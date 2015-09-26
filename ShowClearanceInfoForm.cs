@@ -90,7 +90,6 @@ namespace zhuhai
             {
                 this.photoPictureBox.Image = global::zhuhai.Properties.Resources.people;
                 
-                MessageBox.Show(ex.Message, "错误");
             }
             
         }

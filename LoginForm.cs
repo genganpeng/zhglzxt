@@ -38,17 +38,25 @@ namespace zhuhai
                 return;
             }
 
-            //从数据库取，然后验证
-            if (SystemManageService.getInstance().validateUserNameAndPassword(txt_user.Text, txt_passwd.Text))
+            try
             {
-                this.DialogResult = System.Windows.Forms.DialogResult.OK;
-                LogService.getInstance().log(ModuleConstant.LOGIN_MODULE_CONTENT, ModuleConstant.LOGIN_MODULE);
-                this.Close();
+                //从数据库取，然后验证
+                if (SystemManageService.getInstance().validateUserNameAndPassword(txt_user.Text, txt_passwd.Text))
+                {
+                    this.DialogResult = System.Windows.Forms.DialogResult.OK;
+                    LogService.getInstance().log(ModuleConstant.LOGIN_MODULE_CONTENT, ModuleConstant.LOGIN_MODULE);
+                    this.Close();
+                }
+                else
+                {
+                    MessageBox.Show("用户名或者密码错误！", "提示");
+                }
             }
-            else
+            catch (Exception ex)
             {
-                MessageBox.Show("用户名或者密码错误！","提示");
+                MessageBox.Show(ex.Message, "错误");
             }
+            
         }
 
         private void btn_reset_Click(object sender, EventArgs e)
