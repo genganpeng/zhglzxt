@@ -102,9 +102,9 @@ namespace zhuhai
             ct.Bytes = StreamByteTransfer.FileToBytes(filePath);
 
             //超过规定的大小后提示用户无法保存
-            if (ct.Bytes.LongLength > 65535 * 1000)
+            if (ct.Bytes.LongLength > 16000 * 1000)
             {
-                MessageBox.Show("图片太多, 请删除一些图片然后在保存（默认大小是64M）！", "错误");
+                MessageBox.Show("图片太多, 请删除一些图片然后在保存（默认大小是16M）！", "错误");
                 return;
             }
 

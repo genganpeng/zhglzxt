@@ -45,6 +45,7 @@
             // 
             this.textBox.Font = new System.Drawing.Font("微软雅黑", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.textBox.Location = new System.Drawing.Point(157, 46);
+            this.textBox.MaxLength = 200;
             this.textBox.Multiline = true;
             this.textBox.Name = "textBox";
             this.textBox.Size = new System.Drawing.Size(454, 110);
@@ -76,6 +77,7 @@
             // 
             this.textBox_en.Font = new System.Drawing.Font("微软雅黑", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.textBox_en.Location = new System.Drawing.Point(157, 223);
+            this.textBox_en.MaxLength = 200;
             this.textBox_en.Multiline = true;
             this.textBox_en.Name = "textBox_en";
             this.textBox_en.Size = new System.Drawing.Size(454, 110);

@@ -158,7 +158,7 @@
             // pageUpControl_query
             // 
             this.pageUpControl_query.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.pageUpControl_query.Location = new System.Drawing.Point(0, 485);
+            this.pageUpControl_query.Location = new System.Drawing.Point(0, 602);
             this.pageUpControl_query.MyControl = null;
             this.pageUpControl_query.Name = "pageUpControl_query";
             this.pageUpControl_query.PageIndex = 0;
@@ -176,7 +176,7 @@
             this.gridControl_query.Location = new System.Drawing.Point(0, 110);
             this.gridControl_query.MainView = this.gridView_query;
             this.gridControl_query.Name = "gridControl_query";
-            this.gridControl_query.Size = new System.Drawing.Size(902, 375);
+            this.gridControl_query.Size = new System.Drawing.Size(902, 492);
             this.gridControl_query.TabIndex = 2;
             this.gridControl_query.ViewCollection.AddRange(new DevExpress.XtraGrid.Views.Base.BaseView[] {
             this.gridView_query});
@@ -224,6 +224,7 @@
             this.operateTime.Caption = "操作时间";
             this.operateTime.FieldName = "operateTime";
             this.operateTime.Name = "operateTime";
+            this.operateTime.OptionsColumn.AllowEdit = false;
             this.operateTime.Visible = true;
             this.operateTime.VisibleIndex = 3;
             // 
@@ -231,7 +232,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(902, 527);
+            this.ClientSize = new System.Drawing.Size(902, 644);
             this.Controls.Add(this.gridControl_query);
             this.Controls.Add(this.pageUpControl_query);
             this.Controls.Add(this.groupControl_query);

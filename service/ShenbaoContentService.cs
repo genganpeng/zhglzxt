@@ -16,6 +16,7 @@ namespace zhuhai.service
     public class ShenbaoContentService : IQueryService
     {
         private static ShenbaoContentService shenbaoContentService = null;
+        private ReportContent[] reportContentArray = null;
 
         private ShenbaoContentService()
         {
@@ -70,6 +71,7 @@ namespace zhuhai.service
                 {
                     wrs.Add(new ShenboContent(titlelist[i].id, titlelist[i].logicid, titlelist[i].content, titlelist[i].content_en));
                 }
+                reportContentArray = response.reportcontentlist;
                 return wrs;
             }
             catch (Exception ex)
@@ -151,6 +153,22 @@ namespace zhuhai.service
 
         }
 
+        /// <summary>
+        /// 检查logicid是否存在
+        /// </summary>
+        /// <param name="logicId"></param>
+        /// <returns></returns>
+        public Boolean checkLogicIdExsit(int id, int logicId)
+        {
+            for (int i = 0; i < reportContentArray.Length; i++)
+            {
+                if (reportContentArray[i].logicid == logicId && reportContentArray[i].id != id)
+                {
+                    return true;
+                }
 
+            }
+            return false;
+        }
     }
 }

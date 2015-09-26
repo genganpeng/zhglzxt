@@ -60,7 +60,13 @@ namespace zhuhai
                     MessageBox.Show("逻辑编号只能是1,2,3！");
                     return;
                 }
-            }
+
+                if (shenbaoContentService.checkLogicIdExsit(id, logicid_int))
+                {
+                    MessageBox.Show("逻辑编号不能重复！");
+                    return;
+                }
+             }
             catch (Exception ex)
             {
                 MessageBox.Show("逻辑编号不能为空,并且只能是1,2,3！");

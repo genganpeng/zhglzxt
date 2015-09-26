@@ -23,5 +23,7 @@ namespace zhuhai.model
         public static string NUCLEAR_COLUMN = "nuclear";
         public static string NULCLEAR_DETAIL_COLUMN = "nuclear_detail";
         public static string IS_HEALTHY_COLUMN = "is_healthy";
+        public static string Unnormal_type_name_COLUMN = "unnormal_type_name";
+        public static string Unnormal_type_COLUMN = "unnormal_type";
     }
 }

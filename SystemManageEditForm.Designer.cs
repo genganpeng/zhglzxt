@@ -60,6 +60,7 @@
             // 
             this.textEdit_IDCard.Location = new System.Drawing.Point(89, 136);
             this.textEdit_IDCard.Name = "textEdit_IDCard";
+            this.textEdit_IDCard.Properties.MaxLength = 40;
             this.textEdit_IDCard.Size = new System.Drawing.Size(229, 20);
             this.textEdit_IDCard.TabIndex = 14;
             // 
@@ -67,6 +68,7 @@
             // 
             this.textEdit_name.Location = new System.Drawing.Point(419, 79);
             this.textEdit_name.Name = "textEdit_name";
+            this.textEdit_name.Properties.MaxLength = 40;
             this.textEdit_name.Size = new System.Drawing.Size(143, 20);
             this.textEdit_name.TabIndex = 13;
             // 
@@ -74,6 +76,7 @@
             // 
             this.textEdit_userName.Location = new System.Drawing.Point(89, 28);
             this.textEdit_userName.Name = "textEdit_userName";
+            this.textEdit_userName.Properties.MaxLength = 40;
             this.textEdit_userName.Size = new System.Drawing.Size(158, 20);
             this.textEdit_userName.TabIndex = 12;
             // 
@@ -113,6 +116,7 @@
             // 
             this.textEdit_password.Location = new System.Drawing.Point(417, 28);
             this.textEdit_password.Name = "textEdit_password";
+            this.textEdit_password.Properties.MaxLength = 40;
             this.textEdit_password.Size = new System.Drawing.Size(143, 20);
             this.textEdit_password.TabIndex = 17;
             // 

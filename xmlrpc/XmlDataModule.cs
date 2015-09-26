@@ -79,7 +79,7 @@ namespace zhuhai.xmlrpc
         /// <summary>
         /// 闸机重启
         /// </summary>
-        Gate_Reboot = 0,
+        Gate_Reboot = 6,
         /// <summary>
         /// 闸机休眠
         /// </summary>
@@ -106,6 +106,8 @@ namespace zhuhai.xmlrpc
     {
         public int type;  // enum OrderType
         public int[] target_gates;  // list of gate_id
+        [XmlRpcMissingMapping(MappingAction.Ignore)]
+        public string created_by;
 
         public override string ToString()
         {

@@ -60,7 +60,7 @@ namespace zhuhai.xmlrpc
         NumResponse searchPassengerCount(string passenger_name,
                                             XmlRpcStruct other_conditions);
 
-        //获得旅客通过时的异常记录
+        //获得旅客通过时的异常记录和正常记录
         [XmlRpcMethod("getAbnormalRecord")]
         GateRecordResponse getAbnormalRecord(int controller_id);
 
@@ -459,7 +459,11 @@ namespace zhuhai.xmlrpc
         /// <summary>
         /// 化学异常
         /// </summary>
-        Chem = 5
+        Chem = 5,
+        /// <summary>
+        /// 申报异常
+        /// </summary>
+        Shenbao = 6
     }
 
     public enum IDType
@@ -502,6 +506,9 @@ namespace zhuhai.xmlrpc
         // properities for PublishNotice, optional
         [XmlRpcMissingMapping(MappingAction.Ignore)]
         public string notice;
+
+        [XmlRpcMissingMapping(MappingAction.Ignore)]
+        public string created_by;
 
         public override string ToString()
         {
@@ -601,7 +608,11 @@ namespace zhuhai.xmlrpc
 
         // Gate related
         public int gate_id { get; set; }
-        public int gate_mode { get; set; }  //闸机的当前工作模式
+        //闸机的当前工作模式
+        public int gate_mode { get; set; }  
+        //本地用，不是从服务器上传输过来的
+        [XmlRpcMissingMapping(MappingAction.Ignore)]
+        public string gate_mode_name { get; set; }
         public DateTime nvr_begintime { get; set; }	// 该旅客触发闸机进行处理的时刻
         public DateTime nvr_endtime { get; set; }	// 填充为发送时的时刻，server会进一步修正
         [XmlRpcMissingMapping(MappingAction.Ignore)]
@@ -609,6 +620,11 @@ namespace zhuhai.xmlrpc
         [XmlRpcMissingMapping(MappingAction.Ignore)]
         public string report_content { get; set; }
 
+        public int unnormal_type { get; set; }
+
+        //本地用，不是从服务器上传输过来的
+        [XmlRpcMissingMapping(MappingAction.Ignore)]
+        public string unnormal_type_name { get; set; }
         public override string ToString()
         {
             return String.Format(

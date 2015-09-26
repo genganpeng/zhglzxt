@@ -149,5 +149,17 @@ namespace zhuhai
             ShowClearanceInfoForm showClearanceInfoForm = new ShowClearanceInfoForm(dr);
             showClearanceInfoForm.ShowDialog();
         }
+
+        private void gridView_query_RowCellStyle(object sender, DevExpress.XtraGrid.Views.Grid.RowCellStyleEventArgs e)
+        {
+            //int hand = e.RowHandle;
+            //if (hand < 0) return;
+            //DataRow dr = this.gridView_query.GetDataRow(hand);
+            //if (dr == null) return;
+            //if (Int32.Parse(dr[ClearanceRecord.Unnormal_type_COLUMN].ToString()) != (int)zhuhai.xmlrpc.AbnormalType.No)
+            //{
+            //    e.Appearance.BackColor = Color.Red;
+            //}
+        }
     }
 }

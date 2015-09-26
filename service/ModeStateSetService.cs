@@ -37,6 +37,7 @@ namespace zhuhai.service
             task.type = (int)TaskType.ChangeMode;
             task.mode = mode;
             task.target_gates = gateNos;
+            task.created_by = SystemManageService.currentUser.UserName;
 
             try
             {
@@ -68,6 +69,7 @@ namespace zhuhai.service
             SysOrder sysOrder = new SysOrder();
             sysOrder.type = state;
             sysOrder.target_gates = gateNos;
+            sysOrder.created_by = SystemManageService.currentUser.UserName;
 
             try
             {

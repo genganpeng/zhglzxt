@@ -24,7 +24,7 @@ namespace zhuhai
             nameLabel.Text = row[ClearanceRecord.NAME_COLUMN].ToString();
             nationalityLabel.Text = row[ClearanceRecord.NATIONALITY_COLUMN].ToString();
             idnoLabel.Text = row[ClearanceRecord.ID_CODE_COLUMN].ToString();
-            passTime.Text = ((DateTime)row[ClearanceRecord.NVR_STARTTIME_COLUMN]).ToString("yyyy-MM-dd hh:mm:ss");
+            passTime.Text = ((DateTime)row[ClearanceRecord.NVR_STARTTIME_COLUMN]).ToString("yyyy-MM-dd HH:mm:ss");
             exchannellabel.Text = row[ClearanceRecord.GATE_ID_COLUMN].ToString();
             extempraturelabel.Text = row[ClearanceRecord.TEMPERATURE_COLUMN].ToString() + "℃";
             exceptionLabel.Text = row[ClearanceRecord.NUCLEAR_COLUMN].ToString();
@@ -70,14 +70,16 @@ namespace zhuhai
                 this.nuclearjialabel.Image = global::zhuhai.Properties.Resources.jiawhite;
             }
 
-            if ((bool)row[ClearanceRecord.IS_HEALTHY_COLUMN])
-            {
-                this.label_statuName.Text = "正常";
-            }
-            else
-            {
-                this.label_statuName.Text = "异常";
-            }
+            //if ((bool)row[ClearanceRecord.IS_HEALTHY_COLUMN])
+            //{
+            //    this.label_statuName.Text = "正常";
+            //}
+            //else
+            //{
+            //    this.label_statuName.Text = "异常";
+            //}
+
+            this.label_statuName.Text = row[ClearanceRecord.Unnormal_type_name_COLUMN].ToString();
 
             try
             {

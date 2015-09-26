@@ -15,6 +15,7 @@ using zhuhai.util;
 using zhuhai.monitorinfo;
 using zhuhai.monitorinfo.h264;
 using DevExpress.XtraBars;
+using zhuhai.model;
 
 namespace zhuhai
 {
@@ -39,7 +40,9 @@ namespace zhuhai
             addGateMonitors();
             this.DoubleBuffered = true;
             UpdateStyles();
+            backgroundWorker.RunWorkerAsync();
             initMonitorControler();
+
             this.barStaticItem_currentUser.Caption = "当前用户：" + SystemManageService.currentUser.UserName;
 
             //以下初始化通道
@@ -54,8 +57,7 @@ namespace zhuhai
             this.comboBox_shipin_1.SelectedIndex = 0;
             this.comboBox_shipin_2.SelectedIndex = 1;
             this.comboBox_shipin_3.SelectedIndex = 2;
-
-
+            
         }
 
         /// <summary>
@@ -149,6 +151,8 @@ namespace zhuhai
         public void addAbnormalList(GateRecordResponse gateRecordResponse)
         {
             int gate_id = gateRecordResponse.gate_record.gate_id;
+            gateRecordResponse.gate_record.unnormal_type_name = zhuhai.util.AbnormalType.getAllAbnormalTypeNames()[gateRecordResponse.gate_record.unnormal_type + 1];
+            gateRecordResponse.gate_record.gate_mode_name = zhuhai.util.GateWorkState.getAllGateWorkStateNames()[gateRecordResponse.gate_record.gate_mode];
             abnormalList.Insert(0, gateRecordResponse.gate_record);
             //超过显示的数量则删除最后一条记录
             if (abnormalList.Count > AppConfig.personNo)
@@ -160,17 +164,32 @@ namespace zhuhai
 
             if (!this.IsDisposed)
             {
-                //显示报警灯
-                System.Windows.Forms.PictureBox pictureBox = (PictureBox)( monitorPanels[gate_id - 1].Controls.Find("pictureBox" + (gate_id).ToString() + "2", false)[0]);
-                pictureBox.Visible = true;
+                
                 System.Threading.ThreadPool.QueueUserWorkItem(new System.Threading.WaitCallback(this.channelBlinkThread), gate_id);
                 ICustomsCMS server = XmlRpcInstance.getInstance();
 
-                if (MessageBox.Show("检查到异常记录,是否切换到异常预案中？", "提示", MessageBoxButtons.YesNo) == DialogResult.Yes)
+
+                if (gateRecordResponse.gate_record.unnormal_type == (int)zhuhai.xmlrpc.AbnormalType.Temperatare && MessageBox.Show("检查到温度异常记录,是否切换到温度异常预案中？", "提示", MessageBoxButtons.YesNo) == DialogResult.Yes)
                 {
-                    RichTextEditorForm richTextEditorForm = new RichTextEditorForm(0, "温度", DisposePlanService.getInstance(), true);
+                    RichTextEditorForm richTextEditorForm = new RichTextEditorForm(0, "温度异常", DisposePlanService.getInstance(), true);
                     richTextEditorForm.ShowDialog();
                 }
+                else if (gateRecordResponse.gate_record.unnormal_type == (int)zhuhai.xmlrpc.AbnormalType.Nuclear && MessageBox.Show("检查到核素异常记录,是否切换到核素异常预案中？", "提示", MessageBoxButtons.YesNo) == DialogResult.Yes)
+                {
+                    RichTextEditorForm richTextEditorForm = new RichTextEditorForm(0, "核素异常", DisposePlanService.getInstance(), true);
+                    richTextEditorForm.ShowDialog();
+                }
+                else if (gateRecordResponse.gate_record.unnormal_type == (int)zhuhai.xmlrpc.AbnormalType.TemperatareNuclear && MessageBox.Show("检查到温度核素异常记录,是否切换到温度核素异常预案中？", "提示", MessageBoxButtons.YesNo) == DialogResult.Yes)
+                {
+                    RichTextEditorForm richTextEditorForm = new RichTextEditorForm(0, "温度核素异常", DisposePlanService.getInstance(), true);
+                    richTextEditorForm.ShowDialog();
+                }
+                else if (gateRecordResponse.gate_record.unnormal_type == (int)zhuhai.xmlrpc.AbnormalType.Shenbao && MessageBox.Show("检查到申报异常记录,是否切换到申报异常预案中？", "提示", MessageBoxButtons.YesNo) == DialogResult.Yes)
+                {
+                    RichTextEditorForm richTextEditorForm = new RichTextEditorForm(0, "申报异常", DisposePlanService.getInstance(), true);
+                    richTextEditorForm.ShowDialog();
+                }
+
             }
 
         }
@@ -321,6 +340,7 @@ namespace zhuhai
                 label14.TabIndex = 900 + i;
                 label14.Text = (i + 1).ToString(); ;
                 label14.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+                label14.Click += new System.EventHandler(this.label14_click);
 
                 // 
                 // pictureBox12
@@ -391,19 +411,36 @@ namespace zhuhai
                 String display = "闸机状态：" + EnumName.getWorkStateName(gate_state_recode[i].working_state)
                     + "\n闸机模式：" + EnumName.getGateModeName(gate_state_recode[i].mode)
                     + "\n误差调节：核素误差 " + gate_state_recode[i].tiny_nuclear + "，温度误差 " + gate_state_recode[i].tiny_temper
-                    + "\n核素报警阀值 "+ gate_state_recode[i].thr_nuclear+ "，温度报警阀值 " + gate_state_recode[i].thr_temper
+                    + "\n报警阀值：核素报警阀值 " + gate_state_recode[i].thr_nuclear + "，温度报警阀值 " + gate_state_recode[i].thr_temper
                     + "\n报警状态：核素报警状态-";
-                if (gate_state_recode[i].unnormal_type == (int)zhuhai.xmlrpc.AbnormalType.Nuclear || gate_state_recode[i].unnormal_type == (int)zhuhai.xmlrpc.AbnormalType.TemperatareNuclear)
-                    display += "报警 " + gate_state_recode[i].temperature.ToString() + "，温度报警状态-";
+                if (gate_state_recode[i].unnormal_type == (int)zhuhai.xmlrpc.AbnormalType.Nuclear || gate_state_recode[i].unnormal_type == (int)zhuhai.xmlrpc.AbnormalType.TemperatareNuclear) {
+                    display += "报警 " + gate_state_recode[i].nuclear.ToString() + "，温度报警状态-";
+                    //显示报警灯
+                    System.Windows.Forms.PictureBox pictureBox12 = (PictureBox)(panel1.Controls.Find("pictureBox" + (i + 1).ToString() + "2", false)[0]);
+                    pictureBox12.Visible = true;
+                }
                 else {
                     display += "无报警，温度报警状态-";
                 }
 
-                if (gate_state_recode[i].unnormal_type == (int)zhuhai.xmlrpc.AbnormalType.Temperatare || gate_state_recode[i].unnormal_type == (int)zhuhai.xmlrpc.AbnormalType.TemperatareNuclear)
+                if (gate_state_recode[i].unnormal_type == (int)zhuhai.xmlrpc.AbnormalType.Temperatare || gate_state_recode[i].unnormal_type == (int)zhuhai.xmlrpc.AbnormalType.TemperatareNuclear) {
+                    //显示报警灯
+                    System.Windows.Forms.PictureBox pictureBox12 = (PictureBox)(panel1.Controls.Find("pictureBox" + (i + 1).ToString() + "2", false)[0]);
+                    pictureBox12.Visible = true;
                     display += "报警 " + gate_state_recode[i].temperature.ToString();
+                }
                 else {
                     display += "无报警";
                 }
+
+                if (gate_state_recode[i].unnormal_type == (int)zhuhai.xmlrpc.AbnormalType.Shenbao)
+                {
+                    display += "，申报报警异常";
+                    //显示报警灯
+                    System.Windows.Forms.PictureBox pictureBox12 = (PictureBox)(panel1.Controls.Find("pictureBox" + (i + 1).ToString() + "2", false)[0]);
+                    pictureBox12.Visible = true;
+                }
+
                 toolTip.SetToolTip(panel1, display);
                 //模式
                 System.Windows.Forms.PictureBox pictureBox10 = (PictureBox)(panel1.Controls.Find("pictureBox" + (i + 1).ToString() + "0", false)[0]);
@@ -444,6 +481,9 @@ namespace zhuhai
                 System.Windows.Forms.Label label13 = (Label)(panel1.Controls.Find("label" + (i + 1).ToString() + "3", false)[0]);
                 label13.Text = gate_state_recode[i].temperature.ToString();
 
+                //通关通道上显示提示
+                System.Windows.Forms.Label label14 = (Label)(panel1.Controls.Find("label" + (i + 1).ToString() + "4", false)[0]);
+                toolTip.SetToolTip(label14, display);
                 
             }
         }
@@ -488,11 +528,24 @@ namespace zhuhai
         }
 
 
+        
+
         //选中一个通道后预览
         private void monitorPanel_click(object sender, EventArgs e)
         {
             Panel panel = sender as Panel;
             selectMonitor(panel);
+        }
+
+        //选中一个通道的label
+        private void label14_click(object sender, EventArgs e)
+        {
+            Label label = sender as Label;
+            string name = label.Name;
+            //name 由 label + 闸机号 + 序号（4）构成 
+            string selectedGateNo = name.Substring(5, name.Length - 5 - 1);
+            int gateNo = Int32.Parse(selectedGateNo);
+            selectMonitor(monitorPanels[gateNo - 1]);
         }
 
         private void selectMonitor(Panel panel)
@@ -532,7 +585,7 @@ namespace zhuhai
         private void channelBlinkThread(object gate_no)
         {
             System.Threading.Thread.Sleep(AppConfig.blinkSecond);
-            if (!this.IsDisposed)
+            if (!this.IsDisposed &&  this.IsHandleCreated)
             {
                 this.Invoke(new Action<int>(this.channelBlink), (int)gate_no);
             }
@@ -659,12 +712,12 @@ namespace zhuhai
             Bioaerosol bioaerosol = Shwxqhxy.getbiodata();
             Microclimate microlimate = Shwxqhxy.getendata();
 
-            if (!this.IsDisposed)
+            if (this.IsHandleCreated && !this.IsDisposed)
             {
                 //使用异步UI线程更新
                 this.BeginInvoke((MethodInvoker)delegate()
                 {
-                    if (!this.IsDisposed)
+                    if (this.IsHandleCreated && !this.IsDisposed)
                     {
                         updateSHWXQH(chemicalToxic, bioaerosol, microlimate);
                     }
@@ -806,7 +859,7 @@ namespace zhuhai
 
         private void barButtonItem_videoReplay_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
         {
-            VideoReplayForm videoReplayForm = new VideoReplayForm();
+            VideoReplayForm videoReplayForm = new VideoReplayForm(gateTotal);
             videoReplayForm.ShowDialog(this);
         }
 
@@ -914,11 +967,6 @@ namespace zhuhai
             {
                 MessageBox.Show(ex.Message, "错误");
             }
-        }
-
-        private void ToolStripMenuItem_shutDown_Click(object sender, EventArgs e)
-        {
-            changeGateState(getSelectedGateNo(sender),  "闸机复位", (int)OrderType.Gate_Reset);
         }
 
         /// <summary>
@@ -1052,6 +1100,42 @@ namespace zhuhai
                     previewMonitor2 = null;
                 }
             }
+        }
+
+        private void backgroundWorker_DoWork(object sender, DoWorkEventArgs e)
+        {
+            
+            
+
+            //初始一个图文RichTextEditorForm，以防止启动太慢
+            RichTextEditorForm form = new RichTextEditorForm(null);
+        }
+
+        private void backgroundWorker_RunWorkerCompleted(object sender, RunWorkerCompletedEventArgs e)
+        {
+        }
+
+        private void ToolStripMenuItem_reset_Click(object sender, EventArgs e)
+        {
+            changeGateState(getSelectedGateNo(sender), "闸机复位", (int)OrderType.Gate_Reset);
+        }
+
+        /// <summary>
+        /// 将出现异常的记录的背景色置为红色
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void gridView_abnormal_RowStyle(object sender, DevExpress.XtraGrid.Views.Grid.RowStyleEventArgs e)
+        {
+            int hand = e.RowHandle;
+            if (hand < 0) return;
+            DataRow dr = this.gridView_abnormal.GetDataRow(hand);
+            if (dr == null) return;
+            if (Int32.Parse(dr[ClearanceRecord.Unnormal_type_COLUMN].ToString()) != (int)zhuhai.xmlrpc.AbnormalType.No)
+            {
+                e.Appearance.BackColor = Color.Red;
+            }
+
         }
     }
 }

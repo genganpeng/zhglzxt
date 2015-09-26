@@ -61,6 +61,8 @@
             this.id_code = new DevExpress.XtraGrid.Columns.GridColumn();
             this.issue_date = new DevExpress.XtraGrid.Columns.GridColumn();
             this.expire_date = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.unnormal_type_name = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.gate_mode_name = new DevExpress.XtraGrid.Columns.GridColumn();
             ((System.ComponentModel.ISupportInitialize)(this.groupControl_query)).BeginInit();
             this.groupControl_query.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.textEdit_country.Properties)).BeginInit();
@@ -307,11 +309,14 @@
             this.birth_date,
             this.id_code,
             this.issue_date,
-            this.expire_date});
+            this.expire_date,
+            this.unnormal_type_name,
+            this.gate_mode_name});
             this.gridView_query.GridControl = this.gridControl_query;
             this.gridView_query.Name = "gridView_query";
             this.gridView_query.OptionsSelection.MultiSelect = true;
             this.gridView_query.OptionsView.ShowGroupPanel = false;
+            this.gridView_query.RowCellStyle += new DevExpress.XtraGrid.Views.Grid.RowCellStyleEventHandler(this.gridView_query_RowCellStyle);
             // 
             // name
             // 
@@ -412,6 +417,24 @@
             this.expire_date.Visible = true;
             this.expire_date.VisibleIndex = 10;
             // 
+            // unnormal_type_name
+            // 
+            this.unnormal_type_name.Caption = "异常类型";
+            this.unnormal_type_name.FieldName = "unnormal_type_name";
+            this.unnormal_type_name.Name = "unnormal_type_name";
+            this.unnormal_type_name.OptionsColumn.AllowEdit = false;
+            this.unnormal_type_name.Visible = true;
+            this.unnormal_type_name.VisibleIndex = 11;
+            // 
+            // gate_mode_name
+            // 
+            this.gate_mode_name.Caption = "通关模式";
+            this.gate_mode_name.FieldName = "gate_mode_name";
+            this.gate_mode_name.Name = "gate_mode_name";
+            this.gate_mode_name.OptionsColumn.AllowEdit = false;
+            this.gate_mode_name.Visible = true;
+            this.gate_mode_name.VisibleIndex = 12;
+            // 
             // ClearanceRecordForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
@@ -469,5 +492,7 @@
         private DevExpress.XtraGrid.Columns.GridColumn expire_date;
         private System.Windows.Forms.DateTimePicker dateTimePicker_startTime_time;
         private System.Windows.Forms.DateTimePicker dateTimePicker_endTime_time;
+        private DevExpress.XtraGrid.Columns.GridColumn unnormal_type_name;
+        private DevExpress.XtraGrid.Columns.GridColumn gate_mode_name;
     }
 }

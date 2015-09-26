@@ -18,7 +18,7 @@ namespace zhuhai
     public partial class ClearanceVideoReplayForm : Form
     {
         private H264Controler playbackControler = null;
-        private GateRecord gateRecord;
+        private GateRecord gateRecord = null;
         public ClearanceVideoReplayForm(DataRow dr)
         {
             InitializeComponent();
@@ -32,11 +32,12 @@ namespace zhuhai
                 System.Environment.Exit(0);
             }
 
-            GateRecord gateRecord = new ModelHandler<GateRecord>().FillModel(dr);
+            gateRecord = new ModelHandler<GateRecord>().FillModel(dr);
             Monitor monitor = new Monitor();
             monitor.gateNo = gateRecord.gate_id;
             playbackControler.setMonitor(monitor);
-            
+
+            playbackControler.play(gateRecord);
         }
 
 

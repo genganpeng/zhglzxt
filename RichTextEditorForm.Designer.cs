@@ -110,6 +110,11 @@
             this.simpleButton_save = new DevExpress.XtraEditors.SimpleButton();
             this.simpleButton_cancel = new DevExpress.XtraEditors.SimpleButton();
             this.panel1 = new System.Windows.Forms.Panel();
+            this.pagesBar1 = new DevExpress.XtraRichEdit.UI.PagesBar();
+            this.linksBar1 = new DevExpress.XtraRichEdit.UI.LinksBar();
+            this.headerFooterBar1 = new DevExpress.XtraRichEdit.UI.HeaderFooterBar();
+            this.textBar1 = new DevExpress.XtraRichEdit.UI.TextBar();
+            this.symbolsBar1 = new DevExpress.XtraRichEdit.UI.SymbolsBar();
             ((System.ComponentModel.ISupportInitialize)(this.barManager1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.repositoryItemFontEdit1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.repositoryItemRichEditFontSizeEdit1)).BeginInit();
@@ -140,7 +145,12 @@
             this.fontBar1,
             this.paragraphBar1,
             this.tablesBar1,
-            this.illustrationsBar1});
+            this.illustrationsBar1,
+            this.pagesBar1,
+            this.linksBar1,
+            this.headerFooterBar1,
+            this.textBar1,
+            this.symbolsBar1});
             this.barManager1.DockControls.Add(this.barDockControlTop);
             this.barManager1.DockControls.Add(this.barDockControlBottom);
             this.barManager1.DockControls.Add(this.barDockControlLeft);
@@ -429,7 +439,7 @@
             this.illustrationsBar1.DockStyle = DevExpress.XtraBars.BarDockStyle.Top;
             this.illustrationsBar1.FloatLocation = new System.Drawing.Point(899, 223);
             this.illustrationsBar1.LinksPersistInfo.AddRange(new DevExpress.XtraBars.LinkPersistInfo[] {
-            new DevExpress.XtraBars.LinkPersistInfo(this.insertFloatingPictureItem1)});
+            new DevExpress.XtraBars.LinkPersistInfo(this.insertPictureItem1)});
             this.illustrationsBar1.Offset = 915;
             this.illustrationsBar1.OptionsBar.AllowQuickCustomization = false;
             // 
@@ -443,7 +453,7 @@
             this.barDockControlTop.CausesValidation = false;
             this.barDockControlTop.Dock = System.Windows.Forms.DockStyle.Top;
             this.barDockControlTop.Location = new System.Drawing.Point(0, 0);
-            this.barDockControlTop.Size = new System.Drawing.Size(1159, 31);
+            this.barDockControlTop.Size = new System.Drawing.Size(1159, 93);
             // 
             // barDockControlBottom
             // 
@@ -456,15 +466,15 @@
             // 
             this.barDockControlLeft.CausesValidation = false;
             this.barDockControlLeft.Dock = System.Windows.Forms.DockStyle.Left;
-            this.barDockControlLeft.Location = new System.Drawing.Point(0, 31);
-            this.barDockControlLeft.Size = new System.Drawing.Size(0, 554);
+            this.barDockControlLeft.Location = new System.Drawing.Point(0, 93);
+            this.barDockControlLeft.Size = new System.Drawing.Size(0, 492);
             // 
             // barDockControlRight
             // 
             this.barDockControlRight.CausesValidation = false;
             this.barDockControlRight.Dock = System.Windows.Forms.DockStyle.Right;
-            this.barDockControlRight.Location = new System.Drawing.Point(1159, 31);
-            this.barDockControlRight.Size = new System.Drawing.Size(0, 554);
+            this.barDockControlRight.Location = new System.Drawing.Point(1159, 93);
+            this.barDockControlRight.Size = new System.Drawing.Size(0, 492);
             // 
             // pasteItem1
             // 
@@ -743,6 +753,7 @@
             this.textEdit_title.Location = new System.Drawing.Point(64, 11);
             this.textEdit_title.MenuManager = this.barManager1;
             this.textEdit_title.Name = "textEdit_title";
+            this.textEdit_title.Properties.MaxLength = 200;
             this.textEdit_title.Size = new System.Drawing.Size(1083, 20);
             this.textEdit_title.TabIndex = 6;
             // 
@@ -782,6 +793,55 @@
             this.panel1.Name = "panel1";
             this.panel1.Size = new System.Drawing.Size(1159, 585);
             this.panel1.TabIndex = 17;
+            // 
+            // pagesBar1
+            // 
+            this.pagesBar1.Control = this.richEditControl_context;
+            this.pagesBar1.DockCol = 0;
+            this.pagesBar1.DockRow = 1;
+            this.pagesBar1.DockStyle = DevExpress.XtraBars.BarDockStyle.Top;
+            this.pagesBar1.LinksPersistInfo.AddRange(new DevExpress.XtraBars.LinkPersistInfo[] {
+            new DevExpress.XtraBars.LinkPersistInfo(this.insertPageBreakItem21)});
+            // 
+            // linksBar1
+            // 
+            this.linksBar1.Control = this.richEditControl_context;
+            this.linksBar1.DockCol = 2;
+            this.linksBar1.DockRow = 1;
+            this.linksBar1.DockStyle = DevExpress.XtraBars.BarDockStyle.Top;
+            this.linksBar1.LinksPersistInfo.AddRange(new DevExpress.XtraBars.LinkPersistInfo[] {
+            new DevExpress.XtraBars.LinkPersistInfo(this.insertBookmarkItem1),
+            new DevExpress.XtraBars.LinkPersistInfo(this.insertHyperlinkItem1)});
+            // 
+            // headerFooterBar1
+            // 
+            this.headerFooterBar1.Control = this.richEditControl_context;
+            this.headerFooterBar1.DockCol = 0;
+            this.headerFooterBar1.DockRow = 2;
+            this.headerFooterBar1.DockStyle = DevExpress.XtraBars.BarDockStyle.Top;
+            this.headerFooterBar1.LinksPersistInfo.AddRange(new DevExpress.XtraBars.LinkPersistInfo[] {
+            new DevExpress.XtraBars.LinkPersistInfo(this.editPageHeaderItem1),
+            new DevExpress.XtraBars.LinkPersistInfo(this.editPageFooterItem1),
+            new DevExpress.XtraBars.LinkPersistInfo(this.insertPageNumberItem1),
+            new DevExpress.XtraBars.LinkPersistInfo(this.insertPageCountItem1)});
+            // 
+            // textBar1
+            // 
+            this.textBar1.Control = this.richEditControl_context;
+            this.textBar1.DockCol = 1;
+            this.textBar1.DockRow = 1;
+            this.textBar1.DockStyle = DevExpress.XtraBars.BarDockStyle.Top;
+            this.textBar1.LinksPersistInfo.AddRange(new DevExpress.XtraBars.LinkPersistInfo[] {
+            new DevExpress.XtraBars.LinkPersistInfo(this.insertTextBoxItem1)});
+            // 
+            // symbolsBar1
+            // 
+            this.symbolsBar1.Control = this.richEditControl_context;
+            this.symbolsBar1.DockCol = 3;
+            this.symbolsBar1.DockRow = 1;
+            this.symbolsBar1.DockStyle = DevExpress.XtraBars.BarDockStyle.Top;
+            this.symbolsBar1.LinksPersistInfo.AddRange(new DevExpress.XtraBars.LinkPersistInfo[] {
+            new DevExpress.XtraBars.LinkPersistInfo(this.insertSymbolItem1)});
             // 
             // RichTextEditorForm
             // 
@@ -889,5 +949,10 @@
         private DevExpress.XtraEditors.SimpleButton simpleButton_cancel;
         private DevExpress.XtraEditors.SimpleButton simpleButton_save;
         private System.Windows.Forms.Panel panel1;
+        private DevExpress.XtraRichEdit.UI.PagesBar pagesBar1;
+        private DevExpress.XtraRichEdit.UI.LinksBar linksBar1;
+        private DevExpress.XtraRichEdit.UI.HeaderFooterBar headerFooterBar1;
+        private DevExpress.XtraRichEdit.UI.TextBar textBar1;
+        private DevExpress.XtraRichEdit.UI.SymbolsBar symbolsBar1;
     }
 }

@@ -67,7 +67,7 @@ namespace zhuhai
         {
             //初始化实现的service，每页数量，开始页码
             pageUpControl.PageIndex = 1;
-            pageUpControl.Pagesize = 10;
+            pageUpControl.Pagesize = 14;
             pageUpControl.StrWhere = strWhere;
             pageUpControl.GetDataTable();
         }

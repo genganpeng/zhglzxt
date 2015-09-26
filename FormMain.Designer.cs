@@ -106,7 +106,7 @@
             this.contextMenuStrip = new System.Windows.Forms.ContextMenuStrip(this.components);
             this.闸机状态ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.ToolStripMenuItem_restart = new System.Windows.Forms.ToolStripMenuItem();
-            this.ToolStripMenuItem_shutDown = new System.Windows.Forms.ToolStripMenuItem();
+            this.ToolStripMenuItem_reset = new System.Windows.Forms.ToolStripMenuItem();
             this.闸机模式ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.ToolStripMenuItem_kuaisutongguan = new System.Windows.Forms.ToolStripMenuItem();
             this.ToolStripMenuItem_shuakatongguan = new System.Windows.Forms.ToolStripMenuItem();
@@ -117,6 +117,9 @@
             this.闸机误差ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.ToolStripMenuItem_nuclearThresholdError = new System.Windows.Forms.ToolStripMenuItem();
             this.toolTip = new System.Windows.Forms.ToolTip(this.components);
+            this.backgroundWorker = new System.ComponentModel.BackgroundWorker();
+            this.unnormal_type_name = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.gate_mode_name = new DevExpress.XtraGrid.Columns.GridColumn();
             ((System.ComponentModel.ISupportInitialize)(this.ribbonControl1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainerControl1)).BeginInit();
@@ -611,7 +614,7 @@
             this.monitorInfoPanel.Dock = System.Windows.Forms.DockStyle.Fill;
             this.monitorInfoPanel.Location = new System.Drawing.Point(0, 0);
             this.monitorInfoPanel.Name = "monitorInfoPanel";
-            this.monitorInfoPanel.Size = new System.Drawing.Size(992, 484);
+            this.monitorInfoPanel.Size = new System.Drawing.Size(992, 550);
             this.monitorInfoPanel.TabIndex = 0;
             // 
             // gridControl_abnormal
@@ -622,7 +625,7 @@
             this.gridControl_abnormal.MainView = this.gridView_abnormal;
             this.gridControl_abnormal.MenuManager = this.ribbonControl1;
             this.gridControl_abnormal.Name = "gridControl_abnormal";
-            this.gridControl_abnormal.Size = new System.Drawing.Size(992, 484);
+            this.gridControl_abnormal.Size = new System.Drawing.Size(992, 550);
             this.gridControl_abnormal.TabIndex = 0;
             this.gridControl_abnormal.ViewCollection.AddRange(new DevExpress.XtraGrid.Views.Base.BaseView[] {
             this.gridView_abnormal});
@@ -641,10 +644,13 @@
             this.birth_date,
             this.id_code,
             this.issue_date,
-            this.expire_date});
+            this.expire_date,
+            this.unnormal_type_name,
+            this.gate_mode_name});
             this.gridView_abnormal.GridControl = this.gridControl_abnormal;
             this.gridView_abnormal.Name = "gridView_abnormal";
             this.gridView_abnormal.OptionsView.ShowGroupPanel = false;
+            this.gridView_abnormal.RowStyle += new DevExpress.XtraGrid.Views.Grid.RowStyleEventHandler(this.gridView_abnormal_RowStyle);
             // 
             // name
             // 
@@ -759,7 +765,7 @@
             this.zhajipanel.Dock = System.Windows.Forms.DockStyle.Fill;
             this.zhajipanel.Location = new System.Drawing.Point(0, 0);
             this.zhajipanel.Name = "zhajipanel";
-            this.zhajipanel.Size = new System.Drawing.Size(992, 484);
+            this.zhajipanel.Size = new System.Drawing.Size(992, 550);
             this.zhajipanel.TabIndex = 0;
             // 
             // navBarControl1
@@ -881,16 +887,16 @@
             this.报警阈值ToolStripMenuItem,
             this.闸机误差ToolStripMenuItem});
             this.contextMenuStrip.Name = "contextMenuStrip";
-            this.contextMenuStrip.Size = new System.Drawing.Size(125, 92);
+            this.contextMenuStrip.Size = new System.Drawing.Size(153, 114);
             this.contextMenuStrip.Opening += new System.ComponentModel.CancelEventHandler(this.contextMenuStrip_Opening);
             // 
             // 闸机状态ToolStripMenuItem
             // 
             this.闸机状态ToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.ToolStripMenuItem_restart,
-            this.ToolStripMenuItem_shutDown});
+            this.ToolStripMenuItem_reset});
             this.闸机状态ToolStripMenuItem.Name = "闸机状态ToolStripMenuItem";
-            this.闸机状态ToolStripMenuItem.Size = new System.Drawing.Size(124, 22);
+            this.闸机状态ToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
             this.闸机状态ToolStripMenuItem.Text = "闸机状态";
             // 
             // ToolStripMenuItem_restart
@@ -900,12 +906,12 @@
             this.ToolStripMenuItem_restart.Text = "重启";
             this.ToolStripMenuItem_restart.Click += new System.EventHandler(this.ToolStripMenuItem_restart_Click);
             // 
-            // ToolStripMenuItem_shutDown
+            // ToolStripMenuItem_reset
             // 
-            this.ToolStripMenuItem_shutDown.Name = "ToolStripMenuItem_shutDown";
-            this.ToolStripMenuItem_shutDown.Size = new System.Drawing.Size(100, 22);
-            this.ToolStripMenuItem_shutDown.Text = "关闭";
-            this.ToolStripMenuItem_shutDown.Click += new System.EventHandler(this.ToolStripMenuItem_shutDown_Click);
+            this.ToolStripMenuItem_reset.Name = "ToolStripMenuItem_reset";
+            this.ToolStripMenuItem_reset.Size = new System.Drawing.Size(100, 22);
+            this.ToolStripMenuItem_reset.Text = "复位";
+            this.ToolStripMenuItem_reset.Click += new System.EventHandler(this.ToolStripMenuItem_reset_Click);
             // 
             // 闸机模式ToolStripMenuItem
             // 
@@ -915,7 +921,7 @@
             this.ToolStripMenuItem_shenbaotongguan,
             this.ToolStripMenuItem_jinjiguanbi});
             this.闸机模式ToolStripMenuItem.Name = "闸机模式ToolStripMenuItem";
-            this.闸机模式ToolStripMenuItem.Size = new System.Drawing.Size(124, 22);
+            this.闸机模式ToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
             this.闸机模式ToolStripMenuItem.Text = "闸机模式";
             // 
             // ToolStripMenuItem_kuaisutongguan
@@ -951,7 +957,7 @@
             this.报警阈值ToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.ToolStripMenuItem_nuclearThreshold});
             this.报警阈值ToolStripMenuItem.Name = "报警阈值ToolStripMenuItem";
-            this.报警阈值ToolStripMenuItem.Size = new System.Drawing.Size(124, 22);
+            this.报警阈值ToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
             this.报警阈值ToolStripMenuItem.Text = "闸机阈值";
             // 
             // ToolStripMenuItem_nuclearThreshold
@@ -966,7 +972,7 @@
             this.闸机误差ToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.ToolStripMenuItem_nuclearThresholdError});
             this.闸机误差ToolStripMenuItem.Name = "闸机误差ToolStripMenuItem";
-            this.闸机误差ToolStripMenuItem.Size = new System.Drawing.Size(124, 22);
+            this.闸机误差ToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
             this.闸机误差ToolStripMenuItem.Text = "闸机误差";
             // 
             // ToolStripMenuItem_nuclearThresholdError
@@ -975,6 +981,29 @@
             this.ToolStripMenuItem_nuclearThresholdError.Size = new System.Drawing.Size(172, 22);
             this.ToolStripMenuItem_nuclearThresholdError.Text = "核素温度误差调节";
             this.ToolStripMenuItem_nuclearThresholdError.Click += new System.EventHandler(this.ToolStripMenuItem_nuclearThresholdError_Click);
+            // 
+            // backgroundWorker
+            // 
+            this.backgroundWorker.DoWork += new System.ComponentModel.DoWorkEventHandler(this.backgroundWorker_DoWork);
+            this.backgroundWorker.RunWorkerCompleted += new System.ComponentModel.RunWorkerCompletedEventHandler(this.backgroundWorker_RunWorkerCompleted);
+            // 
+            // unnormal_type_name
+            // 
+            this.unnormal_type_name.Caption = "异常类型";
+            this.unnormal_type_name.FieldName = "unnormal_type_name";
+            this.unnormal_type_name.Name = "unnormal_type_name";
+            this.unnormal_type_name.OptionsColumn.AllowEdit = false;
+            this.unnormal_type_name.Visible = true;
+            this.unnormal_type_name.VisibleIndex = 11;
+            // 
+            // gate_mode_name
+            // 
+            this.gate_mode_name.Caption = "通关模式";
+            this.gate_mode_name.FieldName = "gate_mode_name";
+            this.gate_mode_name.Name = "gate_mode_name";
+            this.gate_mode_name.OptionsColumn.AllowEdit = false;
+            this.gate_mode_name.Visible = true;
+            this.gate_mode_name.VisibleIndex = 12;
             // 
             // FormMain
             // 
@@ -985,6 +1014,7 @@
             this.Controls.Add(this.ribbonStatusBar1);
             this.Controls.Add(this.pictureBox1);
             this.Controls.Add(this.ribbonControl1);
+            this.DoubleBuffered = true;
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.IsMdiContainer = true;
             this.MinimizeBox = false;
@@ -1090,7 +1120,6 @@
         private System.Windows.Forms.ToolStripMenuItem 报警阈值ToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem 闸机误差ToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem ToolStripMenuItem_restart;
-        private System.Windows.Forms.ToolStripMenuItem ToolStripMenuItem_shutDown;
         private System.Windows.Forms.ToolStripMenuItem ToolStripMenuItem_kuaisutongguan;
         private System.Windows.Forms.ToolStripMenuItem ToolStripMenuItem_shuakatongguan;
         private System.Windows.Forms.ToolStripMenuItem ToolStripMenuItem_shenbaotongguan;
@@ -1107,6 +1136,10 @@
         private System.Windows.Forms.Label label_shipin_2;
         private System.Windows.Forms.ComboBox comboBox_shipin_3;
         private System.Windows.Forms.Label label__shipin_3;
+        private System.ComponentModel.BackgroundWorker backgroundWorker;
+        private System.Windows.Forms.ToolStripMenuItem ToolStripMenuItem_reset;
+        private DevExpress.XtraGrid.Columns.GridColumn unnormal_type_name;
+        private DevExpress.XtraGrid.Columns.GridColumn gate_mode_name;
         
        
 

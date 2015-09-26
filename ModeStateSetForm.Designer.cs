@@ -165,7 +165,7 @@
             // 
             this.simpleButton_lock.Appearance.Font = new System.Drawing.Font("微软雅黑", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.simpleButton_lock.Appearance.Options.UseFont = true;
-            this.simpleButton_lock.Location = new System.Drawing.Point(561, 408);
+            this.simpleButton_lock.Location = new System.Drawing.Point(690, 408);
             this.simpleButton_lock.Name = "simpleButton_lock";
             this.simpleButton_lock.Size = new System.Drawing.Size(91, 36);
             this.simpleButton_lock.TabIndex = 13;
@@ -182,7 +182,6 @@
             this.simpleButton_restart.Size = new System.Drawing.Size(91, 36);
             this.simpleButton_restart.TabIndex = 12;
             this.simpleButton_restart.Text = "闸机重启";
-            this.simpleButton_restart.Visible = false;
             this.simpleButton_restart.Click += new System.EventHandler(this.simpleButton_restart_Click);
             // 
             // simpleButton_sleep
@@ -201,7 +200,7 @@
             // 
             this.simpleButton_reset.Appearance.Font = new System.Drawing.Font("微软雅黑", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.simpleButton_reset.Appearance.Options.UseFont = true;
-            this.simpleButton_reset.Location = new System.Drawing.Point(448, 408);
+            this.simpleButton_reset.Location = new System.Drawing.Point(561, 408);
             this.simpleButton_reset.Name = "simpleButton_reset";
             this.simpleButton_reset.Size = new System.Drawing.Size(91, 36);
             this.simpleButton_reset.TabIndex = 15;

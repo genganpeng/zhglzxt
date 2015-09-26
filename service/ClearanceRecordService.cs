@@ -64,6 +64,12 @@ namespace zhuhai.service
                 TotalNum = numResponse.all_num;
 
                  List<GateRecord> gateRecords = new List<GateRecord>(res.records);
+                 for (int i = 0; i < gateRecords.Count; i++)
+                 {
+                     gateRecords[i].unnormal_type_name = zhuhai.util.AbnormalType.getAllAbnormalTypeNames()[gateRecords[i].unnormal_type + 1];
+                     gateRecords[i].gate_mode_name = zhuhai.util.GateWorkState.getAllGateWorkStateNames()[gateRecords[i].gate_mode];
+                    
+                 }
                  return gateRecords;
             }
             catch(Exception ex) {

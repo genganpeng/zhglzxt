@@ -37,6 +37,7 @@
             // 
             this.textBox_title.Font = new System.Drawing.Font("微软雅黑", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.textBox_title.Location = new System.Drawing.Point(43, 24);
+            this.textBox_title.MaxLength = 40;
             this.textBox_title.Name = "textBox_title";
             this.textBox_title.Size = new System.Drawing.Size(429, 29);
             this.textBox_title.TabIndex = 0;
